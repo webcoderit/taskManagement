@@ -26,8 +26,8 @@
         <div class="menu-title">Users</div>
       </a>
       <ul>
-        <li> <a href="{{ route('admin.user.register.form') }}"><i class="bx bx-right-arrow-alt"></i>Registration</a></li>
-        <li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>List</a></li>
+        <li> <a href="{{ route('admin.user.list') }}"><i class="bx bx-right-arrow-alt"></i>Registration</a></li>
+        <li> <a href="{{ route('admin.user.register.form.create') }}"><i class="bx bx-right-arrow-alt"></i>Add user</a></li>
       </ul>
     </li>
     <li>

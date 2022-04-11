@@ -44,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getFullNameAttribute() // notice that the attribute name is in CamelCase.
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }

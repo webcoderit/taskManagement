@@ -12,6 +12,13 @@
 	<script src="{{ asset('backend/') }}/assets/plugins/highcharts/js/export-data.js"></script>
 	<script src="{{ asset('backend/') }}/assets/plugins/highcharts/js/accessibility.js"></script>
 	<script src="{{ asset('backend/') }}/assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
+    <script src="{{ asset('backend/') }}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('backend/') }}/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
     <script>
 		new PerfectScrollbar('.dashboard-top-countries');
 	</script>
