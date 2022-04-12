@@ -98,9 +98,5 @@
 @endsection
 
 @push('script')
-    <script>
-        function click(){
-            console.log('working');
-        }
-    </script>
+
 @endpush
