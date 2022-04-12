@@ -38,7 +38,7 @@
 		@include('backend.includes.nav')
 		<!--end sidebar wrapper -->
 		<!--start header -->
-		@include('backend.includes.header')
+		@include('backend.includes.admin-header')
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
