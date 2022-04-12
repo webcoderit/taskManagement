@@ -31,27 +31,17 @@
       </ul>
     </li>
     <li>
-      <a href="javascript:;" class="has-arrow">
-        <div class="parent-icon"><i class='bx bx-user'></i>
-        </div>
-        <div class="menu-title">Task</div>
-      </a>
-      <ul>
-        <li> <a href="ecommerce-products.html"><i class="bx bx-right-arrow-alt"></i>Add</a></li>
-        <li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Manage</a></li>
-      </ul>
-    </li>
-    <li>
       <a class="has-arrow" href="javascript:;">
         <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
         </div>
-        <div class="menu-title">Today Task</div>
+        <div class="menu-title">Tasks</div>
       </a>
       <ul>
         <li> <a href="component-alerts.html"><i class="bx bx-right-arrow-alt"></i>Add task</a>
         </li>
         <li> <a href="component-accordions.html"><i class="bx bx-right-arrow-alt"></i>List task</a>
         </li>
+        <li> <a href="component-badges.html"><i class="bx bx-right-arrow-alt"></i>Today Task</a>
         <li> <a href="component-badges.html"><i class="bx bx-right-arrow-alt"></i>All task</a>
         </li>
         <li> <a href="component-buttons.html"><i class="bx bx-right-arrow-alt"></i>Complete task</a>
