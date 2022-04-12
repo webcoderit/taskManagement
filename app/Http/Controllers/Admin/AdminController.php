@@ -41,4 +41,8 @@ class AdminController extends Controller
     {
         return view('backend.admin.home.index');
     }
+    public function register()
+    {
+        return view('backend.admin.home.index');
+    }
 }
