@@ -7,6 +7,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
 	@include('backend.includes.style')
+    <style>
+        .custom-green-badge{
+            margin-left: 20px;
+            text-align: center;
+            background-color: green;
+            padding: 5px;
+            color: white;
+            font-weight: 500;
+            border-radius: 3px;
+        }
+
+        .custom-red-badge{
+            margin-left: 20px;
+            text-align: center;
+            background-color: red;
+            padding: 5px;
+            color: white;
+            font-weight: 500;
+            border-radius: 3px;
+        }
+    </style>
 	<title>Admin dashboard</title>
 </head>
 
@@ -36,10 +57,30 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
-	
+
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	@include('backend.includes.script')
+    <script>
+        function imagePreview(e){
+            if (e.target.files[0]) {
+                let image = e.target.files[0];
+                if(image['type'] === 'image/jpeg' || image['type'] === 'image/png' || image['type'] === 'image/webp' || image['type'] === 'image/gif'){
+                    let reader = new FileReader();
+                    reader.onload = function ()
+                    {
+                        let output = document.getElementById('pre-avatar');
+                        output.src = reader.result;
+                        output.style.display = "block";
+                        output.style.width = "10%";
+                    }
+                    reader.readAsDataURL(event.target.files[0]);
+                }else{
+                    alert('This is not image file. Please input e valid image.');
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
