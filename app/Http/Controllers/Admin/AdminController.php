@@ -44,6 +44,11 @@ class AdminController extends Controller
     {
         return view('backend.admin.home.index');
     }
+
+    public function register()
+    {
+        $users = User::orderBy('created_at', 'desc')->get();
+        return view('backend.admin.users.register', compact('users'));
     }
 
     public function createForm()
@@ -106,5 +111,11 @@ class AdminController extends Controller
         $user->status = 1;
         $user->save();
         return redirect('admin/register')->withSuccess('User has been activated.');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect('admin/register')->withSuccess('User has been deleted.');
     }
 }
