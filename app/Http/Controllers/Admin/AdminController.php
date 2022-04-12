@@ -112,4 +112,10 @@ class AdminController extends Controller
         $user->save();
         return redirect('admin/register')->withSuccess('User has been activated.');
     }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect('admin/register')->withSuccess('User has been deleted.');
+    }
 }
