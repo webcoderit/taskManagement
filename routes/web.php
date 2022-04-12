@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/user/active/{user}', [App\Http\Controllers\Admin\AdminController::class, 'active'])->name('admin.user.active');
     Route::get('/user/inactive/{user}', [App\Http\Controllers\Admin\AdminController::class, 'inactive'])->name('admin.user.inactive');
     Route::get('/user/delete/{user}', [App\Http\Controllers\Admin\AdminController::class, 'destroy'])->name('admin.user.destroy');
+    Route::get('/add/task', [App\Http\Controllers\Admin\AdminController::class, 'addTask'])->name('admin.add.task');
 });
 
 Auth::routes();

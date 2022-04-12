@@ -118,4 +118,8 @@ class AdminController extends Controller
         $user->delete();
         return redirect('admin/register')->withSuccess('User has been deleted.');
     }
+    public function addTask()
+    {
+        return view('backend.admin.task.create');
+    }
 }
