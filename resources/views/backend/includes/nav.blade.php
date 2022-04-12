@@ -37,7 +37,7 @@
         <div class="menu-title">Tasks</div>
       </a>
       <ul>
-        <li> <a href="component-alerts.html"><i class="bx bx-right-arrow-alt"></i>Add task</a>
+        <li> <a href="{{ route('admin.add.task') }}"><i class="bx bx-right-arrow-alt"></i>Add task</a>
         </li>
         <li> <a href="component-accordions.html"><i class="bx bx-right-arrow-alt"></i>List task</a>
         </li>

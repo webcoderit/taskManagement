@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
 	@include('backend.includes.style')
+    @stack('style')
     <style>
         .custom-green-badge{
             margin-left: 20px;
@@ -61,6 +62,7 @@
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	@include('backend.includes.script')
+    @stack('script')
     <script>
         function imagePreview(e){
             if (e.target.files[0]) {
