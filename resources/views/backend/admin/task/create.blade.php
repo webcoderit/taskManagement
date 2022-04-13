@@ -13,10 +13,10 @@
                             <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <a href="#">Manage Task</a>
+                                <a href="#">List Task</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <a href="#">Add Task</a>
+                                Add Task
                             </li>
                         </ol>
                     </nav>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-4">
                             <div style="display: flex;align-items: end;">
-                                <div>
+                                <div style="width: 100%">
                                     <label for="last_name" class="form-label">Student Phone No.</label>
                                     <div class="input-group"><span class="input-group-text bg-transparent"><i class='bx bxs-phone'></i></span>
                                         <input type="number" class="form-control border-start-0" name="phone" id="student_phone" placeholder="Student Phone" />

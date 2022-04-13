@@ -35,6 +35,10 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/logout', [App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('admin.user.logout');
         Route::get('/add/task', [App\Http\Controllers\Admin\AdminController::class, 'addTask'])->name('admin.add.task');
         Route::get('/list/task', [App\Http\Controllers\Admin\AdminController::class, 'listTask'])->name('admin.list.task');
+        Route::get('/today/task', [App\Http\Controllers\Admin\AdminController::class, 'todayTask'])->name('admin.today.task');
+        Route::get('/all/task', [App\Http\Controllers\Admin\AdminController::class, 'allTask'])->name('admin.all.task');
+        Route::get('/complete/task', [App\Http\Controllers\Admin\AdminController::class, 'completeTask'])->name('admin.complete.task');
+        Route::get('/pending/task', [App\Http\Controllers\Admin\AdminController::class, 'pendingTask'])->name('admin.pending.task');
     });
 });
 

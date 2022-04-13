@@ -126,4 +126,20 @@ class AdminController extends Controller
     {
         return view('backend.admin.task.index');
     }
+    public function todayTask()
+    {
+        return view('backend.admin.task.today-task');
+    }
+    public function allTask()
+    {
+        return view('backend.admin.task.all-task');
+    }
+    public function completeTask()
+    {
+        return view('backend.admin.task.complete-task');
+    }
+    public function pendingTask()
+    {
+        return view('backend.admin.task.pending-task');
+    }
 }

@@ -6,22 +6,22 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">List Task</div>
+                <div class="breadcrumb-title pe-3">Today Task</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <a href="#">Add Task</a>
+                                <a href="#">List Task</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">List Task</li>
+                            <li class="breadcrumb-item active" aria-current="page">Today Task</li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase">Task List</h6>
+            <h6 class="mb-0 text-uppercase">Today Task</h6>
             <hr/>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success!</strong> {{ Session::get('success') }}.
