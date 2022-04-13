@@ -13,6 +13,9 @@
                             <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
+                                <a href="#">Manage Task</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
                                 <a href="#">Add Task</a>
                             </li>
                         </ol>
