@@ -13,7 +13,7 @@
                             <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <a href="{{ route('admin.user.register.form.create') }}">Add user</a>
+                                <a href="{{ url('/admin/user/add/task') }}">Add Task</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Users</li>
                         </ol>
