@@ -17,7 +17,6 @@
             font-weight: 500;
             border-radius: 3px;
         }
-
         .custom-red-badge{
             margin-left: 20px;
             text-align: center;
@@ -26,6 +25,16 @@
             color: white;
             font-weight: 500;
             border-radius: 3px;
+        }
+        .add-btn-inner {
+            background: red;
+            color: #fff;
+            padding: 8px 15px;
+            margin-left: 5px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 16px;
         }
     </style>
 	<title>Admin dashboard</title>

@@ -55,9 +55,16 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="last_name" class="form-label">Student Phone No.</label>
-                            <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-phone'></i></span>
-                                <input type="number" class="form-control border-start-0" name="phone" id="student_phone" placeholder="Student Phone" />
+                            <div style="display: flex;align-items: end;">
+                                <div>
+                                    <label for="last_name" class="form-label">Student Phone No.</label>
+                                    <div class="input-group"><span class="input-group-text bg-transparent"><i class='bx bxs-phone'></i></span>
+                                        <input type="number" class="form-control border-start-0" name="phone" id="student_phone" placeholder="Student Phone" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="add-btn-inner">Add</button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">

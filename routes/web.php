@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/delete/{user}', [App\Http\Controllers\Admin\AdminController::class, 'destroy'])->name('admin.user.destroy');
         Route::get('/logout', [App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('admin.user.logout');
         Route::get('/add/task', [App\Http\Controllers\Admin\AdminController::class, 'addTask'])->name('admin.add.task');
+        Route::get('/list/task', [App\Http\Controllers\Admin\AdminController::class, 'listTask'])->name('admin.list.task');
     });
 });
 

@@ -122,4 +122,8 @@ class AdminController extends Controller
     {
         return view('backend.admin.task.create');
     }
+    public function listTask()
+    {
+        return view('backend.admin.task.index');
+    }
 }
