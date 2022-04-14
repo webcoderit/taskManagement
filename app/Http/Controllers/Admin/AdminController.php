@@ -118,4 +118,10 @@ class AdminController extends Controller
         $user->delete();
         return redirect('admin/register')->withSuccess('User has been deleted.');
     }
+
+    public function onlineUser()
+    {
+        $users = User::orderBy('updated_at', 'desc')->get();
+        return view('backend.admin.users.online', compact('users'));
+    }
 }
