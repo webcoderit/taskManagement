@@ -16,7 +16,7 @@
                                 <a href="{{ url('/admin/user/list/task') }}">Manage Task</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <a href="#">Add Task</a>
+                                Add Task
                             </li>
                         </ol>
                     </nav>

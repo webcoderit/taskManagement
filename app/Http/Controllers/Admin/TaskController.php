@@ -25,6 +25,19 @@ class TaskController extends Controller
         return view('backend.admin.task.create', compact('users'));
     }
 
+    public function allTask()
+    {
+        return view('backend.admin.task.all-task');
+    }
+    public function completeTask()
+    {
+        return view('backend.admin.task.complete-task');
+    }
+    public function pendingTask()
+    {
+        return view('backend.admin.task.pending-task');
+    }
+
     public function taskStore(TaskRequest $request)
     {
         try {
