@@ -28,6 +28,19 @@
             font-weight: 500;
             border-radius: 3px;
         }
+        .user-online-offline-b {
+            position: relative;
+        }
+        .user-online-offline-b:after {
+            content: '';position: absolute;
+            background: #07c107;
+            height: 12px;
+            width: 12px;
+            left: 26px;
+            bottom: 7px;
+            border-radius: 100%;
+            border: 1px solid#fff;
+        }
     </style>
 	<title>Admin dashboard</title>
 </head>

@@ -37,7 +37,7 @@
                                     @foreach($users as $user)
                                         <tr>
                                             <td>{{ $loop->index+1 }}</td>
-                                            <td>
+                                            <td class="user-online-offline-b">
                                                 <img src="{{ asset('/avatar/'.$user->avatar) }}" height="30" width="30" style="border-radius: 50%" />
                                                 {{ $user->full_name ?? 'No name found' }}
                                             </td>

@@ -36,6 +36,22 @@
             font-weight: 700;
             font-size: 16px;
         }
+        /* .user-online-offline-b {
+            position: relative;
+        }
+        .user-online-offline-b:after {
+            content: '';position: absolute;
+            background: #07c107;
+            height: 15px;
+            width: 15px;
+            left: 26px;
+            bottom: 7px;
+            border-radius: 100%;
+            border: 1px solid#fff;
+        } */
+        td.user-online-offline-b {position: relative;}
+
+td.user-online-offline-b:after {content: '';position: absolute;width: 15px;height: 15px;background: #0dd50d;border-radius: 100%;left: 26px;bottom: 7px;border: 1px solid #fff;}
     </style>
 	<title>Admin dashboard</title>
 </head>
