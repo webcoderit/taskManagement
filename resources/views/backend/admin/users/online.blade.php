@@ -48,13 +48,13 @@
                                                     {{ $user->full_name ?? 'No name found' }}
                                                 </td>
                                             @endif
-                                            <td>{{ $user->created_at->format('H:i A') }}</td>
-                                            <td>{{ $user->updated_at->format('H:i A') }}</td>
+                                            <td>{{ $user->in_time != null ? $user->in_time->format('g:i a') : '00:00' }}</td>
+                                            <td>{{ $user->out_time != null ? $user->out_time->format('g:i a') : '00:00' }}</td>
                                             <td>
                                                 @if($user->status == 1)
                                                     <span class="custom-green-badge">Active</span>
                                                 @else
-                                                    <span class="custom-red-badge">{{ $user->created_at->diffforhumans() }}</span>
+                                                    <span class="custom-red-badge">{{ $user->updated_at->diffforhumans() }}</span>
                                                 @endif
                                             </td>
                                         </tr>
@@ -73,6 +73,6 @@
     <script>
         setInterval(function() {
             window.location.reload();
-        }, 500000);
+        }, 50000);
     </script>
 @endpush

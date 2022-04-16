@@ -35,19 +35,26 @@
 									<div class="text-center">
 										<h3 class="">Admin Sign in</h3>
 									</div>
+                                    @if(Session::has('id'))
+                                        <div class="alert alert-danger">
+                                            {{ Session::get('error') }}
+                                        </div>
+                                    @endif
 									<div class="form-body">
 										<form class="row g-3" action="{{ route('admin.login') }}" method="post">
 											@csrf
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Email Address</label>
 												<input type="email" class="form-control" name="email" required id="inputEmailAddress" placeholder="Email Address">
+                                                <span style="color: red"> {{ $errors->has('email') ? $errors->first('email') : ' ' }}</span>
 											</div>
 											<div class="col-12">
 												<label for="inputChoosePassword" class="form-label">Enter Password</label>
 												<div class="input-group" id="show_hide_password">
-													<input type="password" class="form-control border-end-0" name="password" required id="inputChoosePassword" value="12345678" placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+													<input type="password" class="form-control border-end-0" name="password" required id="inputChoosePassword" value="12345678" placeholder="Enter Password">
+                                                    <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                                    <span style="color: red"> {{ $errors->has('password') ? $errors->first('password') : ' ' }}</span>
 												</div>
-											</div>
 											</div>
 											<div class="col-lg-12 col-md-12 col-sm-12 mt-3">
 												<div class="d-grid">

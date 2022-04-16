@@ -99,6 +99,12 @@ class AdminController extends Controller
         return redirect('admin/register')->withSuccess('User has been updated.');
     }
 
+    public function logout()
+    {
+        session()->flush();
+        return redirect('admin/login')->withSuccess('You are logout.');
+    }
+
     public function active(User $user)
     {
         $user->status = 0;

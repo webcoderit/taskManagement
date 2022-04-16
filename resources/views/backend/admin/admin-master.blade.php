@@ -62,7 +62,7 @@
 	<!--wrapper-->
 	<div class="wrapper">
 		<!--sidebar wrapper -->
-		@include('backend.includes.nav')
+		@include('backend.includes.admin-nav')
 		<!--end sidebar wrapper -->
 		<!--start header -->
 		@include('backend.includes.admin-header')
