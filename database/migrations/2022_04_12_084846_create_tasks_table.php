@@ -20,6 +20,8 @@ class CreateTasksTable extends Migration
             $table->string('email')->unique();
             $table->string('fb_id');
             $table->text('address');
+            $table->string('device');
+            $table->string('profession');
             $table->timestamps();
         });
     }

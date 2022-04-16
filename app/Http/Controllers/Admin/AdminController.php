@@ -118,28 +118,10 @@ class AdminController extends Controller
         $user->delete();
         return redirect('admin/register')->withSuccess('User has been deleted.');
     }
-    public function addTask()
+
+    public function onlineUser()
     {
-        return view('backend.admin.task.create');
-    }
-    public function listTask()
-    {
-        return view('backend.admin.task.index');
-    }
-    public function todayTask()
-    {
-        return view('backend.admin.task.today-task');
-    }
-    public function allTask()
-    {
-        return view('backend.admin.task.all-task');
-    }
-    public function completeTask()
-    {
-        return view('backend.admin.task.complete-task');
-    }
-    public function pendingTask()
-    {
-        return view('backend.admin.task.pending-task');
+        $users = User::orderBy('updated_at', 'desc')->get();
+        return view('backend.admin.users.online', compact('users'));
     }
 }

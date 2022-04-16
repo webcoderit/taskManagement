@@ -70,6 +70,7 @@
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	@include('backend.includes.script')
+    @stack('scripts')
     <script>
         function imagePreview(e){
             if (e.target.files[0]) {

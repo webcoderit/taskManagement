@@ -17,6 +17,9 @@ class CreateAssignNumbersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('task_id');
             $table->text('phone');
+            $table->foreign('task_id')
+                ->references('id')->on('tasks')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

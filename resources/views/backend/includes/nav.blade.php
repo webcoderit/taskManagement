@@ -28,6 +28,7 @@
       <ul>
         <li> <a href="{{ route('admin.user.list') }}"><i class="bx bx-right-arrow-alt"></i>Registration</a></li>
         <li> <a href="{{ route('admin.user.register.form.create') }}"><i class="bx bx-right-arrow-alt"></i>Add user</a></li>
+        <li> <a href="{{ route('admin.user.online') }}"><i class="bx bx-right-arrow-alt"></i>Employee Tracking</a></li>
       </ul>
     </li>
     <li>
@@ -39,9 +40,8 @@
       <ul>
         <li> <a href="{{ route('admin.add.task') }}"><i class="bx bx-right-arrow-alt"></i>Add task</a>
         </li>
-        <li> <a href="{{ route('admin.list.task') }}"><i class="bx bx-right-arrow-alt"></i>List task</a>
+        <li> <a href="{{ route('admin.list.task') }}"><i class="bx bx-right-arrow-alt"></i>Today Task</a>
         </li>
-        <li> <a href="{{ route('admin.today.task') }}"><i class="bx bx-right-arrow-alt"></i>Today Task</a>
         <li> <a href="{{ route('admin.all.task') }}"><i class="bx bx-right-arrow-alt"></i>All task</a>
         </li>
         <li> <a href="{{ route('admin.complete.task') }}"><i class="bx bx-right-arrow-alt"></i>Complete task</a>
