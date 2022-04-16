@@ -37,17 +37,24 @@
                                     @foreach($users as $user)
                                         <tr>
                                             <td>{{ $loop->index+1 }}</td>
+                                            @if($user->status == 1)
                                             <td class="user-online-offline-b">
                                                 <img src="{{ asset('/avatar/'.$user->avatar) }}" height="30" width="30" style="border-radius: 50%" />
                                                 {{ $user->full_name ?? 'No name found' }}
                                             </td>
+                                            @else
+                                                <td class="user-online-offline-c">
+                                                    <img src="{{ asset('/avatar/'.$user->avatar) }}" height="30" width="30" style="border-radius: 50%" />
+                                                    {{ $user->full_name ?? 'No name found' }}
+                                                </td>
+                                            @endif
                                             <td>{{ $user->created_at->format('H:i A') }}</td>
                                             <td>{{ $user->updated_at->format('H:i A') }}</td>
                                             <td>
                                                 @if($user->status == 1)
-                                                    <span class="custom-green-badge">Employed</span>
+                                                    <span class="custom-green-badge">Active</span>
                                                 @else
-                                                    <span class="custom-red-badge">Terminated</span>
+                                                    <span class="custom-red-badge">{{ $user->created_at->diffforhumans() }}</span>
                                                 @endif
                                             </td>
                                         </tr>
@@ -61,3 +68,11 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        setInterval(function() {
+            window.location.reload();
+        }, 500000);
+    </script>
+@endpush

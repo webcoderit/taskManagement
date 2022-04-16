@@ -31,9 +31,22 @@
         .user-online-offline-b {
             position: relative;
         }
+        .user-online-offline-c {
+            position: relative;
+        }
         .user-online-offline-b:after {
             content: '';position: absolute;
             background: #07c107;
+            height: 12px;
+            width: 12px;
+            left: 26px;
+            bottom: 7px;
+            border-radius: 100%;
+            border: 1px solid#fff;
+        }
+        .user-online-offline-c:after {
+            content: '';position: absolute;
+            background: red;
             height: 12px;
             width: 12px;
             left: 26px;
