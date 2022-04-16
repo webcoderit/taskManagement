@@ -37,7 +37,10 @@
                                     @foreach($users as $user)
                                         <tr>
                                             <td>{{ $loop->index+1 }}</td>
-                                            <td>{{ $user->full_name ?? 'No name found' }}</td>
+                                            <td>
+                                                <img src="{{ asset('/avatar/'.$user->avatar) }}" height="30" width="30" style="border-radius: 50%" />
+                                                {{ $user->full_name ?? 'No name found' }}
+                                            </td>
                                             <td>{{ $user->created_at->format('H:i A') }}</td>
                                             <td>{{ $user->updated_at->format('H:i A') }}</td>
                                             <td>
