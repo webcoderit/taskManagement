@@ -82,4 +82,24 @@ class TaskController extends Controller
         $taskDelete->delete();
         return redirect()->back()->withError('Task has been deleted');
     }
+    public function confirmAddmission()
+    {
+        return view('backend.admin.task.confirm-addmission');
+    }
+    public function notInterested()
+    {
+        return view('backend.admin.task.not-interested');
+    }
+    public function highlyInterested()
+    {
+        return view('backend.admin.task.highly-interested');
+    }
+    public function interested()
+    {
+        return view('backend.admin.task.interested');
+    }
+    public function recall()
+    {
+        return view('backend.admin.task.recall');
+    }
 }
