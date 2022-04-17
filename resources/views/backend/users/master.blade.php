@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
 	@include('backend.includes.style')
-	<title>Dashkote - Bootstrap5 Admin Template</title>
+	<title>Webcoder-IT</title>
 </head>
 
 <body>
@@ -36,7 +36,7 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
-	
+
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	@include('backend.includes.script')

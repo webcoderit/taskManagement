@@ -13,16 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('backend.users.auth.login');
-});
-
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/login', [App\Http\Controllers\Admin\AdminController::class, 'loginForm'])->name('admin.login.form');
     Route::post('/login', [App\Http\Controllers\Admin\AdminController::class, 'login'])->name('admin.login');
-    Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'deshboard'])->name('admin.deshboard');
-    Route::get('/register', [App\Http\Controllers\Admin\AdminController::class, 'register'])->name('admin.user.list');
-    Route::get('/add/user', [App\Http\Controllers\Admin\AdminController::class, 'createForm'])->name('admin.user.register.form.create');
+    Route::group(['middleware' => 'admin'], function (){
+        Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'deshboard'])->name('admin.deshboard');
+        Route::get('/register', [App\Http\Controllers\Admin\AdminController::class, 'register'])->name('admin.user.list');
+        Route::get('/add/user', [App\Http\Controllers\Admin\AdminController::class, 'createForm'])->name('admin.user.register.form.create');
 
     Route::group(['prefix' => 'user'], function (){
         Route::post('/store', [App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.user.register');
@@ -53,4 +50,6 @@ Route::group(['prefix' => 'admin'], function(){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
+
+Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
