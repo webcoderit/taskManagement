@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskRequest;
+use App\Imports\TaskImport;
 use App\Models\AssignNumber;
 use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use PhpParser\Node\Stmt\TryCatch;
 
 class TaskController extends Controller
@@ -36,6 +38,12 @@ class TaskController extends Controller
     public function pendingTask()
     {
         return view('backend.admin.task.pending-task');
+    }
+
+    public function excelImport(Request $request)
+    {
+        Excel::import(new TaskImport, $request->file('phone'));
+        return redirect()->back();
     }
 
     public function taskStore(TaskRequest $request)

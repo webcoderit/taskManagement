@@ -11,7 +11,7 @@ use Session;
 
 class SessionExpired {
     protected $session;
-    protected $timeout = 60;
+    protected $timeout = 30;
 
     public function __construct(Store $session){
         $this->session = $session;
@@ -28,12 +28,6 @@ class SessionExpired {
                 $user->status = 0;
                 $user->out_time = Carbon::now();
                 $user->save();
-
-                echo "<script>
-                    setInterval(function() {
-                        window.location.reload();
-                    }, 1000);
-                </script>";
             }
             auth()->logout();
         }

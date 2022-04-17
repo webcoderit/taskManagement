@@ -1,4 +1,4 @@
-@extends('backend.admin.master')
+@extends('backend.admin.admin-master')
 
 @section('content')
 <div class="wrapper">
@@ -37,7 +37,33 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-                    <form class="row g-3" action="{{ url('/admin/user/task/store') }}" method="post" enctype="multipart/form-data">
+                    <h2>Excel file import</h2>
+                    <form class="row g-3" action="{{ url('/admin/user/excel/import') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="col-md-6">
+                            <label for="user_id" class="form-label">Select a User Name<small class="text-danger">*</small></label><br>
+                            <select name="user_id" id="user_id" class="form-control">
+                                <option selected disabled>Select a User Name</option>
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->full_name }}</option>
+                                @endforeach
+                            </select>
+                            <span style="color: red"> {{ $errors->has('user_id') ? $errors->first('user_id') : ' ' }}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Import only Excel<small class="text-danger">*</small></label>
+                            <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user'></i></span>
+                                <input type="file" class="form-control border-start-0" name="phone" id="phone" />
+                            </div>
+                            <span style="color: red"> {{ $errors->has('phone') ? $errors->first('phone') : ' ' }}</span>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success px-5">Submit</button>
+                        </div>
+                    </form>
+                    <h2 class="mt-5">Single task assign</h2>
+                    <hr/>
+                    <form class="row g-3 mt-1" action="{{ url('/admin/user/task/store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6">
                             <label for="user_id" class="form-label">Select a User Name<small class="text-danger">*</small></label><br>

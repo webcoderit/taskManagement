@@ -1,5 +1,5 @@
 @extends('backend.admin.master')
-@startPush
+@push('style')
 <style type="text/css">
 .view-details-section{
     padding: 40px 0;
@@ -53,7 +53,7 @@
     text-align: end;
 }
 </style>
-
+@endpush
 @section('content')
 <section class="view-details-section">
     <div class="container">
