@@ -10,4 +10,12 @@ class UserController extends Controller
     {
         return view('backend.users.auth.login');
     }
+    public function todayTask()
+    {
+        return view('backend.users.task.today-task');
+    }
+    public function viewDetails()
+    {
+        return view('backend.users.task.view-details');
+    }
 }

@@ -47,5 +47,7 @@ Route::group(['prefix' => 'admin'], function(){
 Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
+Route::get('/today/task', [\App\Http\Controllers\UserController::class, 'todayTask']);
+Route::get('/view/details', [\App\Http\Controllers\UserController::class, 'viewDetails']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
