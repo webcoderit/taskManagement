@@ -25,6 +25,7 @@
 	<script src="{{ asset('backend/') }}/assets/js/index2.js"></script>
 	<!--app JS-->
 	<script src="{{ asset('backend/') }}/assets/js/app.js"></script>
+	<script src="{{ asset('backend/') }}/assets/js/custom.js"></script>
 <script>
     new PerfectScrollbar('.customers-list');
     new PerfectScrollbar('.store-metrics');

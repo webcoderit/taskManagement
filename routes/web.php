@@ -49,5 +49,7 @@ Auth::routes();
 Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
 Route::get('/today/task', [\App\Http\Controllers\UserController::class, 'todayTask']);
 Route::get('/view/details', [\App\Http\Controllers\UserController::class, 'viewDetails']);
+Route::get('/profile', [\App\Http\Controllers\UserController::class, 'profile']);
+Route::get('/profile/setting', [\App\Http\Controllers\UserController::class, 'profileSetting']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

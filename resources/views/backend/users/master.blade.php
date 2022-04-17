@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
 	@include('backend.includes.style')
-	@stack('styles')
+	@stack('style')
 	<title>Webcoder-IT</title>
 </head>
 

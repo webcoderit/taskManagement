@@ -18,4 +18,12 @@ class UserController extends Controller
     {
         return view('backend.users.task.view-details');
     }
+    public function profile()
+    {
+        return view('backend.users.profile.profile');
+    }
+    public function profileSetting()
+    {
+        return view('backend.users.profile.profile-setting');
+    }
 }
