@@ -22,6 +22,7 @@ class CreateTasksTable extends Migration
             $table->text('address');
             $table->string('device');
             $table->string('profession');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

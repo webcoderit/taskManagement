@@ -33,10 +33,10 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/online', [App\Http\Controllers\Admin\AdminController::class, 'onlineUser'])->name('admin.user.online');
             //================== Task Management ====================//
             Route::get('/add/task', [App\Http\Controllers\Admin\TaskController::class, 'addTask'])->name('admin.add.task');
-            Route::post('/excel/import', [App\Http\Controllers\Admin\TaskController::class, 'excelImport'])->name('admin.excel.import');
+            Route::post('/excel/import', [App\Http\Controllers\Admin\TaskController::class, 'excel_store'])->name('admin.excel.import');
             Route::get('/list/task', [App\Http\Controllers\Admin\TaskController::class, 'listTask'])->name('admin.list.task');
             Route::get('/all/task', [App\Http\Controllers\Admin\TaskController::class, 'allTask'])->name('admin.all.task');
-            Route::post('/task/store', [App\Http\Controllers\Admin\TaskController::class, 'taskStore'])->name('admin.store.task');
+//            Route::post('/task/store', [App\Http\Controllers\Admin\TaskController::class, 'taskStore'])->name('admin.store.task');
             Route::get('/task/edit/{id}', [App\Http\Controllers\Admin\TaskController::class, 'taskEdit'])->name('admin.edit.task');
             Route::get('/task/delete/{id}', [App\Http\Controllers\Admin\TaskController::class, 'taskDelete'])->name('admin.delete.task');
             Route::get('/complete/task', [App\Http\Controllers\Admin\TaskController::class, 'completeTask'])->name('admin.complete.task');

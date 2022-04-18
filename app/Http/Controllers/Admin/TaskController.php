@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskRequest;
+use App\Imports\ImportUser;
 use App\Imports\TaskImport;
 use App\Models\AssignNumber;
 use App\Models\Task;
@@ -17,7 +18,7 @@ class TaskController extends Controller
 {
     public function listTask()
     {
-        $tasks = Task::with('user', 'number')->whereDate('created_at', Carbon::today())->get();
+        $tasks = Task::with('user')->whereDate('created_at', Carbon::today())->get();
         return view('backend.admin.task.index', compact('tasks'));
     }
 
@@ -27,9 +28,21 @@ class TaskController extends Controller
         return view('backend.admin.task.create', compact('users'));
     }
 
+    public function excel_store(Request $request)
+    {
+        $this->validate($request, [
+            'files' => 'required',
+            'user_id' => 'required|integer'
+        ]);
+        $file = $request->file('files');
+        Excel::import(new ImportUser, $file);
+        return back()->withSuccess('Excel imported.');
+    }
+
     public function allTask()
     {
-        return view('backend.admin.task.all-task');
+        $tasks = Task::with('user')->get();
+        return view('backend.admin.task.all-task', compact('tasks'));
     }
     public function completeTask()
     {
@@ -40,48 +53,49 @@ class TaskController extends Controller
         return view('backend.admin.task.pending-task');
     }
 
-    public function excelImport(Request $request)
+//    public function taskStore(TaskRequest $request)
+//    {
+//        try {
+//            $newTask = new Task();
+//            $newTask->user_id = $request->user_id;
+//            $newTask->name = $request->name;
+//            if ($request->fb_id){
+//                $newTask->fb_id = $request->fb_id;
+//            }
+//            if ($request->address){
+//                $newTask->address = $request->address;
+//            }
+//            if ($request->email){
+//                $newTask->email = $request->email;
+//            }
+//            if ($request->device){
+//                $newTask->device = $request->device;
+//            }
+//            if ($request->profession){
+//                $newTask->profession = $request->profession;
+//            }
+//            $newTask->save();
+//
+//
+//            //============ Number assign =================//
+//            foreach ($request->phone as $key => $number){
+//                $phone = new AssignNumber();
+//                $phone->task_id = $newTask->id;
+//                $phone->phone = $request->phone[$key];
+//                $phone->save();
+//            }
+//
+//            return redirect()->back()->withSuccess('Task has been assigned');
+//        }catch (\Exception $exception){
+//            return redirect()->back()->with('error', $exception->getMessage());
+//        }
+//    }
+
+    public function taskEdit($id)
     {
-        Excel::import(new TaskImport, $request->file('phone'));
-        return redirect()->back();
-    }
-
-    public function taskStore(TaskRequest $request)
-    {
-        try {
-            $newTask = new Task();
-            $newTask->user_id = $request->user_id;
-            $newTask->name = $request->name;
-            if ($request->fb_id){
-                $newTask->fb_id = $request->fb_id;
-            }
-            if ($request->address){
-                $newTask->address = $request->address;
-            }
-            if ($request->email){
-                $newTask->email = $request->email;
-            }
-            if ($request->device){
-                $newTask->device = $request->device;
-            }
-            if ($request->profession){
-                $newTask->profession = $request->profession;
-            }
-            $newTask->save();
-
-
-            //============ Number assign =================//
-            foreach ($request->phone as $key => $number){
-                $phone = new AssignNumber();
-                $phone->task_id = $newTask->id;
-                $phone->phone = $request->phone[$key];
-                $phone->save();
-            }
-
-            return redirect()->back()->withSuccess('Task has been assigned');
-        }catch (\Exception $exception){
-            return redirect()->back()->with('error', $exception->getMessage());
-        }
+        $task = Task::find($id);
+        $users = User::orderBy('created_at', 'desc')->get();
+        return view('backend.admin.task.edit', compact('task', 'users'));
     }
 
     public function taskDelete($id)
