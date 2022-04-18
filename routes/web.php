@@ -52,5 +52,6 @@ Route::get('/today/task', [\App\Http\Controllers\UserController::class, 'todayTa
 Route::get('/view/details', [\App\Http\Controllers\UserController::class, 'viewDetails']);
 Route::get('/profile', [\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/profile/setting', [\App\Http\Controllers\UserController::class, 'profileSetting']);
+Route::get('/all/task', [\App\Http\Controllers\UserController::class, 'allTask']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

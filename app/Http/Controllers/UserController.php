@@ -26,4 +26,8 @@ class UserController extends Controller
     {
         return view('backend.users.profile.profile-setting');
     }
+    public function allTask()
+    {
+        return view('backend.users.task.all-task');
+    }
 }
