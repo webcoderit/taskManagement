@@ -1,4 +1,4 @@
-@extends('backend.admin.master')
+@extends('backend.admin.admin-master')
 
 @section('content')
 <div class="wrapper">
@@ -20,6 +20,12 @@
                     </nav>
                 </div>
             </div>
+            @if(Session::has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ Session::get('error') }}.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <!--end breadcrumb-->
             <h6 class="mb-0 text-uppercase">Task List</h6>
             <hr/>
@@ -46,7 +52,7 @@
                                     <td>{{ $task->user->full_name ?? 'No employee name' }}</td>
                                     <td>{{ $task->name }}</td>
                                     <td>{{ $task->email ?? 'No email found' }}</td>
-                                    <td>{{ $task->number->phone ?? 'No email found' }}</td>
+                                    <td>{{ $task->phone ?? 'No phone found' }}</td>
                                     <td>{{ $task->fb_id ?? 'No Fb link found' }}</td>
                                     <td style="text-transform: capitalize">{{ $task->device ?? 'No Device name found' }}</td>
                                     <td width="10%">

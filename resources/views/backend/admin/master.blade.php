@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
 	@include('backend.includes.style')
+    @stack('style')
     <style>
         .custom-green-badge{
             margin-left: 20px;
@@ -71,6 +72,41 @@
 	<!-- Bootstrap JS -->
 	@include('backend.includes.script')
     @stack('scripts')
+    <script>
+        (function() {
+            const idleDurationSecs = 30;
+            const redirectUrl = '{{ url('/') }}';
+            let idleTimeout;
+
+            const resetIdleTimeout = function() {
+                if(idleTimeout) clearTimeout(idleTimeout);
+                idleTimeout = setTimeout(() => location.href = redirectUrl, idleDurationSecs * 1000);
+            };
+
+            // Key events for reset time
+            resetIdleTimeout();
+            window.onmousemove = resetIdleTimeout;
+            window.onkeypress = resetIdleTimeout;
+            window.click = resetIdleTimeout;
+            window.onclick = resetIdleTimeout;
+            window.touchstart = resetIdleTimeout;
+            window.onfocus = resetIdleTimeout;
+            window.onchange = resetIdleTimeout;
+            window.onmouseover = resetIdleTimeout;
+            window.onmouseout = resetIdleTimeout;
+            window.onmousemove = resetIdleTimeout;
+            window.onmousedown = resetIdleTimeout;
+            window.onmouseup = resetIdleTimeout;
+            window.onkeypress = resetIdleTimeout;
+            window.onkeydown = resetIdleTimeout;
+            window.onkeyup = resetIdleTimeout;
+            window.onsubmit = resetIdleTimeout;
+            window.onreset = resetIdleTimeout;
+            window.onselect = resetIdleTimeout;
+            window.onscroll = resetIdleTimeout;
+
+        })();
+    </script>
     <script>
         function imagePreview(e){
             if (e.target.files[0]) {

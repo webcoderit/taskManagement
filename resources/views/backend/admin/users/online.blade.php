@@ -73,6 +73,6 @@
     <script>
         setInterval(function() {
             window.location.reload();
-        }, 50000);
+        }, 10000);
     </script>
 @endpush
