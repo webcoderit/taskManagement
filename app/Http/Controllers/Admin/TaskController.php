@@ -98,6 +98,21 @@ class TaskController extends Controller
         return view('backend.admin.task.edit', compact('task', 'users'));
     }
 
+    public function taskUpdate(TaskRequest $request, $id)
+    {
+        $taskUpdate = Task::find($id);
+        $taskUpdate->user_id = $request->user_id;
+        $taskUpdate->name = $request->name;
+        $taskUpdate->email = $request->email;
+        $taskUpdate->fb_id = $request->fb_id;
+        $taskUpdate->address = $request->address;
+        $taskUpdate->device = $request->device;
+        $taskUpdate->phone = $request->phone;
+        $taskUpdate->profession = $request->profession;
+        $taskUpdate->save();
+        return redirect()->back()->withSuccess('Task has been updated');
+    }
+
     public function taskDelete($id)
     {
         $taskDelete = Task::find($id);
