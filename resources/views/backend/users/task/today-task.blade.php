@@ -23,10 +23,6 @@
             <!--end breadcrumb-->
             <h6 class="mb-0 text-uppercase">Today Task</h6>
             <hr/>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> {{ Session::get('success') }}.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -37,30 +33,28 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Facebook ID</th>
-                                <th>Employment Status</th>
+                                <th>Profession</th>
+                                <th>Date</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($todayTask as $task)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <span class="custom-green-badge">Employed</span>
-                                        <span class="custom-red-badge">Terminated</span>
-
-                                    </td>
+                                    <td>{{ $loop->index+1 }}</td>
+                                    <td>{{ $task->name ?? '' }}</td>
+                                    <td>{{ $task->email ?? '' }}</td>
+                                    <td>{{ $task->phone ?? '' }}</td>
+                                    <td>{{ $task->created_at->format('g:i a') ?? '' }}</td>
+                                    <td>{{ $task->profession ?? '' }}</td>
                                     <td width="15%">
-                                        <a href="{{ url('/view/details') }}" class="btn btn-sm btn-primary">
+                                        <a href="{{ url('/view/details/'.$task->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>
                                             View
                                         </a>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
