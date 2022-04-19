@@ -77,25 +77,25 @@
                             <h6 class="view-details-inner-item">
                                 Name:
                                 <span>
-                                    Saidul Islam
+                                    {{ $task->name ?? 'No name found' }}
                                 </span>
                             </h6>
                             <h6 class="view-details-inner-item">
                                 Email:
                                 <a href="mailto:saidulislam@gmail.com">
-                                    saidulislam@gmail.com
+                                    {{ $task->email ?? 'No email found' }}
                                 </a>
                             </h6>
                             <h6 class="view-details-inner-item">
                                 Phone:
                                 <a href="tel:+880123456789">
-                                    +880123456789
+                                    {{ $task->phone ?? 'No phone found' }}
                                 </a>
                             </h6>
                             <h6 class="view-details-inner-item">
                                 Facebook ID:
                                 <a href="https://www.facebook.com/groups/161355777405329" target="_blank">
-                                    https://www.facebook.com/groups/161355777405329
+                                    {{ $task->fb_id ?? 'No fb id found' }}
                                 </a>
                             </h6>
                         </div>
