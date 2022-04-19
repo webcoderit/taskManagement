@@ -27,7 +27,7 @@
       </a>
       <ul>
         <li> <a href="{{ url('/today/task') }}"><i class="bx bx-right-arrow-alt"></i>Today Task</a></li>
-        <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>All task</a></li>
+        <li> <a href="{{ url('/all/task') }}"><i class="bx bx-right-arrow-alt"></i>All task</a></li>
       </ul>
     </li>
   </ul>
