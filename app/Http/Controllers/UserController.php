@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,10 +14,13 @@ class UserController extends Controller
     }
     public function todayTask()
     {
-        return view('backend.users.task.today-task');
+        $todayTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->whereDate('created_at', Carbon::today())->get();
+        //dd($todayTask);
+        return view('backend.users.task.today-task', compact('todayTask'));
     }
-    public function viewDetails()
+    public function viewDetails($id)
     {
-        return view('backend.users.task.view-details');
+        $task = Task::find($id);
+        return view('backend.users.task.view-details', compact('task'));
     }
 }

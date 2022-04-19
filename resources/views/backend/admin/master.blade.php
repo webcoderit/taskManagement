@@ -74,7 +74,7 @@
     @stack('scripts')
     <script>
         (function() {
-            const idleDurationSecs = 5000;
+            const idleDurationSecs = 60;
             const redirectUrl = '{{ url('/') }}';
             let idleTimeout;
 
