@@ -49,12 +49,8 @@ Route::group(['prefix' => 'admin'], function(){
 Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
-
 Route::get('/view/details/{id}', [\App\Http\Controllers\UserController::class, 'viewDetails']);
-
 Route::get('/profile', [\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/profile/setting', [\App\Http\Controllers\UserController::class, 'profileSetting']);
 Route::get('/all/task', [\App\Http\Controllers\UserController::class, 'allTask']);
->>>>>>> a380e616e16f9fc940c42d10705c6f250472ceed
-
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
