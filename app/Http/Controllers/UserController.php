@@ -56,4 +56,28 @@ class UserController extends Controller
 
         return redirect()->back()->withSuccess('Information updated.');
     }
+
+    public function completeTask(){
+        return view('backend.users.task.complete-task');
+    }
+
+    public function pendingTask(){
+        return view('backend.users.task.pending-task');
+    }
+
+    public function confirmAddmission(){
+        return view('backend.users.task.confirm-addmission');
+    }
+
+    public function notInterested(){
+        return view('backend.users.task.not-interested');
+    }
+
+    public function highlyInterested(){
+        return view('backend.users.task.highly-interested');
+    }
+
+    public function interested(){
+        return view('backend.users.task.interested');
+    }
 }
