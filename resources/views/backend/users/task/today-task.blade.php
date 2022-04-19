@@ -46,10 +46,17 @@
                                     <td>{{ $task->phone ?? '' }}</td>
                                     <td>{{ $task->profession ?? '' }}</td>
                                     <td width="15%">
+                                        @if($task->status == 0)
                                         <a href="{{ url('/view/details/'.$task->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>
                                             View
                                         </a>
+                                        @else
+                                            <a href="#" class="btn btn-sm btn-success" disabled>
+                                                <i class="bx bx-check-circle"></i>
+                                                Call Done
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

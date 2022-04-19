@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Intereste;
 use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -34,5 +35,25 @@ class UserController extends Controller
     public function allTask()
     {
         return view('backend.users.task.all-task');
+    }
+
+    public function interestStore(Request $request)
+    {
+        $this->validate($request, [
+            'interest_level' => 'required'
+        ]);
+        $intereste = new Intereste();
+        $intereste->task_id = $request->task_id;
+        $intereste->interest_level = $request->interest_level;
+        if ($request->note){
+            $intereste->note = $request->note;
+        }
+        $intereste->save();
+        //========= Task Table update query ===============//
+        $task = Task::where('id', $request->task_id)->first();
+        $task->status = 1;
+        $task->save();
+
+        return redirect()->back()->withSuccess('Information updated.');
     }
 }
