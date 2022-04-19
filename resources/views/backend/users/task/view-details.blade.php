@@ -52,6 +52,10 @@
     margin-top: 15px;
     text-align: end;
 }
+.back-btn-outer {
+    text-align: end;
+    margin-bottom: 10px;
+}
 </style>
 @endpush
 @section('content')
@@ -63,6 +67,11 @@
                     <h4 class="view-details-page-title">
                         View Details
                     </h4>
+                    <div class="back-btn-outer">
+                        <a href="{{ url('/today/task') }}" class="btn btn-primary">
+                            Back
+                        </a>
+                    </div>
                     <div class="view-details-outer card p-4">
                         <div class="view-details-inner">
                             <h6 class="view-details-inner-item">
