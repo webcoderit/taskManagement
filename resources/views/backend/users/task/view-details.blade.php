@@ -72,6 +72,11 @@
                             Back
                         </a>
                     </div>
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
                     <div class="view-details-outer card p-4">
                         <div class="view-details-inner">
                             <h6 class="view-details-inner-item">
@@ -104,17 +109,21 @@
                         Interest and Note
                     </h4>
                     <div class="student-opinion-form-wrapper card p-4">
-                        <form class="student-opinion-form form-group">
+                        <form class="student-opinion-form form-group" action="{{ url('/interest/store') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="task_id" value="{{ $task->id }}" />
                             <label for="interest">Interest Level</label><br>
-                            <select name="interested" class="form-control">
+                            <select name="interest_level" class="form-control">
+                                <option value="done">Admission Done</option>
                                 <option value="highly">Highly Interested</option>
                                 <option value="not">Not Interested</option>
                                 <option value="50%">50% Interested</option>
+                                <option value="others">Others</option>
                             </select><br>
                             <label>Note</label><br>
-                            <textarea rows="5" cols="50" class="form-control"></textarea>
+                            <textarea rows="5" cols="50" name="note" class="form-control"></textarea>
                             <div class="update-btn-outer">
-                                <button type="button" class="update-btn-inner btn btn-primary">
+                                <button type="submit" class="update-btn-inner btn btn-primary">
                                     update
                                 </button>
                             </div>

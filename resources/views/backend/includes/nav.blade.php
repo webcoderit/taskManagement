@@ -28,6 +28,18 @@
       <ul>
         <li> <a href="{{ url('/today/task') }}"><i class="bx bx-right-arrow-alt"></i>Today Task</a></li>
         <li> <a href="{{ url('/all/task') }}"><i class="bx bx-right-arrow-alt"></i>All task</a></li>
+          <li> <a href="{{ route('admin.complete.task') }}"><i class="bx bx-right-arrow-alt"></i>Complete task</a>
+          </li>
+          <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Pending task</a>
+          </li>
+          <li> <a href="component-carousels.html"><i class="bx bx-right-arrow-alt"></i>Confirm admission</a>
+          </li>
+          <li> <a href="component-list-groups.html"><i class="bx bx-right-arrow-alt"></i>Not interested</a>
+          </li>
+          <li> <a href="component-media-object.html"><i class="bx bx-right-arrow-alt"></i>Highly interested</a>
+          </li>
+          <li> <a href="component-modals.html"><i class="bx bx-right-arrow-alt"></i>Interested</a>
+          </li>
       </ul>
     </li>
   </ul>

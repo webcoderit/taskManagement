@@ -54,4 +54,5 @@ Route::get('/view/details/{id}', [\App\Http\Controllers\UserController::class, '
 Route::get('/profile', [\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/profile/setting', [\App\Http\Controllers\UserController::class, 'profileSetting']);
 Route::get('/all/task', [\App\Http\Controllers\UserController::class, 'allTask']);
+Route::post('/interest/store', [\App\Http\Controllers\UserController::class, 'interestStore']);
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
