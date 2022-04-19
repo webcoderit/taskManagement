@@ -34,7 +34,6 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Profession</th>
-                                <th>Date</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -45,7 +44,6 @@
                                     <td>{{ $task->name ?? '' }}</td>
                                     <td>{{ $task->email ?? '' }}</td>
                                     <td>{{ $task->phone ?? '' }}</td>
-                                    <td>{{ $task->created_at->format('g:i a') ?? '' }}</td>
                                     <td>{{ $task->profession ?? '' }}</td>
                                     <td width="15%">
                                         <a href="{{ url('/view/details/'.$task->id) }}" class="btn btn-sm btn-primary">
