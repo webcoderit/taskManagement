@@ -113,13 +113,26 @@
                             @csrf
                             <input type="hidden" name="task_id" value="{{ $task->id }}" />
                             <label for="interest">Interest Level</label><br>
-                            <select name="interest_level" class="form-control">
+                            <select name="interest_level" class="form-control"
+                             id="interest_level" onchange="admissionDone(this.value)">
+                                <option selected disabled>----Select A Level----</option>
                                 <option value="done">Admission Done</option>
                                 <option value="highly">Highly Interested</option>
                                 <option value="not">Not Interested</option>
                                 <option value="50%">50% Interested</option>
                                 <option value="others">Others</option>
                             </select><br>
+                            <div id="admission">
+                                <label for="course">Select Course</label><br>
+                                <select name="select_course" class="form-control">
+                                    <option selected disabled>----Select A Level----</option>
+                                    <option value="web">Full Stack Web Development</option>
+                                    <option value="digital">Digital Marketing</option>
+                                    <option value="english">Communication English</option>
+                                </select><br>
+                                <label for="batch">Batch</label><br>
+                                <input type="number" class="form-control" placeholder="Batch" name="batch_number" value="">
+                            </div>
                             <label>Note</label><br>
                             <textarea rows="5" cols="50" name="note" class="form-control"></textarea>
                             <div class="update-btn-outer">
@@ -135,3 +148,17 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $('#admission').hide();
+        function admissionDone(e){
+            if( e == 'done'){
+                $('#admission').show();
+            }
+            else{
+                $('#admission').hide();
+            }
+        }
+    </script>
+@endpush

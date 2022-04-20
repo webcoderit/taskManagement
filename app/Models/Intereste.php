@@ -10,4 +10,8 @@ class Intereste extends Model
     use HasFactory;
 
     protected $guarded;
+
+    public function task(){
+        return $this->belongsTo(Task::class, 'task_id' , 'id');
+    }
 }

@@ -6,7 +6,7 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Complete Task</div>
+                <div class="breadcrumb-title pe-3">Others</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
@@ -15,13 +15,13 @@
                             <!-- <li class="breadcrumb-item active" aria-current="page">
                                 <a href="#">List Task</a>
                             </li>  -->
-                            <li class="breadcrumb-item active" aria-current="page">Complete Task</li>
+                            <li class="breadcrumb-item active" aria-current="page">Others</li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase">Complete Task</h6>
+            <h6 class="mb-0 text-uppercase">Others</h6>
             <hr/>
             <div class="card">
                 <div class="card-body">
@@ -34,27 +34,27 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Profession</th>
+                                <th>Note</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td width="15%">
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="bx bx-edit-alt"></i>
-                                            View
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-success" disabled>
-                                            <i class="bx bx-check-circle"></i>
-                                            Call Done
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($others as $data)
+                                    <tr>
+                                        <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ $data->task->name ?? '' }}</td>
+                                        <td>{{ $data->task->email ?? '' }}</td>
+                                        <td>{{ $data->task->phone ?? '' }}</td>
+                                        <td>{{ $data->task->profession ?? '' }}</td>
+                                        <td>{{ $data->note ?? '' }}</td>
+                                        <td width="15%">
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="bx bx-edit-alt"></i>
+                                                View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
