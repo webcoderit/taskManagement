@@ -34,7 +34,7 @@ class UserController extends Controller
     }
     public function allTask()
     {
-        $allTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->get();
+        $allTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->paginate(20);
         return view('backend.users.task.all-task', compact('allTask'));
     }
 

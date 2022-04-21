@@ -49,6 +49,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $allTask->links() }}
                     </div>
                 </div>
             </div>
