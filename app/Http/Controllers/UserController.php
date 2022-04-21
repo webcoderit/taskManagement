@@ -34,7 +34,8 @@ class UserController extends Controller
     }
     public function allTask()
     {
-        return view('backend.users.task.all-task');
+        $allTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->get();
+        return view('backend.users.task.all-task', compact('allTask'));
     }
 
     public function interestStore(Request $request)
