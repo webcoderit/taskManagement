@@ -34,6 +34,7 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Profession</th>
+                                    <th>Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -44,6 +45,13 @@
                                         <td>{{ $task->email ?? '' }}</td>
                                         <td>{{ $task->phone ?? '' }}</td>
                                         <td>{{ $task->profession ?? '' }}</td>
+                                        <td>
+                                            @if($task->status == 1)
+                                                <span class="btn btn-sm btn-success">Call Done</span>
+                                            @else
+                                                <span class="btn btn-sm btn-danger">Pending</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
