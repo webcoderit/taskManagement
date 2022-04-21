@@ -21,4 +21,8 @@ class Task extends Model
     {
         return $this->hasOne(AssignNumber::class, 'task_id', 'id');
     }
+
+    public function interestes(){
+        return $this->hasOne(Intereste::class);
+    }
 }

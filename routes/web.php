@@ -55,11 +55,11 @@ Route::get('/profile', [\App\Http\Controllers\UserController::class, 'profile'])
 Route::get('/profile/setting', [\App\Http\Controllers\UserController::class, 'profileSetting']);
 Route::get('/all/task', [\App\Http\Controllers\UserController::class, 'allTask']);
 Route::post('/interest/store', [\App\Http\Controllers\UserController::class, 'interestStore']);
-Route::get('/complete/task', [\App\Http\Controllers\UserController::class, 'completeTask']);
 Route::get('/pending/task', [\App\Http\Controllers\UserController::class, 'pendingTask']);
 Route::get('/confirm/addmission', [\App\Http\Controllers\UserController::class, 'confirmAddmission']);
 Route::get('/not/interested', [\App\Http\Controllers\UserController::class, 'notInterested']);
 Route::get('/highly/interested', [\App\Http\Controllers\UserController::class, 'highlyInterested']);
 Route::get('/interested', [\App\Http\Controllers\UserController::class, 'interested']);
+Route::get('/others', [\App\Http\Controllers\UserController::class, 'others']);
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

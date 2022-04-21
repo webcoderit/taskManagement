@@ -6,6 +6,7 @@ use App\Models\Intereste;
 use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow\Constant\Periodic\Interest;
 
 class UserController extends Controller
 {
@@ -46,6 +47,14 @@ class UserController extends Controller
         $intereste = new Intereste();
         $intereste->task_id = $request->task_id;
         $intereste->interest_level = $request->interest_level;
+        if ($request->select_course){
+            $intereste->select_course = $request->select_course;
+        }
+
+        if ($request->batch_number){
+            $intereste->batch_number = $request->batch_number;
+        }
+
         if ($request->note){
             $intereste->note = $request->note;
         }
@@ -55,30 +64,33 @@ class UserController extends Controller
         $task->status = 1;
         $task->save();
 
-        return redirect()->back()->withSuccess('Information updated.');
+        return redirect('/today/task')->withSuccess('Information updated.');
     }
-
-    public function completeTask(){
-        return view('backend.users.task.complete-task');
-    }
-
     public function pendingTask(){
         return view('backend.users.task.pending-task');
     }
 
     public function confirmAddmission(){
-        return view('backend.users.task.confirm-addmission');
+        $complete = Intereste::with('task')->where('interest_level', 'done')->get();
+        return view('backend.users.task.confirm-addmission', compact('complete'));
     }
 
     public function notInterested(){
-        return view('backend.users.task.not-interested');
+        $notInterested = Intereste::where('interest_level' , 'not')->get();
+        return view('backend.users.task.not-interested', compact('notInterested'));
     }
 
     public function highlyInterested(){
-        return view('backend.users.task.highly-interested');
+        $highlyInterested = Intereste::where('interest_level' , 'highly')->get();
+        return view('backend.users.task.highly-interested' , compact('highlyInterested'));
     }
 
     public function interested(){
-        return view('backend.users.task.interested');
+        $interested = Intereste::where('interest_level' , '50%')->get();
+        return view('backend.users.task.interested' , compact('interested'));
+    }
+    public function others(){
+        $others = Intereste::where('interest_level' , 'others')->get();
+        return view('backend.users.task.others' , compact('others'));
     }
 }

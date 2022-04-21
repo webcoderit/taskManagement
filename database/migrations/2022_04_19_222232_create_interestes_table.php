@@ -18,6 +18,8 @@ class CreateInterestesTable extends Migration
             $table->unsignedBigInteger('task_id');
             $table->string('interest_level');
             $table->text('note')->nullable();
+            $table->string('select_course')->nullable();
+            $table->integer('batch_number')->nullable();
             $table->timestamps();
         });
     }

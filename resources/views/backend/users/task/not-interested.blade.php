@@ -34,27 +34,27 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Profession</th>
+                                <th>Note</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td width="15%">
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="bx bx-edit-alt"></i>
-                                            View
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-success" disabled>
-                                            <i class="bx bx-check-circle"></i>
-                                            Call Done
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($notInterested as $data )
+                                    <tr>
+                                        <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ $data->task->name ?? '' }}</td>
+                                        <td>{{ $data->task->email ?? '' }}</td>
+                                        <td>{{ $data->task->phone ?? '' }}</td>
+                                        <td>{{ $data->task->profession ?? '' }}</td>
+                                        <td>{{ $data->note ?? '' }}</td>
+                                        <td width="15%">
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="bx bx-edit-alt"></i>
+                                                View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
