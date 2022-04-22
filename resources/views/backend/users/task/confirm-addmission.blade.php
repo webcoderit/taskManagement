@@ -34,9 +34,9 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Profession</th>
-                                <th>Course Name</th>
+                                <th width="20%">Course Name</th>
                                 <th>Batch No.</th>
-                                <th>Status</th>
+                                <th width="10%">Status</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,7 +49,7 @@
                                         <td>{{ $data->task->profession ?? '' }}</td>
                                         <td>{{ $data->select_course ?? '' }}</td>
                                         <td>{{ $data->batch_number ?? '' }}</td>
-                                        <td width="15%">
+                                        <td width="10%">
                                             <span style="background: green; color: #fff; padding: 5px">Admission Done</span>
                                         </td>
                                     </tr>

@@ -97,7 +97,10 @@ class UserController extends Controller
     //============= Update information ================//
     public function updateInformation($id)
     {
-        $task = Task::find($id);
-        return view('backend.users.task.edit', compact('task'));
+        $interest = Intereste::with('task')->find($id);
+        if ($interest == null){
+            return redirect()->back();
+        }
+        return view('backend.users.task.edit', compact('interest'));
     }
 }
