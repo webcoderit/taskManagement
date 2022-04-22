@@ -48,7 +48,7 @@
         </li>
         <li> <a href="{{ route('admin.pending.task') }}"><i class="bx bx-right-arrow-alt"></i>Pending task</a>
         </li>
-        <li> <a href="component-carousels.html"><i class="bx bx-right-arrow-alt"></i>Confirm admission</a>
+        <li> <a href="{{ route('admin.confirm.admission') }}"><i class="bx bx-right-arrow-alt"></i>Confirm admission</a>
         </li>
         <li> <a href="component-list-groups.html"><i class="bx bx-right-arrow-alt"></i>Not interested</a>
         </li>

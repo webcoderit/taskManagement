@@ -7,11 +7,13 @@ use App\Http\Requests\TaskRequest;
 use App\Imports\ImportUser;
 use App\Imports\TaskImport;
 use App\Models\AssignNumber;
+use App\Models\Intereste;
 use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow\Constant\Periodic\Interest;
 use PhpParser\Node\Stmt\TryCatch;
 
 class TaskController extends Controller
@@ -121,7 +123,8 @@ class TaskController extends Controller
     }
     public function confirmAddmission()
     {
-        return view('backend.admin.task.confirm-addmission');
+        $complete = Intereste::with('task')->where('interest_level', 'done')->get();
+        return view('backend.admin.task.confirm-addmission' , compact('complete'));
     }
     public function notInterested()
     {

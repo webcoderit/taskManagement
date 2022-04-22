@@ -37,38 +37,36 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Facebook ID</th>
                                 <th>Employment Status</th>
+                                <th>Note</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <span class="custom-green-badge">Employed</span>
-                                        <span class="custom-red-badge">Terminated</span>
-
-                                    </td>
-                                    <td width="15%">
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="bx bx-edit-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-success">
-                                            <i class="bx bx-like"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-warning">
-                                            <i class="bx bx-dislike"></i>
-                                        </a>
-                                        <a href="#" onclick="return confirm('Are you sure delete this information')" class="btn btn-sm btn-danger">
-                                            <i class="bx bx-trash-alt"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($complete as $data)
+                                    <tr>
+                                        <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ $data->task->name ?? '' }}</td>
+                                        <td>{{ $data->task->email ?? '' }}</td>
+                                        <td>{{ $data->task->phone ?? '' }}</td>
+                                        <td>{{ $data->task->profession ?? '' }}</td>
+                                        <td>{{ $data->note ?? '' }}</td>
+                                        <td width="15%">
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="bx bx-edit-alt"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-success">
+                                                <i class="bx bx-like"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-warning">
+                                                <i class="bx bx-dislike"></i>
+                                            </a>
+                                            <a href="#" onclick="return confirm('Are you sure delete this information')" class="btn btn-sm btn-danger">
+                                                <i class="bx bx-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
