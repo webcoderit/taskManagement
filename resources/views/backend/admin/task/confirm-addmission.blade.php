@@ -37,8 +37,9 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Employment Status</th>
-                                <th>Note</th>
+                                <th>Profession</th>
+                                <th width="20%">Course Name</th>
+                                <th>Batch No.</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -50,7 +51,8 @@
                                         <td>{{ $data->task->email ?? '' }}</td>
                                         <td>{{ $data->task->phone ?? '' }}</td>
                                         <td>{{ $data->task->profession ?? '' }}</td>
-                                        <td>{{ $data->note ?? '' }}</td>
+                                        <td>{{ $data->select_course ?? '' }}</td>
+                                        <td>{{ $data->batch_number ?? '' }}</td>
                                         <td width="15%">
                                             <a href="#" class="btn btn-sm btn-primary">
                                                 <i class="bx bx-edit-alt"></i>
