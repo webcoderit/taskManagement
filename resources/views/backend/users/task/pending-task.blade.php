@@ -29,32 +29,27 @@
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
-                                <th>SL</th>
+                                <th>Date</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Profession</th>
-                                <th>Action</th>
+                                <th width="10%">Status</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach ($pendingTask as $data )
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td width="15%">
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="bx bx-edit-alt"></i>
-                                            View
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-success" disabled>
-                                            <i class="bx bx-check-circle"></i>
-                                            Call Done
-                                        </a>
+                                    <td>{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
+                                    <td>{{ $data->name ?? '' }}</td>
+                                    <td>{{ $data->email ?? '' }}</td>
+                                    <td>{{ $data->phone ?? '' }}</td>
+                                    <td>{{ $data->profession ?? '' }}</td>
+                                    <td width="10%">
+                                        <span style="background: red; color: #fff; padding: 5px">Padding</span>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
