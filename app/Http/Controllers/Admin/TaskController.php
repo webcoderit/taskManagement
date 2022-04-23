@@ -46,10 +46,6 @@ class TaskController extends Controller
         $tasks = Task::with('user')->get();
         return view('backend.admin.task.all-task', compact('tasks'));
     }
-    public function completeTask()
-    {
-        return view('backend.admin.task.complete-task');
-    }
     public function pendingTask()
     {
         return view('backend.admin.task.pending-task');
@@ -121,7 +117,7 @@ class TaskController extends Controller
         $taskDelete->delete();
         return redirect()->back()->withError('Task has been deleted');
     }
-    public function confirmAddmission()
+    public function completeAddmission()
     {
         $complete = Intereste::with('task')->where('interest_level', 'done')->get();
         return view('backend.admin.task.confirm-addmission' , compact('complete'));

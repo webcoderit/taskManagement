@@ -40,9 +40,8 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/task/edit/{id}', [App\Http\Controllers\Admin\TaskController::class, 'taskEdit'])->name('admin.edit.task');
             Route::post('/task/update/{id}', [App\Http\Controllers\Admin\TaskController::class, 'taskUpdate'])->name('admin.update.task');
             Route::get('/task/delete/{id}', [App\Http\Controllers\Admin\TaskController::class, 'taskDelete'])->name('admin.delete.task');
-            Route::get('/complete/task', [App\Http\Controllers\Admin\TaskController::class, 'completeTask'])->name('admin.complete.task');
             Route::get('/pending/task', [App\Http\Controllers\Admin\TaskController::class, 'pendingTask'])->name('admin.pending.task');
-            Route::get('/confirm/admission', [App\Http\Controllers\Admin\TaskController::class, 'confirmAddmission'])->name('admin.confirm.admission');
+            Route::get('/complete/admission', [App\Http\Controllers\Admin\TaskController::class, 'completeAddmission'])->name('admin.complete.admission');
             Route::get('/not/interested', [App\Http\Controllers\Admin\TaskController::class, 'notInterested'])->name('admin.not.interested');
             Route::get('/highly/interested', [App\Http\Controllers\Admin\TaskController::class, 'highlyInterested'])->name('admin.highly.interested');
             Route::get('/interested', [App\Http\Controllers\Admin\TaskController::class, 'interested'])->name('admin.interested');
