@@ -47,10 +47,9 @@
                                         <td>{{ $data->task->phone ?? '' }}</td>
                                         <td>{{ $data->task->profession ?? '' }}</td>
                                         <td>{{ $data->note ?? '' }}</td>
-                                        <td width="15%">
-                                            <a href="#" class="btn btn-sm btn-primary">
+                                        <td width="5%">
+                                            <a href="{{ url('/update/information/'.$data->id) }}" class="btn btn-sm btn-primary" title="Update information">
                                                 <i class="bx bx-edit-alt"></i>
-                                                View
                                             </a>
                                         </td>
                                     </tr>

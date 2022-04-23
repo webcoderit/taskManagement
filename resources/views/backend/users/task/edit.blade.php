@@ -82,25 +82,25 @@
                             <h6 class="view-details-inner-item">
                                 Name:
                                 <span>
-                                    {{ $task->name ?? 'No name found' }}
+                                    {{ $interest->task->name ?? 'No name found' }}
                                 </span>
                             </h6>
                             <h6 class="view-details-inner-item">
                                 Email:
                                 <a href="mailto:saidulislam@gmail.com">
-                                    {{ $task->email ?? 'No email found' }}
+                                    {{ $interest->task->email ?? 'No email found' }}
                                 </a>
                             </h6>
                             <h6 class="view-details-inner-item">
                                 Phone:
                                 <a href="tel:+880123456789">
-                                    {{ $task->phone ?? 'No phone found' }}
+                                    {{ $interest->task->phone ?? 'No phone found' }}
                                 </a>
                             </h6>
                             <h6 class="view-details-inner-item">
                                 Facebook ID:
                                 <a href="https://www.facebook.com/groups/161355777405329" target="_blank">
-                                    {{ $task->fb_id ?? 'No fb id found' }}
+                                    {{ $interest->task->fb_id ?? 'No fb id found' }}
                                 </a>
                             </h6>
                         </div>
@@ -111,7 +111,7 @@
                     <div class="student-opinion-form-wrapper card p-4">
                         <form class="student-opinion-form form-group" action="{{ url('/interest/store') }}" method="post">
                             @csrf
-                            <input type="hidden" name="task_id" value="{{ $task->id }}" />
+                            <input type="hidden" name="task_id" value="{{ $interest->task->id }}" />
                             <label for="interest">Interest Level</label><br>
                             <select name="interest_level" class="form-control"
                              id="interest_level" onchange="admissionDone(this.value)">
