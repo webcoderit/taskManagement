@@ -12,7 +12,7 @@
   <!--navigation-->
   <ul class="metismenu" id="menu">
     <li>
-      <a href="{{ url('/employee/dashboard') }}" class="has-arrow">
+      <a href="{{ url('/admin/dashboard') }}" class="has-arrow">
         <div class="parent-icon"><i class='bx bx-home-circle'></i>
         </div>
         <div class="menu-title">Dashboard</div>
@@ -54,7 +54,7 @@
         </li>
         <li> <a href="{{ route('admin.interested') }}"><i class="bx bx-right-arrow-alt"></i>Interested</a>
         </li>
-        <li> <a href="component-navs-tabs.html"><i class="bx bx-right-arrow-alt"></i>Recall</a>
+        <li> <a href="{{ route('admin.recall') }}"><i class="bx bx-right-arrow-alt"></i>Recall</a>
         </li>
       </ul>
     </li>

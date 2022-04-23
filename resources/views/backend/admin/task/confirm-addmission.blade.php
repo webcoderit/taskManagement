@@ -26,10 +26,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
-                                <th>SL</th>
+                                <th>Date</th>
+                                <th>Employee Name</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -41,7 +42,8 @@
                             <tbody>
                                 @foreach ($complete as $data)
                                     <tr>
-                                        <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
+                                        <td>{{ $data->task->user->full_name ?? '' }}</td>
                                         <td>{{ $data->task->name ?? '' }}</td>
                                         <td>{{ $data->task->email ?? '' }}</td>
                                         <td>{{ $data->task->phone ?? '' }}</td>

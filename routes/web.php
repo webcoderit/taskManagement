@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/not/interested', [App\Http\Controllers\Admin\TaskController::class, 'notInterested'])->name('admin.not.interested');
             Route::get('/highly/interested', [App\Http\Controllers\Admin\TaskController::class, 'highlyInterested'])->name('admin.highly.interested');
             Route::get('/interested', [App\Http\Controllers\Admin\TaskController::class, 'interested'])->name('admin.interested');
+            Route::get('/recall', [App\Http\Controllers\Admin\TaskController::class, 'recall'])->name('admin.recall');
         });
     });
 });
