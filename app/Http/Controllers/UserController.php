@@ -67,7 +67,8 @@ class UserController extends Controller
         return redirect('/today/task')->withSuccess('Information updated.');
     }
     public function pendingTask(){
-        return view('backend.users.task.pending-task');
+        $pendingTask = Task::where('user_id', auth()->user()->id)->where('status', 0)->orderBy('created_at', 'desc')->get();
+        return view('backend.users.task.pending-task', compact('pendingTask'));
     }
 
     public function confirmAddmission(){
