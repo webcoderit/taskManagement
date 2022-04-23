@@ -31,11 +31,11 @@
                             <tr>
                                 <th>SL</th>
                                 <th>Name</th>
-                                <th>Email</th>
+                                <th width="15%">Email</th>
                                 <th>Phone</th>
                                 <th>Profession</th>
-                                <th>Note</th>
-                                <th>Action</th>
+                                <th width="25%">Note</th>
+                                <th width="5%">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -47,10 +47,9 @@
                                         <td>{{ $data->task->phone ?? '' }}</td>
                                         <td>{{ $data->task->profession ?? '' }}</td>
                                         <td>{{ $data->note ?? '' }}</td>
-                                        <td width="15%">
-                                            <a href="#" class="btn btn-sm btn-primary">
+                                        <td width="5%">
+                                            <a href="{{ url('/update/information/'.$data->id) }}" class="btn btn-sm btn-primary" title="Update information">
                                                 <i class="bx bx-edit-alt"></i>
-                                                View
                                             </a>
                                         </td>
                                     </tr>

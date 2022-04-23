@@ -61,5 +61,8 @@ Route::get('/not/interested', [\App\Http\Controllers\UserController::class, 'not
 Route::get('/highly/interested', [\App\Http\Controllers\UserController::class, 'highlyInterested']);
 Route::get('/interested', [\App\Http\Controllers\UserController::class, 'interested']);
 Route::get('/others', [\App\Http\Controllers\UserController::class, 'others']);
+
+Route::get('/update/information/{id}', [\App\Http\Controllers\UserController::class, 'updateInformation']);
+
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

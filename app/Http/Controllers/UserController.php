@@ -93,4 +93,11 @@ class UserController extends Controller
         $others = Intereste::where('interest_level' , 'others')->get();
         return view('backend.users.task.others' , compact('others'));
     }
+
+    //============= Update information ================//
+    public function updateInformation($id)
+    {
+        $task = Task::find($id);
+        return view('backend.users.task.edit', compact('task'));
+    }
 }
