@@ -54,7 +54,6 @@ Auth::routes();
 Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
 Route::get('/today/task', [\App\Http\Controllers\UserController::class, 'todayTask']);
 Route::get('/view/details/{id}', [\App\Http\Controllers\UserController::class, 'viewDetails']);
-Route::get('/profile', [\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/profile/setting', [\App\Http\Controllers\UserController::class, 'profileSetting']);
 Route::get('/all/task', [\App\Http\Controllers\UserController::class, 'allTask']);
 Route::post('/interest/store', [\App\Http\Controllers\UserController::class, 'interestStore']);

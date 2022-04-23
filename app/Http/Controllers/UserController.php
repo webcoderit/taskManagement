@@ -28,10 +28,6 @@ class UserController extends Controller
         $task = Task::find($id);
         return view('backend.users.task.view-details', compact('task'));
     }
-    public function profile()
-    {
-        return view('backend.users.profile.profile');
-    }
     public function profileSetting()
     {
         return view('backend.users.profile.profile-setting');
