@@ -67,31 +67,41 @@ class UserController extends Controller
         return redirect('/today/task')->withSuccess('Information updated.');
     }
     public function pendingTask(){
-        $pendingTask = Task::where('user_id', auth()->user()->id)->where('status', 0)->orderBy('created_at', 'desc')->get();
+        $pendingTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->where('status', 0)->orderBy('created_at', 'desc')->get();
         return view('backend.users.task.pending-task', compact('pendingTask'));
     }
 
     public function confirmAddmission(){
-        $complete = Intereste::with('task')->where('user_id', auth()->user()->id)->where('interest_level', 'done')->get();
+        $complete = Intereste::with('task')->where('interest_level', 'done')->whereHas('task', function ($q){
+            $q->where('user_id', auth()->check() ? auth()->user()->id : '');
+        })->get();
         return view('backend.users.task.confirm-addmission', compact('complete'));
     }
 
     public function notInterested(){
-        $notInterested = Intereste::where('interest_level' , 'not')->where('user_id', auth()->user()->id)->get();
+        $notInterested = Intereste::where('interest_level' , 'not')->whereHas('task', function ($q){
+            $q->where('user_id', auth()->check() ? auth()->user()->id : '');
+        })->get();
         return view('backend.users.task.not-interested', compact('notInterested'));
     }
 
     public function highlyInterested(){
-        $highlyInterested = Intereste::where('interest_level' , 'highly')->where('user_id', auth()->user()->id)->get();
+        $highlyInterested = Intereste::where('interest_level' , 'highly')->whereHas('task', function ($q){
+            $q->where('user_id', auth()->check() ? auth()->user()->id : '');
+        })->get();
         return view('backend.users.task.highly-interested' , compact('highlyInterested'));
     }
 
     public function interested(){
-        $interested = Intereste::where('interest_level' , '50%')->where('user_id', auth()->user()->id)->get();
+        $interested = Intereste::where('interest_level' , '50%')->whereHas('task', function ($q){
+            $q->where('user_id', auth()->check() ? auth()->user()->id : '');
+        })->get();
         return view('backend.users.task.interested' , compact('interested'));
     }
     public function others(){
-        $others = Intereste::where('interest_level' , 'others')->where('user_id', auth()->user()->id)->get();
+        $others = Intereste::where('interest_level' , 'others')->whereHas('task', function ($q){
+            $q->where('user_id', auth()->check() ? auth()->user()->id : '');
+        })->get();
         return view('backend.users.task.others' , compact('others'));
     }
 
