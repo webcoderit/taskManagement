@@ -72,26 +72,26 @@ class UserController extends Controller
     }
 
     public function confirmAddmission(){
-        $complete = Intereste::with('task')->where('interest_level', 'done')->get();
+        $complete = Intereste::with('task')->where('user_id', auth()->user()->id)->where('interest_level', 'done')->get();
         return view('backend.users.task.confirm-addmission', compact('complete'));
     }
 
     public function notInterested(){
-        $notInterested = Intereste::where('interest_level' , 'not')->get();
+        $notInterested = Intereste::where('interest_level' , 'not')->where('user_id', auth()->user()->id)->get();
         return view('backend.users.task.not-interested', compact('notInterested'));
     }
 
     public function highlyInterested(){
-        $highlyInterested = Intereste::where('interest_level' , 'highly')->get();
+        $highlyInterested = Intereste::where('interest_level' , 'highly')->where('user_id', auth()->user()->id)->get();
         return view('backend.users.task.highly-interested' , compact('highlyInterested'));
     }
 
     public function interested(){
-        $interested = Intereste::where('interest_level' , '50%')->get();
+        $interested = Intereste::where('interest_level' , '50%')->where('user_id', auth()->user()->id)->get();
         return view('backend.users.task.interested' , compact('interested'));
     }
     public function others(){
-        $others = Intereste::where('interest_level' , 'others')->get();
+        $others = Intereste::where('interest_level' , 'others')->where('user_id', auth()->user()->id)->get();
         return view('backend.users.task.others' , compact('others'));
     }
 
