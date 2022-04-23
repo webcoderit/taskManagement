@@ -48,13 +48,13 @@
         </li>
         <li> <a href="{{ route('admin.pending.task') }}"><i class="bx bx-right-arrow-alt"></i>Pending task</a>
         </li>
-        <li> <a href="component-carousels.html"><i class="bx bx-right-arrow-alt"></i>Confirm admission</a>
+        <li> <a href="{{ route('admin.confirm.admission') }}"><i class="bx bx-right-arrow-alt"></i>Confirm admission</a>
         </li>
-        <li> <a href="component-list-groups.html"><i class="bx bx-right-arrow-alt"></i>Not interested</a>
+        <li> <a href="{{ route('admin.not.interested') }}"><i class="bx bx-right-arrow-alt"></i>Not interested</a>
         </li>
-        <li> <a href="component-media-object.html"><i class="bx bx-right-arrow-alt"></i>Highly interested</a>
+        <li> <a href="{{ route('admin.highly.interested') }}"><i class="bx bx-right-arrow-alt"></i>Highly interested</a>
         </li>
-        <li> <a href="component-modals.html"><i class="bx bx-right-arrow-alt"></i>Interested</a>
+        <li> <a href="{{ route('admin.interested') }}"><i class="bx bx-right-arrow-alt"></i>Interested</a>
         </li>
         <li> <a href="component-navs-tabs.html"><i class="bx bx-right-arrow-alt"></i>Recall</a>
         </li>
