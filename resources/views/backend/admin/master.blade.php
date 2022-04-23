@@ -118,7 +118,8 @@
                         let output = document.getElementById('pre-avatar');
                         output.src = reader.result;
                         output.style.display = "block";
-                        output.style.width = "10%";
+                        output.style.width = "100%";
+                        output.style.borderRadius = "100%";
                     }
                     reader.readAsDataURL(event.target.files[0]);
                 }else{

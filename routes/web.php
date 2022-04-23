@@ -63,6 +63,8 @@ Route::get('/interested', [\App\Http\Controllers\UserController::class, 'interes
 Route::get('/others', [\App\Http\Controllers\UserController::class, 'others']);
 
 Route::get('/update/information/{id}', [\App\Http\Controllers\UserController::class, 'updateInformation']);
+Route::post('/profile/update/{id}', [\App\Http\Controllers\UserController::class, 'profileUpdate']);
+Route::post('/password/update/{id}', [\App\Http\Controllers\UserController::class, 'passwordUpdate']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

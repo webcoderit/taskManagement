@@ -9,7 +9,7 @@
             <div class="top-menu ms-auto"></div>
             <div class="user-box dropdown border-light-2">
                 <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://via.placeholder.com/110x110" class="user-img" alt="user avatar">
+                    <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" class="user-img" alt="user avatar">
                     <div class="user-info ps-3">
                         @if(auth()->check())
                             <p class="user-name mb-0 text-white">{{ auth()->user()->full_name}}</p>
