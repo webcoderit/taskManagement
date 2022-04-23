@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Intereste;
 use App\Models\Task;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow\Constant\Periodic\Interest;
+use Auth;
+use Hash;
 
 class UserController extends Controller
 {
@@ -113,5 +116,60 @@ class UserController extends Controller
             return redirect()->back();
         }
         return view('backend.users.task.edit', compact('interest'));
+    }
+
+    public function profileUpdate($id)
+    {
+        $profileUpdate = User::find($id);
+        if(request()->hasFile('avatar')){
+            if($profileUpdate->avatar && file_exists(public_path('avatar/'.$profileUpdate->avatar))){
+                unlink(public_path('avatar/'.$profileUpdate->avatar));
+            }
+            $name = time() . '.' . request()->avatar->getClientOriginalExtension();
+            request()->avatar->move('avatar/', $name);
+            $profileUpdate->avatar = $name;
+        }
+        $profileUpdate->first_name = request()->first_name;
+        $profileUpdate->last_name = request()->last_name;
+        $profileUpdate->phone = request()->phone;
+        $profileUpdate->phone = request()->phone;
+        $profileUpdate->save();
+        return redirect()->back()->withSuccess('Profile has been updated');
+    }
+
+    public function passwordUpdate(Request $request, $id)
+    {
+        //dd(auth()->user()->password);
+        $this->validate($request,[
+            'old_password' => 'required',
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        $hashedPassword = Auth::user()->password;
+        //dd($hashedPassword);
+        if (\Hash::check($request->old_password , $hashedPassword )) {
+
+            if (!\Hash::check($request->password , $hashedPassword)) {
+
+                $users = User::find(Auth::user()->id);
+                $users->password = bcrypt($request->password);
+                User::where( 'id' , Auth::user()->id)->update( array( 'password' =>  $users->password));
+
+                session()->flash('success','password updated successfully');
+                return redirect()->back();
+            }
+
+            else{
+                session()->flash('error','new password can not be the old password!');
+                return redirect()->back();
+            }
+
+        }
+
+        else{
+            session()->flash('error','old password doesnt matched ');
+            return redirect()->back();
+        }
+
     }
 }
