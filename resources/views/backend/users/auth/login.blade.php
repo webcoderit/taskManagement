@@ -29,6 +29,12 @@
 			<div class="container-fluid">
 				<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
 					<div class="col mx-auto">
+                        @if(Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> {{ Session::get('error') }}.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
 						<div class="card">
 							<div class="card-body">
 								<div class="border p-4 rounded">
