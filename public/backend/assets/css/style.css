@@ -1,6 +1,7 @@
-.view-details-section{
+.view-details-section {
     padding: 40px 0;
 }
+
 .view-details-page-title,
 .view-details-form-title {
     text-align: center;
@@ -11,6 +12,7 @@
     margin-bottom: 20px;
     position: relative;
 }
+
 .view-details-page-title:after,
 .view-details-form-title:after {
     content: '';
@@ -22,6 +24,7 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
 .view-details-inner-item {
     display: flex;
     align-items: center;
@@ -32,12 +35,14 @@
     font-weight: 500;
     color: #000;
 }
+
 .view-details-inner-item a {
     text-decoration: underline;
     display: inline-block;
     font-size: 16px;
     color: #154360;
 }
+
 .student-opinion-form label {
     font-size: 16px;
     color: #000;
@@ -45,23 +50,28 @@
     margin-bottom: 5px;
     text-transform: capitalize;
 }
+
 .update-btn-outer {
     margin-top: 15px;
     text-align: end;
 }
+
 .avatar-upload {
     position: relative;
     max-width: 230px;
 }
+
 .avatar-upload .avatar-edit {
     position: absolute;
     right: 0px;
     z-index: 1;
     top: 0;
 }
+
 .avatar-upload .avatar-edit input {
     display: none;
 }
+
 .avatar-upload .avatar-edit input+label {
     display: inline-block;
     width: 34px;
@@ -75,10 +85,12 @@
     font-weight: normal;
     transition: all .2s ease-in-out;
 }
+
 .avatar-upload .avatar-edit input+label:hover {
     background: #f1f1f1;
     border-color: #d6d6d6;
 }
+
 .avatar-upload .avatar-edit input+label:after {
     content: "\f040";
     font-family: 'FontAwesome';
@@ -90,6 +102,7 @@
     text-align: center;
     margin: auto;
 }
+
 .avatar-upload .avatar-preview {
     width: 230px;
     height: 210px;
@@ -98,6 +111,7 @@
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
 }
+
 .avatar-upload .avatar-preview>div {
     width: 100%;
     height: 100%;
@@ -105,9 +119,11 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
 .profile-setting-section {
     padding: 40px 0;
 }
+
 .profile-setting-section-title {
     text-align: center;
     font-size: 30px;
@@ -117,6 +133,7 @@
     padding-bottom: 5px;
     position: relative;
 }
+
 .profile-setting-section-title:after {
     content: '';
     position: absolute;
@@ -127,6 +144,7 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
 .general-setting-form-title,
 .password-setting-form-title {
     text-align: center;
@@ -137,6 +155,7 @@
     padding-bottom: 5px;
     position: relative;
 }
+
 .general-setting-form-title:after,
 .password-setting-form-title:after {
     content: '';
@@ -148,40 +167,73 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
 .general-setting-form.form-group label {
     font-size: 16px;
     color: #000;
     text-transform: capitalize;
     margin-bottom: 5px;
 }
+
 .general-setting-form.form-group input {
     margin-bottom: 15px;
 }
+
 .col-md-6.border-right {
     border-right: 1px solid #ddd;
 }
+
 .profile-section-wrapper {
     padding: 80px 0 40px 0;
 }
+
 .user-profile-image {
     width: 210px;
     height: 200px;
     border-radius: 100%;
 }
+
 .user-profile-outer.card.p-4 {
     text-align: center;
 }
+
 .user-profile-image-outer {
     margin-bottom: 10px;
 }
+
 .user-profile-name {
     font-size: 25px;
     color: #000;
     text-transform: capitalize;
     font-weight: 500;
 }
+
 .user-profile-email,
 .user-profile-number {
     font-size: 15px;
     color: #000;
 }
+
+
+/* Pending task page css start */
+
+.search-form-o-outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    margin: auto;
+}
+
+.search-wrapper {
+    margin-bottom: 20px;
+}
+
+.search-form-o-outer input {
+    width: 100%;
+    height: 42px;
+    margin-right: 10px;
+}
+
+
+/* Pending task page css End */

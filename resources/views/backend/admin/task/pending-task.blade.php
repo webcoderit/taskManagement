@@ -20,6 +20,12 @@
             <!--end breadcrumb-->
             <h6 class="mb-0 text-uppercase">Pending Task</h6>
             <hr/>
+            <div class="search-wrapper">
+                <form action="#" method="#" class="form-group search-form-o-outer">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </form>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
