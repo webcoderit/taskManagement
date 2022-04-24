@@ -48,7 +48,8 @@ class TaskController extends Controller
     }
     public function pendingTask()
     {
-        return view('backend.admin.task.pending-task');
+        $pendingTasks = Task::where('status', 0)->paginate(30);
+        return view('backend.admin.task.pending-task', compact('pendingTasks'));
     }
 
 //    public function taskStore(TaskRequest $request)
@@ -119,7 +120,7 @@ class TaskController extends Controller
     }
     public function completeAddmission()
     {
-        $complete = Intereste::with('task')->where('interest_level', 'done')->get();
+        $complete = Intereste::with('task')->where('interest_level', 'done')->paginate(30);
         return view('backend.admin.task.confirm-addmission' , compact('complete'));
     }
     public function notInterested()
@@ -139,6 +140,7 @@ class TaskController extends Controller
     }
     public function recall()
     {
-        return view('backend.admin.task.recall');
+        $recalls = Intereste::where('interest_level', '!=', 'done')->paginate(30);
+        return view('backend.admin.task.recall', compact('recalls'));
     }
 }

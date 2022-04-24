@@ -23,55 +23,35 @@
             <!--end breadcrumb-->
             <h6 class="mb-0 text-uppercase">Recall</h6>
             <hr/>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> {{ Session::get('success') }}.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th>SL</th>
+                                <th>Employee Name</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Facebook ID</th>
-                                <th>Employment Status</th>
-                                <th>Action</th>
+                                <th>Profession</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach ($recalls as $data)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <span class="custom-green-badge">Employed</span>
-                                        <span class="custom-red-badge">Terminated</span>
-
-                                    </td>
-                                    <td width="15%">
-                                        <a href="#" class="btn btn-sm btn-primary">
-                                            <i class="bx bx-edit-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-success">
-                                            <i class="bx bx-like"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-warning">
-                                            <i class="bx bx-dislike"></i>
-                                        </a>
-                                        <a href="#" onclick="return confirm('Are you sure delete this information')" class="btn btn-sm btn-danger">
-                                            <i class="bx bx-trash-alt"></i>
-                                        </a>
-                                    </td>
+                                    <td>{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
+                                    <td>{{ $data->task->user->full_name ?? '' }}</td>
+                                    <td>{{ $data->task->name ?? '' }}</td>
+                                    <td>{{ $data->task->email ?? '' }}</td>
+                                    <td>{{ $data->task->phone ?? '' }}</td>
+                                    <td>{{ $data->task->profession ?? '' }}</td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
+                    {{ $recalls->links() }}
                 </div>
             </div>
         </div>
