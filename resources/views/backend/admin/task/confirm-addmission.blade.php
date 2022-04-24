@@ -25,8 +25,17 @@
             <hr/>
             <div class="search-wrapper">
                 <form action="#" method="#" class="form-group search-form-o-outer">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="select-outer">
+                        <select name="user" id="user">
+                            <option disabled>--- Select ---</option>
+                            <option value="saidul">Saidul</option>
+                            <option value="noman">Noman</option>
+                            <option value="ashik">Ashik</option>
+                            <option value="salman">Salman</option>
+                          </select>
+                    </div>
                     <button class="btn btn-primary" type="button">Search</button>
+                    <button type="button" class="btn btn-danger">Clear</button>
                 </form>
             </div>
             <div class="card">
