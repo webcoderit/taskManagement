@@ -243,5 +243,10 @@ button.btn.btn-primary {
     margin-right: 5px;
 }
 
+.report-generate-btn {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
 
 /* Pending task page css End */

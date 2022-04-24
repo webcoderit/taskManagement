@@ -133,6 +133,6 @@ class AdminController extends Controller
 
     public function attendanceLog()
     {
-        //
+        return view('backend.admin.users.attendance-log');
     }
 }
