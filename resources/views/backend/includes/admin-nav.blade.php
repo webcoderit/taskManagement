@@ -44,11 +44,9 @@
         </li>
         <li> <a href="{{ route('admin.all.task') }}"><i class="bx bx-right-arrow-alt"></i>All task</a>
         </li>
-        <li> <a href="{{ route('admin.complete.task') }}"><i class="bx bx-right-arrow-alt"></i>Complete task</a>
-        </li>
         <li> <a href="{{ route('admin.pending.task') }}"><i class="bx bx-right-arrow-alt"></i>Pending task</a>
         </li>
-        <li> <a href="{{ route('admin.confirm.admission') }}"><i class="bx bx-right-arrow-alt"></i>Confirm admission</a>
+        <li> <a href="{{ route('admin.complete.admission') }}"><i class="bx bx-right-arrow-alt"></i>Complete admission</a>
         </li>
         <li> <a href="{{ route('admin.not.interested') }}"><i class="bx bx-right-arrow-alt"></i>Not interested</a>
         </li>
