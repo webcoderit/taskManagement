@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Admin;
+use App\Models\AttendanceLog;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
 class AdminController extends Controller
@@ -133,6 +135,7 @@ class AdminController extends Controller
 
     public function attendanceLog()
     {
-        return view('backend.admin.users.attendance-log');
+        $attendances = AttendanceLog::with('user')->orderByDesc('created_at')->paginate(20);
+        return view('backend.admin.users.attendance-log', compact('attendances'));
     }
 }
