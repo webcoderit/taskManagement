@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/delete/{user}', [App\Http\Controllers\Admin\AdminController::class, 'destroy'])->name('admin.user.destroy');
             Route::get('/logout', [App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('admin.user.logout');
             Route::get('/online', [App\Http\Controllers\Admin\AdminController::class, 'onlineUser'])->name('admin.user.online');
+            Route::get('/attendance-log', [App\Http\Controllers\Admin\AdminController::class, 'attendanceLog'])->name('admin.user.attendance.log');
             //================== Task Management ====================//
             Route::get('/add/task', [App\Http\Controllers\Admin\TaskController::class, 'addTask'])->name('admin.add.task');
             Route::post('/excel/import', [App\Http\Controllers\Admin\TaskController::class, 'excel_store'])->name('admin.excel.import');

@@ -29,6 +29,7 @@
         <li> <a href="{{ route('admin.user.list') }}"><i class="bx bx-right-arrow-alt"></i>Registration</a></li>
         <li> <a href="{{ route('admin.user.register.form.create') }}"><i class="bx bx-right-arrow-alt"></i>Add user</a></li>
         <li> <a href="{{ route('admin.user.online') }}"><i class="bx bx-right-arrow-alt"></i>Employee Tracking</a></li>
+        <li> <a href="{{ route('admin.user.attendance.log') }}"><i class="bx bx-right-arrow-alt"></i>Attendance report</a></li>
       </ul>
     </li>
     <li>

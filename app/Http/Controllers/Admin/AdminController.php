@@ -130,4 +130,9 @@ class AdminController extends Controller
         $users = User::orderBy('updated_at', 'desc')->get();
         return view('backend.admin.users.online', compact('users'));
     }
+
+    public function attendanceLog()
+    {
+        //
+    }
 }
