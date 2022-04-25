@@ -46,10 +46,17 @@ class TaskController extends Controller
         $tasks = Task::with('user')->get();
         return view('backend.admin.task.all-task', compact('tasks'));
     }
-    public function pendingTask()
+    public function pendingTask(Request $request)
     {
-        $pendingTasks = Task::where('status', 0)->paginate(30);
-        return view('backend.admin.task.pending-task', compact('pendingTasks'));
+        $sql = Task::with('user')->where('status', 0);
+        if (isset($request->user_id)){
+            $sql->whereHas('user', function($q) use($request){
+                $q->where('id', 'LIKE','%'.$request->user_id.'%');
+            });
+        }
+        $pendingTasks = $sql->paginate(30);
+        $users = User::all();
+        return view('backend.admin.task.pending-task', compact('pendingTasks', 'users'));
     }
 
 //    public function taskStore(TaskRequest $request)
@@ -118,10 +125,17 @@ class TaskController extends Controller
         $taskDelete->delete();
         return redirect()->back()->withError('Task has been deleted');
     }
-    public function completeAddmission()
+    public function completeAddmission(Request $request)
     {
-        $complete = Intereste::with('task')->where('interest_level', 'done')->paginate(30);
-        return view('backend.admin.task.confirm-addmission' , compact('complete'));
+        $sql = Intereste::with('task')->where('interest_level', 'done');
+        if (isset($request->user_id)){
+            $sql->whereHas('task', function($q) use($request){
+                $q->where('user_id', 'LIKE','%'.$request->user_id.'%');
+            });
+        }
+        $complete = $sql->paginate(30);
+        $users = User::all();
+        return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
     }
     public function notInterested()
     {
