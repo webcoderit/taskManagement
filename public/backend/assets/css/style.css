@@ -229,10 +229,18 @@
     margin-bottom: 20px;
 }
 
-.search-form-o-outer input {
-    width: 100%;
-    height: 42px;
-    margin-right: 10px;
+.select-outer select {
+    width: 500px;
+    height: 38px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.select-outer {
+    margin-right: 5px;
+}
+
+button.btn.btn-primary {
+    margin-right: 5px;
 }
 
 
