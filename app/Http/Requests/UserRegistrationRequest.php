@@ -28,6 +28,7 @@ class UserRegistrationRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'phone' => 'required|max:13|min:11|unique:users,phone',
+            'mac_address' => 'required',
             'password' => 'required|string|min:8|confirmed',
         ];
     }

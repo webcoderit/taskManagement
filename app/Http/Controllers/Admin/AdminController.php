@@ -71,6 +71,7 @@ class AdminController extends Controller
         $user->last_name  = $request->last_name;
         $user->email      = $request->email;
         $user->phone      = $request->phone;
+        $user->mac_address      = $request->mac_address;
         if ($request->file('avatar')){
             $user->avatar      = $name;
         }
@@ -98,6 +99,7 @@ class AdminController extends Controller
         $user->last_name  = $request->last_name;
         $user->email      = $request->email;
         $user->phone      = $request->phone;
+        $user->mac_address      = $request->mac_address;
         $user->save();
         return redirect('admin/register')->withSuccess('User has been updated.');
     }

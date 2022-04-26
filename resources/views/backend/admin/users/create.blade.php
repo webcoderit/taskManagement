@@ -42,35 +42,35 @@
                             <div class="col-md-6">
                                 <label for="first_name" class="form-label">First Name</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user'></i></span>
-                                    <input type="text" class="form-control border-start-0" name="first_name" id="first_name" placeholder="First Name" required />
+                                    <input type="text" class="form-control border-start-0" value="{{ old('first_name') }}" name="first_name" id="first_name" placeholder="First Name" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('first_name') ? $errors->first('first_name') : ' ' }}</span>
                             </div>
                             <div class="col-md-6">
                                 <label for="last_name" class="form-label">Last Name</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user'></i></span>
-                                    <input type="text" class="form-control border-start-0" name="last_name" id="last_name" placeholder="Last Name" required />
+                                    <input type="text" class="form-control border-start-0" value="{{ old('last_name') }}" name="last_name" id="last_name" placeholder="Last Name" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('last_name') ? $errors->first('last_name') : ' ' }}</span>
                             </div>
                             <div class="col-6">
                                 <label for="phone" class="form-label">Phone No</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-microphone' ></i></span>
-                                    <input type="tel" class="form-control border-start-0" name="phone" id="phone" placeholder="Phone No" required />
+                                    <input type="tel" class="form-control border-start-0" value="{{ old('phone') }}" name="phone" id="phone" placeholder="Phone No" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('phone') ? $errors->first('phone') : ' ' }}</span>
                             </div>
                             <div class="col-6">
                                 <label for="phone" class="form-label">Mac Address</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-microphone' ></i></span>
-                                    <input type="text" class="form-control border-start-0" name="mac_address" id="mac_address" placeholder="Mac Address" required />
+                                    <input type="text" class="form-control border-start-0" value="{{ old('mac_address') }}" name="mac_address" id="mac_address" placeholder="Mac Address" required />
                                 </div>
-                                <span style="color: red"> {{ $errors->has('phone') ? $errors->first('phone') : ' ' }}</span>
+                                <span style="color: red"> {{ $errors->has('mac_address') ? $errors->first('mac_address') : ' ' }}</span>
                             </div>
                             <div class="col-12">
                                 <label for="email" class="form-label">Email Address</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-message' ></i></span>
-                                    <input type="email" class="form-control border-start-0" name="email" id="email" placeholder="Email Address" required />
+                                    <input type="email" class="form-control border-start-0" value="{{ old('email') }}" name="email" id="email" placeholder="Email Address" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('email') ? $errors->first('email') : ' ' }}</span>
                             </div>
