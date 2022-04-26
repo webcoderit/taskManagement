@@ -44,7 +44,8 @@ class AdminController extends Controller
 
     public function deshboard()
     {
-        return view('backend.admin.home.index');
+        $users = User::orderBy('updated_at', 'desc')->get();
+        return view('backend.admin.home.index', compact('users'));
     }
 
     public function register()
