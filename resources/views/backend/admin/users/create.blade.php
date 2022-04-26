@@ -40,50 +40,57 @@
                         <form class="row g-3" action="{{ url('/admin/user/store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="col-md-6">
-                                <label for="first_name" class="form-label">First Name</label>
+                                <label for="first_name" class="form-label">First Name</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user'></i></span>
-                                    <input type="text" class="form-control border-start-0" name="first_name" id="first_name" placeholder="First Name" />
+                                    <input type="text" class="form-control border-start-0" name="first_name" id="first_name" placeholder="First Name" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('first_name') ? $errors->first('first_name') : ' ' }}</span>
                             </div>
                             <div class="col-md-6">
-                                <label for="last_name" class="form-label">Last Name</label>
+                                <label for="last_name" class="form-label">Last Name</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user'></i></span>
-                                    <input type="text" class="form-control border-start-0" name="last_name" id="last_name" placeholder="Last Name" />
+                                    <input type="text" class="form-control border-start-0" name="last_name" id="last_name" placeholder="Last Name" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('last_name') ? $errors->first('last_name') : ' ' }}</span>
                             </div>
-                            <div class="col-12">
-                                <label for="phone" class="form-label">Phone No</label>
+                            <div class="col-6">
+                                <label for="phone" class="form-label">Phone No</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-microphone' ></i></span>
-                                    <input type="tel" class="form-control border-start-0" name="phone" id="phone" placeholder="Phone No" />
+                                    <input type="tel" class="form-control border-start-0" name="phone" id="phone" placeholder="Phone No" required />
+                                </div>
+                                <span style="color: red"> {{ $errors->has('phone') ? $errors->first('phone') : ' ' }}</span>
+                            </div>
+                            <div class="col-6">
+                                <label for="phone" class="form-label">Mac Address</label><span style="color: red"> * </span>
+                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-microphone' ></i></span>
+                                    <input type="text" class="form-control border-start-0" name="mac_address" id="mac_address" placeholder="Mac Address" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('phone') ? $errors->first('phone') : ' ' }}</span>
                             </div>
                             <div class="col-12">
-                                <label for="email" class="form-label">Email Address</label>
+                                <label for="email" class="form-label">Email Address</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-message' ></i></span>
-                                    <input type="email" class="form-control border-start-0" name="email" id="email" placeholder="Email Address" />
+                                    <input type="email" class="form-control border-start-0" name="email" id="email" placeholder="Email Address" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('email') ? $errors->first('email') : ' ' }}</span>
                             </div>
                             <div class="col-md-6">
-                                <label for="password" class="form-label">Choose Password</label>
+                                <label for="password" class="form-label">Choose Password</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-lock-open' ></i></span>
-                                    <input type="password" class="form-control border-start-0" name="password" id="password" placeholder="Choose Password" />
+                                    <input type="password" class="form-control border-start-0" name="password" id="password" placeholder="Choose Password" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('password') ? $errors->first('password') : ' ' }}</span>
                             </div>
                             <div class="col-md-6">
-                                <label for="password_confirmation" class="form-label">Confirm Password</label>
+                                <label for="password_confirmation" class="form-label">Confirm Password</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-lock' ></i></span>
-                                    <input type="password" class="form-control border-start-0" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" />
+                                    <input type="password" class="form-control border-start-0" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('password_confirmation') ? $errors->first('password_confirmation') : ' ' }}</span>
                             </div>
                             <div class="col-12">
-                                <label for="avatar" class="form-label">Avatar</label>
-                                <input type="file" name="avatar" id="avatar" class="form-control" onchange="imagePreview(event)" />
+                                <label for="avatar" class="form-label">Avatar</label><span style="color: red"> * </span>
+                                <input type="file" name="avatar" id="avatar" class="form-control" onchange="imagePreview(event)" required />
                                 <img src="" id="pre-avatar" />
                             </div>
                             <div class="col-12">
