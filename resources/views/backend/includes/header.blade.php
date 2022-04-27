@@ -9,6 +9,7 @@
             <div class="top-menu ms-auto"></div>
             <div class="user-box dropdown border-light-2">
                 <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
                     <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" class="user-img" alt="user avatar">
                     <div class="user-info ps-3">
                         @if(auth()->check())
