@@ -40,6 +40,12 @@
         </li>
         <li> <a href="{{ url('/others') }}"><i class="bx bx-right-arrow-alt"></i>Others</a>
         </li>
+        </li>
+        <li> <a href="{{ url('/addmission/form') }}"><i class="bx bx-right-arrow-alt"></i>Addmission Form</a>
+        </li>
+        </li>
+        <li> <a href="{{ url('/money/receipt') }}"><i class="bx bx-right-arrow-alt"></i>Money Receipt</a>
+        </li>
       </ul>
     </li>
   </ul>
