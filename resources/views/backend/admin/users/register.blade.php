@@ -52,9 +52,9 @@
                                             <td>{{ $user->phone ?? 'No phone found' }}</td>
                                             <td>
                                                 @if($user->status == 1)
-                                                    <span class="custom-green-badge">Employed</span>
+                                                    <span class="custom-green-badge">Active</span>
                                                 @else
-                                                    <span class="custom-red-badge">Terminated</span>
+                                                    <span class="custom-red-badge">Offline</span>
                                                 @endif
                                             </td>
                                             <td width="15%">
