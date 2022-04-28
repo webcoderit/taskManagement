@@ -104,6 +104,13 @@ class UserController extends Controller
         return view('backend.users.task.others' , compact('others'));
     }
 
+    public function addmissionForm(){
+        return view('backend.users.task.addmission-form');
+    }
+    public function moneyReceipt(){
+        return view('backend.users.task.money-receipt');
+    }
+
     //============= Update information ================//
     public function updateInformation($id)
     {

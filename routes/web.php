@@ -66,6 +66,8 @@ Route::get('/not/interested', [\App\Http\Controllers\UserController::class, 'not
 Route::get('/highly/interested', [\App\Http\Controllers\UserController::class, 'highlyInterested']);
 Route::get('/interested', [\App\Http\Controllers\UserController::class, 'interested']);
 Route::get('/others', [\App\Http\Controllers\UserController::class, 'others']);
+Route::get('/addmission/form', [\App\Http\Controllers\UserController::class, 'addmissionForm']);
+Route::get('/money/receipt', [\App\Http\Controllers\UserController::class, 'moneyReceipt']);
 
 Route::get('/update/information/{id}', [\App\Http\Controllers\UserController::class, 'updateInformation']);
 Route::post('/profile/update/{id}', [\App\Http\Controllers\UserController::class, 'profileUpdate']);
