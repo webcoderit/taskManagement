@@ -33,12 +33,15 @@ class TaskController extends Controller
     public function excel_store(Request $request)
     {
         $this->validate($request, [
-            'files' => 'required',
             'user_id' => 'required|integer'
         ]);
         $file = $request->file('files');
-        Excel::import(new ImportUser, $file);
-        return back()->withSuccess('Excel imported.');
+        if ($file == null){
+            return redirect()->back()->with('error', 'Please insert a valid file.');
+        }else{
+            Excel::import(new ImportUser, $file);
+        }
+        return back()->withSuccess('Data imported.');
     }
 
     public function allTask()

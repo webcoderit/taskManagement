@@ -1,5 +1,9 @@
 @extends('backend.admin.admin-master')
 
+@push('style')
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+@endpush
+
 @section('content')
 <div class="wrapper">
     <div class="page-wrapper" style="margin-left: 20px!important;">
@@ -33,7 +37,13 @@
                     <hr>
                     @if(Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Success!</strong> {{ Session::get('success') }}.
+                            <strong>Error!</strong> {{ Session::get('success') }}.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> {{ Session::get('error') }}.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
@@ -145,30 +155,11 @@
 </div>
 @endsection
 
-@push('scripts')
-    <script>
-        $('#addNew').click(function (){
-            let html = ''
-            html+='<div class="form-group" id="removeRow">'
-            html+='<table class="table">'
-            html+= '<tr>'
-            html+='<td>'
-            html+='<input type="tel" class="form-control" name="phone[]" placeholder="Enter phone number">'
-            html+='</td>'
-            html+='<td>'
-            html+= '<button class="btn btn-danger" type="button" id="remove">Remove</button>'
-            html+='</td>'
-            html+= '</tr>'
-            html+='</table>'
-            html+='</div>'
-
-            $('#newRow').append(html);
+@push('script')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.summernote').summernote();
         });
-
-        // remove row
-        $(document).on('click', '#remove', function () {
-            $(this).closest('#removeRow').remove();
-        });
-
     </script>
 @endpush
