@@ -239,7 +239,7 @@
     margin-right: 5px;
 }
 
-button.btn.btn-primary {
+.btn.btn-primary {
     margin-right: 5px;
 }
 
@@ -250,3 +250,129 @@ button.btn.btn-primary {
 
 
 /* Pending task page css End */
+
+
+/*Addmission Form css start*/
+
+.student-addmission-form-section {
+    padding: 40px 0;
+}
+
+.addmission-form-heading {
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.institute-name {
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #f16522;
+    letter-spacing: 2px;
+    margin-bottom: 0px;
+}
+
+.institute-name span {
+    color: #564c4c;
+}
+
+.addmission-form-heading address {
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #000;
+}
+
+.addmission-form-heading span a {
+    display: inline-block;
+    color: #000;
+    font-size: 14px;
+    transition: all .3s ease;
+}
+
+.addmission-form-heading span a:hover {
+    color: #f16522;
+}
+
+.addmission-form-title {
+    text-align: center;
+    font-size: 20px;
+    color: #000;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.addmission-form-title:after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    background: #f16522;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.addmission-form-wrapper {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+}
+
+.form-group.addmission-form label {
+    color: #000;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.form-group.addmission-form input {
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+.form-group.addmission-form textarea {
+    margin-bottom: 10px;
+}
+
+.d-flex.align-items-center.gender label {
+    margin-right: 30px;
+    margin-bottom: 0;
+}
+
+.d-flex.align-items-center.gender input {
+    margin-bottom: 0;
+    margin-right: 5px;
+    height: 30px;
+    width: 17px;
+}
+
+.d-flex.align-items-center.Shedule input {
+    margin-bottom: 0;
+    margin-right: 5px;
+    height: 30px;
+    width: 17px;
+}
+
+.d-flex.align-items-center.Shedule label {
+    margin-bottom: 0;
+    margin-right: 20px;
+}
+
+.d-flex.align-items-center.time label {
+    margin-bottom: 0;
+    margin-right: 15px;
+}
+
+.d-flex.align-items-center.time input {
+    margin-bottom: 0;
+    margin-right: 5px;
+    height: 30px;
+    width: 17px;
+}
+
+.col-md-12.text-center {
+    margin-top: 25px;
+}
+
+
+/*Addmission Form css End*/
