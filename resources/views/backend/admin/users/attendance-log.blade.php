@@ -21,7 +21,7 @@
                 <h6 class="mb-0 text-uppercase">Attendance log</h6>
                 <hr/>
                 <div class="report-generate-btn">
-                    <button type="button" class="btn btn-primary">Report</button>
+                    <a href="{{ url('/admin/user/attendance-sheet-download') }}" class="btn btn-primary">Report</a>
                 </div>
                 <div class="card">
                     <div class="card-body">

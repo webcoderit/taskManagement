@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\AttendanceMultiSheetReport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Requests\UserUpdateRequest;
@@ -10,9 +11,16 @@ use App\Models\AttendanceLog;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 use Session;
 class AdminController extends Controller
 {
+    protected $excel;
+    public function __construct(Excel $excel)
+    {
+        $this->excel = $excel;
+    }
+
     public function loginForm()
     {
         return view('backend.admin.auth.login');
@@ -140,5 +148,10 @@ class AdminController extends Controller
     {
         $attendances = AttendanceLog::with('user')->orderByDesc('created_at')->paginate(20);
         return view('backend.admin.users.attendance-log', compact('attendances'));
+    }
+
+    public function attendanceSheetDownload()
+    {
+        return $this->excel->download(new AttendanceMultiSheetReport(2022), 'Attendance.xlsx');
     }
 }
