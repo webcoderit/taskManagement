@@ -130,6 +130,19 @@
                                         <label for="pm">PM</label>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="avatar-upload">
+                                        <div class="avatar-edit">
+                                            <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" onchange="imagePreview(event)" />
+                                            <label for="imageUpload"></label>
+                                        </div>
+                                        <div class="avatar-preview mt-4">
+                                            <div>
+                                                <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" style="height: 200px; width: 220px;" id="pre-avatar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="addmission-form-submit-btn btn btn-primary">Submit</button>
                                 </div>
