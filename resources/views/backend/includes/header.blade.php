@@ -10,7 +10,9 @@
             <div class="user-box dropdown border-light-2">
                 <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
+                    @if(auth()->check())
                     <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" class="user-img" alt="user avatar">
+                    @endif
                     <div class="user-info ps-3">
                         @if(auth()->check())
                             <p class="user-name mb-0 text-white">{{ auth()->user()->full_name}}</p>

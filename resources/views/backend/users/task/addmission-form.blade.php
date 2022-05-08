@@ -31,43 +31,43 @@
                                     webcoderit@gmail.com
                                 </a>
                             </span>
-                        </div> 
+                        </div>
                         <h4 class="addmission-form-title">
                             Student Information
-                        </h4>                       
+                        </h4>
                         <form class="form-group addmission-form">
                             <div class="row">
                                 <div class="col-md-6">
                                      <label for="student_name">Student Name</label><br>
-                                     <input type="text" name="student_name" placeholder="Student Name" class="form-control">
+                                     <input type="text" name="s_name" placeholder="Student Name" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="email">Email</label><br>
-                                     <input type="email" name="email" placeholder="Student Email" class="form-control">
+                                     <input type="email" name="s_email" placeholder="Student Email" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="father_name">Father Name</label><br>
-                                     <input type="text" name="father_name" placeholder="Father Name" class="form-control">
+                                     <input type="text" name="f_name" placeholder="Father Name" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="mother_name">Mother Name</label><br>
-                                     <input type="text" name="mother_name" placeholder="Mother Name" class="form-control">
+                                     <input type="text" name="m_name" placeholder="Mother Name" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="student_phone">Student Phone No.</label><br>
-                                     <input type="number" name="student_phone" placeholder="Student Phone No." class="form-control">
+                                     <input type="number" name="s_phone" placeholder="Student Phone No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="father_phone">Father Phone No.</label><br>
-                                     <input type="number" name="father_phone" placeholder="Father Phone No." class="form-control">
+                                     <input type="number" name="f_phone" placeholder="Father Phone No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="birth_date">Date Of Birth</label><br>
-                                     <input type="date" name="birth_date" placeholder="Date Of Birth" class="form-control">
+                                     <input type="date" name="dob" placeholder="Date Of Birth" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="profession">Profession</label><br>
-                                     <input type="taxt" name="profession" placeholder="Student Profession" class="form-control">
+                                     <input type="text" name="profession" placeholder="Student Profession" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="gender">Gender</label>
@@ -82,15 +82,15 @@
                                 </div>
                                 <div class="col-md-6">
                                      <label for="blood_group">Blood Group</label><br>
-                                     <input type="taxt" name="blood_group" placeholder="Blood Group " class="form-control">
+                                     <input type="text" name="blood_group" placeholder="Blood Group " class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="qualificaton">Educational Qualification</label><br>
-                                     <input type="taxt" name="qualification" placeholder="Educational Qualifications" class="form-control">
+                                     <input type="text" name="qualification" placeholder="Educational Qualifications" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="nid_birth_no">NID/Birth Certificate No.</label><br>
-                                     <input type="taxt" name="nid_birth_no" placeholder="NID/Birth Certificate No." class="form-control">
+                                     <input type="text" name="nid" placeholder="NID/Birth Certificate No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="present_address">Present Address</label><br>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="col-md-4">
                                      <label for="batch_number">Batch No.</label><br>
-                                     <input type="taxt" name="batch_number" placeholder="Batch No." class="form-control">
+                                     <input type="text" name="batch_number" placeholder="Batch No." class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                      <label for="batch_type">Batch Type</label><br>
@@ -124,18 +124,18 @@
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label>
                                     <div class="d-flex align-items-center Shedule">
-                                        <input type="radio" id="first_day" name="shedule" value="">
+                                        <input type="radio" id="first_day" name="class_shedule" value="1">
                                         <label for="first_day">Sat Mon Wed</label><br>
-                                        <input type="radio" id="last_day" name="shedule" value="">
+                                        <input type="radio" id="last_day" name="class_shedule" value="2">
                                         <label for="last_day">Sun Tue Thu</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="time">Class Time</label>
                                     <div class="d-flex align-items-center time">
-                                        <input type="radio" id="am" name="time" value="am">
+                                        <input type="radio" id="am" name="class_time" value="am">
                                         <label for="am">AM</label><br>
-                                        <input type="radio" id="pm" name="time" value="pm">
+                                        <input type="radio" id="pm" name="class_time" value="pm">
                                         <label for="pm">PM</label>
                                     </div>
                                 </div>
@@ -145,18 +145,20 @@
                                             <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" onchange="imagePreview(event)" />
                                             <label for="imageUpload"></label>
                                         </div>
-                                        <div class="avatar-preview mt-4">
-                                            <div>
-                                                <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" style="height: 200px; width: 220px;" id="pre-avatar">
+                                        @if(auth()->check())
+                                            <div class="avatar-preview mt-4">
+                                                <div>
+                                                    <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" style="height: 200px; width: 220px;" id="pre-avatar">
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="addmission-form-submit-btn btn btn-primary">Submit</button>
                                 </div>
                             </div>
-                        </form>                        
+                        </form>
                     </div>
                 </div>
             </div>
