@@ -399,6 +399,17 @@ form.money-receipt-form.form-group label {
 form.money-receipt-form.form-group input {
     margin-bottom: 15px;
 }
-
+.money-receipt-title-inner {
+    display: inline-block;
+    background: #0fad0f;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 6px 10px;
+    border-radius: 30px;
+    text-transform: capitalize;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
 
 /* Money Receipt css End */

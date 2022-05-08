@@ -4,7 +4,7 @@
 	<section class="money-receipt-section">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 m-auto">
+				<div class="col-md-10 m-auto">
 					<div class="money-receipt-form-wrapper">
 						<div class="addmission-form-heading">
                             <h2 class="institute-name">Web<span>coder</span>-it</h2>
@@ -31,30 +31,39 @@
                                     webcoderit@gmail.com
                                 </a>
                             </span>
+                            <div class="money-receipt-title-outer">
+                                 <h4 class="money-receipt-title-inner">
+                                     Money Receipt
+                                 </h4>
+                            </div>
                         </div> 
 						<form action="#" method="#" class="money-receipt-form form-group">
-							<label for="name">Name</label>
-                             <input type="text" name="name" placeholder="Name" class="form-control">
-                             <label for="stu_id">Student Id</label><br>
-                             <input type="text" name="stu_id" placeholder="Student Id" class="form-control">
-                             <label for="address">Address</label><br>
-                             <input type="text" name="address" placeholder="Address" class="form-control">
-                             <label for="course_name">Course Name</label><br>
-                             <input type="text" name="course_name" placeholder="Course Name" class="form-control">
-                             <div class="row">
-                             	<div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" placeholder="Name" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="stu_id">Student Id</label><br>
+                                    <input type="text" name="stu_id" placeholder="Student Id" class="form-control">
+                                </div>							
+                                <div class="col-md-4">
+                                    <label for="course_name">Course Name</label><br>
+                                    <input type="text" name="course_name" placeholder="Course Name" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                   <label for="address">Address</label><br>
+                                    <input type="text" name="address" placeholder="Address" class="form-control"> 
+                                </div>                       
+                             	<div class="col-md-4">
                              		<label for="cash">By Cash/Chaque</label><br>
                              		<input type="text" name="cash" placeholder="By Cash/Chaque" class="form-control">
                              	</div>
-                             	<div class="col-md-6">
-                             		<label for="bank">Bank</label><br>
-                             		<input type="text" name="bank" placeholder="Bank" class="form-control">
-                             	</div>
-                             	<div class="col-md-6">
+                             	<div class="col-md-4">
                              		<label for="date">Date</label><br>
                              		<input type="date" name="date" placeholder="Date" class="form-control">
                              	</div>
-                             	<div class="col-md-6">
+                             	<div class="col-md-4">
                              		<label for="word">In Word</label><br>
                              		<input type="text" name="word" placeholder="In Word" class="form-control">
                              	</div>
