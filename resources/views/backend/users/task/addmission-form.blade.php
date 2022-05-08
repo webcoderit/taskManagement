@@ -103,6 +103,7 @@
                                 <div class="col-md-6">
                                      <label for="course">Course Name</label><br>
                                      <select name="course" id="course" class="form-control">
+                                          <option disabled selected>---Select Course Name---</option>
                                           <option value="web">Full Stack Web Development</option>
                                           <option value="digital">Digital Marketing</option>
                                           <option value="english">Communication English</option>
