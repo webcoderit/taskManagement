@@ -1,6 +1,7 @@
 @extends('backend.admin.admin-master')
 
 @section('title')
+
 @endsection
 
 @section('content')
