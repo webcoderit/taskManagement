@@ -1,100 +1,62 @@
 @extends('backend.admin.master')
 
 @section('content')
-	<section class="money-receipt-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 m-auto">
-					<div class="money-receipt-form-wrapper">
-						<div class="addmission-form-heading">
-                            <h2 class="institute-name">Web<span>coder</span>-it</h2>
-                            <address>
-                                House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230
-                            </address>
-                            <span>
-                                <a href="tel:01648177071">
-                                    01648177071 ,
-                                </a>
-                            </span>
-                            <span>
-                                <a href="tel:01814812233">
-                                    01814812233
-                                </a>
-                            </span><br>
-                            <span>
-                                <a href="https://webcoder-it.com/" target="_blank" title="Website">
-                                    www.webcoder-it.com ,
-                                </a>
-                            </span>
-                            <span>
-                                <a href="mailto:webcoderit@gmail.com" title="Gmail Id">
-                                    webcoderit@gmail.com
-                                </a>
-                            </span>
-                            <div class="money-receipt-title-outer">
-                                 <h4 class="money-receipt-title-inner">
-                                     Money Receipt
-                                 </h4>
-                            </div>
-                        </div> 
-						<form action="#" method="#" class="money-receipt-form form-group">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="name">Name</label>
-                                    <input type="text" name="name" placeholder="Name" class="form-control">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="stu_id">Student Id</label><br>
-                                    <input type="text" name="stu_id" placeholder="Student Id" class="form-control">
-                                </div>							
-                                <div class="col-md-4">
-                                    <label for="course_name">Course Name</label><br>
-                                    <input type="text" name="course_name" placeholder="Course Name" class="form-control">
-                                </div>
-                                <div class="col-md-12">
-                                   <label for="address">Address</label><br>
-                                    <input type="text" name="address" placeholder="Address" class="form-control"> 
-                                </div>                       
-                             	<div class="col-md-4">
-                             		<label for="cash">By Cash/Chaque</label><br>
-                             		<input type="text" name="cash" placeholder="By Cash/Chaque" class="form-control">
-                             	</div>
-                             	<div class="col-md-4">
-                             		<label for="date">Date</label><br>
-                             		<input type="date" name="date" placeholder="Date" class="form-control">
-                             	</div>
-                             	<div class="col-md-4">
-                             		<label for="word">In Word</label><br>
-                             		<input type="text" name="word" placeholder="In Word" class="form-control">
-                             	</div>
-                             	<div class="col-md-4">
-                             		<label for="total_taka">Total Taka</label><br>
-                             		<input type="text" name="total_taka" placeholder="Total Taka" class="form-control">
-                             	</div>
-                             	<div class="col-md-4">
-                             		<label for="advance">Advance</label><br>
-                             		<input type="text" name="advance" placeholder="Advance" class="form-control">
-                             	</div>
-                             	<div class="col-md-4">
-                             		<label for="due">Due</label><br>
-                             		<input type="text" name="due" placeholder="Due" class="form-control">
-                             	</div>
-                             	<div class="col-md-6">
-                             		<label for="receive_by">Receive By</label><br>
-                             		<input type="text" name="receive_by" placeholder="Receive By" class="form-control">
-                             	</div>
-                             	<div class="col-md-6">
-                             		<label for="authorised_by">Authorised By</label><br>
-                             		<input type="text" name="authorised_by" placeholder="Authorised By" class="form-control">
-                             	</div>
-                             </div>
-                             <div class="money-receipt-form-btn-outer text-center mt-4">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+<div class="wrapper">
+    <div class="page-wrapper" style="margin-left: 20px!important;">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">Today Task</div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="{{ url('/employee/dashboard') }}"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <!-- <li class="breadcrumb-item active" aria-current="page">
+                                <a href="#">List Task</a>
+                            </li>  -->
+                            <li class="breadcrumb-item active" aria-current="page">Today Task</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <h6 class="mb-0 text-uppercase">Today Task</h6>
+            <hr/>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Profession</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td width="15%">
+                                        <a href="" class="btn btn-sm btn-primary">
+                                            <i class="bx bx-edit-alt"></i>
+                                            View
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
