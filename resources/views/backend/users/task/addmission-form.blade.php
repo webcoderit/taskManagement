@@ -100,7 +100,7 @@
                                      <label for="permanent_address">Permanent Address</label><br>
                                      <textarea name="permanent_address" rows="4" cols="50" class="form-control"></textarea>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                      <label for="course">Course Name</label><br>
                                      <select name="course" id="course" class="form-control">
                                           <option disabled selected>---Select Course Name---</option>
@@ -109,9 +109,17 @@
                                           <option value="english">Communication English</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                      <label for="batch_number">Batch No.</label><br>
                                      <input type="taxt" name="batch_number" placeholder="Batch No." class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                     <label for="batch_type">Batch Type</label><br>
+                                     <select name="batch_type" id="batch_type" class="form-control">
+                                          <option disabled selected>---Select Batch Type---</option>
+                                          <option value="online">Online</option>
+                                          <option value="offline">Offline</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label>
