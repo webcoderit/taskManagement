@@ -374,6 +374,19 @@
     margin-top: 25px;
 }
 
+.addmission-list-btn-outer {
+    text-align: end;
+}
+
+.addmission-list-btn-inner {
+    display: inline-block;
+    font-size: 14px;
+    background: #f16522;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
 
 /*Addmission Form css End*/
 
@@ -399,6 +412,7 @@ form.money-receipt-form.form-group label {
 form.money-receipt-form.form-group input {
     margin-bottom: 15px;
 }
+
 .money-receipt-title-inner {
     display: inline-block;
     background: #0fad0f;
@@ -411,5 +425,6 @@ form.money-receipt-form.form-group input {
     margin-top: 10px;
     margin-bottom: 0;
 }
+
 
 /* Money Receipt css End */

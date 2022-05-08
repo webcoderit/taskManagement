@@ -17,4 +17,5 @@
 	<link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/dark-theme.css" />
 	<link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/semi-dark.css" />
 	<link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/header-colors.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/style.css" />
