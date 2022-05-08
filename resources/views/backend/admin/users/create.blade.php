@@ -78,7 +78,6 @@
                                 <label for="password" class="form-label">Choose Password</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-lock-open' ></i></span>
                                     <input type="password" class="form-control border-start-0" name="password" id="password" placeholder="Choose Password" required />
-                                    <span class="input-group-text bg-transparent" onclick="showPassword()"><i class='bx bxs-lock' ></i></span>
                                 </div>
                                 <span style="color: red"> {{ $errors->has('password') ? $errors->first('password') : ' ' }}</span>
                             </div>
@@ -86,7 +85,6 @@
                                 <label for="password_confirmation" class="form-label">Confirm Password</label><span style="color: red"> * </span>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-lock' ></i></span>
                                     <input type="password" class="form-control border-start-0" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required />
-                                    <span class="input-group-text bg-transparent" onclick="showConfirmPassword()"><i class='bx bxs-lock' ></i></span>
                                 </div>
                                 <span style="color: red"> {{ $errors->has('password_confirmation') ? $errors->first('password_confirmation') : ' ' }}</span>
                             </div>
@@ -108,21 +106,6 @@
 
 @push('script')
 <script>
-   function showPassword() {
-    var x = document.getElementById("password");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-    }
-   function showConfirmPassword() {
-    var x = document.getElementById("password_confirmation");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-    }
+  
 </script>
 @endpush
