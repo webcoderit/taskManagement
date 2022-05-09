@@ -8,7 +8,7 @@
                     <div class="addmission-form-wrapper">
                         <div class="addmission-form-heading">
                             <div class="addmission-list-btn-outer">
-                                <a href="#" class="addmission-list-btn-inner">Addmission List</a>
+                                <a href="{{ url('/addmission/list') }}" class="addmission-list-btn-inner">Addmission List</a>
                             </div>
                             <h2 class="institute-name">Web<span>coder</span>-it</h2>
                             <address>
