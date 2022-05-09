@@ -115,9 +115,9 @@
 @endsection
 
 @push('script')
-{{--    <script>--}}
-{{--        setInterval(function() {--}}
-{{--            window.location.reload();--}}
-{{--        }, 10000);--}}
-{{--    </script>--}}
+    <script>
+        setInterval(function() {
+            window.location.reload();
+        }, 10000);
+    </script>
 @endpush

@@ -37,30 +37,17 @@
                             <tr>
                                 <th>SL</th>
                                 <th>Employee name</th>
-                                <th>Student name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Fb link</th>
-                                <th>PC/Laptop</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($tasks as $key => $task)
                                 <tr>
-                                    <td>{{ $key+1 }}</td>
-                                    <td>{{ $task->user->full_name ?? 'No employee name' }}</td>
-                                    <td>{{ $task->name }}</td>
-                                    <td>{{ $task->email ?? 'No email found' }}</td>
-                                    <td>{{ $task->phone ?? 'No phone found' }}</td>
-                                    <td>{{ $task->fb_id ?? 'No Fb link found' }}</td>
-                                    <td style="text-transform: capitalize">{{ $task->device ?? 'No Device name found' }}</td>
+                                    <td>{{ $loop->index+1}}</td>
+                                    <td>{{ $task[0]->user->full_name ?? 'No employee name' }}</td>
                                     <td width="10%">
-                                        <a href="{{ url('/admin/user/task/edit/'.$task->id) }}" class="btn btn-sm btn-primary">
+                                        <a href="{{ url('/admin/user/task/view/'.$task[0]->user->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>
-                                        </a>
-                                        <a href="{{ url('/admin/user/task/delete/'.$task->id) }}" onclick="return confirm('Are you sure delete this information')" class="btn btn-sm btn-danger">
-                                            <i class="bx bx-trash-alt"></i>
                                         </a>
                                     </td>
                                 </tr>
