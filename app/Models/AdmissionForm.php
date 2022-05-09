@@ -10,4 +10,9 @@ class AdmissionForm extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function moneyReceipt()
+    {
+        return $this->hasOne(MoneyReceipt::class, 'admission_id', 'id');
+    }
 }

@@ -29,21 +29,32 @@
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
-                                <th>SL</th>
+                                <th>Date</th>
+                                <th>Course Name</th>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Profession</th>
+                                <th>Phone</th>
+                                <th>Gender</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($admissionForms as $admissionForm)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $admissionForm->moneyReceipt->admission_date ?? '' }}</td>
+                                    <td>
+                                        @if($admissionForm->course == 'web')
+                                            <span>Full Stack Web Development</span>
+                                        @elseif($admissionForm->course == 'digital')
+                                            <span>Digital Marketing</span>
+                                        @else
+                                            <span>Communication English</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $admissionForm->s_name }}</td>
+                                    <td>{{ $admissionForm->profession }}</td>
+                                    <td>{{ $admissionForm->s_phone }}</td>
+                                    <td>{{ $admissionForm->gender }}</td>
                                     <td width="15%">
                                         <a href="" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>
@@ -51,6 +62,7 @@
                                         </a>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

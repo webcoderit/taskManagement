@@ -111,10 +111,12 @@ class UserController extends Controller
         return view('backend.users.task.addmission-form');
     }
     public function moneyReceipt(){
-        return view('backend.users.task.money-receipt');
+        $moneyReceipt = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->where('user_id', auth()->user()->id)->get();
+        return view('backend.users.task.money-receipt', compact('moneyReceipt'));
     }
     public function addmissionList(){
-        return view('backend.users.task.addmission-list');
+        $admissionForms = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->where('user_id', auth()->user()->id)->get();
+        return view('backend.users.task.addmission-list', compact('admissionForms'));
     }
 
     //============= Update information ================//
