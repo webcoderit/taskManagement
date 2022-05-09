@@ -52,7 +52,7 @@ class TaskController extends Controller
 
     public function allTask()
     {
-        $tasks = Task::with('user')->get();
+        $tasks = Task::with('user')->get()->groupBy('user_id');
         return view('backend.admin.task.all-task', compact('tasks'));
     }
     public function pendingTask(Request $request)
