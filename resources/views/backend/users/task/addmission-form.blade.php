@@ -7,6 +7,9 @@
                 <div class="col-md-10 m-auto">
                     <div class="addmission-form-wrapper">
                         <div class="addmission-form-heading">
+                            <div class="addmission-list-btn-outer">
+                                <a href="#" class="addmission-list-btn-inner">Addmission List</a>
+                            </div>
                             <h2 class="institute-name">Web<span>coder</span>-it</h2>
                             <address>
                                 House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230
@@ -122,6 +125,37 @@
                                           <option value="offline">Offline</option>
                                     </select>
                                 </div>
+                                <div class="col-md-4">
+                                    <label for="cash">Payment Type</label><br>
+                                    <select name="payment_type" id="payment_type" class="form-control">
+                                          <option disabled selected>---Select Payment Type---</option>
+                                          <option value="cash">Cash</option>
+                                          <option value="bkash">Bkash</option>
+                                          <option value="nagad">Nagad</option>
+                                          <option value="rocket">Rocket</option>
+                                          <option value="bank">Bank</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="addmission_date">Addmission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="date" name="addmission_date" placeholder="Addmission Date" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="word">In Word</label><br>
+                                    <input type="text" name="word" placeholder="In Word" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="total_taka">Total Taka</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="total_taka" placeholder="Total Taka" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="advance">Advance</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="advance" placeholder="Advance" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="due">Due</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="due" placeholder="Due" class="form-control">
+                                </div>
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>
                                     <div class="d-flex align-items-center Shedule">
@@ -141,13 +175,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                <label for="avatar" class="mt-2">Avatar</label>
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
                                             <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" onchange="imagePreview(event)" />
                                             <label for="imageUpload"></label>
                                         </div>
                                         @if(auth()->check())
-                                            <div class="avatar-preview mt-4">
+                                            <div class="avatar-preview">
                                                 <div>
                                                     <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" style="height: 200px; width: 220px;" id="pre-avatar">
                                                 </div>
