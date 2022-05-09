@@ -113,9 +113,6 @@ class UserController extends Controller
     public function moneyReceipt(){
         return view('backend.users.task.money-receipt');
     }
-    public function addmissionList(){
-        return view('backend.users.task.addmission-list');
-    }
 
     //============= Update information ================//
     public function updateInformation($id)
