@@ -125,7 +125,7 @@
                                           <option value="offline">Offline</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label for="cash">Payment Type</label><br>
                                     <select name="payment_type" id="payment_type" class="form-control">
                                           <option disabled selected>---Select Payment Type---</option>
@@ -136,14 +136,10 @@
                                           <option value="bank">Bank</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label for="addmission_date">Addmission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="date" name="addmission_date" placeholder="Addmission Date" class="form-control">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="word">In Word</label><br>
-                                    <input type="text" name="word" placeholder="In Word" class="form-control">
-                                </div>
+                                </div>                                
                                 <div class="col-md-4">
                                     <label for="total_taka">Total Taka</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="text" name="total_taka" placeholder="Total Taka" class="form-control">
@@ -155,6 +151,10 @@
                                 <div class="col-md-4">
                                     <label for="due">Due</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="text" name="due" placeholder="Due" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="word">In Word</label><br>
+                                    <input type="text" name="word" placeholder="In Word" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>
@@ -184,7 +184,7 @@
                                         @if(auth()->check())
                                             <div class="avatar-preview">
                                                 <div>
-                                                    <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" style="height: 200px; width: 220px;" id="pre-avatar">
+                                                    <img src="http://i.pravatar.cc/500?img=7" style="height: 200px; width: 220px;" id="pre-avatar">
                                                 </div>
                                             </div>
                                         @endif
