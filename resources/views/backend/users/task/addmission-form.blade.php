@@ -65,11 +65,11 @@
                                 </div>
                                 <div class="col-md-6">
                                      <label for="student_phone">Student Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="number" name="s_phone" placeholder="Student Phone No." class="form-control">
+                                     <input type="tel" name="s_phone" placeholder="Student Phone No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="father_phone">Father Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="number" name="f_phone" placeholder="Father Phone No." class="form-control">
+                                     <input type="tel" name="f_phone" placeholder="Father Phone No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="birth_date">Date Of Birth</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -142,7 +142,7 @@
                                           <option value="bank">Bank</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="date" name="admission_date" placeholder="Admission Date" class="form-control">
                                 </div>
