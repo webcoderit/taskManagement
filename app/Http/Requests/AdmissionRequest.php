@@ -42,6 +42,10 @@ class AdmissionRequest extends FormRequest
             'batch_type' => 'required',
             'class_shedule' => 'required',
             'class_time' => 'required',
+            'total_fee' => 'required',
+            'advance' => 'required',
+            'due' => 'required',
+            'admission_date' => 'required',
         ];
     }
 }
