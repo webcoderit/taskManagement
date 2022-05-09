@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdmissionRequest;
+use App\Models\AdmissionForm;
 use App\Models\Intereste;
 use App\Models\Task;
 use App\Models\User;
@@ -174,5 +176,11 @@ class UserController extends Controller
             return redirect()->back();
         }
 
+    }
+
+    public function admissionStore(AdmissionRequest $request)
+    {
+        dd($request->all());
+        $newStudent = new AdmissionForm();
     }
 }

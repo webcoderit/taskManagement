@@ -16,7 +16,7 @@ class CreateAdmissionFormsTable extends Migration
         Schema::create('admission_forms', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('course_id');
+            $table->string('course');
             $table->string('s_name');
             $table->string('s_email')->nullable();
             $table->string('s_phone');

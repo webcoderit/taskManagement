@@ -35,12 +35,12 @@
                         <h4 class="addmission-form-title">
                             Student Information
                         </h4>
-                        <form class="form-group addmission-form">
+                        <form class="form-group addmission-form" action="{{ url('/admission/store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                      <label for="student_name">Student Name</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <input type="text" name="s_name" placeholder="Student Name" class="form-control">
-
                                 </div>
                                 <div class="col-md-6">
                                      <label for="email">Email</label><br>
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="col-md-4">
                                      <label for="batch_number">Batch No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="batch_number" placeholder="Batch No." class="form-control">
+                                     <input type="text" name="batch_no" placeholder="Batch No." class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                      <label for="batch_type">Batch Type</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -125,9 +125,9 @@
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>
                                     <div class="d-flex align-items-center Shedule">
-                                        <input type="radio" id="first_day" name="class_shedule" value="1">
+                                        <input type="radio" id="first_day" name="class_shedule" value="Sat-Mon-Wed">
                                         <label for="first_day">Sat Mon Wed</label><br>
-                                        <input type="radio" id="last_day" name="class_shedule" value="2">
+                                        <input type="radio" id="last_day" name="class_shedule" value="Sun-Tue-Thu">
                                         <label for="last_day">Sun Tue Thu</label>
                                     </div>
                                 </div>
