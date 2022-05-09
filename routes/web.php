@@ -73,6 +73,7 @@ Route::get('/money/receipt', [\App\Http\Controllers\UserController::class, 'mone
 Route::get('/update/information/{id}', [\App\Http\Controllers\UserController::class, 'updateInformation']);
 Route::post('/profile/update/{id}', [\App\Http\Controllers\UserController::class, 'profileUpdate']);
 Route::post('/password/update/{id}', [\App\Http\Controllers\UserController::class, 'passwordUpdate']);
+Route::post('/admission/store', [App\Http\Controllers\UserController::class, 'admissionStore'])->name('admission.store');
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
