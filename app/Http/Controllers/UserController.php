@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdmissionRequest;
 use App\Models\AdmissionForm;
 use App\Models\Intereste;
+use App\Models\MoneyReceipt;
 use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
@@ -183,7 +184,49 @@ class UserController extends Controller
 
     public function admissionStore(AdmissionRequest $request)
     {
-        dd($request->all());
+        if ($request->file('avatar')){
+            $file = $request->file('avatar');
+            $name = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('student/', $name);
+        }
+
         $newStudent = new AdmissionForm();
+        $newStudent->user_id = auth()->user()->id;
+        $newStudent->s_name = $request->s_name;
+        $newStudent->s_email = $request->s_email;
+        $newStudent->f_name = $request->f_name;
+        $newStudent->m_name = $request->m_name;
+        $newStudent->s_phone = $request->s_phone;
+        $newStudent->f_phone = $request->f_phone;
+        $newStudent->dob = $request->dob;
+        $newStudent->profession = $request->profession;
+        $newStudent->gender = $request->gender;
+        $newStudent->blood_group = $request->blood_group;
+        $newStudent->qualification = $request->qualification;
+        $newStudent->nid = $request->nid;
+        $newStudent->present_address = $request->present_address;
+        $newStudent->permanent_address = $request->permanent_address;
+        $newStudent->course = $request->course;
+        $newStudent->batch_no = $request->batch_no;
+        $newStudent->batch_type = $request->batch_type;
+        $newStudent->class_shedule = $request->class_shedule;
+        $newStudent->class_time = $request->class_time;
+        if ($request->file('avatar')){
+            $newStudent->avatar      = $name;
+        }
+        $newStudent->save();
+
+        if ($newStudent){
+            $moneyReceipt = new MoneyReceipt();
+            $moneyReceipt->admission_id = $newStudent->id;
+            $moneyReceipt->payment_type = $request->payment_type;
+            $moneyReceipt->admission_date = $request->admission_date;
+            $moneyReceipt->in_word = $request->in_word;
+            $moneyReceipt->total_fee = $request->total_fee;
+            $moneyReceipt->advance = $request->advance;
+            $moneyReceipt->due = $request->due;
+            $moneyReceipt->save();
+        }
+        return redirect()->back()->with('success', 'Admission successfully done.');
     }
 }

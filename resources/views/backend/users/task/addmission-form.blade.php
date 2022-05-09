@@ -3,12 +3,18 @@
 @section('content')
     <section class="student-addmission-form-section">
         <div class="container">
+            @if(Session::has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ Session::get('success') }}.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-md-10 m-auto">
                     <div class="addmission-form-wrapper">
                         <div class="addmission-form-heading">
                             <div class="addmission-list-btn-outer">
-                                <a href="{{ url('/addmission/list') }}" class="addmission-list-btn-inner">Addmission List</a>
+                                <a href="{{ url('/addmission/list') }}" class="addmission-list-btn-inner">Admission List</a>
                             </div>
                             <h2 class="institute-name">Web<span>coder</span>-it</h2>
                             <address>
@@ -136,21 +142,21 @@
                                           <option value="bank">Bank</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="addmission_date">Addmission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="date" name="addmission_date" placeholder="Addmission Date" class="form-control">
-                                </div>                                
                                 <div class="col-md-4">
-                                    <label for="total_taka">Total Taka</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="text" name="total_taka" placeholder="Total Taka" class="form-control">
+                                    <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="date" name="admission_date" placeholder="Admission Date" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="total_fee">Total Fee</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="total_fee" id="total_fee" placeholder="Total Taka" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="advance">Advance</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="text" name="advance" placeholder="Advance" class="form-control">
+                                    <input type="text" name="advance" id="advance" placeholder="Advance" onblur="calculate()" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="due">Due</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="text" name="due" placeholder="Due" class="form-control">
+                                    <input type="text" name="due" readonly value="0" id="due" placeholder="Due" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                     <label for="word">In Word</label><br>
@@ -201,3 +207,12 @@
         </div>
     </section>
 @endsection
+@push('scripts')
+    <script>
+        function calculate(){
+            let totalFee = document.getElementById('total_fee').value;
+            let advance = document.getElementById('advance').value;
+            document.getElementById('due').value = parseInt(totalFee) - parseInt(advance);
+        }
+    </script>
+@endpush
