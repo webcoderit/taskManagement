@@ -190,7 +190,7 @@
                                         @if(auth()->check())
                                             <div class="avatar-preview">
                                                 <div>
-                                                    <img src="http://i.pravatar.cc/500?img=7" style="height: 200px; width: 220px;" id="pre-avatar">
+                                                    <img src="{{ asset('backend/') }}/assets/images/download.png" style="height: 200px; width: 220px;" id="pre-avatar">
                                                 </div>
                                             </div>
                                         @endif
