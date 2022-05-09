@@ -14,7 +14,7 @@
                     <div class="addmission-form-wrapper">
                         <div class="addmission-form-heading">
                             <div class="addmission-list-btn-outer">
-                                <a href="#" class="addmission-list-btn-inner">Admission List</a>
+                                <a href="{{ url('/addmission/list') }}" class="addmission-list-btn-inner">Admission List</a>
                             </div>
                             <h2 class="institute-name">Web<span>coder</span>-it</h2>
                             <address>
@@ -131,7 +131,7 @@
                                           <option value="offline">Offline</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label for="cash">Payment Type</label><br>
                                     <select name="payment_type" id="payment_type" class="form-control">
                                           <option disabled selected>---Select Payment Type---</option>
@@ -147,10 +147,6 @@
                                     <input type="date" name="admission_date" placeholder="Admission Date" class="form-control">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="word">In Word</label><br>
-                                    <input type="text" name="in_word" placeholder="In Word" class="form-control">
-                                </div>
-                                <div class="col-md-4">
                                     <label for="total_fee">Total Fee</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="text" name="total_fee" id="total_fee" placeholder="Total Taka" class="form-control">
                                 </div>
@@ -161,6 +157,10 @@
                                 <div class="col-md-4">
                                     <label for="due">Due</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="text" name="due" readonly value="0" id="due" placeholder="Due" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="word">In Word</label><br>
+                                    <input type="text" name="word" placeholder="In Word" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>
@@ -190,7 +190,7 @@
                                         @if(auth()->check())
                                             <div class="avatar-preview">
                                                 <div>
-                                                    <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" style="height: 200px; width: 220px;" id="pre-avatar">
+                                                    <img src="http://i.pravatar.cc/500?img=7" style="height: 200px; width: 220px;" id="pre-avatar">
                                                 </div>
                                             </div>
                                         @endif

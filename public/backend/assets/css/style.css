@@ -386,7 +386,7 @@
     padding: 5px 10px;
     border-radius: 5px;
 }
-
+a.addmission-list-btn-inner:hover {opacity: 0.8;color: #fff;}
 
 /*Addmission Form css End*/
 
