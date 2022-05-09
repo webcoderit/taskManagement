@@ -13,6 +13,6 @@ class MoneyReceipt extends Model
 
     public function admissionForm()
     {
-        return $this->belongsTo(AdmissionForm::class);
+        return $this->belongsTo(AdmissionForm::class, 'admission_id', 'id');
     }
 }

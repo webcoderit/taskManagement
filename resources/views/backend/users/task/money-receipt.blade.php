@@ -46,7 +46,7 @@
                                     <td>{{ number_format($receipt->moneyReceipt->advance,2) ?? '' }} tk</td>
                                     <td>{{ number_format($receipt->moneyReceipt->due,2) ?? '' }} tk</td>
                                     <td width="15%">
-                                        <a href="" class="btn btn-sm btn-primary">
+                                        <a href="{{ url('/money/receipt/view/'.$receipt->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>
                                             View
                                         </a>

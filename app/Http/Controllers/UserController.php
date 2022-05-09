@@ -118,6 +118,10 @@ class UserController extends Controller
         $admissionForms = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->where('user_id', auth()->user()->id)->get();
         return view('backend.users.task.addmission-list', compact('admissionForms'));
     }
+    public function moneyReceiptView($id){
+        $moneyReceiptView = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
+        return view('backend.users.task.money-receipt-view' , compact('moneyReceiptView'));
+    }
 
     //============= Update information ================//
     public function updateInformation($id)
