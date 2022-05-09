@@ -14,7 +14,7 @@
                     <div class="addmission-form-wrapper">
                         <div class="addmission-form-heading">
                             <div class="addmission-list-btn-outer">
-                                <a href="{{ url('/confirm/addmission') }}" class="addmission-list-btn-inner">Admission List</a>
+                                <a href="{{ url('/addmission/list') }}" class="addmission-list-btn-inner">Admission List</a>
                             </div>
                             <h2 class="institute-name">Web<span>coder</span>-it</h2>
                             <address>
