@@ -21,8 +21,8 @@
         <div class="menu-title">Users</div>
       </a>
       <ul>
-        <li> <a href="{{ route('admin.user.list') }}"><i class="bx bx-right-arrow-alt"></i>Registration</a></li>
         <li> <a href="{{ route('admin.user.register.form.create') }}"><i class="bx bx-right-arrow-alt"></i>Add user</a></li>
+          <li> <a href="{{ route('admin.user.list') }}"><i class="bx bx-right-arrow-alt"></i>Registration User</a></li>
         <li> <a href="{{ route('admin.user.online') }}"><i class="bx bx-right-arrow-alt"></i>Employee Tracking</a></li>
         <li> <a href="{{ route('admin.user.attendance.log') }}"><i class="bx bx-right-arrow-alt"></i>Attendance report</a></li>
       </ul>
@@ -44,14 +44,11 @@
         </li>
         <li> <a href="{{ route('admin.complete.admission') }}"><i class="bx bx-right-arrow-alt"></i>Complete admission</a>
         </li>
-        <li> <a href="{{ route('admin.not.interested') }}"><i class="bx bx-right-arrow-alt"></i>Not interested</a>
-        </li>
-        <li> <a href="{{ route('admin.highly.interested') }}"><i class="bx bx-right-arrow-alt"></i>Highly interested</a>
-        </li>
-        <li> <a href="{{ route('admin.interested') }}"><i class="bx bx-right-arrow-alt"></i>Interested</a>
-        </li>
-        <li> <a href="{{ route('admin.recall') }}"><i class="bx bx-right-arrow-alt"></i>Recall</a>
-        </li>
+        <li> <a href="{{ route('admin.highly.interested') }}"><i class="bx bx-right-arrow-alt"></i>Highly interested</a></li>
+        <li> <a href="{{ route('admin.interested') }}"><i class="bx bx-right-arrow-alt"></i>Interested</a></li>
+        <li> <a href="{{ route('admin.not.interested') }}"><i class="bx bx-right-arrow-alt"></i>Not interested</a></li>
+
+        <li> <a href="{{ route('admin.recall') }}"><i class="bx bx-right-arrow-alt"></i>Recall</a></li>
       </ul>
     </li>
   </ul>
