@@ -20,8 +20,14 @@ class TaskController extends Controller
 {
     public function listTask()
     {
-        $tasks = Task::with('user')->whereDate('created_at', Carbon::today())->get();
+        $tasks = Task::with('user')->whereDate('created_at', Carbon::today())->get()->groupBy('user_id');
         return view('backend.admin.task.index', compact('tasks'));
+    }
+
+    public function allTaskView($id)
+    {
+        $tasks = Task::with('user')->where('user_id', $id)->get();
+        return view('backend.admin.task.view', compact('tasks'));
     }
 
     public function addTask()

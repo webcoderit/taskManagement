@@ -53,20 +53,20 @@
                                 </div>
                                 <span style="color: red"> {{ $errors->has('last_name') ? $errors->first('last_name') : ' ' }}</span>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label for="phone" class="form-label">Phone No</label>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-microphone' ></i></span>
                                     <input type="tel" class="form-control border-start-0" value="{{ $user->phone ?? '' }}" name="phone" id="phone" placeholder="Phone No" />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('phone') ? $errors->first('phone') : ' ' }}</span>
                             </div>
-                            <div class="col-md-6">
-                                <label for="phone" class="form-label">Mac Address</label>
-                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-microphone' ></i></span>
-                                    <input type="text" class="form-control border-start-0" value="{{ $user->mac_address ?? '' }}" name="mac_address" id="mac_address" placeholder="Mac Address" />
-                                </div>
-                                <span style="color: red"> {{ $errors->has('mac_address') ? $errors->first('mac_address') : ' ' }}</span>
-                            </div>
+{{--                            <div class="col-md-6">--}}
+{{--                                <label for="phone" class="form-label">Mac Address</label>--}}
+{{--                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-microphone' ></i></span>--}}
+{{--                                    <input type="text" class="form-control border-start-0" value="{{ $user->mac_address ?? '' }}" name="mac_address" id="mac_address" placeholder="Mac Address" />--}}
+{{--                                </div>--}}
+{{--                                <span style="color: red"> {{ $errors->has('mac_address') ? $errors->first('mac_address') : ' ' }}</span>--}}
+{{--                            </div>--}}
                             <div class="col-12">
                                 <label for="email" class="form-label">Email Address</label>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-message' ></i></span>

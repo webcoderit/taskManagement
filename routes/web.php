@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Config cache clear
+Route::get('clear', function () {
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:clear');
+    \Artisan::call('route:clear');
+    \Artisan::call('view:clear');
+    \Artisan::call('optimize');
+    dd("All clear!");
+});
+
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/login', [App\Http\Controllers\Admin\AdminController::class, 'loginForm'])->name('admin.login.form');
     Route::post('/login', [App\Http\Controllers\Admin\AdminController::class, 'login'])->name('admin.login');
@@ -48,6 +58,7 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/highly/interested', [App\Http\Controllers\Admin\TaskController::class, 'highlyInterested'])->name('admin.highly.interested');
             Route::get('/interested', [App\Http\Controllers\Admin\TaskController::class, 'interested'])->name('admin.interested');
             Route::get('/recall', [App\Http\Controllers\Admin\TaskController::class, 'recall'])->name('admin.recall');
+            Route::get('/task/view/{id}', [App\Http\Controllers\Admin\TaskController::class, 'allTaskView'])->name('admin.employee.task.view');
         });
     });
 });

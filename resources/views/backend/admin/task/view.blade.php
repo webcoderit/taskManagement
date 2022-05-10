@@ -6,27 +6,29 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Today Task</div>
+                <div class="breadcrumb-title pe-3">List Task</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <a href="#">List Task</a>
+                                <a href="{{ url('/admin/user/add/task') }}">Add Task</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Today Task</li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="{{ url('admin/user/list/task') }}">List Task</a></li>
                         </ol>
                     </nav>
                 </div>
             </div>
+            @if(Session::has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ Session::get('error') }}.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase">Today Task</h6>
+            <h6 class="mb-0 text-uppercase">Task List</h6>
             <hr/>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> {{ Session::get('success') }}.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -34,41 +36,33 @@
                             <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Name</th>
+                                <th>Student name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Facebook ID</th>
-                                <th>Employment Status</th>
+                                <th>Fb link</th>
+                                <th>PC/Laptop</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($tasks as $key => $task)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <span class="custom-green-badge">Employed</span>
-                                        <span class="custom-red-badge">Terminated</span>
-
-                                    </td>
-                                    <td width="15%">
-                                        <a href="#" class="btn btn-sm btn-primary">
+                                    <td>{{ $key+1 }}</td>
+                                    <td>{{ $task->name }}</td>
+                                    <td>{{ $task->email ?? 'No email found' }}</td>
+                                    <td>{{ $task->phone ?? 'No phone found' }}</td>
+                                    <td>{{ $task->fb_id ?? 'No Fb link found' }}</td>
+                                    <td style="text-transform: capitalize">{{ $task->device ?? 'No Device name found' }}</td>
+                                    <td width="10%">
+                                        <a href="{{ url('/admin/user/task/edit/'.$task->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>
                                         </a>
-                                        <a href="#" class="btn btn-sm btn-success">
-                                            <i class="bx bx-like"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-sm btn-warning">
-                                            <i class="bx bx-dislike"></i>
-                                        </a>
-                                        <a href="#" onclick="return confirm('Are you sure delete this information')" class="btn btn-sm btn-danger">
+                                        <a href="{{ url('/admin/user/task/delete/'.$task->id) }}" onclick="return confirm('Are you sure delete this information')" class="btn btn-sm btn-danger">
                                             <i class="bx bx-trash-alt"></i>
                                         </a>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
