@@ -386,14 +386,19 @@
     padding: 5px 10px;
     border-radius: 5px;
 }
-a.addmission-list-btn-inner:hover {opacity: 0.8;color: #fff;}
+
+a.addmission-list-btn-inner:hover {
+    opacity: 0.8;
+    color: #fff;
+}
+
 
 /*Addmission Form css End*/
 
 
 /* Money Receipt css start */
 
-section.money-receipt-section {
+.money-receipt-section {
     padding: 40px 0;
 }
 
@@ -402,14 +407,14 @@ section.money-receipt-section {
     padding: 15px;
 }
 
-form.money-receipt-form.form-group label {
+.money-receipt-form.form-group label {
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 6px;
     color: #000;
 }
 
-form.money-receipt-form.form-group input {
+.money-receipt-form.form-group input {
     margin-bottom: 15px;
 }
 
@@ -428,3 +433,64 @@ form.money-receipt-form.form-group input {
 
 
 /* Money Receipt css End */
+
+
+/* Money Receipt View css Start */
+
+.money-receipt-view-section {
+    padding: 40px 0;
+}
+
+.money-receipt-view-wrapper {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+}
+
+.money-receipt-view-heading {
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.money-receipt-view-heading address {
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #000;
+}
+
+.money-receipt-view-heading span a {
+    display: inline-block;
+    color: #000;
+    font-size: 14px;
+    transition: all .3s ease;
+}
+
+.money-receipt-view-heading span a:hover {
+    color: #f16522;
+}
+
+.money-receipt-view-title {
+    background: green;
+    display: inline-block;
+    font-size: 14px;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 30px;
+    margin-bottom: 0;
+    margin-top: 6px;
+}
+
+.form-group.money-receipt-view label {
+    color: #000;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.form-group.money-receipt-view input {
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+
+/* Money Receipt View css End */
