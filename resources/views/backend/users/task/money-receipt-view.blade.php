@@ -36,43 +36,47 @@
                                 Money Receipt
                             </h4>
                         </div>
+                        <div style="text-align:end">
+                            <span class="money-receipt-view-label">Admission Date :</span>
+                            <span class="money-receipt-view-value">{{ $moneyReceiptView->admission_date }}</span>
+                        </div>
                     </div>
-                    <form class="form-group money-receipt-view" action="" method="" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-md-4">
-                                 <label for="student_name">Student Name</label>
-                                 <input type="text" name="s_name" placeholder="Student Name" class="form-control">
+                    <div class="money-receipt-view">
+                        <div style="display: flex; align-items: center; justify-content: space-between;margin-bottom: 15px;">
+                            <div>
+                                <span class="money-receipt-view-label">Student Name :</span>
+                                <span class="money-receipt-view-value">{{ $moneyReceiptView->admissionForm->s_name ?? '' }}</span>
                             </div>
-                            <div class="col-md-4">
-                                 <label for="student_id">Student ID</label><br>
-                                 <input type="text" name="student_id" placeholder="Student ID" class="form-control">
-                            </div>
-                            <div class="col-md-4">
-                                 <label for="date">Addmission Date</label><br>
-                                 <input type="date" name="date" placeholder="Addmission Date" class="form-control">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="total_fee">Total Fee</label><br>
-                                <input type="text" name="total_fee" id="total_fee" placeholder="Total Taka" class="form-control">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="advance">Advance</label><br>
-                                <input type="text" name="advance" id="advance" placeholder="Advance" class="form-control">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="due">Due</label><br>
-                                <input type="text" name="due" placeholder="Due" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="received_by">Received By</label><br>
-                                <input type="text" name="received_by" placeholder="Received By" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="authorised_by">Authorised By</label><br>
-                                <input type="text" name="authorised_by" placeholder="Authorised By" class="form-control">
+                            <div>
+                                <span class="money-receipt-view-label">Student ID :</span>
+                                <span class="money-receipt-view-value">46354</span>
                             </div>
                         </div>
-                    </form>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px;">
+                            <div>
+                                <span class="money-receipt-view-label">Total Fee :</span>
+                                <span class="money-receipt-view-value">{{ $moneyReceiptView->total_fee }} tk</span>
+                            </div>
+                            <div>
+                                <span class="money-receipt-view-label">Advance :</span>
+                                <span class="money-receipt-view-value">{{ $moneyReceiptView->advance }} tk</span>
+                            </div>
+                            <div>
+                                <span class="money-receipt-view-label">Due :</span>
+                                <span class="money-receipt-view-value">{{ $moneyReceiptView->due }} tk</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <span class="money-receipt-view-label">Received By :</span>
+                                <span class="money-receipt-view-value">{{ auth()->user()->full_name }}</span>
+                            </div>
+                            <div>
+                                <span class="money-receipt-view-label">Authorised By :</span>
+                                <span class="money-receipt-view-value">WebCoder-it</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

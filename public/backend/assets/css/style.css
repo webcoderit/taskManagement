@@ -481,15 +481,17 @@ a.addmission-list-btn-inner:hover {
     margin-top: 6px;
 }
 
-.form-group.money-receipt-view label {
-    color: #000;
+span.money-receipt-view-label {
     font-size: 15px;
-    margin-bottom: 5px;
+    color: #000;
+    font-weight: 500;
 }
 
-.form-group.money-receipt-view input {
-    margin-bottom: 10px;
-    height: 40px;
+span.money-receipt-view-value {
+    border-bottom: 1px dashed;
+    color: #000;
+    font-size: 14px;
+    padding-bottom: 2px;
 }
 
 
