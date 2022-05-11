@@ -6,6 +6,61 @@
         <div class="row">
             <div class="col-md-8 m-auto">
                 <div class="money-receipt-view-wrapper">
+                    <div class="institute-address-wrapper">
+                        <div class="address-title-outer">
+                            <h4 class="address-title">Money Receipt</h4>
+                        </div>
+                        <div class="institute-address-outer">
+                            <img src="{{ asset('backend/') }}/assets/logo2.jpg" class="institute-logo">
+                            <p class="address-inner">
+                                House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230
+                            </p>
+                        </div>
+                    </div>
+                    <div class="money-receipt-info-wrapper">
+                        <div class="money-receipt-info-item">
+                            <div class="stu-id">
+                                <span class="admission-form-view-label">Student ID :</span>
+                                <span>46354</span>
+                            </div>
+                            <div class="admission-date">
+                                <span class="money-receipt-view-label">Admission Date :</span>
+                                <span>{{ $moneyReceiptView->admission_date }}</span>
+                            </div>
+                        </div>
+                        <div class="money-receipt-info-item">
+                            <div>
+                                <span class="money-receipt-view-label">Student Name :</span>
+                                <span>{{ $moneyReceiptView->admissionForm->s_name ?? '' }}</span>
+                            </div>
+                        </div>
+                        <div class="money-receipt-info-item">
+                            <div>
+                                <span class="money-receipt-view-label">Total Fee :</span>
+                                <span>{{ $moneyReceiptView->total_fee }} TK</span>
+                            </div>
+                            <div>
+                                <span class="money-receipt-view-label">Advance :</span>
+                                <span>{{ $moneyReceiptView->advance }} TK</span>
+                            </div>
+                            <div>
+                                <span class="money-receipt-view-label">Due :</span>
+                                <span>{{ $moneyReceiptView->due }} TK</span>
+                            </div>
+                        </div>
+                        <div class="money-receipt-info-item">
+                            <div>
+                                <span class="money-receipt-view-label">Received By :</span>
+                                <span>{{ auth()->user()->full_name }}</span>
+                            </div>
+                            <div>
+                                <span class="money-receipt-view-label">Authorised By :</span>
+                                <span>WebCoder-it</span>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                {{-- <div class="money-receipt-view-wrapper">
                     <div class="money-receipt-view-heading">
                         <h2 class="institute-name">Web<span>coder</span>-it</h2>
                         <address>
@@ -55,15 +110,15 @@
                         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px;">
                             <div>
                                 <span class="money-receipt-view-label">Total Fee :</span>
-                                <span class="money-receipt-view-value">{{ $moneyReceiptView->total_fee }} tk</span>
+                                <span class="money-receipt-view-value">{{ $moneyReceiptView->total_fee }} TK</span>
                             </div>
                             <div>
                                 <span class="money-receipt-view-label">Advance :</span>
-                                <span class="money-receipt-view-value">{{ $moneyReceiptView->advance }} tk</span>
+                                <span class="money-receipt-view-value">{{ $moneyReceiptView->advance }} TK</span>
                             </div>
                             <div>
                                 <span class="money-receipt-view-label">Due :</span>
-                                <span class="money-receipt-view-value">{{ $moneyReceiptView->due }} tk</span>
+                                <span class="money-receipt-view-value">{{ $moneyReceiptView->due }} TK</span>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -77,7 +132,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

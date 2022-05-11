@@ -56,7 +56,7 @@
                                     <td>{{ $admissionForm->s_phone }}</td>
                                     <td>{{ $admissionForm->gender }}</td>
                                     <td width="15%">
-                                        <a href="" class="btn btn-sm btn-primary">
+                                        <a href="{{ url('admission/form/view/'.$admissionForm->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>
                                             View
                                         </a>
