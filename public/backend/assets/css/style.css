@@ -443,7 +443,8 @@ a.addmission-list-btn-inner:hover {
 
 .money-receipt-view-wrapper {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 20px;
+    position: relative;
+    z-index: 9;
 }
 
 .money-receipt-view-heading {
@@ -487,12 +488,91 @@ span.money-receipt-view-label {
     font-weight: 500;
 }
 
-span.money-receipt-view-value {
-    border-bottom: 1px dashed;
+.money-receipt-view-wrapper:before {
+    content: '';
+    position: absolute;
+    background: #f16522;
+    width: 85px;
+    height: 75px;
+    border-radius: 0px 0px 100px 0px;
+    z-index: -1;
+}
+
+.money-receipt-view-wrapper:after {
+    content: '';
+    position: absolute;
+    background: #f16522;
+    width: 70px;
+    height: 65px;
+    right: 0;
+    bottom: 0;
+    border-radius: 100px 0px 0px 0px;
+}
+
+.institute-address-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.institute-address-outer {
+    width: 210px;
+}
+
+.address-title-outer {
+    width: calc(100% - 210px);
+    text-align: center;
+}
+
+.institute-address-outer p {
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+.address-title {
+    background: #f16522;
+    display: inline-block;
+    padding: 5px 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 0px 10px;
+    margin-bottom: 0;
+    margin-top: 20px;
+    margin-left: 80px;
+}
+
+.money-receipt-info-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 75px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6px;
+}
+
+.money-receipt-info-item span {
     color: #000;
-    font-size: 14px;
-    padding-bottom: 2px;
 }
 
 
 /* Money Receipt View css End */
+
+
+/* Admission Form View css start */
+
+.admission-form-view-label {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+}
+
+.admission-form-view-value {
+    font-size: 14px;
+    color: #000;
+    border-bottom: 1px dashed;
+    padding-bottom: 2px;
+}
+
+
+/* Admission Form View css End */
