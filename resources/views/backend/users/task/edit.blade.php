@@ -134,7 +134,7 @@
                                 <input type="number" class="form-control" placeholder="Batch" name="batch_number" value="">
                             </div>
                             <label>Note</label><br>
-                            <textarea rows="5" cols="50" name="note" class="form-control"></textarea>
+                            <textarea rows="5" cols="50" name="note" class="form-control">{{ $interest->note ?? '' }}</textarea>
                             <div class="update-btn-outer">
                                 <button type="submit" class="update-btn-inner btn btn-primary">
                                     update

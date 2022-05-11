@@ -101,7 +101,7 @@ class UserController extends Controller
         return view('backend.users.task.interested' , compact('interested'));
     }
     public function others(){
-        $others = Intereste::where('interest_level' , 'others')->whereHas('task', function ($q){
+        $others = Intereste::where('interest_level', '!=', 'done')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
         })->get();
         return view('backend.users.task.others' , compact('others'));

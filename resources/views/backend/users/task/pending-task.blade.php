@@ -35,6 +35,7 @@
                                 <th>Phone</th>
                                 <th>Profession</th>
                                 <th width="10%">Status</th>
+                                <th width="10%">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -47,6 +48,19 @@
                                     <td>{{ $data->profession ?? '' }}</td>
                                     <td width="10%">
                                         <span style="background: red; color: #fff; padding: 5px">Padding</span>
+                                    </td>
+                                    <td width="15%">
+                                        @if($data->status == 0)
+                                            <a href="{{ url('/view/details/'.$data->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="bx bx-edit-alt"></i>
+                                                View
+                                            </a>
+                                        @else
+                                            <a href="#" class="btn btn-sm btn-success" disabled>
+                                                <i class="bx bx-check-circle"></i>
+                                                Call Done
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
