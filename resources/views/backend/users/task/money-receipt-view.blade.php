@@ -12,7 +12,7 @@
                         </div>
                         <div class="institute-address-outer">
                             <img src="{{ asset('backend/') }}/assets/logo2.jpg" class="institute-logo">
-                            <p class="address-inner">
+                            <p class="address-inner" style="font-weight: 500;">
                                 House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230
                             </p>
                         </div>
