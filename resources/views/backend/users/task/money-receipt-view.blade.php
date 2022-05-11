@@ -36,6 +36,12 @@
                         </div>
                         <div class="money-receipt-info-item">
                             <div>
+                                <span class="money-receipt-view-label">Course Name :</span>
+                                <span>{{ $moneyReceiptView->admissionForm->course ?? '' }}</span>
+                            </div>
+                        </div>
+                        <div class="money-receipt-info-item">
+                            <div>
                                 <span class="money-receipt-view-label">Total Fee :</span>
                                 <span>{{ $moneyReceiptView->total_fee }} TK</span>
                             </div>
@@ -58,6 +64,9 @@
                                 <span>WebCoder-it</span>
                             </div>
                         </div>
+                    </div>
+                    <div class="website-link-outer">
+                        <a href="https://webcoder-it.com" target="_blank">https://webcoder-it.com</a>
                     </div>                    
                 </div>
                 {{-- <div class="money-receipt-view-wrapper">
