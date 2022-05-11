@@ -101,7 +101,7 @@ class UserController extends Controller
         return view('backend.users.task.interested' , compact('interested'));
     }
     public function others(){
-        $others = Intereste::where('interest_level' , 'others')->whereHas('task', function ($q){
+        $others = Intereste::where('interest_level', '!=', 'done')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
         })->get();
         return view('backend.users.task.others' , compact('others'));
@@ -202,6 +202,12 @@ class UserController extends Controller
 
         $newStudent = new AdmissionForm();
         $newStudent->user_id = auth()->user()->id;
+        $lastInvoiceID = $newStudent->orderBy('id', 'desc')->pluck('id')->first();
+        if (!$lastInvoiceID){
+            $newStudent->student_id = 1;
+        }else{
+            $newStudent->student_id = $lastInvoiceID;
+        }
         $newStudent->s_name = $request->s_name;
         $newStudent->s_email = $request->s_email;
         $newStudent->f_name = $request->f_name;
