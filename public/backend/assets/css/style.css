@@ -445,6 +445,7 @@ a.addmission-list-btn-inner:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: relative;
     z-index: 9;
+    padding-bottom: 50px;
 }
 
 .money-receipt-view-heading {
@@ -546,7 +547,7 @@ span.money-receipt-view-label {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 75px;
+    padding: 5px 50px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 6px;
 }
