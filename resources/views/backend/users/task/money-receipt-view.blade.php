@@ -21,7 +21,7 @@
                         <div class="money-receipt-info-item">
                             <div class="stu-id">
                                 <span class="admission-form-view-label">Student ID :</span>
-                                <span>46354</span>
+                                <span>{{ ucfirst($moneyReceiptView->admissionForm->course) ?? '' }} - {{ $moneyReceiptView->admissionForm->student_id ?? '' }}</span>
                             </div>
                             <div class="admission-date">
                                 <span class="money-receipt-view-label">Admission Date :</span>
@@ -37,7 +37,15 @@
                         <div class="money-receipt-info-item">
                             <div>
                                 <span class="money-receipt-view-label">Course Name :</span>
-                                <span>{{ $moneyReceiptView->admissionForm->course ?? '' }}</span>
+                                <span>
+                                    @if($moneyReceiptView->admissionForm->course == 'web')
+                                        Full stack web development
+                                    @elseif($moneyReceiptView->admissionForm->course == 'digital')
+                                        Advance Digital Marketing
+                                    @else
+                                        Communication English
+                                    @endif
+                                </span>
                             </div>
                         </div>
                         <div class="money-receipt-info-item">
@@ -67,7 +75,7 @@
                     </div>
                     <div class="website-link-outer">
                         <a href="https://webcoder-it.com" target="_blank">https://webcoder-it.com</a>
-                    </div>                    
+                    </div>
                 </div>
                 {{-- <div class="money-receipt-view-wrapper">
                     <div class="money-receipt-view-heading">
