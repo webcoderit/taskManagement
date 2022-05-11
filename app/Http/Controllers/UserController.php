@@ -202,6 +202,12 @@ class UserController extends Controller
 
         $newStudent = new AdmissionForm();
         $newStudent->user_id = auth()->user()->id;
+        $lastInvoiceID = $newStudent->orderBy('id', 'desc')->pluck('id')->first();
+        if (!$lastInvoiceID){
+            $newStudent->student_id = 1;
+        }else{
+            $newStudent->student_id = $lastInvoiceID;
+        }
         $newStudent->s_name = $request->s_name;
         $newStudent->s_email = $request->s_email;
         $newStudent->f_name = $request->f_name;
