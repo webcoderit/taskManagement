@@ -11,8 +11,8 @@
                             <h4 class="address-title">Money Receipt</h4>
                         </div>
                         <div class="institute-address-outer">
-                            <img src="{{ asset('backend/') }}/assets/logo2.jpg" class="institute-logo">
-                            <p class="address-inner">
+                            <img src="{{ asset('backend/') }}/assets/logo3.png" class="institute-logo">
+                            <p class="address-inner" style="font-weight: 500;">
                                 House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230
                             </p>
                         </div>
@@ -74,7 +74,14 @@
                         </div>
                     </div>
                     <div class="website-link-outer">
+<<<<<<< HEAD
                         <a href="https://webcoder-it.com" target="_blank">https://webcoder-it.com</a>
+=======
+                        <a href="https://webcoder-it.com" target="_blank">https://webcoder-it.com , </a>
+                        <a href="tel:01814812233">
+                            01814812233
+                        </a>
+>>>>>>> f58345421dda1c9860d94292fbf3441bdad4ae54
                     </div>
                 </div>
                 {{-- <div class="money-receipt-view-wrapper">
