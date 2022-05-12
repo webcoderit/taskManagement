@@ -62,8 +62,8 @@
                 <div class="card radius-10" style="background-color: #0bb2d3">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Admission Credit</p>
-                        <h3 class="mb-3">
-                            0
+                        <h3 class="mb-3 text-white">
+                            {{ number_format($todayCredit,2 ?? 0) }}
                         </h3>
                         <div id="chart1"></div>
                     </div>
@@ -73,7 +73,7 @@
                 <div class="card radius-10" style="background-color: darkred">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Admission Due</p>
-                        <h3 class="mb-3 text-white">0</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($todayDue,2 ?? 0) }}</h3>
                         <div id="chart4"></div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                 <div class="card radius-10" style="background-color: deepskyblue">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Admission Credit</p>
-                        <h3 class="mb-3 text-white">0</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($monthlyCredit,2 ?? 0) }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                 <div class="card radius-10" style="background-color: rebeccapurple">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Admission Due</p>
-                        <h3 class="mb-3 text-white">0</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($monthlyDebit,2 ?? 0) }}</h3>
                         <div id="chart3"></div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                 <div class="card radius-10" style="background-color: orangered">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Total Due</p>
-                        <h3 class="mb-3 text-white">0</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($totalDue,2 ?? 0) }}</h3>
                         <div id="chart5"></div>
                     </div>
                 </div>
