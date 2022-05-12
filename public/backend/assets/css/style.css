@@ -260,9 +260,9 @@
 
 .addmission-form-heading {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .institute-name {
@@ -573,6 +573,13 @@ span.money-receipt-view-label {
 
 /* Admission Form View css start */
 
+.addmission-form-heading-view {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+}
+
 .admission-form-view-label {
     font-size: 15px;
     color: #000;
@@ -582,8 +589,37 @@ span.money-receipt-view-label {
 .admission-form-view-value {
     font-size: 14px;
     color: #000;
-    border-bottom: 1px dashed;
-    padding-bottom: 2px;
+}
+
+.addmission-form-heading-view span a {
+    display: inline-block;
+    color: #000;
+    font-size: 14px;
+    transition: all .3s ease;
+}
+
+.addmission-form-heading-view span a:hover {
+    color: #f16522;
+}
+
+address {
+    margin-bottom: 5px;
+}
+
+.admission-form-view-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.addmission-form-wrapper.view {
+    background-image: url('../logo4.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 
