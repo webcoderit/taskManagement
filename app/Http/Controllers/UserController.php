@@ -206,7 +206,7 @@ class UserController extends Controller
         if (!$lastInvoiceID){
             $newStudent->student_id = 1;
         }else{
-            $newStudent->student_id = $lastInvoiceID;
+            $newStudent->student_id = $lastInvoiceID + 1;
         }
         $newStudent->s_name = $request->s_name;
         $newStudent->s_email = $request->s_email;

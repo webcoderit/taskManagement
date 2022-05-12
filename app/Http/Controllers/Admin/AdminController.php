@@ -8,6 +8,7 @@ use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Admin;
 use App\Models\AttendanceLog;
+use App\Models\MoneyReceipt;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -46,14 +47,19 @@ class AdminController extends Controller
                 return redirect()->back()->withError('Password does not match');
             }
         }else {
-            return redirect()->back()->withError('Email does not match');
+            return redirect()->back()->withError('Email not match');
         }
     }
 
     public function deshboard()
     {
         $users = User::orderBy('updated_at', 'desc')->get();
-        return view('backend.admin.home.index', compact('users'));
+        $todayCredit = MoneyReceipt::whereDate('created_at', Carbon::today())->get()->sum('advance');
+        $todayDue = MoneyReceipt::whereDate('created_at', Carbon::today())->get()->sum('due');
+        $monthlyCredit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('advance');
+        $monthlyDebit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('due');
+        $totalDue = MoneyReceipt::get()->sum('due');
+        return view('backend.admin.home.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'totalDue'));
     }
 
     public function register()
