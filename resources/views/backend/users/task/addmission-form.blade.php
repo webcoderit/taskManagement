@@ -102,13 +102,9 @@
                                      <label for="nid_birth_no">NID/Birth Certificate No.</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <input type="text" name="nid" placeholder="NID/Birth Certificate No." class="form-control">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                      <label for="present_address">Present Address</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <textarea name="present_address" rows="4" cols="50" class="form-control"></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                     <label for="permanent_address">Permanent Address</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <textarea name="permanent_address" rows="4" cols="50" class="form-control"></textarea>
+                                     <textarea name="present_address" rows="2" cols="50" class="form-control"></textarea>
                                 </div>
                                 <div class="col-md-4">
                                      <label for="course">Course Name</label><span style="color: red; font-size: 16px;"> *</span><br>

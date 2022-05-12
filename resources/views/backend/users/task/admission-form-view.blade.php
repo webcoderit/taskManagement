@@ -37,104 +37,6 @@
                             <img src="{{ $admissionForm->avatar ?? 'image not found' }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
                         </div>
                     </div>
-                    {{-- <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Student Name : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->s_name }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Student Email : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->s_email }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Father Name : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->f_name }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Mother Name : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->m_name }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Student Phone No. : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->s_phone }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Father Phone No. : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->f_phone }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Date Of Birth : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->dob }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Profession : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->profession }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Gender : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->gender }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Blood Group : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->blood_group }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Educational Qualification : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->qualification }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">NID No. : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->nid }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Present Address : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->present_address }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                           <span class="admission-form-view-label">Permanent Address : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->permanent_address }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Course Name : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->course }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Batch No. : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->batch_no }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Batch Type : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->batch_type }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Payment Type : </span>
-                            <span class="admission-form-view-value"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Admission Date : </span>
-                            <span class="admission-form-view-value"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Total Fee : </span>
-                            <span class="admission-form-view-value"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Advance : </span>
-                            <span class="admission-form-view-value"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Due : </span>
-                            <span class="admission-form-view-value"></span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Class Shedule : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->class_shedule }}</span>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <span class="admission-form-view-label">Class Time : </span>
-                            <span class="admission-form-view-value">{{ $admissionForm->class_time }}</span>
-                        </div>
-                    </div> --}}
                     <div class="admission-form-view">
                         <div class="admission-form-view-item">
                             <div>
@@ -196,12 +98,8 @@
                         </div>
                         <div class="admission-form-view-item">
                             <div>
-                                <span class="admission-form-view-label">Present Address : </span>
+                                <span class="admission-form-view-label">Address : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->present_address }}</span>
-                            </div>
-                            <div>
-                                <span class="admission-form-view-label">Permanent Address : </span>
-                                <span class="admission-form-view-value">{{ $admissionForm->permanent_address }}</span>
                             </div>
                         </div>
                         <div class="admission-form-view-item">

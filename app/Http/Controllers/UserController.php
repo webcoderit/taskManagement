@@ -126,6 +126,12 @@ class UserController extends Controller
         $admissionForm = AdmissionForm::where('id' , $id)->first();
         return view('backend.users.task.admission-form-view' , compact('admissionForm'));
     }
+    public function admissionFormPdf(){
+        return view('backend.users.task.admission-form-pdf');
+    }
+    public function moneyReceiptPdf(){
+        return view('backend.users.task.money-receipt-pdf');
+    }
 
     //============= Update information ================//
     public function updateInformation($id)

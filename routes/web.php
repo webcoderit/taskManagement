@@ -81,7 +81,9 @@ Route::get('/addmission/form', [\App\Http\Controllers\UserController::class, 'ad
 Route::get('/addmission/list', [\App\Http\Controllers\UserController::class, 'addmissionList']);
 Route::get('/money/receipt', [\App\Http\Controllers\UserController::class, 'moneyReceipt']);
 Route::get('/money/receipt/view/{id}', [\App\Http\Controllers\UserController::class, 'moneyReceiptView']);
-Route::get('admission/form/view/{id}', [\App\Http\Controllers\UserController::class, 'admissionFormView']);
+Route::get('/admission/form/view/{id}', [\App\Http\Controllers\UserController::class, 'admissionFormView']);
+Route::get('/admission/form/pdf', [\App\Http\Controllers\UserController::class, 'admissionFormPdf']);
+Route::get('/money/receipt/pdf', [\App\Http\Controllers\UserController::class, 'moneyReceiptPdf']);
 
 Route::get('/update/information/{id}', [\App\Http\Controllers\UserController::class, 'updateInformation']);
 Route::post('/profile/update/{id}', [\App\Http\Controllers\UserController::class, 'profileUpdate']);
