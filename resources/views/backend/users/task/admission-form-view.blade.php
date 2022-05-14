@@ -168,6 +168,29 @@
                                 <span class="">{{ $admissionForm->class_time }}</span>
                             </div>
                         </div>
+                        <div class="institute-note">
+                            <div>
+                                <span class="admission-form-view-label">Note : </span>
+                                <span class="admission-form-view-value">
+                                    Incomplete Application will be Cancelled.
+                                </span>
+                            </div>
+                            <div>
+                                <span class="admission-form-view-label">Authorized By : </span>
+                                <span class="">Webcoder-it</span>
+                            </div>
+                        </div>
+                        <div class="institute-service-note">
+                            <p>
+                                We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
+                            </p>
+                        </div>
+                        <div class="admission-form-download-btn-outer">
+                            <button type="button" class="admission-form-download-btn">
+                                <i class="fa fa-cloud-download"></i>
+                                Download
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

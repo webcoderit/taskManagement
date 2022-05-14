@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col-md-6">
                                      <label for="nid_birth_no">NID/Birth Certificate No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="nid" placeholder="NID/Birth Certificate No." class="form-control">
+                                     <input type="number" name="nid" placeholder="NID/Birth Certificate No." class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                      <label for="present_address">Present Address</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -144,15 +144,15 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="total_fee">Total Fee</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="text" name="total_fee" id="total_fee" placeholder="Total Taka" class="form-control">
+                                    <input type="number" name="total_fee" id="total_fee" placeholder="Total Taka" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="advance">Advance</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="text" name="advance" id="advance" placeholder="Advance" onblur="calculate()" class="form-control">
+                                    <input type="number" name="advance" id="advance" placeholder="Advance" onblur="calculate()" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="due">Due</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="text" name="due" readonly value="0" id="due" placeholder="Due" class="form-control">
+                                    <input type="number" name="due" readonly value="0" id="due" placeholder="Due" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                     <label for="word">In Word</label><br>
