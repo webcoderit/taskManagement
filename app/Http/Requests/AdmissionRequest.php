@@ -36,7 +36,6 @@ class AdmissionRequest extends FormRequest
             'qualification' => 'required',
             'nid' => 'required',
             'present_address' => 'required',
-            'permanent_address' => 'required',
             'course' => 'required',
             'batch_no' => 'required',
             'batch_type' => 'required',

@@ -227,7 +227,6 @@ class UserController extends Controller
         $newStudent->qualification = $request->qualification;
         $newStudent->nid = $request->nid;
         $newStudent->present_address = $request->present_address;
-        $newStudent->permanent_address = $request->permanent_address;
         $newStudent->course = $request->course;
         $newStudent->batch_no = $request->batch_no;
         $newStudent->batch_type = $request->batch_type;

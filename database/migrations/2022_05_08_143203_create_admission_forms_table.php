@@ -27,7 +27,6 @@ class CreateAdmissionFormsTable extends Migration
             $table->string('qualification');
             $table->string('nid');
             $table->text('present_address');
-            $table->text('permanent_address');
             $table->string('batch_no');
             $table->string('batch_type');
             $table->string('class_shedule');
