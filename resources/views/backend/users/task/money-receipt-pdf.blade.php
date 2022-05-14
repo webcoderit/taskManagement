@@ -79,7 +79,7 @@
                     </div>
                     <div style="text-align: center; padding-top: 10px;padding-bottom: 20px;">
                         <a href="https://webcoder-it.com" target="_blank" style="color: #f16522;display: inline-block;font-size: 16px;">
-                            https://webcoder-it.com , 
+                            https://webcoder-it.com ,
                         </a>
                         <a href="tel:01814812233" style="color: #f16522;display: inline-block;font-size: 16px;">
                             01810139951-8
