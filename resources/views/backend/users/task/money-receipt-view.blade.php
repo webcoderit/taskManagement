@@ -74,9 +74,12 @@
                         </div>
                     </div>
                     <div class="website-link-outer">
-                        <a href="https://webcoder-it.com" target="_blank">https://webcoder-it.com , </a>
-                        <a href="tel:01814812233">
-                            01810139951-8
+                        <a href="https://webcoder-it.com" target="_blank">
+                            <i class="fa fa-chrome"></i>
+                            https://webcoder-it.com ,
+                         </a>
+                        <a href="tel:01810139951">
+                            <i class="fa fa-phone"></i> 01810139951-8
                         </a>
                     </div>
                 </div>

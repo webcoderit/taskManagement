@@ -7,28 +7,32 @@
             <div class="col-md-10 m-auto">
                 <div class="addmission-form-wrapper view">
                     <div class="addmission-form-heading-view">
-                        <div style="width: 350px;">
+                        <div style="width: 360px;">
                             <h2 class="institute-name">Web<span>coder</span>-it</h2>
                             <address>
                                 House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230
                             </address>
                             <span>
                                 <a href="tel:01648177071">
+                                    <i class="fa fa-phone"></i>
                                     01648177071 ,
                                 </a>
                             </span>
                             <span>
                                 <a href="tel:01814812233">
+                                    <i class="fa fa-phone"></i>
                                     01814812233
                                 </a>
                             </span><br>
                             <span>
                                 <a href="https://webcoder-it.com/" target="_blank" title="Website">
+                                    <i class="fa fa-chrome"></i>
                                     www.webcoder-it.com ,
                                 </a>
                             </span>
                             <span>
                                 <a href="mailto:webcoderit@gmail.com" title="Gmail Id">
+                                    <i class="fa fa-envelope"></i>
                                     webcoderit@gmail.com
                                 </a>
                             </span>
