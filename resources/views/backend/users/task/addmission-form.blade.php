@@ -9,6 +9,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             <div class="row">
                 <div class="col-md-10 m-auto">
                     <div class="addmission-form-wrapper">
@@ -50,6 +59,7 @@
                                 <div class="col-md-6">
                                      <label for="student_name">Student Name</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <input type="text" name="s_name" placeholder="Student Name" class="form-control">
+                                    <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
                                 </div>
                                 <div class="col-md-6">
                                      <label for="email">Email</label><br>
@@ -103,7 +113,7 @@
                                      <input type="number" name="nid" placeholder="NID/Birth Certificate No." class="form-control">
                                 </div>
                                 <div class="col-md-12">
-                                     <label for="present_address">Present Address</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                     <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <textarea name="present_address" rows="2" cols="50" class="form-control"></textarea>
                                 </div>
                                 <div class="col-md-4">
@@ -160,7 +170,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="time">Class Time</label><span style="color: red; font-size: 16px;"> *</span>
-                                    <input type="text" name="word" placeholder="Class Time" class="form-control">
+                                    <input type="text" name="class_time" placeholder="Class Time" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>

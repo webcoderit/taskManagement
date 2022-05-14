@@ -8,6 +8,7 @@ use App\Models\Intereste;
 use App\Models\MoneyReceipt;
 use App\Models\Task;
 use App\Models\User;
+use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow\Constant\Periodic\Interest;
@@ -227,7 +228,6 @@ class UserController extends Controller
         $newStudent->qualification = $request->qualification;
         $newStudent->nid = $request->nid;
         $newStudent->present_address = $request->present_address;
-        $newStudent->permanent_address = $request->permanent_address;
         $newStudent->course = $request->course;
         $newStudent->batch_no = $request->batch_no;
         $newStudent->batch_type = $request->batch_type;
@@ -250,5 +250,15 @@ class UserController extends Controller
             $moneyReceipt->save();
         }
         return redirect()->back()->with('success', 'Admission successfully done.');
+    }
+
+    //=================== PDF Download ======================//
+    public function admissionPdfDownload($id)
+    {
+        $data = [
+            'moneyReceipt' => MoneyReceipt::with('admissionForm')->find($id)
+        ];
+        $moneyReceiptPdf = PDF::loadView('backend.users.task.money-receipt-pdf', $data);
+        return $moneyReceiptPdf->download($data['moneyReceipt']->admissionForm->s_name);
     }
 }

@@ -84,11 +84,13 @@ Route::get('/money/receipt/view/{id}', [\App\Http\Controllers\UserController::cl
 Route::get('/admission/form/view/{id}', [\App\Http\Controllers\UserController::class, 'admissionFormView']);
 Route::get('/admission/form/pdf', [\App\Http\Controllers\UserController::class, 'admissionFormPdf']);
 Route::get('/money/receipt/pdf', [\App\Http\Controllers\UserController::class, 'moneyReceiptPdf']);
-
+Route::post('/admission/store', [\App\Http\Controllers\UserController::class, 'admissionStore']);
 Route::get('/update/information/{id}', [\App\Http\Controllers\UserController::class, 'updateInformation']);
 Route::post('/profile/update/{id}', [\App\Http\Controllers\UserController::class, 'profileUpdate']);
 Route::post('/password/update/{id}', [\App\Http\Controllers\UserController::class, 'passwordUpdate']);
-Route::post('/admission/store', [App\Http\Controllers\UserController::class, 'admissionStore'])->name('admission.store');
+
+//====================== PDF Download =======================//
+Route::get('/money/receipt/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionPdfDownload']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
