@@ -67,7 +67,18 @@ class UserController extends Controller
         $task->status = 1;
         $task->save();
 
-        return redirect('/today/task')->withSuccess('Information updated.');
+        //dd($intereste->interest_level);
+        if ($intereste->interest_level == 'done'){
+            return redirect('/addmission/form')->withSuccess('Student Admission Successfully. Please filled up the form.');
+        }elseif ($intereste->interest_level == 'highly'){
+            return redirect('/highly/interested')->withSuccess('Highly interested, Ready for Recall.');
+        }elseif ($intereste->interest_level == '50%'){
+            return redirect('/interested')->withSuccess('Interested, Ready for Recall.');
+        }elseif ($intereste->interest_level == 'not'){
+            return redirect('/not/interested')->withSuccess('Not Interested');
+        }else{
+            return redirect('/others')->withSuccess('Recall list');
+        }
     }
     public function pendingTask(){
         $pendingTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->where('status', 0)->orderBy('created_at', 'desc')->get();
