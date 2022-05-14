@@ -51,10 +51,74 @@
                             </span>
                             <span style="color: #000;"></span>
                         </div>
-                        <div class="admission-date">
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">
-                            Admission Date :</span>
-                            <span style="color: #000;"></span>
+                        <div class="money-receipt-info-wrapper" style="hover:background: #ddd">
+                            <div style="display: flex;align-items: center;justify-content: space-between;padding: 5px 50px;border-bottom: 1px solid #ddd;margin-bottom: 6px;">
+                                <div class="stu-id">
+                                    <span style="font-size: 15px;color: #000;font-weight: 500;">
+                                        Student ID :
+                                    </span>
+                                    <span style="color: #000;">{{ $data['moneyReceipt']->admissionForm->course }} - {{ $data['moneyReceipt']->admissionForm->student_id }}</span>
+                                </div>
+                                <div class="admission-date">
+                                    <span style="font-size: 15px;color: #000;font-weight: 500;">
+                                    Admission Date :
+                                    </span>
+                                    <span style="color: #000;">{{ $data['moneyReceipt']->admission_date }}</span>
+                                </div>
+                            </div>
+                            <div style="display: flex;align-items: center;justify-content: space-between;padding: 5px 50px;border-bottom: 1px solid #ddd;margin-bottom: 6px;">
+                                <div>
+                                    <span style="font-size: 15px;color: #000;font-weight: 500;">
+                                    Student Name :
+                                    </span>
+                                    <span style="color: #000;">{{ $data['moneyReceipt']->admissionForm->s_name ?? '' }}</span>
+                                </div>
+                            </div>
+                            <div style="display: flex;align-items: center;justify-content: space-between;padding: 5px 50px;border-bottom: 1px solid #ddd;margin-bottom: 6px;">
+                                <div>
+                                    <span style="font-size: 15px;color: #000;font-weight: 500;">
+                                    Course Name :
+                                    </span>
+                                    <span style="color: #000;">{{ $data['moneyReceipt']->admissionForm->course ?? '' }}</span>
+                                </div>
+                            </div>
+                            <div style="display: flex;align-items: center;justify-content: space-between;padding: 5px 50px;border-bottom: 1px solid #ddd;margin-bottom: 6px;">
+                                <div>
+                                    <span style="font-size: 15px;color: #000;font-weight: 500;">
+                                    Total Fee :</span>
+                                    <span style="color: #000;">{{ $data['moneyReceipt']->total_fee ?? '' }} TK</span>
+                                </div>
+                                <div>
+                                    <span style="font-size: 15px;color: #000;font-weight: 500;">
+                                    Advance :</span>
+                                    <span style="color: #000;">{{ $data['moneyReceipt']->advance ?? '' }} TK</span>
+                                </div>
+                                <div>
+                                    <span style="font-size: 15px;color: #000;font-weight: 500;">
+                                    Due :</span>
+                                    <span style="color: #000;">{{ $data['moneyReceipt']->due ?? '' }} TK</span>
+                                </div>
+                            </div>
+                            <div style="display: flex;align-items: center;justify-content: space-between;padding: 5px 50px;border-bottom: 1px solid #ddd;margin-bottom: 6px;">
+                                <div>
+                                    <span style="font-size: 15px;color: #000;font-weight: 500;">
+                                    Received By :</span>
+                                    <span style="color: #000;">{{ auth()->user()->full_name }}</span>
+                                </div>
+                                <div>
+                                    <span style="font-size: 15px;color: #000;font-weight: 500;">
+                                    Authorised By :</span>
+                                    <span>WebCoder-it</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; padding-top: 10px;padding-bottom: 20px;">
+                            <a href="https://webcoder-it.com" target="_blank" style="color: #f16522;display: inline-block;font-size: 16px;">
+                                https://webcoder-it.com ,
+                            </a>
+                            <a href="tel:01814812233" style="color: #f16522;display: inline-block;font-size: 16px;">
+                                01810139951-8
+                            </a>
                         </div>
                     </div>
                     <div style="display: flex;align-items: center;justify-content: space-between;padding: 5px 50px;border-bottom: 1px solid #ddd;margin-bottom: 6px;">
@@ -103,7 +167,7 @@
                 </div>
                 <div style="text-align: center; padding-top: 10px;padding-bottom: 20px;">
                     <a href="https://webcoder-it.com" target="_blank" style="color: #f16522;display: inline-block;font-size: 16px;">
-                        https://webcoder-it.com , 
+                        https://webcoder-it.com ,
                     </a>
                     <a href="tel:01814812233" style="color: #f16522;display: inline-block;font-size: 16px;">
                         01810139951-8

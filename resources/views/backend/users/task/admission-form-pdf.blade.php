@@ -42,9 +42,11 @@
                             </a>
                         </span>
                     </div>
-                    <div>
-                        <img src="{{ $admissionForm->avatar ?? 'image not found' }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
-                    </div>
+                    @if($data['admissionForm']->avatar != null)
+                        <div>
+                            <img src="{{ $data['admissionForm']->avatar ?? 'image not found' }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
+                        </div>
+                    @endif
                 </div>
                 <div>
                     <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
@@ -166,7 +168,7 @@
                     <div style="display: flex;align-items: center;justify-content: space-between;">
                             <div>
                                 <span style="font-size: 15px;color: #000;font-weight: 500;">
-                                    Note : 
+                                    Note :
                                 </span>
                                 <span style="font-size: 14px;color: #000;">
                                     Incomplete Application will be Cancelled.
@@ -176,7 +178,7 @@
                                 <span class="admission-form-view-label">Authorized By : </span>
                                 <span class="">Webcoder-it</span>
                             </div>
-                        </div>                    
+                        </div>
                     <div style="background: #f16522;margin-top: 10px;">
                         <p style="margin-bottom: 0;padding: 5px 0;text-align: center;color: #fff;font-size: 15px;font-weight: 500;">
                             We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
