@@ -123,7 +123,7 @@ class UserController extends Controller
         return view('backend.users.task.money-receipt-view' , compact('moneyReceiptView'));
     }
     public function admissionFormView($id){
-        $admissionForm = AdmissionForm::where('id' , $id)->first();
+        $admissionForm = AdmissionForm::with('moneyReceipt')->where('id' , $id)->first();
         return view('backend.users.task.admission-form-view' , compact('admissionForm'));
     }
     public function admissionFormPdf(){
