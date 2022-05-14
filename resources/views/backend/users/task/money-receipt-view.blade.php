@@ -82,6 +82,7 @@
                             <i class="fa fa-phone"></i> 01810139951-8
                         </a>
                     </div>
+                    <a href="{{ url('/money/receipt/download/'.$moneyReceiptView->id) }}" class="btn btn-success pull-right mt-3">Download</a>
                 </div>
             </div>
         </div>
