@@ -186,10 +186,10 @@
                             </p>
                         </div>
                         <div class="admission-form-download-btn-outer">
-                            <button type="button" class="admission-form-download-btn">
+                            <a href="#" class="admission-form-download-btn">
                                 <i class="fa fa-cloud-download"></i>
                                 Download
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
