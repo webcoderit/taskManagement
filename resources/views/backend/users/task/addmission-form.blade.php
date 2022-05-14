@@ -159,21 +159,16 @@
                                     <input type="text" name="word" placeholder="In Word" class="form-control">
                                 </div>
                                 <div class="col-md-6">
+                                    <label for="time">Class Time</label><span style="color: red; font-size: 16px;"> *</span>
+                                    <input type="text" name="word" placeholder="Class Time" class="form-control">
+                                </div>
+                                <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>
                                     <div class="d-flex align-items-center Shedule">
                                         <input type="radio" id="first_day" name="class_shedule" value="Sat-Mon-Wed">
                                         <label for="first_day">Sat Mon Wed</label><br>
                                         <input type="radio" id="last_day" name="class_shedule" value="Sun-Tue-Thu">
                                         <label for="last_day">Sun Tue Thu</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="time">Class Time</label><span style="color: red; font-size: 16px;"> *</span>
-                                    <div class="d-flex align-items-center time">
-                                        <input type="radio" id="am" name="class_time" value="am">
-                                        <label for="am">AM</label><br>
-                                        <input type="radio" id="pm" name="class_time" value="pm">
-                                        <label for="pm">PM</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
