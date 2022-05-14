@@ -14,25 +14,25 @@
                             </address>
                             <span>
                                 <a href="tel:01648177071">
-                                    <i class="fa fa-phone"></i>
+                                    <i class="fa fa-phone" style="color: #f16522;"></i>
                                     01648177071 ,
                                 </a>
                             </span>
                             <span>
                                 <a href="tel:01814812233">
-                                    <i class="fa fa-phone"></i>
+                                    <i class="fa fa-phone" style="color: #f16522;"></i>
                                     01814812233
                                 </a>
                             </span><br>
                             <span>
                                 <a href="https://webcoder-it.com/" target="_blank" title="Website">
-                                    <i class="fa fa-chrome"></i>
+                                    <i class="fa fa-chrome" style="color: #f16522;"></i>
                                     www.webcoder-it.com ,
                                 </a>
                             </span>
                             <span>
                                 <a href="mailto:webcoderit@gmail.com" title="Gmail Id">
-                                    <i class="fa fa-envelope"></i>
+                                    <i class="fa fa-envelope" style="color: #f16522;"></i>
                                     webcoderit@gmail.com
                                 </a>
                             </span>

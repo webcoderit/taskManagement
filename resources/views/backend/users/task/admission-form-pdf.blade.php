@@ -7,7 +7,7 @@
             <div class="col-md-10 m-auto">
                 <div style="background-image: url({{ asset('backend/') }}/assets/logo4.png);background-position: center;background-repeat: no-repeat;background-size: contain;box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;padding: 20px;">
                     <div style="margin-bottom: 15px;border-bottom: 1px solid #ddd;display: flex;justify-content: space-between;">
-                        <div style="width: 350px;">
+                        <div style="width: 360px;">
                             <h2 style="font-size: 30px;text-transform: uppercase;color: #f16522;letter-spacing: 2px;margin-bottom: 0px;">
                                 Web<span style="color: #564c4c;">coder</span>-it
                             </h2>
@@ -16,21 +16,25 @@
                             </address>
                             <span>
                                 <a href="tel:01648177071" style="display: inline-block;color: #000;font-size: 14px;">
+                                    <i class="fa fa-phone" style="color: #f16522;"></i>
                                     01648177071 ,
                                 </a>
                             </span>
                             <span>
                                 <a href="tel:01814812233" style="display: inline-block;color: #000;font-size: 14px;">
+                                    <i class="fa fa-phone" style="color: #f16522;"></i>
                                     01814812233
                                 </a>
                             </span><br>
                             <span>
                                 <a href="https://webcoder-it.com/" target="_blank" title="Website" style="display: inline-block;color: #000;font-size: 14px;">
+                                    <i class="fa fa-chrome" style="color: #f16522;"></i>
                                     www.webcoder-it.com ,
                                 </a>
                             </span>
                             <span>
                                 <a href="mailto:webcoderit@gmail.com" title="Gmail Id" style="display: inline-block;color: #000;font-size: 14px;">
+                                    <i class="fa fa-envelope" style="color: #f16522;"></i>
                                     webcoderit@gmail.com
                                 </a>
                             </span>
