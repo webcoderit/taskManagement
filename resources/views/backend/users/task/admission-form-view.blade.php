@@ -37,9 +37,11 @@
                                 </a>
                             </span>
                         </div>
-                        <div>
-                            <img src="{{ $admissionForm->avatar ?? 'image not found' }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
-                        </div>
+                        @if($admissionForm->avatar != null)
+                            <div>
+                                <img src="{{ $admissionForm->avatar ?? 'image not found' }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
+                            </div>
+                        @endif
                     </div>
                     <div class="admission-form-view">
                         <div class="admission-form-view-item">
@@ -109,7 +111,15 @@
                         <div class="admission-form-view-item">
                             <div>
                                 <span class="admission-form-view-label">Course Name : </span>
-                                <span class="admission-form-view-value">{{ $admissionForm->course }}</span>
+                                <span class="admission-form-view-value">
+                                    @if($admissionForm->course == 'web')
+                                        Full stack web development
+                                    @elseif($admissionForm->course == 'digital')
+                                        Advance digital marketing
+                                    @else
+                                        Communication English
+                                    @endif
+                                </span>
                             </div>
                             <div>
                                 <span class="admission-form-view-label">Batch No. : </span>
@@ -123,25 +133,25 @@
                         <div class="admission-form-view-item">
                             <div>
                                 <span class="admission-form-view-label">Payment Type : </span>
-                                <span class="admission-form-view-value"></span>
+                                <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->payment_type ?? '' }}</span>
                             </div>
                             <div>
                                 <span class="admission-form-view-label">Admission Date : </span>
-                                <span class="admission-form-view-value"></span>
+                                <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->admission_date ?? '' }}</span>
                             </div>
                         </div>
                         <div class="admission-form-view-item">
                             <div>
                                 <span class="admission-form-view-label">Total Fee : </span>
-                                <span class="admission-form-view-value"></span>
+                                <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->total_fee ?? '' }} Tk.</span>
                             </div>
                             <div>
                                 <span class="admission-form-view-label">Advance : </span>
-                                <span class="admission-form-view-value"></span>
+                                <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->advance ?? '' }} Tk.</span>
                             </div>
                             <div>
                                 <span class="admission-form-view-label">Due : </span>
-                                <span class="admission-form-view-value"></span>
+                                <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->due ?? '' }} Tk.</span>
                             </div>
                         </div>
                         <div class="admission-form-view-item">
