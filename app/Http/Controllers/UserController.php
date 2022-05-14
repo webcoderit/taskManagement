@@ -256,9 +256,18 @@ class UserController extends Controller
     public function admissionPdfDownload($id)
     {
         $data = [
-            'moneyReceipt' => MoneyReceipt::with('admissionForm')->find($id)
+            'moneyReceipt' => MoneyReceipt::with('admissionForm')->where('id', $id)->first()
         ];
-        $moneyReceiptPdf = PDF::loadView('backend.users.task.money-receipt-pdf', $data);
-        return $moneyReceiptPdf->download($data['moneyReceipt']->admissionForm->s_name);
+        $moneyReceiptPdf = PDF::loadView('backend.users.task.money-receipt-pdf', compact('data'));
+        return $moneyReceiptPdf->download($data['moneyReceipt']->admissionForm->s_name . '.' . 'pdf');
+    }
+
+    public function admissionFormPdfDownload($id)
+    {
+        $data = [
+            'admissionForm' => AdmissionForm::with('moneyReceipt')->where('id' , $id)->first()
+        ];
+        $admissionFormPdf = PDF::loadView('backend.users.task.admission-form-pdf', compact('data'));
+        return $admissionFormPdf->download($data['admissionForm']->s_name . '.' . 'pdf');
     }
 }

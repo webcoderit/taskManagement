@@ -91,6 +91,7 @@ Route::post('/password/update/{id}', [\App\Http\Controllers\UserController::clas
 
 //====================== PDF Download =======================//
 Route::get('/money/receipt/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionPdfDownload']);
+Route::get('/admission/form/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionFormPdfDownload']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
