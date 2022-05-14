@@ -67,7 +67,6 @@ class UserController extends Controller
         $task->status = 1;
         $task->save();
 
-        //dd($intereste->interest_level);
         if ($intereste->interest_level == 'done'){
             return redirect('/addmission/form')->withSuccess('Student Admission Successfully. Please filled up the form.');
         }elseif ($intereste->interest_level == 'highly'){
