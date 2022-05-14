@@ -185,12 +185,10 @@
                                 We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
                             </p>
                         </div>
-                        <div class="admission-form-download-btn-outer">
-                            <button type="button" class="admission-form-download-btn">
-                                <i class="fa fa-cloud-download"></i>
+                        <a href="#" class="admission-form-download-btn pull-right">
+                            <i class="fa fa-cloud-download"></i>
                                 Download
-                            </button>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

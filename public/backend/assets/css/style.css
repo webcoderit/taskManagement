@@ -567,6 +567,20 @@ span.money-receipt-view-label {
     font-size: 16px;
 }
 
+.money-receipt-download-btn {
+    display: inline-block;
+    background: #f16522;
+    color: #fff;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.money-receipt-download-btn:hover {
+    color: #fff;
+}
+
 
 /* Money Receipt View css End */
 
@@ -642,22 +656,23 @@ address {
     font-weight: 500;
 }
 
-.admission-form-download-btn-outer {
-    text-align: end;
-    margin-top: 15px;
-}
-
-button.admission-form-download-btn {
+.admission-form-download-btn {
+    display: inline-block;
     background: #f16522;
     color: #fff;
     border: none;
-    padding: 6px 17px;
+    padding: 6px 15px;
     border-radius: 5px;
     font-size: 16px;
+    margin-top: 40px;
 }
 
-button.admission-form-download-btn i {
+.admission-form-download-btn i {
     font-size: 18px;
+}
+
+.admission-form-download-btn:hover {
+    color: #fff;
 }
 
 
