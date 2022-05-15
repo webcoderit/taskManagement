@@ -498,17 +498,6 @@ span.money-receipt-view-label {
     z-index: -1;
 }
 
-.money-receipt-view-wrapper:after {
-    content: '';
-    position: absolute;
-    background: #f16522;
-    width: 70px;
-    height: 65px;
-    right: 0;
-    bottom: 0;
-    border-radius: 100px 0px 0px 0px;
-}
-
 .institute-address-wrapper {
     display: flex;
     align-items: center;

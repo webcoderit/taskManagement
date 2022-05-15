@@ -6,11 +6,11 @@
     <title></title>
 </head>
 <body>
-    <section style="padding: 40px 0px">
-        <div style="width: 1000px; margin: auto;">
-            <div style="background-image: url({{ asset('backend/') }}/assets/logo4.png);background-position: center;background-repeat: no-repeat;background-size: contain;box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;padding: 20px;">
-                <div style="margin-bottom: 15px;border-bottom: 1px solid #ddd;display: flex;justify-content: space-between;">
-                    <div style="width: 360px;">
+    <section>
+        <table style="width: 1000px;margin: auto;box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;padding: 20px;background-image: url({{ asset('backend/') }}/assets/logo4.png);background-position: center;background-repeat: no-repeat;background-size: contain;">
+            <thead>
+                <tr style="display: flex;justify-content: space-between;">
+                    <td style="width: 280px;">
                         <h2 style="font-size: 30px;text-transform: uppercase;color: #f16522;letter-spacing: 2px;margin-bottom: 0px;margin-top: 0;">
                             Web<span style="color: #564c4c;">coder</span>-it
                         </h2>
@@ -41,153 +41,254 @@
                                 webcoderit@gmail.com
                             </a>
                         </span>
-                    </div>
-                    @if($data['admissionForm']->avatar != null)
-                        <div>
+                    </td>
+                    <td>
+                        @if($data['admissionForm']->avatar != null)
                             <img src="{{ $data['admissionForm']->avatar ?? 'image not found' }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
-                        </div>
-                    @endif
-                </div>
-                <div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Student Name : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Student Email : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Father Name : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Mother Name : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Student Phone No. : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Father Phone No. : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Date Of Birth : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Profession : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Gender : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Blood Group : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Educational Qualification : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">NID No. : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Address : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Course Name : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Batch No. : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Batch Type : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Payment Type : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Admission Date : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Total Fee : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Advance : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Due : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <span style="font-size: 15px;color: #000;font-weight: 500;">In Word : </span>
-                        <span style="font-size: 14px;color: #000;"></span>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;margin-bottom: 10px;padding-bottom: 10px;">
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Class Shedule : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                        <div>
-                            <span style="font-size: 15px;color: #000;font-weight: 500;">Class Time : </span>
-                            <span style="font-size: 14px;color: #000;"></span>
-                        </div>
-                    </div>
-                    <div style="display: flex;align-items: center;justify-content: space-between;">
-                            <div>
-                                <span style="font-size: 15px;color: #000;font-weight: 500;">
-                                    Note :
-                                </span>
-                                <span style="font-size: 14px;color: #000;">
-                                    Incomplete Application will be Cancelled.
-                                </span>
-                            </div>
-                            <div>
-                                <span class="admission-form-view-label">Authorized By : </span>
-                                <span class="">Webcoder-it</span>
-                            </div>
-                        </div>
-                    <div style="background: #f16522;margin-top: 10px;">
-                        <p style="margin-bottom: 0;padding: 5px 0;text-align: center;color: #fff;font-size: 15px;font-weight: 500;">
+                        @endif
+                    </td>
+                </tr>
+            </thead>
+            <tbody style="border-collapse: collapse">
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;border-top: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                       <span style="font-size: 15px;color: #000;font-weight: 600;">
+                           Student Name :
+                       </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->s_name }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Student Email :
+                          </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->s_email }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Father Name :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->f_name }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Mother Name :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->m_name }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Student Phone No. :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->s_phone }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Father Phone No. :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->f_phone }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Date Of Birth :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->dob }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Profession :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->profession }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Gender :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->gender }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Blood Group :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->blood_group }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Educational Qualification :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->qualification }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            NID No. :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->nid }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Address :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->present_address }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Course Name :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->course }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                       <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Batch No. :
+                       </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->batch_no }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Batch Type :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->batch_type }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Payment Type :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->moneyReceipt->payment_type }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Admission Date :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->moneyReceipt->admission_date }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Total Fee :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->moneyReceipt->total_fee }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Advance :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->moneyReceipt->advance }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Due :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->moneyReceipt->due }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            In Word :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->moneyReceipt->in_word }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                       <span style="font-size: 15px;color: #000;font-weight: 600;">
+                           Class Shedule :
+                       </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->class_shedule }}
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                       <span style="font-size: 15px;color: #000;font-weight: 600;">
+                           Class Time :
+                       </span>
+                        <span style="font-size: 14px;color: #000;">
+                            {{ $data['admissionForm']->class_time }}
+                        </span>
+                    </td>
+                </tr>
+                <tr style="display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #ddd;">
+                    <td style="margin: 10px 0;">
+                        <span style="font-size: 15px;color: #000;font-weight: 600;">
+                            Note :
+                        </span>
+                        <span style="font-size: 14px;color: #000;">
+                            Incomplete Application will be Cancelled.
+                        </span>
+                    </td>
+                    <td style="margin: 10px 0;">
+                        <span class="admission-form-view-label">
+                            Authorized By :
+                        </span>
+                        <span class="">Webcoder-it</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background: #f16522;">
+                        <p style="text-align: center;color: #fff;font-size: 15px;font-weight: 600;margin: 5px 0;">
                             We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
                         </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 </body>
 </html>

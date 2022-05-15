@@ -185,7 +185,7 @@
                                 We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
                             </p>
                         </div>
-                        <a href="#" class="admission-form-download-btn pull-right">
+                        <a href="{{ url('/admission/form/download/'.$admissionForm->id) }}" class="admission-form-download-btn pull-right">
                             <i class="fa fa-cloud-download"></i>
                                 Download
                         </a>
