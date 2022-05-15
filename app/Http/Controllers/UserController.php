@@ -47,36 +47,71 @@ class UserController extends Controller
         $this->validate($request, [
             'interest_level' => 'required'
         ]);
-        $intereste = new Intereste();
-        $intereste->task_id = $request->task_id;
-        $intereste->interest_level = $request->interest_level;
-        if ($request->select_course){
-            $intereste->select_course = $request->select_course;
-        }
+        $checkInterested = Intereste::where('task_id', $request->task_id)->first();
+        if ($checkInterested){
+            $interesteUpdated = Intereste::find($checkInterested->id);
+            $interesteUpdated->task_id = $request->task_id;
+            $interesteUpdated->interest_level = $request->interest_level;
+            if ($request->select_course){
+                $interesteUpdated->select_course = $request->select_course;
+            }
 
-        if ($request->batch_number){
-            $intereste->batch_number = $request->batch_number;
-        }
+            if ($request->batch_number){
+                $interesteUpdated->batch_number = $request->batch_number;
+            }
 
-        if ($request->note){
-            $intereste->note = $request->note;
-        }
-        $intereste->save();
-        //========= Task Table update query ===============//
-        $task = Task::where('id', $request->task_id)->first();
-        $task->status = 1;
-        $task->save();
+            if ($request->note){
+                $interesteUpdated->note = $request->note;
+            }
+            $interesteUpdated->save();
+            //========= Task Table update query ===============//
+            $task = Task::where('id', $request->task_id)->first();
+            $task->status = 1;
+            $task->save();
 
-        if ($intereste->interest_level == 'done'){
-            return redirect('/addmission/form')->withSuccess('Student Admission Successfully. Please filled up the form.');
-        }elseif ($intereste->interest_level == 'highly'){
-            return redirect('/highly/interested')->withSuccess('Highly interested, Ready for Recall.');
-        }elseif ($intereste->interest_level == '50%'){
-            return redirect('/interested')->withSuccess('Interested, Ready for Recall.');
-        }elseif ($intereste->interest_level == 'not'){
-            return redirect('/not/interested')->withSuccess('Not Interested');
+            if ($interesteUpdated->interest_level == 'done'){
+                return redirect('/addmission/form')->withSuccess('Student Admission Successfully. Please filled up the form.');
+            }elseif ($interesteUpdated->interest_level == 'highly'){
+                return redirect('/highly/interested')->withSuccess('Highly interested, Ready for Recall.');
+            }elseif ($interesteUpdated->interest_level == '50%'){
+                return redirect('/interested')->withSuccess('Interested, Ready for Recall.');
+            }elseif ($interesteUpdated->interest_level == 'not'){
+                return redirect('/not/interested')->withSuccess('Not Interested');
+            }else{
+                return redirect('/others')->withSuccess('Recall list');
+            }
         }else{
-            return redirect('/others')->withSuccess('Recall list');
+            $intereste = new Intereste();
+            $intereste->task_id = $request->task_id;
+            $intereste->interest_level = $request->interest_level;
+            if ($request->select_course){
+                $intereste->select_course = $request->select_course;
+            }
+
+            if ($request->batch_number){
+                $intereste->batch_number = $request->batch_number;
+            }
+
+            if ($request->note){
+                $intereste->note = $request->note;
+            }
+            $intereste->save();
+            //========= Task Table update query ===============//
+            $task = Task::where('id', $request->task_id)->first();
+            $task->status = 1;
+            $task->save();
+
+            if ($intereste->interest_level == 'done'){
+                return redirect('/addmission/form')->withSuccess('Student Admission Successfully. Please filled up the form.');
+            }elseif ($intereste->interest_level == 'highly'){
+                return redirect('/highly/interested')->withSuccess('Highly interested, Ready for Recall.');
+            }elseif ($intereste->interest_level == '50%'){
+                return redirect('/interested')->withSuccess('Interested, Ready for Recall.');
+            }elseif ($intereste->interest_level == 'not'){
+                return redirect('/not/interested')->withSuccess('Not Interested');
+            }else{
+                return redirect('/others')->withSuccess('Recall list');
+            }
         }
     }
     public function pendingTask(){
@@ -112,7 +147,7 @@ class UserController extends Controller
         return view('backend.users.task.interested' , compact('interested'));
     }
     public function others(){
-        $others = Intereste::where('interest_level', '!=', 'done')->whereHas('task', function ($q){
+        $others = Intereste::where('interest_level', 'others')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
         })->get();
         return view('backend.users.task.others' , compact('others'));
