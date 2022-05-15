@@ -113,15 +113,15 @@
                             @csrf
                             <input type="hidden" name="task_id" value="{{ $task->id }}" />
                             <label for="interest">Interest Level</label><br>
-                            <select name="interest_level" class="form-control"
-                             id="interest_level" onchange="admissionDone(this.value)">
+                            <select name="interest_level" class="form-control" id="interest_level" onchange="admissionDone(this.value)">
                                 <option selected disabled>----Select A Level----</option>
                                 <option value="done">Admission Done</option>
                                 <option value="highly">Highly Interested</option>
                                 <option value="not">Not Interested</option>
                                 <option value="50%">50% Interested</option>
                                 <option value="others">Others</option>
-                            </select><br>
+                            </select>
+                            <br>
                             <div id="admission">
                                 <label for="course">Select Course</label><br>
                                 <select name="select_course" class="form-control">
