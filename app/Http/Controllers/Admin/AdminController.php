@@ -8,6 +8,7 @@ use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Admin;
 use App\Models\AttendanceLog;
+use App\Models\Intereste;
 use App\Models\MoneyReceipt;
 use App\Models\User;
 use Carbon\Carbon;
@@ -42,7 +43,11 @@ class AdminController extends Controller
             if (password_verify($request->password, $admin->password)){
                 Session::put('id', $admin->id);
                 Session::put('name', $admin->name);
-                return redirect('/admin/dashboard');
+                if ($admin->type == 'admin'){
+                    return redirect('/admin/dashboard');
+                }else{
+                    return redirect('/admin/hr/dashboard');
+                }
             }else {
                 return redirect()->back()->withError('Password does not match');
             }
@@ -60,6 +65,17 @@ class AdminController extends Controller
         $monthlyDebit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('due');
         $totalDue = MoneyReceipt::get()->sum('due');
         return view('backend.admin.home.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'totalDue'));
+    }
+
+    public function hr_dashboard()
+    {
+        $users = User::orderBy('updated_at', 'desc')->get();
+        $todayCredit = MoneyReceipt::whereDate('created_at', Carbon::today())->get()->sum('advance');
+        $todayDue = MoneyReceipt::whereDate('created_at', Carbon::today())->get()->sum('due');
+        $monthlyCredit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('advance');
+        $monthlyDebit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('due');
+        $totalStudent = Intereste::where('interest_level', 'done')->get();
+        return view('backend.admin.hrm.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'totalStudent'));
     }
 
     public function register()
