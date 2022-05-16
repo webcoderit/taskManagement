@@ -57,15 +57,49 @@ class TaskController extends Controller
     }
     public function pendingTask(Request $request)
     {
-        $sql = Task::with('user')->where('status', 0);
+//        $sql = Task::with('user')->where('status', 0);
+//        if (isset($request->user_id)){
+//            $sql->whereHas('user', function($q) use($request){
+//                $q->where('id', 'LIKE','%'.$request->user_id.'%');
+//            });
+//        }
+//        $pendingTasks = $sql->paginate(10);
+//        $users = User::all();
+        $pendingTasks = Task::with('user')->get()->where('status', 0)->groupBy('user_id');
+        return view('backend.admin.task.pending-task', compact('pendingTasks'));
+    }
+
+    public function completeAddmission(Request $request)
+    {
+        $sql = Intereste::with('task')->where('interest_level', 'done');
         if (isset($request->user_id)){
-            $sql->whereHas('user', function($q) use($request){
-                $q->where('id', 'LIKE','%'.$request->user_id.'%');
+            $sql->whereHas('task', function($q) use($request){
+                $q->where('user_id', 'LIKE','%'.$request->user_id.'%');
             });
         }
-        $pendingTasks = $sql->paginate(30);
+        $complete = $sql->get();
         $users = User::all();
-        return view('backend.admin.task.pending-task', compact('pendingTasks', 'users'));
+        return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
+    }
+    public function notInterested()
+    {
+        $notInterested = Intereste::where('interest_level' , 'not')->get();
+        return view('backend.admin.task.not-interested' , compact('notInterested'));
+    }
+    public function highlyInterested()
+    {
+        $highlyInterested = Intereste::where('interest_level' , 'highly')->get();
+        return view('backend.admin.task.highly-interested' , compact('highlyInterested'));
+    }
+    public function interested()
+    {
+        $interested = Intereste::where('interest_level' , '50%')->get();
+        return view('backend.admin.task.interested' , compact('interested'));
+    }
+    public function recall()
+    {
+        $recalls = Intereste::where('interest_level', '!=', 'done')->paginate(30);
+        return view('backend.admin.task.recall', compact('recalls'));
     }
 
 //    public function taskStore(TaskRequest $request)
@@ -133,37 +167,5 @@ class TaskController extends Controller
         $taskDelete = Task::find($id);
         $taskDelete->delete();
         return redirect()->back()->withError('Task has been deleted');
-    }
-    public function completeAddmission(Request $request)
-    {
-        $sql = Intereste::with('task')->where('interest_level', 'done');
-        if (isset($request->user_id)){
-            $sql->whereHas('task', function($q) use($request){
-                $q->where('user_id', 'LIKE','%'.$request->user_id.'%');
-            });
-        }
-        $complete = $sql->paginate(30);
-        $users = User::all();
-        return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
-    }
-    public function notInterested()
-    {
-        $notInterested = Intereste::where('interest_level' , 'not')->get();
-        return view('backend.admin.task.not-interested' , compact('notInterested'));
-    }
-    public function highlyInterested()
-    {
-        $highlyInterested = Intereste::where('interest_level' , 'highly')->get();
-        return view('backend.admin.task.highly-interested' , compact('highlyInterested'));
-    }
-    public function interested()
-    {
-        $interested = Intereste::where('interest_level' , '50%')->get();
-        return view('backend.admin.task.interested' , compact('interested'));
-    }
-    public function recall()
-    {
-        $recalls = Intereste::where('interest_level', '!=', 'done')->paginate(30);
-        return view('backend.admin.task.recall', compact('recalls'));
     }
 }

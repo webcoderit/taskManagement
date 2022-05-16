@@ -32,7 +32,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="myDataTable" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th>SL</th>
@@ -72,3 +72,16 @@
     </div>
 </div>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function () {
+            $('#myDataTable').DataTable({
+                lengthMenu: [
+                    [20, 25, 50, -1],
+                    [20, 25, 50, 'All'],
+                ],
+            });
+        });
+    </script>
+@endpush

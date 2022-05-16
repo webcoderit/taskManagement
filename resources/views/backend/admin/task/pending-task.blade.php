@@ -20,50 +20,33 @@
             <!--end breadcrumb-->
             <h6 class="mb-0 text-uppercase">Pending Task</h6>
             <hr/>
-            <div class="search-wrapper">
-                <form action="{{ url('/admin/user/pending/task') }}" method="get" class="form-group search-form-o-outer">
-                    @csrf
-                    <div class="select-outer">
-                        <select name="user_id" id="user_id">
-                            <option disabled selected>--- Select a user---</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->full_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button class="btn btn-primary" type="submit">Search</button>
-                    <a href="{{ url('/admin/user/pending/task') }}" type="button" class="btn btn-danger">Clear</a>
-                </form>
-            </div>
+            <div class="search-wrapper"></div>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="" class="table table-striped table-bordered" style="width:100%">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Employee Name</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Profession</th>
+                                <th>SL</th>
+                                <th>Employee name</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($pendingTasks as $data)
+                            @foreach($pendingTasks as $key => $userName)
                                 <tr>
-                                    <td>{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
-                                    <td>{{ $data->user->full_name ?? '' }}</td>
-                                    <td>{{ $data->name ?? '' }}</td>
-                                    <td>{{ $data->email ?? '' }}</td>
-                                    <td>{{ $data->phone ?? '' }}</td>
-                                    <td>{{ $data->profession ?? '' }}</td>
+                                    <td>{{ $loop->index+1}}</td>
+                                    <td>{{ $userName[0]->user->full_name ?? 'No employee name' }}</td>
+                                    <td width="10%">
+                                        <a href="{{ url('/admin/user/task/view/'.$userName[0]->user->id) }}" class="btn btn-sm btn-primary">
+                                            View all
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
-                    {{ $pendingTasks->links() }}
                 </div>
             </div>
         </div>
