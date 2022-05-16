@@ -314,7 +314,7 @@ class UserController extends Controller
         $data = [
             'admissionForm' => AdmissionForm::with('moneyReceipt')->where('id' , $id)->first()
         ];
-        $admissionFormPdf = PDF::loadView('backend.users.task.admission-form-pdf', compact('data'));
+        $admissionFormPdf = PDF::loadView('backend.users.task.admission-form-pdf', compact('data'))->setPaper([0, 0, 685, 800], 'landscape');
         return $admissionFormPdf->download($data['admissionForm']->s_name . '.' . 'pdf');
     }
 }
