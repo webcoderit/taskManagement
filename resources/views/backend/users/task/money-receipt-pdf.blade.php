@@ -6,7 +6,6 @@
     <title>Money Receipt Pdf</title>
 </head>
 <body>
-    <section>
         <table style="width: 700px;margin: auto;box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;border-collapse: collapse">
             <thead>
                 <tr>
@@ -123,6 +122,5 @@
                 </tr>
            </tbody>
         </table>
-    </section>
 </body>
 </html>

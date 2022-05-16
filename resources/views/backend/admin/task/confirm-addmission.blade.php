@@ -24,24 +24,12 @@
             <h6 class="mb-0 text-uppercase">Complete Addmission</h6>
             <hr/>
             <div class="search-wrapper">
-                <form action="{{ url('/admin/user/complete/admission') }}" method="get" class="form-group search-form-o-outer">
-                    @csrf
-                    <div class="select-outer">
-                        <select name="user_id" id="user_id">
-                            <option disabled selected>--- Select a user---</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->full_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button class="btn btn-primary" type="submit">Search</button>
-                    <a href="{{ url('/admin/user/complete/admission') }}" type="button" class="btn btn-danger">Clear</a>
-                </form>
+
             </div>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="" class="table table-striped table-bordered" style="width:100%">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th>Date</th>
@@ -76,3 +64,12 @@
     </div>
 </div>
 @endsection
+@push('script')
+    <script>
+        $("#example").dataTables({
+            "bPaginate":true,
+            "sPaginationType":"full_numbers",
+            "iDisplayLength": 15
+        });
+    </script>
+@endpush
