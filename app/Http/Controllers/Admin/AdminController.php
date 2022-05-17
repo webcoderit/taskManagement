@@ -78,6 +78,14 @@ class AdminController extends Controller
         return view('backend.admin.hrm.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'totalStudent'));
     }
 
+    public function studentList(){
+        return view('backend.admin.hrm.student-list');
+    }
+
+    public function expanse(){
+        return view('backend.admin.hrm.expanse');
+    }
+
     public function register()
     {
         $users = User::orderBy('created_at', 'desc')->get();

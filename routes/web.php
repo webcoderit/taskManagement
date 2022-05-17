@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/register', [App\Http\Controllers\Admin\AdminController::class, 'register'])->name('admin.user.list');
         Route::get('/add/user', [App\Http\Controllers\Admin\AdminController::class, 'createForm'])->name('admin.user.register.form.create');
         Route::get('/hr/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'hr_dashboard'])->name('admin.hr.dashboard');
+        Route::get('/student/list', [App\Http\Controllers\Admin\AdminController::class, 'studentList']);
+        Route::get('/expanse', [App\Http\Controllers\Admin\AdminController::class, 'expanse']);
 
         Route::group(['prefix' => 'user'], function (){
             Route::post('/store', [App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.user.register');

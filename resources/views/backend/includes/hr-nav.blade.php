@@ -21,7 +21,7 @@
         <div class="menu-title">Students</div>
       </a>
       <ul>
-        <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Student list</a></li>
+        <li> <a href="{{ url('admin/student/list') }}"><i class="bx bx-right-arrow-alt"></i>Student list</a></li>
       </ul>
     </li>
     <li>
@@ -31,7 +31,7 @@
         <div class="menu-title">Accounts</div>
       </a>
       <ul>
-        <li> <a href="{{ route('admin.add.task') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
+        <li> <a href="{{ url('admin/expanse') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
       </ul>
     </li>
   </ul>
