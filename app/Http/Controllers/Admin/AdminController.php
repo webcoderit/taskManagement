@@ -111,6 +111,10 @@ class AdminController extends Controller
         return view('backend.admin.hrm.expanse');
     }
 
+    public function addExpanse(){
+        return view('backend.admin.hrm.add-expanse');
+    }
+
     public function register()
     {
         $users = User::orderBy('created_at', 'desc')->get();
