@@ -48,7 +48,7 @@
                                         <td>5000</td>
                                         <td>7000</td>
                                         <td>                                        
-                                        	<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#form">
+                                        	<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#studentList">
                                                 <i class="bx bx-edit-alt"></i>
                                                 View
                                             </a>
@@ -61,11 +61,11 @@
 	            </div>
 
 	            {{-- Modal Html Start --}}	            
-					<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade" id="studentList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered" role="document">
 						    <div class="modal-content">
 							    <div class="modal-header border-bottom-0">
-							        <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+							        <h5 class="modal-title" id="exampleModalLabel">Student List</h5>
 							        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: #fff;border-radius: 5px;padding: 0px 7px;border: 2px solid #f16522;">
 							          <span aria-hidden="true" style="color: #f16522">&times;</span>
 							        </button>

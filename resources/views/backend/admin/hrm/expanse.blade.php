@@ -19,6 +19,11 @@
             </div>
             <!--end breadcrumb-->
             <h6 class="mb-0 text-uppercase">Expanse</h6>
+            <div class="add-expanse-btn-outer" style="text-align: end;">
+                <a href="#" data-toggle="modal" data-target="#addExpanse" style="display: inline-block;background: #f16522;color: #fff;padding: 7px 12px;border-radius: 5px;">
+                    Add Expanse
+                </a>
+            </div>
             <hr/>
             <div class="card">
                 <div class="card-body">
@@ -28,31 +33,14 @@
                             <tr>
                                 <th>SL</th>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Course Name</th>
-                                <th>Course Fee</th>
-                                <th>Advance</th>
-                                <th>Due</th>
-                                <th>Action</th>
+                                <th>Amount</th>
                             </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>21</td>
-                                    <td>Saidul Islam</td>
-                                    <td>info@gmail.com</td>
-                                    <td>21544651548</td>
-                                    <td>Digital Marketing</td>
+                                    <td>Saidul</td>
                                     <td>12000</td>
-                                    <td>5000</td>
-                                    <td>7000</td>
-                                    <td>
-                                        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#form">
-                                            <i class="bx bx-edit-alt"></i>
-                                            View
-                                        </a>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -61,11 +49,11 @@
             </div>
 
             {{-- Modal Html Start --}}
-                <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="addExpanse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header border-bottom-0">
-                                <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add Expanse</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background: #fff;border-radius: 5px;padding: 0px 7px;border: 2px solid #f16522;">
                                   <span aria-hidden="true" style="color: #f16522">&times;</span>
                                 </button>
@@ -79,19 +67,6 @@
                                     <div class="form-group" style="margin-bottom: 10px;">
                                         <label for="course_fee" style="font-weight: 500;color: #000;margin-bottom: 5px;">Course Fee</label>
                                         <input type="number" class="form-control" id="course_fee" placeholder="Course Fee">
-                                    </div>
-                                    <div class="form-group" style="margin-bottom: 10px;">
-                                        <label for="advance" style="font-weight: 500;color: #000;margin-bottom: 5px;">Advance</label>
-                                        <input type="number" class="form-control" id="advance" placeholder="Advance">
-                                    </div>
-                                    <div class="form-group" style="margin-bottom: 10px;">
-                                        <label for="due" style="font-weight: 500;color: #000;margin-bottom: 5px;">Due</label>
-                                        <input type="number" class="form-control" id="due" placeholder="Due">
-                                    </div>
-
-                                    <div class="form-group" style="margin-bottom: 10px;">
-                                        <label for="payment" style="font-weight: 500;color: #000;margin-bottom: 5px;">Payment</label>
-                                        <input type="number" class="form-control" id="payment" placeholder="Payment">
                                     </div>
                                 </div>
                                 <div class="modal-footer border-top-0 d-flex justify-content-center">
