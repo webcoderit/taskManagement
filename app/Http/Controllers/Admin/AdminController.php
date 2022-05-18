@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Admin;
+use App\Models\AdmissionForm;
 use App\Models\AttendanceLog;
 use App\Models\Intereste;
 use App\Models\MoneyReceipt;
@@ -74,12 +75,36 @@ class AdminController extends Controller
         $todayDue = MoneyReceipt::whereDate('created_at', Carbon::today())->get()->sum('due');
         $monthlyCredit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('advance');
         $monthlyDebit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('due');
-        $totalStudent = Intereste::where('interest_level', 'done')->get();
-        return view('backend.admin.hrm.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'totalStudent'));
+        $todayDueCollect = MoneyReceipt::where('updated_at', Carbon::today())->get()->count();
+        return view('backend.admin.hrm.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'todayDueCollect'));
     }
 
     public function studentList(){
-        return view('backend.admin.hrm.student-list');
+        $admissionStudents = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->paginate(50);
+        return view('backend.admin.hrm.student-list', compact('admissionStudents'));
+    }
+
+    public function showAdmissionDueModal($id)
+    {
+        $courseDueCollection = MoneyReceipt::with('admissionForm')->where('id', $id)->first();
+        return view('backend.admin.hrm.edit', compact('courseDueCollection'));
+    }
+
+    public function dueClear(Request $request, $id)
+    {
+        $this->validate($request, [
+            'course_fee' => 'required',
+            'advance' => 'required',
+            'due' => 'required',
+            'due_payment' => 'required',
+        ]);
+
+        $dueClear = MoneyReceipt::where('id', $id)->first();
+        $dueClear->advance = $dueClear->advance + $request->due_payment;
+        $dueClear->due = $request->due;
+        $dueClear->today_pay = $request->due_payment;
+        $dueClear->save();
+        return redirect()->back()->with('success', 'Student admission due collected.');
     }
 
     public function expanse(){
