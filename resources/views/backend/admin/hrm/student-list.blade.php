@@ -44,7 +44,15 @@
                                         <td>{{ $admissionStudent->s_name?? '' }}</td>
                                         <td>{{ $admissionStudent->s_email ?? '' }}</td>
                                         <td>{{ $admissionStudent->s_phone ?? '' }}</td>
-                                        <td>{{ $admissionStudent->course ?? '' }}</td>
+                                        <td>
+                                            @if($admissionStudent->course == 'web')
+                                                Full stack web development
+                                            @elseif($admissionStudent->course == 'digital')
+                                                Advance digital marketing
+                                            @else
+                                                Communication english
+                                            @endif
+                                        </td>
                                         <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}</td>
                                         <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}</td>
                                         <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}</td>
