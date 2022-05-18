@@ -12,6 +12,6 @@ class Intereste extends Model
     protected $guarded;
 
     public function task(){
-        return $this->belongsTo(Task::class, 'task_id' , 'id');
+        return $this->belongsTo(Task::class, 'task_id' , 'id')->with('user');
     }
 }

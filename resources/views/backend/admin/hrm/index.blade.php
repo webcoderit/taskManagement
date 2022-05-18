@@ -50,8 +50,8 @@
             <div class="col col-md-12">
                 <div class="card radius-10" style="background-color: orangered">
                     <div class="card-body text-center">
-                        <p class="mb-1 text-white">Monthly Total Student</p>
-                        <h3 class="mb-3 text-white">{{ count($totalStudent) ?? 0 }}</h3>
+                        <p class="mb-1 text-white">Today Due Collect</p>
+                        <h3 class="mb-3 text-white">{{ number_format($todayDueCollect, 2) }}</h3>
                         <div id="chart5"></div>
                     </div>
                 </div>
