@@ -73,10 +73,10 @@ class AdminController extends Controller
         $users = User::orderBy('updated_at', 'desc')->get();
         $todayCredit = MoneyReceipt::whereDate('created_at', Carbon::today())->get()->sum('advance');
         $todayDue = MoneyReceipt::whereDate('created_at', Carbon::today())->get()->sum('due');
-        $monthlyCredit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('advance');
+        $monthlyDueCollect = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('today_pay');
         $monthlyDebit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('due');
-        $todayDueCollect = MoneyReceipt::where('updated_at', Carbon::today())->get()->count();
-        return view('backend.admin.hrm.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'todayDueCollect'));
+        $todayDueCollect = MoneyReceipt::whereDate('updated_at', Carbon::today())->get()->sum('today_pay');
+        return view('backend.admin.hrm.index', compact('users', 'todayCredit', 'todayDue', 'monthlyDueCollect', 'monthlyDebit', 'todayDueCollect'));
     }
 
     public function studentList(){
@@ -104,7 +104,7 @@ class AdminController extends Controller
         $dueClear->due = $request->due;
         $dueClear->today_pay = $request->due_payment;
         $dueClear->save();
-        return redirect()->back()->with('success', 'Student admission due collected.');
+        return redirect('/admin/student/list')->with('success', 'Student admission due collected.');
     }
 
     public function expanse(){

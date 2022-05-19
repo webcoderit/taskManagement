@@ -20,18 +20,29 @@
 			<div class="row">
 				<div class="col-md-6 m-auto">
 					<div class="student-due-edit-wrapper" style="margin-top: 40px;padding: 20px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-						<form class="student-due-edit-form form-group">
+						<form class="student-due-edit-form form-group" action="{{ url('/admin/due/clear/'.$courseDueCollection->id) }}" method="post">
+                            @csrf
 							<label style="font-weight: 600;">Total Fee</label><br>
-							<input type="number" name="total_fee" placeholder="Total Fee" class="form-control">
+							<input type="number" name="course_fee" id="course_fee" value="{{ $courseDueCollection->total_fee }}" readonly placeholder="Total Fee" class="form-control">
 							<label style="font-weight: 600;">Advance</label><br>
-							<input type="number" name="advance" placeholder="Advance" class="form-control">
+							<input type="number" name="advance" id="advance" value="{{ $courseDueCollection->advance }}" readonly placeholder="Advance" class="form-control">
 							<label style="font-weight: 600;">Due</label><br>
-							<input type="number" name="due" placeholder="Due" class="form-control">
+							<input type="number" name="due" id="due" value="{{ $courseDueCollection->due }}" readonly placeholder="Due" class="form-control">
 							<label style="font-weight: 600;">Payment</label><br>
-							<input type="number" name="payment" placeholder="Payment" class="form-control">
-							<div style="text-align: center;margin-top: 20px;">
-								<button type="submit" class="btn btn-success">Submit</button>
-							</div>
+                            @if($courseDueCollection->due == 0)
+                                <input type="number" name="due_payment" id="due_payment" placeholder="Payment" disabled class="form-control">
+                            @else
+                                <input type="number" name="due_payment" id="due_payment" placeholder="Payment" onblur="calculate()" class="form-control">
+                            @endif
+                            @if($courseDueCollection->due == 0)
+                                <div style="text-align: center;margin-top: 20px;">
+                                    <button type="submit" class="btn btn-success" disabled>Submit</button>
+                                </div>
+                            @else
+                                <div style="text-align: center;margin-top: 20px;">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            @endif
 						</form>
 					</div>
 				</div>
@@ -39,3 +50,13 @@
 		</div>
 	</section>
 @endsection
+
+@push('script')
+    <script>
+        function calculate(){
+            let dueFee = document.getElementById('due').value;
+            let payment = document.getElementById('due_payment').value;
+            document.getElementById('due').value = parseInt(dueFee) - parseInt(payment);
+        }
+    </script>
+@endpush
