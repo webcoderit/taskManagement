@@ -80,8 +80,13 @@ class AdminController extends Controller
     }
 
     public function studentList(){
-        $admissionStudents = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->paginate(50);
-        return view('backend.admin.hrm.student-list', compact('admissionStudents'));
+        $sql = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at');
+        if (isset(request()->batch_no)){
+            $sql->where('batch_no', 'LIKE','%'.request()->batch_no.'%');
+        }
+        $admissionStudents = $sql->paginate(50);
+        $admissionStudentsBatch = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no');
+        return view('backend.admin.hrm.student-list', compact('admissionStudents', 'admissionStudentsBatch'));
     }
 
     public function showAdmissionDueModal($id)

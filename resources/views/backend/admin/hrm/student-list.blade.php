@@ -18,7 +18,28 @@
 	                </div>
 	            </div>
 	            <!--end breadcrumb-->
-	            <h6 class="mb-0 text-uppercase">Student List</h6>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="mb-0 text-uppercase">Student List</h6>
+                        </div>
+                        <form action="{{ url('/admin/student/list') }}" method="get">
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    @csrf
+                                    <select class="form-control" name="batch_no">
+                                        <option selected disabled>----Select A Batch No----</option>
+                                        @foreach($admissionStudentsBatch as $admissionStudentBatch)
+                                            <option value="{{ $admissionStudentBatch[0]->batch_no }}">{{ ucfirst($admissionStudentBatch[0]->course) }} - {{ ucfirst($admissionStudentBatch[0]->batch_no) }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                    <a href="{{ url('/admin/student/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 	            <hr/>
 	            <div class="card">
 	                <div class="card-body">
