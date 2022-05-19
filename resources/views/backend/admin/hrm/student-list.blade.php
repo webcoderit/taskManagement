@@ -45,9 +45,9 @@
                                         <td>{{ $admissionStudent->s_email ?? '' }}</td>
                                         <td>{{ $admissionStudent->s_phone ?? '' }}</td>
                                         <td>{{ $admissionStudent->course ?? '' }}</td>
-                                        <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}</td>
-                                        <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}</td>
-                                        <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}</td>
+                                        <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }} TK</td>
+                                        <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }} TK</td>
+                                        <td>{{ $admissionStudent->moneyReceipt->due ?? '' }} TK</td>
                                         <td>
                                         	<a href="{{ url('/admin/admission/student/info/'.$admissionStudent->moneyReceipt->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="bx bx-edit-alt"></i>

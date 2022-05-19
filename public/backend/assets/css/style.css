@@ -483,7 +483,7 @@ a.addmission-list-btn-inner:hover {
     margin-top: 6px;
 }
 
-span.money-receipt-view-label {
+.money-receipt-view-label {
     font-size: 15px;
     color: #000;
     font-weight: 500;
@@ -667,3 +667,23 @@ address {
 
 
 /* Admission Form View css End */
+
+/*HR Student list Due Collect page css */
+.foem-header-wpapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.back-btn-inner {
+    display: inline-block;
+    background: #f16522;
+    color: #fff;
+    font-size: 16px;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+.back-btn-inner:hover{
+    color: #fff;
+}
+/*HR Student list Due Collect page css */

@@ -20,6 +20,19 @@
 			<div class="row">
 				<div class="col-md-6 m-auto">
 					<div class="student-due-edit-wrapper" style="margin-top: 40px;padding: 20px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+						<div class="foem-header-wpapper">
+							<div>
+								<span style="font-weight: 600;">Due : </span>
+								<span>400 TK</span>
+							</div>
+							<div>
+								<a href="{{ url('admin/student/list') }}" class="back-btn-inner">
+									<i class="bx bx-arrow-to-left"></i>
+									Back
+								</a>
+							</div>
+						</div>
+						<hr>
 						<form class="student-due-edit-form form-group">
 							<label style="font-weight: 600;">Total Fee</label><br>
 							<input type="number" name="total_fee" placeholder="Total Fee" class="form-control">
