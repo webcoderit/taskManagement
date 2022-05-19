@@ -1,7 +1,7 @@
 @extends('backend.admin.hr-master')
 
 @section('content')
-	<section class="add-espanse-section">
+	<section class="add-espanse-section" style="padding: 1.5rem;margin-left: 20px;">
 		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
             <div class="breadcrumb-title pe-3">Expanse</div>
             <div class="ps-3">

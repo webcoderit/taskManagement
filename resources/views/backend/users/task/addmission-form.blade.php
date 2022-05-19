@@ -116,6 +116,17 @@
                                      <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <textarea name="present_address" rows="2" cols="50" class="form-control"></textarea>
                                 </div>
+                                <div class="col-md-12 mb-2">
+                                    <label>Other Admission</label><br>
+                                     <input type="checkbox" id="other_admission" name="" value="" style="margin-bottom: 0;height: 15px;margin-right: 5px;">
+                                     <label for="other_admission" style="font-weight: 400;">Other Way Admission</label>
+                                </div>
+                                <div class="col-md-12">
+                                     <label for="present_address">
+                                         Other Way Admission Note
+                                     </label><br>
+                                     <textarea name="present_address" rows="2" cols="50" class="form-control"></textarea>
+                                </div>
                                 <div class="col-md-4">
                                      <label for="course">Course Name</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <select name="course" id="course" class="form-control">
@@ -176,9 +187,9 @@
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>
                                     <div class="d-flex align-items-center Shedule">
                                         <input type="radio" id="first_day" name="class_shedule" value="Sat-Mon-Wed">
-                                        <label for="first_day">Sat Mon Wed</label><br>
+                                        <label for="first_day" style="font-weight: 400;">Sat Mon Wed</label><br>
                                         <input type="radio" id="last_day" name="class_shedule" value="Sun-Tue-Thu">
-                                        <label for="last_day">Sun Tue Thu</label>
+                                        <label for="last_day" style="font-weight: 400;">Sun Tue Thu</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
