@@ -30,20 +30,20 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card radius-10" style="background-color: deepskyblue">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Monthly Admission Advance</p>
-                        <h3 class="mb-3 text-white">{{ number_format($monthlyCredit,2 ?? 0) }}</h3>
-                        <div id="chart2"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
                 <div class="card radius-10" style="background-color: rebeccapurple">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Admission Due</p>
                         <h3 class="mb-3 text-white">{{ number_format($monthlyDebit,2 ?? 0) }}</h3>
                         <div id="chart3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card radius-10" style="background-color: deepskyblue">
+                    <div class="card-body text-center">
+                        <p class="mb-1 text-white">Monthly Due Collect</p>
+                        <h3 class="mb-3 text-white">{{ number_format($monthlyDueCollect,2 ?? 0) }}</h3>
+                        <div id="chart2"></div>
                     </div>
                 </div>
             </div>
