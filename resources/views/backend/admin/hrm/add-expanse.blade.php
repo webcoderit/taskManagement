@@ -20,6 +20,13 @@
 			<div class="row">
 				<div class="col-md-6 m-auto">
 					<div class="add-expanse-wrapper" style="margin-top: 40px;padding: 20px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+						<div style="text-align: end;">
+							<a href="{{ url('admin/expanse') }}" class="back-btn-inner">
+								<i class="bx bx-arrow-to-left"></i>
+								Back
+							</a>
+						</div>
+						<hr>
 						<form class="add-expanse-form form-group">
 							<label style="font-weight: 600;">Price</label><br>
 							<input type="number" name="total_fee" placeholder="Total Fee" class="form-control">
