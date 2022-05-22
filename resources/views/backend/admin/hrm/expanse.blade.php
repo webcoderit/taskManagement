@@ -20,7 +20,7 @@
             <!--end breadcrumb-->
             <h6 class="mb-0 text-uppercase">Expanse</h6>
             <div class="add-expanse-btn-outer" style="text-align: end;">
-                <a href="{{ url('admin/add/expanse') }}" style="display: inline-block;background: #f16522;color: #fff;padding: 7px 12px;border-radius: 5px;">
+                <a href="{{ url('/add/expanse') }}" style="display: inline-block;background: #f16522;color: #fff;padding: 7px 12px;border-radius: 5px;">
                     Add Expanse
                 </a>
             </div>
@@ -32,16 +32,18 @@
                             <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Name</th>
                                 <th>Amount</th>
+                                <th>Note</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($expanses as $expanse)
                                 <tr>
-                                    <td>21</td>
-                                    <td>Saidul</td>
-                                    <td>12000</td>
+                                    <td>{{ $loop->index+1 }}</td>
+                                    <td>{{ number_format($expanse->price,2) }}</td>
+                                    <td>{{ ucfirst($expanse->note) }}</td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

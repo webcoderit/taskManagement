@@ -34,8 +34,6 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/admission/student/info/{id}', [App\Http\Controllers\Admin\AdminController::class, 'showAdmissionDueModal']);
         Route::post('/due/clear/{id}', [App\Http\Controllers\Admin\AdminController::class, 'dueClear']);
         Route::get('/student/list', [App\Http\Controllers\Admin\AdminController::class, 'studentList']);
-        Route::get('/expanse', [App\Http\Controllers\Admin\AdminController::class, 'expanse']);
-        Route::get('/add/expanse', [App\Http\Controllers\Admin\AdminController::class, 'addExpanse']);
 
         Route::group(['prefix' => 'user'], function (){
             Route::post('/store', [App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.user.register');
@@ -98,6 +96,11 @@ Route::post('/password/update/{id}', [\App\Http\Controllers\UserController::clas
 //====================== PDF Download =======================//
 Route::get('/money/receipt/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionPdfDownload']);
 Route::get('/admission/form/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionFormPdfDownload']);
+
+//================== Expanse =========================//
+Route::get('/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'expanse']);
+Route::get('/add/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'addExpanse']);
+Route::post('/add/new/expanse', [\App\Http\Controllers\Admin\ExpanseController::class, 'addNewExpanse']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

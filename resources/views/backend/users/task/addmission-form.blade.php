@@ -118,14 +118,14 @@
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <label>Other Admission</label><br>
-                                     <input type="checkbox" id="other_admission" name="" value="" style="margin-bottom: 0;height: 15px;margin-right: 5px;">
+                                     <input type="checkbox" id="other_admission" name="other_admission" value="1" style="margin-bottom: 0;height: 15px;margin-right: 5px;" onclick="otherAdmission()">
                                      <label for="other_admission" style="font-weight: 400;">Other Way Admission</label>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="myAdmission" style="display: none">
                                      <label for="present_address">
                                          Other Way Admission Note
                                      </label><br>
-                                     <textarea name="present_address" rows="2" cols="50" class="form-control"></textarea>
+                                     <textarea name="other_admission_note" id="other_admission_note" rows="2" cols="50" class="form-control"></textarea>
                                 </div>
                                 <div class="col-md-4">
                                      <label for="course">Course Name</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -226,5 +226,15 @@
             let advance = document.getElementById('advance').value;
             document.getElementById('due').value = parseInt(totalFee) - parseInt(advance);
         }
+
+        function otherAdmission(){
+            var x = document.getElementById("myAdmission");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
     </script>
 @endpush

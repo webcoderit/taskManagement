@@ -56,6 +56,24 @@
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="card radius-10" style="background-color: lightskyblue">
+                    <div class="card-body text-center">
+                        <p class="mb-1 text-white">Today Expanse</p>
+                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereDate('created_at', \Carbon\Carbon::today())->get()->sum('price'),2) }}</h3>
+                        <div id="chart2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-12">
+                <div class="card radius-10" style="background-color: darkseagreen">
+                    <div class="card-body text-center">
+                        <p class="mb-1 text-white">Monthly Expanse</p>
+                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereMonth('created_at', date('m'))->get()->sum('price'),2) }}</h3>
+                        <div id="chart5"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
    </div>

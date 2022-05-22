@@ -31,7 +31,7 @@
         <div class="menu-title">Accounts</div>
       </a>
       <ul>
-        <li> <a href="{{ url('admin/expanse') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
+        <li> <a href="{{ url('/expanse') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
       </ul>
     </li>
   </ul>

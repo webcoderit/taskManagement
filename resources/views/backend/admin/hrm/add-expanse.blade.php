@@ -21,17 +21,18 @@
 				<div class="col-md-6 m-auto">
 					<div class="add-expanse-wrapper" style="margin-top: 40px;padding: 20px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
 						<div style="text-align: end;">
-							<a href="{{ url('admin/expanse') }}" class="back-btn-inner">
+							<a href="{{ url('/expanse') }}" class="back-btn-inner">
 								<i class="bx bx-arrow-to-left"></i>
 								Back
 							</a>
 						</div>
 						<hr>
-						<form class="add-expanse-form form-group">
+						<form class="add-expanse-form form-group" action="{{ url('/add/new/expanse') }}" method="post">
+                            @csrf
 							<label style="font-weight: 600;">Price</label><br>
-							<input type="number" name="total_fee" placeholder="Total Fee" class="form-control">
+							<input type="number" name="price" placeholder="Total Fee" class="form-control">
 							<label style="font-weight: 600;">Note</label><br>
-							<textarea class="form-control" rows="4" cols="20"></textarea>
+							<textarea class="form-control" rows="4" name="note" cols="20"></textarea>
 							<div style="text-align: center;margin-top: 20px;">
 								<button type="submit" class="btn btn-success">Submit</button>
 							</div>
