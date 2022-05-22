@@ -29,7 +29,7 @@
                 <div class="card radius-10" id="grad1">
                     <div class="card-body text-center">
                        <p class="mb-1 text-white" style="font-size: 24px;">Monthly Admission</p>
-                       <h3 class="mb-3">{{ count(\App\Models\Intereste::where('interest_level', 'done')->whereMonth('created_at', date('m'))->get()) }}</h3>
+                       <h3 class="mb-3">{{ count(\App\Models\AdmissionForm::whereMonth('created_at', date('m'))->get()) }}</h3>
                     </div>
                 </div>
             </div>

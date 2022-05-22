@@ -58,36 +58,36 @@
                             <div class="row">
                                 <div class="col-md-6">
                                      <label for="student_name">Student Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="s_name" placeholder="Student Name" class="form-control">
+                                     <input type="text" name="s_name" value="{{ old('s_name') }}" placeholder="Student Name" class="form-control">
                                     <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
                                 </div>
                                 <div class="col-md-6">
                                      <label for="email">Email</label><br>
-                                     <input type="email" name="s_email" placeholder="Student Email" class="form-control">
+                                     <input type="email" name="s_email" value="{{ old('s_email') }}" placeholder="Student Email" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="father_name">Father Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="f_name" placeholder="Father Name" class="form-control">
+                                     <input type="text" name="f_name" value="{{ old('f_name') }}" placeholder="Father Name" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="mother_name">Mother Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="m_name" placeholder="Mother Name" class="form-control">
+                                     <input type="text" name="m_name" value="{{ old('m_name') }}" placeholder="Mother Name" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="student_phone">Student Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="tel" name="s_phone" placeholder="Student Phone No." class="form-control">
+                                     <input type="tel" name="s_phone" value="{{ old('s_phone') }}" placeholder="Student Phone No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="father_phone">Father Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="tel" name="f_phone" placeholder="Father Phone No." class="form-control">
+                                     <input type="tel" name="f_phone" value="{{ old('f_phone') }}" placeholder="Father Phone No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="birth_date">Date Of Birth</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="date" name="dob" placeholder="Date Of Birth" class="form-control">
+                                     <input type="date" name="dob" value="{{ old('dob') }}" placeholder="Date Of Birth" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="profession">Profession</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="profession" placeholder="Student Profession" class="form-control">
+                                     <input type="text" name="profession" value="{{ old('profession') }}" placeholder="Student Profession" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="gender">Gender</label><span style="color: red; font-size: 16px;"> *</span>
@@ -102,19 +102,19 @@
                                 </div>
                                 <div class="col-md-6">
                                      <label for="blood_group">Blood Group</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="blood_group" placeholder="Blood Group " class="form-control">
+                                     <input type="text" name="blood_group" value="{{ old('blood_group') }}" placeholder="Blood Group " class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="qualificaton">Educational Qualification</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="qualification" placeholder="Educational Qualifications" class="form-control">
+                                     <input type="text" name="qualification" value="{{ old('qualification') }}" placeholder="Educational Qualifications" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="nid_birth_no">NID/Birth Certificate No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="number" name="nid" placeholder="NID/Birth Certificate No." class="form-control">
+                                     <input type="number" name="nid" value="{{ old('nid') }}" placeholder="NID/Birth Certificate No." class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                      <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <textarea name="present_address" rows="2" cols="50" class="form-control"></textarea>
+                                     <textarea name="present_address" rows="2" cols="50" class="form-control">{{ old('present_address') }}</textarea>
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <label>Other Admission</label><br>
@@ -125,7 +125,7 @@
                                      <label for="present_address">
                                          Other Way Admission Note
                                      </label><br>
-                                     <textarea name="other_admission_note" id="other_admission_note" rows="2" cols="50" class="form-control"></textarea>
+                                     <textarea name="other_admission_note" id="other_admission_note" rows="2" cols="50" class="form-control">{{ old('other_admission_note') }}</textarea>
                                 </div>
                                 <div class="col-md-4">
                                      <label for="course">Course Name</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="col-md-4">
                                      <label for="batch_number">Batch No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="batch_no" placeholder="Batch No." class="form-control">
+                                     <input type="text" name="batch_no" value="{{old('batch_no')}}" placeholder="Batch No." class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                      <label for="batch_type">Batch Type</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -161,15 +161,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="date" name="admission_date" placeholder="Admission Date" class="form-control">
+                                    <input type="date" name="admission_date" value="{{old('admission_date')}}" placeholder="Admission Date" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="total_fee">Total Fee</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="number" name="total_fee" id="total_fee" placeholder="Total Taka" class="form-control">
+                                    <input type="number" name="total_fee" value="{{old('total_fee')}}" id="total_fee" placeholder="Total Taka" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="advance">Advance</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="number" name="advance" id="advance" placeholder="Advance" onblur="calculate()" class="form-control">
+                                    <input type="number" name="advance" value="{{old('advance')}}" id="advance" placeholder="Advance" onblur="calculate()" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="due">Due</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -177,11 +177,11 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label for="word">In Word</label><br>
-                                    <input type="text" name="word" placeholder="In Word" class="form-control">
+                                    <input type="text" name="word" value="{{old('word')}}" placeholder="In Word" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="time">Class Time</label><span style="color: red; font-size: 16px;"> *</span>
-                                    <input type="text" name="class_time" placeholder="Class Time" class="form-control">
+                                    <input type="text" name="class_time" value="{{old('class_time')}}" placeholder="Class Time" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>

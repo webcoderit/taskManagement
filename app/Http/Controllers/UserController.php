@@ -279,6 +279,8 @@ class UserController extends Controller
         $newStudent->batch_type = $request->batch_type;
         $newStudent->class_shedule = $request->class_shedule;
         $newStudent->class_time = $request->class_time;
+        $newStudent->other_admission = $request->other_admission;
+        $newStudent->other_admission_note = $request->other_admission_note;
         if ($request->file('avatar')){
             $newStudent->avatar      = $name;
         }

@@ -14,7 +14,7 @@ class AddOtherAdmissionToAdmissionFormsTable extends Migration
     public function up()
     {
         Schema::table('admission_forms', function (Blueprint $table) {
-            $table->boolean('other_admission')->default(false)->after('avatar');
+            $table->boolean('other_admission')->default(false)->nullable()->after('avatar');
         });
     }
 

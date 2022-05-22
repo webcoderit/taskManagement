@@ -14,7 +14,7 @@ class AddOtherAdmissionNoteToAdmissionFormsTable extends Migration
     public function up()
     {
         Schema::table('admission_forms', function (Blueprint $table) {
-            $table->boolean('other_admission_note')->nullable()->after('other_admission');
+            $table->text('other_admission_note')->nullable()->after('other_admission');
         });
     }
 
