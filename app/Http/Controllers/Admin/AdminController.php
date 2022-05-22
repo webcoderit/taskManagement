@@ -9,6 +9,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Models\Admin;
 use App\Models\AdmissionForm;
 use App\Models\AttendanceLog;
+use App\Models\Batch;
 use App\Models\Intereste;
 use App\Models\MoneyReceipt;
 use App\Models\User;
@@ -209,5 +210,32 @@ class AdminController extends Controller
     public function attendanceSheetDownload()
     {
         return $this->excel->download(new AttendanceMultiSheetReport(2022), 'Attendance.xlsx');
+    }
+
+    public function batchCreateForm()
+    {
+        $batchList = Batch::get();
+        return view('backend.admin.batch-create', compact('batchList'));
+    }
+
+    public function batchStore(Request $request)
+    {
+        $this->validate($request, [
+            'course_name' => 'required',
+            'batch_no' => 'required',
+        ]);
+
+        $addNewBatch = new Batch();
+        $addNewBatch->course_name = $request->course_name;
+        $addNewBatch->batch_no = trim($request->batch_no);
+        $addNewBatch->save();
+        return redirect()->back()->with('success', 'Add new batch');
+    }
+
+    public function batchDelete($id)
+    {
+        $deleteBatch = Batch::find($id);
+        $deleteBatch->delete();
+        return redirect()->back()->with('error', 'Batch has been deleted');
     }
 }

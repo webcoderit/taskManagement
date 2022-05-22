@@ -34,6 +34,9 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/admission/student/info/{id}', [App\Http\Controllers\Admin\AdminController::class, 'showAdmissionDueModal']);
         Route::post('/due/clear/{id}', [App\Http\Controllers\Admin\AdminController::class, 'dueClear']);
         Route::get('/student/list', [App\Http\Controllers\Admin\AdminController::class, 'studentList']);
+        Route::get('/batch/create', [App\Http\Controllers\Admin\AdminController::class, 'batchCreateForm']);
+        Route::post('/batch/store', [App\Http\Controllers\Admin\AdminController::class, 'batchStore']);
+        Route::get('/batch/delete/{id}', [App\Http\Controllers\Admin\AdminController::class, 'batchDelete']);
 
         Route::group(['prefix' => 'user'], function (){
             Route::post('/store', [App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.user.register');

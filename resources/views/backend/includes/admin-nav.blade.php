@@ -25,6 +25,7 @@
           <li> <a href="{{ route('admin.user.list') }}"><i class="bx bx-right-arrow-alt"></i>Registration User</a></li>
         <li> <a href="{{ route('admin.user.online') }}"><i class="bx bx-right-arrow-alt"></i>Employee Tracking</a></li>
         <li> <a href="{{ route('admin.user.attendance.log') }}"><i class="bx bx-right-arrow-alt"></i>Attendance report</a></li>
+        <li> <a href="{{ url('/admin/batch/create') }}"><i class="bx bx-right-arrow-alt"></i>Add batch</a></li>
       </ul>
     </li>
     <li>
