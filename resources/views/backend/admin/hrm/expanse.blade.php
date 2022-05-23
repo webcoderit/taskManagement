@@ -28,37 +28,56 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <form class="form-group">
+                        <form class="form-group" action="{{ url('/expanse') }}" method="get">
+                            @csrf
                             <div class="col-md-6 m-auto">
                                 <div class="input-group mb-2">
-                                    <input type="date" name="date" class="form-control">
+                                    <input type="date" name="expanse_date" class="form-control">
                                     <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
-                                    <a href="{{ url('/admin/student/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                    <a href="{{ url('/expanse') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <hr>
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th>SL</th>
+                                <th>Date</th>
                                 <th>Amount</th>
-                                <th>Note</th>
+                                <th width="40%">Note</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @php
+                                $sum = 0
+                            @endphp
                             @foreach($expanses as $expanse)
                                 <tr>
                                     <td>{{ $loop->index+1 }}</td>
+                                    <td>{{ date('Y-m-d', strtotime($expanse->created_at))  }}</td>
                                     <td>{{ number_format($expanse->price,2) }}</td>
                                     <td>{{ ucfirst($expanse->note) }}</td>
                                 </tr>
+                                @php
+                                    $sum += $expanse->price
+                                @endphp
                             @endforeach
+                            <tr>
+                                <td width="8%">
+                                    <span></span>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
+                    {{ $expanses->links() }}
                 </div>
             </div>
         </div>

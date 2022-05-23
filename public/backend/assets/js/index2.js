@@ -79,8 +79,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart1"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart1"), options);
+// chart.render();
 
 
 
@@ -162,8 +162,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart2"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart2"), options);
+// chart.render();
 
 
 // chart 3
@@ -244,8 +244,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart3"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart3"), options);
+// chart.render();
 
 
 
@@ -327,8 +327,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart4"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart4"), options);
+// chart.render();
 
 
 
@@ -411,8 +411,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart5"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart5"), options);
+// chart.render();
 
 
 
@@ -461,7 +461,7 @@ var options = {
             endingShape: 'rounded'
         },
     },
-    
+
     dataLabels: {
         enabled: false
     },
@@ -499,7 +499,7 @@ var options = {
     xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
     },
-    
+
     tooltip: {
         theme: 'dark',
         y: {
@@ -509,8 +509,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart6"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart6"), options);
+// chart.render();
 
 
 
@@ -582,8 +582,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart7"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart7"), options);
+// chart.render();
 
 
 
@@ -665,8 +665,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart8"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart8"), options);
+// chart.render();
 
 
 
@@ -748,8 +748,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart9"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart9"), options);
+// chart.render();
 
 
 // chart 10
@@ -830,8 +830,8 @@ var options = {
         }
     }
 };
-var chart = new ApexCharts(document.querySelector("#chart10"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart10"), options);
+// chart.render();
 
 
 
@@ -919,217 +919,217 @@ var options = {
     },
     labels: ['Dynamics Today'],
 }
-var chart = new ApexCharts(document.querySelector("#chart11"), options);
-chart.render();
+// var chart = new ApexCharts(document.querySelector("#chart11"), options);
+// chart.render();
 
 
 
 // chart 12
-	Highcharts.chart('chart12', {
-		chart: {
-            width: '190',
-            height: '190',
-			plotBackgroundColor: null,
-			plotBorderWidth: null,
-			plotShadow: false,
-			type: 'pie',
-			styledMode: true
-		},
-		credits: {
-			enabled: false
-		},
-        exporting: {
-			buttons: {
-				contextButton: {
-					enabled: false,
-				}
-			}
-		},
-		title: {
-			text: ''
-		},
-		tooltip: {
-			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-		},
-		accessibility: {
-			point: {
-				valueSuffix: '%'
-			}
-		},
-		plotOptions: {
-			pie: {
-				allowPointSelect: true,
-				cursor: 'pointer',
-				dataLabels: {
-					enabled: false
-				},
-				showInLegend: false
-			}
-		},
-		series: [{
-			name: 'Users',
-			colorByPoint: true,
-			data: [{
-				name: 'Male',
-				y: 61.41,
-				sliced: true,
-				selected: true
-			}, {
-				name: 'Female',
-				y: 11.84
-			}]
-		}]
-	});
-
-
-
-// chart 13
-	// Create the chart
-	Highcharts.chart('chart13', {
-		chart: {
-			height: 360,
-			type: 'column',
-			styledMode: true
-		},
-		credits: {
-			enabled: false
-		},
-		title: {
-			text: 'Traffic Sources Status. January, 2021'
-		},
-		accessibility: {
-			announceNewData: {
-				enabled: true
-			}
-		},
-		xAxis: {
-			type: 'category'
-		},
-		yAxis: {
-			title: {
-				text: 'Traffic Sources Status'
-			}
-		},
-		legend: {
-			enabled: false
-		},
-		plotOptions: {
-			series: {
-				borderWidth: 0,
-				dataLabels: {
-					enabled: true,
-					format: '{point.y:.1f}%'
-				}
-			}
-		},
-		tooltip: {
-			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-		},
-		series: [{
-			name: "Traffic Sources",
-			colorByPoint: true,
-			data: [{
-				name: "Organic Search",
-				y: 62.74,
-				drilldown: "Organic Search"
-			}, {
-				name: "Direct",
-				y: 40.57,
-				drilldown: "Direct"
-			}, {
-				name: "Referral",
-				y: 25.23,
-				drilldown: "Referral"
-			}, {
-				name: "Others",
-				y: 10.58,
-				drilldown: "Others"
-			}]
-		}],
-		
-	});
-
-
-// chart 14
-	// Create the chart
-	Highcharts.chart('chart14', {
-		chart: {
-			height: 360,
-			type: 'column',
-			styledMode: true
-		},
-		credits: {
-			enabled: false
-		},
-		title: {
-			text: 'Visitor Age Group Status'
-		},
-		accessibility: {
-			announceNewData: {
-				enabled: true
-			}
-		},
-		xAxis: {
-			type: 'category'
-		},
-		yAxis: {
-			title: {
-				text: 'Age Group Status'
-			}
-		},
-		legend: {
-			enabled: false
-		},
-		plotOptions: {
-			series: {
-				borderWidth: 0,
-				dataLabels: {
-					enabled: true,
-					format: '{point.y:.1f}K'
-				}
-			}
-		},
-		tooltip: {
-			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-		},
-		series: [{
-			name: "Age Group",
-			colorByPoint: true,
-			data: [{
-				name: "18-24",
-				y: 35.74,
-				//drilldown: "Organic Search"
-			}, {
-				name: "25-34",
-				y: 65.57,
-				//drilldown: "Direct"
-			}, {
-				name: "35-44",
-				y: 30.23,
-				//drilldown: "Referral"
-			}, {
-				name: "45-54",
-				y: 20.58,
-				//drilldown: "Others"
-			}, {
-				name: "55-64",
-				y: 15.58,
-				//drilldown: "Others"
-			}, {
-				name: "65-80",
-				y: 8.58,
-				//drilldown: "Others"
-			}]
-		}],
-		
-	});
+// 	Highcharts.chart('chart12', {
+// 		chart: {
+//             width: '190',
+//             height: '190',
+// 			plotBackgroundColor: null,
+// 			plotBorderWidth: null,
+// 			plotShadow: false,
+// 			type: 'pie',
+// 			styledMode: true
+// 		},
+// 		credits: {
+// 			enabled: false
+// 		},
+//         exporting: {
+// 			buttons: {
+// 				contextButton: {
+// 					enabled: false,
+// 				}
+// 			}
+// 		},
+// 		title: {
+// 			text: ''
+// 		},
+// 		tooltip: {
+// 			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+// 		},
+// 		accessibility: {
+// 			point: {
+// 				valueSuffix: '%'
+// 			}
+// 		},
+// 		plotOptions: {
+// 			pie: {
+// 				allowPointSelect: true,
+// 				cursor: 'pointer',
+// 				dataLabels: {
+// 					enabled: false
+// 				},
+// 				showInLegend: false
+// 			}
+// 		},
+// 		series: [{
+// 			name: 'Users',
+// 			colorByPoint: true,
+// 			data: [{
+// 				name: 'Male',
+// 				y: 61.41,
+// 				sliced: true,
+// 				selected: true
+// 			}, {
+// 				name: 'Female',
+// 				y: 11.84
+// 			}]
+// 		}]
+// 	});
+//
+//
+//
+// // chart 13
+// 	// Create the chart
+// 	Highcharts.chart('chart13', {
+// 		chart: {
+// 			height: 360,
+// 			type: 'column',
+// 			styledMode: true
+// 		},
+// 		credits: {
+// 			enabled: false
+// 		},
+// 		title: {
+// 			text: 'Traffic Sources Status. January, 2021'
+// 		},
+// 		accessibility: {
+// 			announceNewData: {
+// 				enabled: true
+// 			}
+// 		},
+// 		xAxis: {
+// 			type: 'category'
+// 		},
+// 		yAxis: {
+// 			title: {
+// 				text: 'Traffic Sources Status'
+// 			}
+// 		},
+// 		legend: {
+// 			enabled: false
+// 		},
+// 		plotOptions: {
+// 			series: {
+// 				borderWidth: 0,
+// 				dataLabels: {
+// 					enabled: true,
+// 					format: '{point.y:.1f}%'
+// 				}
+// 			}
+// 		},
+// 		tooltip: {
+// 			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+// 			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+// 		},
+// 		series: [{
+// 			name: "Traffic Sources",
+// 			colorByPoint: true,
+// 			data: [{
+// 				name: "Organic Search",
+// 				y: 62.74,
+// 				drilldown: "Organic Search"
+// 			}, {
+// 				name: "Direct",
+// 				y: 40.57,
+// 				drilldown: "Direct"
+// 			}, {
+// 				name: "Referral",
+// 				y: 25.23,
+// 				drilldown: "Referral"
+// 			}, {
+// 				name: "Others",
+// 				y: 10.58,
+// 				drilldown: "Others"
+// 			}]
+// 		}],
+//
+// 	});
+//
+//
+// // chart 14
+// 	// Create the chart
+// 	Highcharts.chart('chart14', {
+// 		chart: {
+// 			height: 360,
+// 			type: 'column',
+// 			styledMode: true
+// 		},
+// 		credits: {
+// 			enabled: false
+// 		},
+// 		title: {
+// 			text: 'Visitor Age Group Status'
+// 		},
+// 		accessibility: {
+// 			announceNewData: {
+// 				enabled: true
+// 			}
+// 		},
+// 		xAxis: {
+// 			type: 'category'
+// 		},
+// 		yAxis: {
+// 			title: {
+// 				text: 'Age Group Status'
+// 			}
+// 		},
+// 		legend: {
+// 			enabled: false
+// 		},
+// 		plotOptions: {
+// 			series: {
+// 				borderWidth: 0,
+// 				dataLabels: {
+// 					enabled: true,
+// 					format: '{point.y:.1f}K'
+// 				}
+// 			}
+// 		},
+// 		tooltip: {
+// 			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+// 			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+// 		},
+// 		series: [{
+// 			name: "Age Group",
+// 			colorByPoint: true,
+// 			data: [{
+// 				name: "18-24",
+// 				y: 35.74,
+// 				//drilldown: "Organic Search"
+// 			}, {
+// 				name: "25-34",
+// 				y: 65.57,
+// 				//drilldown: "Direct"
+// 			}, {
+// 				name: "35-44",
+// 				y: 30.23,
+// 				//drilldown: "Referral"
+// 			}, {
+// 				name: "45-54",
+// 				y: 20.58,
+// 				//drilldown: "Others"
+// 			}, {
+// 				name: "55-64",
+// 				y: 15.58,
+// 				//drilldown: "Others"
+// 			}, {
+// 				name: "65-80",
+// 				y: 8.58,
+// 				//drilldown: "Others"
+// 			}]
+// 		}],
+//
+// 	});
 
 
 
  // world map
-	
+
  jQuery('#geographic-map').vectorMap({
     map: 'world_mill_en',
     backgroundColor: 'transparent',

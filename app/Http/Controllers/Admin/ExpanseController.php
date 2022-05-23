@@ -9,7 +9,12 @@ use Illuminate\Http\Request;
 class ExpanseController extends Controller
 {
     public function expanse(){
-        $expanses = Expance::paginate(50);
+        $sql = Expance::orderBy('created_at', 'desc');
+        $dateFormat = date('Y-m-d', strtotime(request()->expanse_date));
+        if (isset(request()->expanse_date)){
+            $sql->where('created_at', 'LIKE', '%'. $dateFormat.'%');
+        }
+        $expanses = $sql->paginate(50);
         return view('backend.admin.hrm.expanse', compact('expanses'));
     }
 
