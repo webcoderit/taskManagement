@@ -27,6 +27,18 @@
             <hr/>
             <div class="card">
                 <div class="card-body">
+                    <div class="row">
+                        <form class="form-group">
+                            <div class="col-md-6 m-auto">
+                                <div class="input-group mb-2">
+                                    <input type="date" name="date" class="form-control">
+                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                    <a href="{{ url('/admin/student/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
                     <div class="table-responsive">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
