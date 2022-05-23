@@ -46,6 +46,8 @@
                                 <input type="number" name="due_payment" id="due_payment" placeholder="Payment" disabled class="form-control">
                             @else
                                 <input type="number" name="due_payment" id="due_payment" placeholder="Payment" onblur="calculate()" class="form-control">
+                                <label style="font-weight: 600;">Student Note</label><br>
+                                <textarea class="form-control" name="note" rows="5" placeholder="Student opinion here..."></textarea>
                             @endif
                             @if($courseDueCollection->due == 0)
                                 <div style="text-align: center;margin-top: 20px;">

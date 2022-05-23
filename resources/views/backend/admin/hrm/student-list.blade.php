@@ -45,6 +45,7 @@
 	                            <thead>
 	                            <tr>
 	                                <th>SL</th>
+	                                <th>Marketing Officer Name</th>
 	                                <th>Name</th>
 	                                <th>Email</th>
 	                                <th>Phone</th>
@@ -52,6 +53,7 @@
 	                                <th>Course Fee</th>
 	                                <th>Advance</th>
 	                                <th>Due</th>
+	                                <th>Opinion</th>
 	                                <th>Action</th>
 	                            </tr>
 	                            </thead>
@@ -59,6 +61,7 @@
                                 @foreach($admissionStudents as $admissionStudent)
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ $admissionStudent->user->full_name?? '' }}</td>
                                         <td>{{ $admissionStudent->s_name?? '' }}</td>
                                         <td>{{ $admissionStudent->s_email ?? '' }}</td>
                                         <td>{{ $admissionStudent->s_phone ?? '' }}</td>
@@ -74,11 +77,12 @@
                                         <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}</td>
                                         <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}</td>
                                         <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}</td>
+                                        <td>{{ $admissionStudent->note ?? '' }}</td>
                                         <td>
                                             @if($admissionStudent->moneyReceipt->due == 0)
-                                        	<a href="#" class="btn btn-sm btn-success">
-                                                Paid
-                                            </a>
+                                                <a href="#" class="btn btn-sm btn-success">
+                                                    Paid
+                                                </a>
                                             @else
                                                 <a href="{{ url('/admin/admission/student/info/'.$admissionStudent->moneyReceipt->id) }}" class="btn btn-sm btn-primary">
                                                     <i class="bx bx-edit-alt"></i>

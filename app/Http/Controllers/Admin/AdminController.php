@@ -81,7 +81,7 @@ class AdminController extends Controller
     }
 
     public function studentList(){
-        $sql = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at');
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
         if (isset(request()->batch_no)){
             $sql->where('batch_no', 'LIKE','%'.request()->batch_no.'%');
         }
@@ -102,7 +102,6 @@ class AdminController extends Controller
             'course_fee' => 'required',
             'advance' => 'required',
             'due' => 'required',
-            'due_payment' => 'required',
         ]);
 
         $dueClear = MoneyReceipt::where('id', $id)->first();
@@ -110,7 +109,11 @@ class AdminController extends Controller
         $dueClear->due = $request->due;
         $dueClear->today_pay = $request->due_payment;
         $dueClear->save();
-        return redirect('/admin/student/list')->with('success', 'Student admission due collected.');
+        //Student opinion
+        $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
+        $updateStudentNote->note = $request->note;
+        $updateStudentNote->save();
+        return redirect('/admin/student/list')->with('success', 'Updated.');
     }
 
     public function register()

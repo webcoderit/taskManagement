@@ -123,6 +123,24 @@
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="card radius-10" style="background-color: rebeccapurple">
+                    <div class="card-body text-center">
+                        <p class="mb-1 text-white">Today total expanse</p>
+                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereDate('created_at', \Carbon\Carbon::today())->get()->sum('price'),2) }} Tk.</h3>
+                        <div id="chart3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-12">
+                <div class="card radius-10" style="background-color: orangered">
+                    <div class="card-body text-center">
+                        <p class="mb-1 text-white">Monthly total expanse</p>
+                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereMonth('created_at', date('m'))->get()->sum('price'),2) }} Tk.</h3>
+                        <div id="chart5"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
    </div>
