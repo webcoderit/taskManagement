@@ -39,7 +39,7 @@
                         </div>
                         @if($admissionForm->avatar != null)
                             <div>
-                                <img src="{{ $admissionForm->avatar ?? 'image not found' }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
+                                <img src="{{ asset('/student/'.$admissionForm->avatar) }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
                             </div>
                         @endif
                     </div>

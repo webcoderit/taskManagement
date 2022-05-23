@@ -137,8 +137,13 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                     <label for="batch_number">Batch No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="batch_no" value="{{old('batch_no')}}" placeholder="Batch No." class="form-control">
+                                     <label for="batch_no">Batch No.</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <select name="batch_no" id="batch_no" class="form-control">
+                                        <option disabled selected>---Select Batch Number---</option>
+                                        @foreach($batchNumber as $batch)
+                                            <option value="{{ $batch->batch_no }}">{{ $batch->batch_no }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
                                      <label for="batch_type">Batch Type</label><span style="color: red; font-size: 16px;"> *</span><br>

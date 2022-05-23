@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdmissionRequest;
 use App\Models\AdmissionForm;
+use App\Models\Batch;
 use App\Models\Intereste;
 use App\Models\MoneyReceipt;
 use App\Models\Task;
@@ -155,7 +156,8 @@ class UserController extends Controller
     }
 
     public function addmissionForm(){
-        return view('backend.users.task.addmission-form');
+        $batchNumber = Batch::orderBy('created_at', 'desc')->get();
+        return view('backend.users.task.addmission-form', compact('batchNumber'));
     }
     public function moneyReceipt(){
         $moneyReceipt = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->where('user_id', auth()->user()->id)->get();
