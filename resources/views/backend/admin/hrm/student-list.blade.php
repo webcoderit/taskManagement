@@ -75,10 +75,16 @@
                                         <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}</td>
                                         <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}</td>
                                         <td>
-                                        	<a href="{{ url('/admin/admission/student/info/'.$admissionStudent->moneyReceipt->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="bx bx-edit-alt"></i>
-                                                Due
+                                            @if($admissionStudent->moneyReceipt->due == 0)
+                                        	<a href="#" class="btn btn-sm btn-success">
+                                                Paid
                                             </a>
+                                            @else
+                                                <a href="{{ url('/admin/admission/student/info/'.$admissionStudent->moneyReceipt->id) }}" class="btn btn-sm btn-primary">
+                                                    <i class="bx bx-edit-alt"></i>
+                                                    Due
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
