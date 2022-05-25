@@ -1,4 +1,4 @@
-@extends('backend.admin.hr-master')
+@extends('backend.admin.admin-master')
 
 @section('content')
 <div class="wrapper">
@@ -20,7 +20,7 @@
             <!--end breadcrumb-->
             <h6 class="mb-0 text-uppercase">Expanse</h6>
             <div class="add-expanse-btn-outer" style="text-align: end;">
-                
+
             </div>
             <hr/>
             <div class="card">
