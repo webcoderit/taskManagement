@@ -66,6 +66,9 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/interested', [App\Http\Controllers\Admin\TaskController::class, 'interested'])->name('admin.interested');
             Route::get('/recall', [App\Http\Controllers\Admin\TaskController::class, 'recall'])->name('admin.recall');
             Route::get('/task/view/{id}', [App\Http\Controllers\Admin\TaskController::class, 'allTaskView'])->name('admin.employee.task.view');
+
+            //=============== Expanse list =================//
+            Route::get('/expanse/list', [App\Http\Controllers\Admin\AdminController::class, 'expanse']);
         });
     });
 });

@@ -52,6 +52,15 @@
         <li> <a href="{{ route('admin.recall') }}"><i class="bx bx-right-arrow-alt"></i>Recall</a></li>
       </ul>
     </li>
+      <li>
+          <a class="has-arrow" href="javascript:;">
+              <div class="parent-icon"><i class='bx bx-bookmark-heart'></i></div>
+              <div class="menu-title">Accounts</div>
+          </a>
+          <ul>
+              <li> <a href="{{ url('/admin/user/expanse/list') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
+          </ul>
+      </li>
   </ul>
   <!--end navigation-->
 </div>

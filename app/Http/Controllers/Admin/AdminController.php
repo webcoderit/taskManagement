@@ -10,6 +10,7 @@ use App\Models\Admin;
 use App\Models\AdmissionForm;
 use App\Models\AttendanceLog;
 use App\Models\Batch;
+use App\Models\Expance;
 use App\Models\Intereste;
 use App\Models\MoneyReceipt;
 use App\Models\User;
@@ -240,5 +241,16 @@ class AdminController extends Controller
         $deleteBatch = Batch::find($id);
         $deleteBatch->delete();
         return redirect()->back()->with('error', 'Batch has been deleted');
+    }
+
+    public function expanse()
+    {
+        $sql = Expance::orderBy('created_at', 'desc');
+        $dateFormat = date('Y-m-d', strtotime(request()->expanse_date));
+        if (isset(request()->expanse_date)){
+            $sql->where('created_at', 'LIKE', '%'. $dateFormat.'%');
+        }
+        $expanses = $sql->paginate(50);
+        return view('backend.admin.home.expanse', compact('expanses'));
     }
 }
