@@ -41,11 +41,11 @@
                                         <td>5000</td>
                                         <td></td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary">
+                                            <a href="{{ url('/salary/pay') }}" class="btn btn-sm btn-success">
                                                 <i class="bx bx-edit-alt"></i>
                                                 Pay
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-primary">
+                                            <a href="{{ url('/salary/advance') }}" class="btn btn-sm btn-danger">
                                                 <i class="bx bx-edit-alt"></i>
                                                 Advance
                                             </a>
