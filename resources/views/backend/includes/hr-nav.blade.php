@@ -32,6 +32,7 @@
       </a>
       <ul>
         <li> <a href="{{ url('/expanse') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
+        <li> <a href="{{ url('/salary') }}"><i class="bx bx-right-arrow-alt"></i>Salary</a></li>
       </ul>
     </li>
   </ul>

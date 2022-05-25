@@ -35,4 +35,8 @@ class ExpanseController extends Controller
         $expanse->save();
         return redirect('/expanse')->with('success', 'Expanse has been added');
     }
+
+    public function salary(){
+        return view('backend.admin.hrm.salary');
+    }
 }
