@@ -39,4 +39,10 @@ class ExpanseController extends Controller
     public function salary(){
         return view('backend.admin.hrm.salary');
     }
+    public function salaryPay(){
+        return view('backend.admin.hrm.salary-pay');
+    }
+    public function salaryAdvance(){
+        return view('backend.admin.hrm.salary-advance');
+    }
 }
