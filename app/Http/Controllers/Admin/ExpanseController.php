@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Expance;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ExpanseController extends Controller
@@ -37,7 +38,8 @@ class ExpanseController extends Controller
     }
 
     public function salary(){
-        return view('backend.admin.hrm.salary');
+        $employees = User::orderBy('id', 'desc')->get();
+        return view('backend.admin.hrm.salary', compact('employees'));
     }
     public function salaryPay(){
         return view('backend.admin.hrm.salary-pay');

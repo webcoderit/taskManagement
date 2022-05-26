@@ -26,20 +26,17 @@
 	                            <thead>
 	                            <tr>
 	                                <th>SL</th>
-	                                <th>Month</th>
 	                                <th>Name</th>
-	                                <th>Salary Amount</th>
-	                                <th>Status</th>
+	                                <th>Phone</th>
 	                                <th>Action</th>
 	                            </tr>
 	                            </thead>
 	                            <tbody>
+                                @foreach($employees as $employee)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Octobar</td>
-                                        <td>Saidul Islam</td>
-                                        <td>5000</td>
-                                        <td></td>
+                                        <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ $employee->full_name }}</td>
+                                        <td>{{ $employee->phone }}</td>
                                         <td>
                                             <a href="{{ url('/salary/pay') }}" class="btn btn-sm btn-success">
                                                 <i class="bx bx-edit-alt"></i>
@@ -51,6 +48,7 @@
                                             </a>
                                         </td>
                                     </tr>
+                                @endforeach
 	                            </tbody>
 	                        </table>
 	                    </div>
