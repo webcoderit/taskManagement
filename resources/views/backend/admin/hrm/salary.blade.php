@@ -70,16 +70,16 @@
 					                    </label><br>
 					                    <input type="number" name="salary" class="form-control" placeholder="Salary">
 		            				</div>
-		            				<div class="col-md-2" style="display: flex;align-items: center;">
+		            				<div class="col-md-2" style="margin-top: 30px;">
 				                        <button type="submit" class="btn btn-success">Submit</button>
 		            				</div>
 		            			</div>
 		            		</form>
                             <form action="{{ url('/salary') }}" method="get">
                                 @csrf
-                                <div class="col-md-6 m-auto">
+                                <div class="col-md-8 m-auto">
                                     <div class="row">
-                                        <div class="col-md-9">
+                                        <div class="col-md-6">
                                             <label for="month" style="font-weight: 600;margin-bottom: 10px;">Monthly Salary Amount</label><br>
                                             <select name="month" id="month" class="form-control" style="margin-bottom: 20px;">
                                                 <option selected disabled>--- Select Month ---</option>
@@ -97,8 +97,13 @@
                                                 <option value="december">December</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3" style="display: flex;align-items: flex-end;">
+                                        <div class="col-md-2" style="margin-top: 30px;">
                                             <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                        <div class="col-md-3 p-0">
+                                            <a href="#" class="salary-form-btn">
+                                            	Clear
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
