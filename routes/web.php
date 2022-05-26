@@ -108,7 +108,7 @@ Route::get('/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'ex
 Route::get('/add/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'addExpanse']);
 Route::post('/add/new/expanse', [\App\Http\Controllers\Admin\ExpanseController::class, 'addNewExpanse']);
 Route::get('/salary', [\App\Http\Controllers\Admin\ExpanseController::class, 'salary']);
-Route::get('/salary/pay', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryPay']);
+Route::post('/salary/submit', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryPay']);
 Route::get('/salary/advance', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryAdvance']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

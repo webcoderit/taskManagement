@@ -21,8 +21,21 @@
 	            <hr/>
 	            <div class="card">
 	            	<div class="card-body">
+                        @if(Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Warning!</strong> {{ Session::get('error') }}.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+                            @if(Session::has('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Success!</strong> {{ Session::get('success') }}.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
 	            		<div class="salary-form-wrapper">
-		            		<form class="form-group">
+		            		<form class="form-group" action="{{ url('/salary/submit') }}" method="post">
+                                @csrf
 		            			<div class="row">
 		            				<div class="col-md-3">
 		            					<label for="month" style="font-weight: 600;margin-bottom: 10px;">Select Month</label><br>
@@ -43,15 +56,12 @@
 					                    </select>
 		            				</div>
 		            				<div class="col-md-4">
-		            					<label for="employe" style="font-weight: 600;margin-bottom: 10px;">Select Employe</label><br>
-					                    <select name="employe" id="employeName" class="form-control" style="margin-bottom: 20px;">
-					                        <option selected disabled>--- Select Employe ---</option>
-					                        <option value="saidul">Saidul Islam</option>
-					                        <option value="shariar">Shariar Iqbal</option>
-					                        <option value="abdullah">Abdullah Al Mamun</option>
-					                        <option value="ashik">Ashikur Rahman</option>
-					                        <option value="ripon">MD. Ripon Mia</option>
-					                        <option value="saki">Al-Amin Saki</option>
+		            					<label for="employee" style="font-weight: 600;margin-bottom: 10px;">Select Employee</label><br>
+					                    <select name="user_id" id="employeName" class="form-control" style="margin-bottom: 20px;">
+					                        <option selected disabled>--- Select Employee ---</option>
+                                            @foreach($employees as $employee)
+					                        <option value="{{ $employee->id }}">{{ $employee->full_name }}</option>
+                                            @endforeach
 					                    </select>
 		            				</div>
 		            				<div class="col-md-3">
@@ -63,21 +73,36 @@
 		            				<div class="col-md-2" style="display: flex;align-items: center;">
 				                        <button type="submit" class="btn btn-success">Submit</button>
 		            				</div>
-		            				<div class="col-md-6 m-auto">
-		            					<div class="row">
-		            						 <div class="col-md-9">
-				            					<label for="search" style="font-weight: 600;margin-bottom: 10px;">
-							                    	Search
-							                    </label><br>
-				            					<input type="text" name="search" class="form-control" placeholder="Search">
-				            				</div>
-				            				<div class="col-md-3" style="display: flex;align-items: flex-end;">
-				            					<button type="submit" class="btn btn-primary">Submit</button>
-				            				</div>
-		            					</div>
-		            				</div>
 		            			</div>
 		            		</form>
+                            <form action="{{ url('/salary') }}" method="get">
+                                @csrf
+                                <div class="col-md-6 m-auto">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <label for="month" style="font-weight: 600;margin-bottom: 10px;">Monthly Salary Amount</label><br>
+                                            <select name="month" id="month" class="form-control" style="margin-bottom: 20px;">
+                                                <option selected disabled>--- Select Month ---</option>
+                                                <option value="january">January</option>
+                                                <option value="february">February</option>
+                                                <option value="march">March</option>
+                                                <option value="april">April</option>
+                                                <option value="may">May</option>
+                                                <option value="june">June</option>
+                                                <option value="july">July</option>
+                                                <option value="august">August</option>
+                                                <option value="september">September</option>
+                                                <option value="october">October</option>
+                                                <option value="november">November</option>
+                                                <option value="december">December</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3" style="display: flex;align-items: flex-end;">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
 		            	</div>
 	            	</div>
 	            </div>
@@ -89,28 +114,35 @@
 	                            <tr>
 	                                <th>SL</th>
 	                                <th>Name</th>
-	                                <th>Phone</th>
-	                                <th>Action</th>
+	                                <th>Month</th>
+	                                <th>Amount</th>
 	                            </tr>
 	                            </thead>
 	                            <tbody>
-                                @foreach($employees as $employee)
+                                @php
+                                    $sum = 0
+                                @endphp
+                                @foreach($salaries as $salary)
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $employee->full_name }}</td>
-                                        <td>{{ $employee->phone }}</td>
-                                        <td>
-                                            <a href="{{ url('/salary/pay') }}" class="btn btn-sm btn-success">
-                                                <i class="bx bx-edit-alt"></i>
-                                                Pay
-                                            </a>
-                                            <a href="{{ url('/salary/advance') }}" class="btn btn-sm btn-danger">
-                                                <i class="bx bx-edit-alt"></i>
-                                                Advance
-                                            </a>
-                                        </td>
+                                        <td>{{ $salary->user->full_name ?? '' }}</td>
+                                        <td>{{ ucfirst($salary->month) }}</td>
+                                        <td>{{ number_format($salary->salary,2) }} Tk.</td>
                                     </tr>
+                                    @php
+                                        $sum += $salary->salary
+                                    @endphp
                                 @endforeach
+                                <tr>
+                                    <td width="8%">
+                                        <span></span>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td width="12%">
+                                        <span style="font-weight: bold">Total : {{ number_format($sum,2) }} Tk.</span>
+                                    </td>
+                                </tr>
 	                            </tbody>
 	                        </table>
 	                    </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Expance;
+use App\Models\Salary;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -39,12 +40,37 @@ class ExpanseController extends Controller
 
     public function salary(){
         $employees = User::orderBy('id', 'desc')->get();
-        return view('backend.admin.hrm.salary', compact('employees'));
+        $sql = Salary::with('user');
+        if (isset(request()->month)){
+            $sql->where('month', 'LIKE', '%'.request()->month.'%');
+        }
+        $salaries = $sql->get();
+        return view('backend.admin.hrm.salary', compact('employees', 'salaries'));
     }
-    public function salaryPay(){
-        return view('backend.admin.hrm.salary-pay');
+
+    public function salaryPay(Request $request)
+    {
+        $this->validate($request, [
+            'month' => 'required',
+            'user_id' => 'required',
+            'salary' => 'required',
+        ]);
+        $isSalaryPaid = Salary::where('month', strtolower($request->month))->where('user_id', $request->user_id)->first();
+        if ($isSalaryPaid){
+            return redirect()->back()->with('error', 'Salary already paid in this month');
+        }else{
+            $salary = new Salary();
+            $salary->user_id = $request->user_id;
+            $salary->month = $request->month;
+            $salary->salary = $request->salary;
+            $salary->save();
+            return redirect('/salary')->with('success', 'Salary has been added');
+        }
     }
-    public function salaryAdvance(){
-        return view('backend.admin.hrm.salary-advance');
-    }
+//    public function salaryPay(){
+//        return view('backend.admin.hrm.salary-pay');
+//    }
+//    public function salaryAdvance(){
+//        return view('backend.admin.hrm.salary-advance');
+//    }
 }
