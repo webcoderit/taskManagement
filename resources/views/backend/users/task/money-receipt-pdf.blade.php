@@ -10,13 +10,16 @@
             <thead>
                 <tr>
                     <td colspan="2" style="text-align: center;">
-                       <h4 style="background: #f16522;display: inline-block;padding: 5px 20px;font-size: 20px;font-weight: 500;color: #fff;border-radius: 0px 10px;margin-bottom: 0;margin-top: 55px;margin-left: 60px;">
+                        <img src="{{ asset('backend/') }}/assets/logo3.png" class="institute-logo" style="margin-left: 100px;">
+                        <p style="font-weight: 600;font-size: 14px;text-transform: capitalize;margin-left: 100px;margin-bottom: 5px;margin-top: 0;">
+                            one time learning lifetime earning
+                        </p>
+                       <h4 style="background: #f16522;display: inline-block;padding: 5px 20px;font-size: 20px;font-weight: 500;color: #fff;border-radius: 0px 10px;margin: 5px 100px 10px 210px;">
                             Money Receipt
-                        </h4> 
+                        </h4>
                     </td>
                     <td style="width:180px;">
-                        <img src="{{ asset('backend/') }}/assets/logo3.png" class="institute-logo" style="margin-left: 20px;">
-                        <p style="font-weight: 500;margin-bottom: 0;font-size: 13px;margin-top: 0;margin-bottom: 10px;margin-left: 20px;">
+                        <p style="font-weight: 600;margin-bottom: 0;color:#000;font-size: 13px;margin-top: 0;margin-bottom: 10px;margin-left: 20px;">
                             House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230
                         </p>
                     </td>
@@ -29,7 +32,7 @@
                             Student ID :
                         </span>
                         <span style="color: #000;">
-                           {{ $data['moneyReceipt']->admissionForm->course }} - {{ $data['moneyReceipt']->admissionForm->student_id }} 
+                            {{ $data['moneyReceipt']->admissionForm->course }} - {{ $data['moneyReceipt']->admissionForm->student_id }}
                         </span>
                     </td>
                     <td style="width: 180px;"></td>
