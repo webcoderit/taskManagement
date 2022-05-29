@@ -15,7 +15,6 @@
       </a>
     </li>
     <li>
-    <li>
       <a class="has-arrow" href="javascript:;">
         <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
         </div>
@@ -34,6 +33,13 @@
         <li> <a href="{{ url('/money/receipt') }}"><i class="bx bx-right-arrow-alt"></i>Money Receipt</a></li>
       </ul>
     </li>
+    <li>
+        <a class="has-arrow" href="{{ url('/chat') }}">
+          <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+          </div>
+          <div class="menu-title">Community</div>
+        </a>
+      </li>
   </ul>
   <!--end navigation-->
 </div>

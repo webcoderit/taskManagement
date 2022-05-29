@@ -182,6 +182,10 @@ class UserController extends Controller
         return view('backend.users.task.money-receipt-pdf');
     }
 
+    public function communityChat(){
+        return view('backend.users.task.chat');
+    }
+
     //============= Update information ================//
     public function updateInformation($id)
     {
@@ -321,4 +325,5 @@ class UserController extends Controller
         $admissionFormPdf = PDF::loadView('backend.users.task.admission-form-pdf', compact('data'))->setPaper([0, 0, 685, 800], 'landscape');
         return $admissionFormPdf->download($data['admissionForm']->s_name . '.' . 'pdf');
     }
+
 }
