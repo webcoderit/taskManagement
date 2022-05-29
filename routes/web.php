@@ -98,6 +98,7 @@ Route::post('/admission/store', [\App\Http\Controllers\UserController::class, 'a
 Route::get('/update/information/{id}', [\App\Http\Controllers\UserController::class, 'updateInformation']);
 Route::post('/profile/update/{id}', [\App\Http\Controllers\UserController::class, 'profileUpdate']);
 Route::post('/password/update/{id}', [\App\Http\Controllers\UserController::class, 'passwordUpdate']);
+Route::get('/chat', [\App\Http\Controllers\UserController::class, 'communityChat']);
 
 //====================== PDF Download =======================//
 Route::get('/money/receipt/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionPdfDownload']);
