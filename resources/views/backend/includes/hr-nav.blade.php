@@ -35,6 +35,7 @@
         <li> <a href="{{ url('/salary') }}"><i class="bx bx-right-arrow-alt"></i>Salary</a></li>
       </ul>
     </li>
+
   </ul>
   <!--end navigation-->
 </div>

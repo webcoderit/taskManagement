@@ -42,7 +42,7 @@ class ImportUser implements ToModel,SkipsOnError, WithHeadingRow, WithValidation
     public function rules() : array
     {
         return [
-            '*.email' => ['email', 'unique:tasks,email']
+            'phone' => 'unique:tasks,phone'
         ];
     }
 }
