@@ -39,21 +39,7 @@
 		            			<div class="row">
 		            				<div class="col-md-3">
 		            					<label for="month" style="font-weight: 600;margin-bottom: 10px;">Select Month</label><br>
-				            			<select name="month" id="month" class="form-control" style="margin-bottom: 20px;">
-					                        <option selected disabled>--- Select Month ---</option>
-					                        <option value="january">January</option>
-					                        <option value="february">February</option>
-					                        <option value="march">March</option>
-					                        <option value="april">April</option>
-					                        <option value="may">May</option>
-					                        <option value="june">June</option>
-					                        <option value="july">July</option>
-					                        <option value="august">August</option>
-					                        <option value="september">September</option>
-					                        <option value="october">October</option>
-					                        <option value="november">November</option>
-					                        <option value="december">December</option>
-					                    </select>
+                                        <input type="month" name="month" class="form-control" placeholder="Select a month">
 		            				</div>
 		            				<div class="col-md-4">
 		            					<label for="employee" style="font-weight: 600;margin-bottom: 10px;">Select Employee</label><br>
@@ -81,27 +67,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="month" style="font-weight: 600;margin-bottom: 10px;">Monthly Salary Amount</label><br>
-                                            <select name="month" id="month" class="form-control" style="margin-bottom: 20px;">
-                                                <option selected disabled>--- Select Month ---</option>
-                                                <option value="january">January</option>
-                                                <option value="february">February</option>
-                                                <option value="march">March</option>
-                                                <option value="april">April</option>
-                                                <option value="may">May</option>
-                                                <option value="june">June</option>
-                                                <option value="july">July</option>
-                                                <option value="august">August</option>
-                                                <option value="september">September</option>
-                                                <option value="october">October</option>
-                                                <option value="november">November</option>
-                                                <option value="december">December</option>
-                                            </select>
+                                            <input type="month" name="month" class="form-control" placeholder="Select a month">
                                         </div>
                                         <div class="col-md-2" style="margin-top: 30px;">
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
                                         <div class="col-md-3 p-0">
-                                            <a href="#" class="salary-form-btn">
+                                            <a href="{{ url('/salary') }}" class="salary-form-btn">
                                             	Clear
                                             </a>
                                         </div>
@@ -131,7 +103,7 @@
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $salary->user->full_name ?? '' }}</td>
-                                        <td>{{ ucfirst($salary->month) }}</td>
+                                        <td>{{ date('Y-M', strtotime($salary->month)) }}</td>
                                         <td>{{ number_format($salary->salary,2) }} Tk.</td>
                                     </tr>
                                     @php
