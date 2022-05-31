@@ -6,7 +6,7 @@
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Complete Addmission</div>
+                <div class="breadcrumb-title pe-3">Complete Admission</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
@@ -15,13 +15,13 @@
                             {{-- <li class="breadcrumb-item active" aria-current="page">
                                 <a href="#">List Task</a>
                             </li> --}}
-                            <li class="breadcrumb-item active" aria-current="page">Complete Addmission</li>
+                            <li class="breadcrumb-item active" aria-current="page">Complete Admission</li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase">Complete Addmission</h6>
+            <h6 class="mb-0 text-uppercase">Complete Admission</h6>
             <hr/>
             <div class="search-wrapper">
 
