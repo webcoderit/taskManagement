@@ -45,7 +45,7 @@
                                 <th>SL</th>
                                 <th>Date</th>
                                 <th>Amount</th>
-                                <th width="40%">Note</th>
+                                <th width="40%">Purpose</th>
                             </tr>
                             </thead>
                             <tbody>
