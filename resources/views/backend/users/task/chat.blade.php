@@ -6,9 +6,6 @@
       <div class="card-body">
         <div class="container-fluid">
           <div id="messages_container" class="chat-log">
-
-
-
             <div class="chat-log_item chat-log_item-own z-depth-0">
               <div class="row justify-content-end mx-1 d-flex">
                 <div class="col-auto px-0">

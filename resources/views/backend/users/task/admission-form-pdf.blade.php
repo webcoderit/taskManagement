@@ -7,7 +7,7 @@
 </head>
 <body>
     <section>
-        <table style="width: 900px;margin: auto;box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;padding: 20px;background-image: url({{ asset('backend/') }}/assets/logo4.png);background-position: center;background-repeat: no-repeat;background-size: contain;border-collapse: collapse;border: 1px solid #ddd;">
+        <table style="width: 900px;margin: auto;box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;padding: 20px;border-collapse: collapse;border: 1px solid #ddd;">
             <thead>
                 <tr>
                     <td style="width: 280px;padding-left: 10px;">
