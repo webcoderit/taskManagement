@@ -77,7 +77,7 @@
                          {{ $data['moneyReceipt']->total_fee }} TK
                     </span>
                 </td>
-                <td style="text-align: center;">
+                <td style="text-align: center;width: 200px;">
                     <span style="font-size: 15px;color: #000;font-weight: 600;">
                         Advance :
                     </span>

@@ -38,11 +38,11 @@
                             </a>
                         </span>
                     </td>
-                    <td colspan="2" style="text-align: end; padding: 15px 10px 0px 0px;">
+                    {{-- <td colspan="2" style="text-align: end; padding: 15px 10px 0px 0px;">
                         @if($data['admissionForm']->avatar != null)
                             <img src="{{ $data['admissionForm']->avatar ?? 'image not found' }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
                         @endif
-                    </td>
+                    </td> --}}
                 </tr>
             </thead>
             <tbody>
