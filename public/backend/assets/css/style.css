@@ -690,16 +690,6 @@ address {
     color: #fff;
 }
 
-.salary-form-btn {
-    display: inline-block;
-    background: #f16552;
-    color: #fff;
-    font-size: 16px;
-    padding: 8px 23px;
-    border-radius: 5px;
-    margin-top: 30px;
-}
-
 .salary-form-btn:hover {
     color: #fff;
 }

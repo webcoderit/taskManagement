@@ -63,20 +63,14 @@
 		            		</form>
                             <form action="{{ url('/salary') }}" method="get">
                                 @csrf
-                                <div class="col-md-8 m-auto">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="month" style="font-weight: 600;margin-bottom: 10px;">Monthly Salary Amount</label><br>
-                                            <input type="month" name="month" class="form-control" placeholder="Select a month">
-                                        </div>
-                                        <div class="col-md-2" style="margin-top: 30px;">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                        <div class="col-md-3 p-0">
-                                            <a href="{{ url('/salary') }}" class="salary-form-btn">
-                                            	Clear
-                                            </a>
-                                        </div>
+                                <div class="col-md-6 m-auto">
+                                    <div class="input-group">
+                                    	<label for="month" style="font-weight: 600;margin-right: 10px;padding: 8px 0;">Monthly Salary : </label>
+                                        <input type="month" name="month" class="form-control" placeholder="Select a month">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <a href="{{ url('/salary') }}" class="input-group-text btn btn-danger">
+                                        	Clear
+                                        </a>
                                     </div>
                                 </div>
                             </form>
