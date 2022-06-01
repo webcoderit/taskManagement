@@ -122,9 +122,7 @@ class UserController extends Controller
     }
 
     public function confirmAddmission(){
-        $complete = Intereste::with('task')->where('interest_level', 'done')->whereHas('task', function ($q){
-            $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->get();
+        $complete = AdmissionForm::with('user', 'moneyReceipt')->where('other_admission', 1)->where('user_id', auth()->user()->id)->get();
         return view('backend.users.task.confirm-addmission', compact('complete'));
     }
 

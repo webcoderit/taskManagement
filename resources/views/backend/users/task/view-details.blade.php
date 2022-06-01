@@ -99,7 +99,7 @@
                             </h6>
                             <h6 class="view-details-inner-item">
                                 Facebook ID:
-                                <a href="https://www.facebook.com/groups/161355777405329" target="_blank">
+                                <a href="{{ $task->fb_id ?? 'No fb id found' }}" target="_blank">
                                     {{ $task->fb_id ?? 'No fb id found' }}
                                 </a>
                             </h6>

@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Task;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -12,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Throwable;
 
-class ImportUser implements ToModel,SkipsOnError, WithHeadingRow, WithValidation
+class ImportUser implements ToModel,SkipsOnError, WithHeadingRow, WithValidation, SkipsEmptyRows
 {
     use Importable, SkipsErrors;
     /**
@@ -42,7 +43,10 @@ class ImportUser implements ToModel,SkipsOnError, WithHeadingRow, WithValidation
     public function rules() : array
     {
         return [
-            'phone' => 'unique:tasks,phone'
+            'name' => [
+                'required',
+                'string',
+            ],
         ];
     }
 }

@@ -53,7 +53,8 @@
 	                                <th>Course Fee</th>
 	                                <th>Advance</th>
 	                                <th>Due</th>
-	                                <th>Opinion</th>
+	                                <th>Due Opinion</th>
+	                                <th>Admission Opinion</th>
 	                                <th>Action</th>
 	                            </tr>
 	                            </thead>
@@ -74,21 +75,24 @@
                                                 Communication english
                                             @endif
                                         </td>
-                                        <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}</td>
-                                        <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}</td>
-                                        <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}</td>
+                                        <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
+                                        <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
+                                        <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->note ?? '' }}</td>
+                                        <td>{{ $admissionStudent->other_admission_note ?? '' }}</td>
                                         <td>
                                             @if($admissionStudent->moneyReceipt->due == 0)
                                                 <a href="#" class="btn btn-sm btn-success">
-                                                    Paid
+                                                    <i class="bx bx-check-circle"></i>
                                                 </a>
                                             @else
                                                 <a href="{{ url('/admin/admission/student/info/'.$admissionStudent->moneyReceipt->id) }}" class="btn btn-sm btn-primary">
-                                                    <i class="bx bx-edit-alt"></i>
-                                                    Due
+                                                    <i class="bx bx-user-circle"></i>
                                                 </a>
                                             @endif
+                                                <a href="{{ url('/admin/admission/student/info/edit/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">
+                                                    <i class="bx bx-edit-alt"></i>
+                                                </a>
                                         </td>
                                     </tr>
                                 @endforeach

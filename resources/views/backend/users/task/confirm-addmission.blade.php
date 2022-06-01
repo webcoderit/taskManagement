@@ -43,12 +43,20 @@
                                 @foreach ($complete as $data )
                                     <tr>
                                         <td>{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
-                                        <td>{{ $data->task->name ?? '' }}</td>
-                                        <td>{{ $data->task->email ?? '' }}</td>
-                                        <td>{{ $data->task->phone ?? '' }}</td>
-                                        <td>{{ $data->task->profession ?? '' }}</td>
-                                        <td>{{ $data->select_course ?? '' }}</td>
-                                        <td>{{ $data->batch_number ?? '' }}</td>
+                                        <td>{{ $data->s_name ?? '' }}</td>
+                                        <td>{{ $data->s_email ?? '' }}</td>
+                                        <td>{{ $data->s_phone ?? '' }}</td>
+                                        <td>{{ $data->profession ?? '' }}</td>
+                                        <td>
+                                            @if($data->course == 'web')
+                                                Full stack web development
+                                            @elseif($data->course == 'digital')
+                                                Advanced digital marketing
+                                            @else
+                                                Communication English
+                                            @endif
+                                        </td>
+                                        <td>{{ $data->batch_no ?? '' }}</td>
                                         <td width="10%">
                                             <span style="background: green; color: #fff; padding: 5px">Admission Done</span>
                                         </td>
