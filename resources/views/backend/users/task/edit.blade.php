@@ -99,7 +99,7 @@
                             </h6>
                             <h6 class="view-details-inner-item">
                                 Facebook ID:
-                                <a href="https://www.facebook.com/groups/161355777405329" target="_blank">
+                                <a href="{{ $interest->task->fb_id }}" target="_blank">
                                     {{ $interest->task->fb_id ?? 'No fb id found' }}
                                 </a>
                             </h6>
@@ -133,6 +133,10 @@
                                 <label for="batch">Batch</label><br>
                                 <input type="number" class="form-control" placeholder="Batch" name="batch_number" value="">
                             </div>
+                            <label for="address">Address</label><br>
+                            <input type="text" name="address" class="form-control" value="{{ $interest->address ?? '' }}"><br>
+                            <label for="profession">Profession</label><br>
+                            <input type="text" name="profession" class="form-control" value="{{ $interest->profession ?? '' }}"><br>
                             <label>Note</label><br>
                             <textarea rows="5" cols="50" name="note" class="form-control">{{ $interest->note ?? '' }}</textarea>
                             <div class="update-btn-outer">

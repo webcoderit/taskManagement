@@ -64,6 +64,12 @@ class UserController extends Controller
             if ($request->note){
                 $interesteUpdated->note = $request->note;
             }
+            if ($request->address){
+                $interesteUpdated->address = $request->address;
+            }
+            if ($request->profession){
+                $interesteUpdated->profession = $request->profession;
+            }
             $interesteUpdated->save();
             //========= Task Table update query ===============//
             $task = Task::where('id', $request->task_id)->first();
@@ -97,6 +103,14 @@ class UserController extends Controller
             if ($request->note){
                 $intereste->note = $request->note;
             }
+
+            if ($request->address){
+                $intereste->address = $request->address;
+            }
+            if ($request->profession){
+                $intereste->profession = $request->profession;
+            }
+
             $intereste->save();
             //========= Task Table update query ===============//
             $task = Task::where('id', $request->task_id)->first();
@@ -187,7 +201,7 @@ class UserController extends Controller
     //============= Update information ================//
     public function updateInformation($id)
     {
-        $interest = Intereste::with('task')->find($id);
+         $interest = Intereste::with('task')->find($id);
         if ($interest == null){
             return redirect()->back();
         }
