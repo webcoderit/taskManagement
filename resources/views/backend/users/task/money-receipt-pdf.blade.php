@@ -53,19 +53,27 @@
         </td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
-        <td colspan="3" style="padding: 10px 0 10px 20px;">
+        <td colspan="2" style="padding: 10px 0 10px 20px;">
                     <span style="font-size: 15px;color: #000;font-weight: 600;">
                         Course Name :
                     </span>
-            <span style="color: #000;">
+            <span style="color: #000;">                
                         @if($data['moneyReceipt']->admissionForm->course == 'web')
-                    Full stack web development - {{ $data['moneyReceipt']->admissionForm->batch_no }}
+                    Full stack web development
                 @elseif($data['moneyReceipt']->admissionForm->course == 'digital')
-                    Advance Digital Marketing - {{ $data['moneyReceipt']->admissionForm->batch_no }}
+                    Advance Digital Marketing 
                 @else
-                    Communication English - {{ $data['moneyReceipt']->admissionForm->batch_no }}
+                    Communication English
                 @endif
                     </span>
+        </td>
+        <td style="text-align: end;padding: 10px 20px 10px 0;">
+           <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Batch No :
+            </span>
+            <span style="color: #000;">
+                 {{ $data['moneyReceipt']->admissionForm->batch_no }}
+            </span> 
         </td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
