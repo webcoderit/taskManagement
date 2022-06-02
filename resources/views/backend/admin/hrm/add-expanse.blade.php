@@ -29,9 +29,17 @@
 						<hr>
 						<form class="add-expanse-form form-group" action="{{ url('/add/new/expanse') }}" method="post">
                             @csrf
-							<label style="font-weight: 600;">Price</label><br>
-							<input type="number" name="price" placeholder="Total Fee" class="form-control">
-							<label style="font-weight: 600;">Note</label><br>
+                            <label style="font-weight: 600;margin-bottom: 5px;">Select Bill Type</label><br>
+                            <select name="bill_type" id="bill-type" class="form-control">
+                            	<option selected disabled>--- Select Bill Type ---</option>
+                            	<option value="mobile bill">Mobile Bill</option>
+                            	<option value="net bill">Net Bill</option>
+                            	<option value="electricity bill">Electricity Bill</option>
+                            	<option value="others bill">Others Bill</option>
+                            </select><br>
+							<label style="font-weight: 600;margin-bottom: 5px;">Price</label><br>
+							<input type="number" name="price" placeholder="Total Fee" class="form-control"><br>
+							<label style="font-weight: 600;margin-bottom: 5px;">Note</label><br>
 							<textarea class="form-control" rows="4" name="note" cols="20"></textarea>
 							<div style="text-align: center;margin-top: 20px;">
 								<button type="submit" class="btn btn-success">Submit</button>
