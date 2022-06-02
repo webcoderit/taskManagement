@@ -29,7 +29,7 @@
                         Student ID :
                     </span>
             <span style="color: #000;">
-                        {{ $data['moneyReceipt']->admissionForm->course }} - {{ $data['moneyReceipt']->admissionForm->student_id }}
+                        {{ ucfirst($data['moneyReceipt']->admissionForm->course) }} - {{ $data['moneyReceipt']->admissionForm->student_id }}
                     </span>
         </td>
         <td style="width: 180px;"></td>
@@ -58,14 +58,14 @@
                         Course Name :
                     </span>
             <span style="color: #000;">
-                        @if($data['moneyReceipt']->admissionForm->course == 'web')
+                @if($data['moneyReceipt']->admissionForm->course == 'web')
                     Full stack web development - {{ $data['moneyReceipt']->admissionForm->batch_no }}
                 @elseif($data['moneyReceipt']->admissionForm->course == 'digital')
-                    Advance Digital Marketing - {{ $data['moneyReceipt']->admissionForm->batch_no }}
+                    Advanced Digital Marketing - {{ $data['moneyReceipt']->admissionForm->batch_no }}
                 @else
                     Communication English - {{ $data['moneyReceipt']->admissionForm->batch_no }}
                 @endif
-                    </span>
+            </span>
         </td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
