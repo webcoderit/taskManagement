@@ -27,9 +27,9 @@
         <li> <a href="{{ url('/confirm/addmission') }}"><i class="bx bx-right-arrow-alt"></i>Confirm admission</a></li>
         <li> <a href="{{ url('/addmission/form') }}"><i class="bx bx-right-arrow-alt"></i>Admission Form</a></li>
         <li> <a href="{{ url('/highly/interested') }}"><i class="bx bx-right-arrow-alt"></i>Highly interested</a></li>
-        <li> <a href="{{ url('/interested') }}"><i class="bx bx-right-arrow-alt"></i>Interested</a></li>
+        <li> <a href="{{ url('/interested') }}"><i class="bx bx-right-arrow-alt"></i>50%  Interested</a></li>
         <li> <a href="{{ url('/not/interested') }}"><i class="bx bx-right-arrow-alt"></i>Not interested</a></li>
-        <li> <a href="{{ url('/others') }}"><i class="bx bx-right-arrow-alt"></i>Recall</a></li>
+        <li> <a href="{{ url('/others') }}"><i class="bx bx-right-arrow-alt"></i>Others</a></li>
         <li> <a href="{{ url('/money/receipt') }}"><i class="bx bx-right-arrow-alt"></i>Money Receipt</a></li>
       </ul>
     </li>

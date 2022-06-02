@@ -36,16 +36,22 @@
                             </div>
                             <div class="money-receipt-info-item">
                                 <div>
-                                    <span class="money-receipt-view-label">Course Name & Batch No :</span>
+                                    <span class="money-receipt-view-label">
+                                        Course Name :
+                                    </span>
                                     <span>
-                                    @if($moneyReceiptView->admissionForm->course == 'web')
-                                            Full stack web development-{{ $moneyReceiptView->admissionForm->batch_no }}
-                                        @elseif($moneyReceiptView->admissionForm->course == 'digital')
-                                            Advance Digital Marketing-{{ $moneyReceiptView->admissionForm->batch_no }}
-                                        @else
-                                            Communication English-{{ $moneyReceiptView->admissionForm->batch_no }}
-                                        @endif
-                                </span>
+                                        @if($moneyReceiptView->admissionForm->course == 'web')
+                                                Full stack web development
+                                            @elseif($moneyReceiptView->admissionForm->course == 'digital')
+                                                Advance Digital Marketing
+                                            @else
+                                                Communication English
+                                            @endif
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="money-receipt-view-label">Batch No :</span>
+                                    <span>{{ $moneyReceiptView->admissionForm->batch_no }}</span>
                                 </div>
                             </div>
                             <div class="money-receipt-info-item">

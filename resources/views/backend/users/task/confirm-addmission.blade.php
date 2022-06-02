@@ -36,6 +36,7 @@
                                 <th>Profession</th>
                                 <th width="20%">Course Name</th>
                                 <th>Batch No.</th>
+                                <th>Note</th>
                                 <th width="10%">Status</th>
                             </tr>
                             </thead>
@@ -57,6 +58,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $data->batch_no ?? '' }}</td>
+                                        <td></td>
                                         <td width="10%">
                                             <span style="background: green; color: #fff; padding: 5px">Admission Done</span>
                                         </td>

@@ -133,6 +133,10 @@
                                 <label for="batch">Batch</label><br>
                                 <input type="number" class="form-control" placeholder="Batch" name="batch_number" value="">
                             </div>
+                            <label for="address">Address</label><br>
+                            <input type="text" name="address" class="form-control"><br>
+                            <label for="profession">Profession</label><br>
+                            <input type="text" name="profession" class="form-control"><br>
                             <label>Note</label><br>
                             <textarea rows="5" cols="50" name="note" class="form-control"></textarea>
                             <div class="update-btn-outer">
