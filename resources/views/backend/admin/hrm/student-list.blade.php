@@ -4,6 +4,12 @@
 	<div class="wrapper">
 	    <div class="page-wrapper" style="margin-left: 20px!important;">
 	        <div class="page-content">
+                @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong> {{ Session::get('success') }}.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
 	            <!--breadcrumb-->
 	            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 	                <div class="breadcrumb-title pe-3">Student List</div>

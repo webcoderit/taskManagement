@@ -84,7 +84,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="employe_name" style="font-weight: 600; margin-bottom: 5px;">
-                                    Employe Name
+                                    Employee Name
                                 </label><br>
                                 <select name="employe_name" class="form-control">
                                     <option selected disabled>--- Select Employee Name ---</option>
@@ -129,7 +129,7 @@
                     </form>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
     <div class="card">
         <div class="card-body">
@@ -137,17 +137,19 @@
                 <table id="" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Employee Name</th>
                             <th>Date</th>
+                            <th>Employee Name</th>
                             <th>Batch</th>
-                            <th>Studenrt Name</th>                            
+                            <th>Student Name</th>
                             <th>Student Phone</th>
                             <th>Student Email</th>
+                            <th>Total Fee</th>
+                            <th>Advance</th>
+                            <th>Due</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>                    
+                    <tbody>
                         <tr>
                             <td></td>
                             <td></td>
@@ -159,7 +161,7 @@
                             <td></td>
                         </tr>
                     </tbody>
-                </table>                
+                </table>
             </div>
         </div>
     </div>

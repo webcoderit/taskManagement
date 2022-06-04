@@ -36,11 +36,11 @@
                             @csrf
 
 							<label style="font-weight: 600;">Total Fee</label><br>
-							<input type="number" name="course_fee" id="course_fee" value="{{ $courseDueCollection->total_fee }}" readonly placeholder="Total Fee" class="form-control">
+							<input type="number" name="total_fee" id="course_fee" value="{{ $courseDueCollection->total_fee }}" placeholder="Total Fee" class="form-control">
 							<label style="font-weight: 600;">Advance</label><br>
-							<input type="number" name="advance" id="advance" value="{{ $courseDueCollection->advance }}" readonly placeholder="Advance" class="form-control">
+							<input type="number" name="advance" id="advance" value="{{ $courseDueCollection->advance }}" placeholder="Advance" class="form-control">
 							<label style="font-weight: 600;">Due</label><br>
-							<input type="number" name="due" id="due" value="{{ $courseDueCollection->due }}" readonly placeholder="Due" class="form-control">
+							<input type="number" name="due" id="due" value="{{ $courseDueCollection->due }}" placeholder="Due" class="form-control">
 							<label style="font-weight: 600;">Payment</label><br>
                             @if($courseDueCollection->due == 0)
                                 <input type="number" name="due_payment" id="due_payment" placeholder="Payment" disabled class="form-control">

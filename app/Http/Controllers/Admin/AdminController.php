@@ -100,7 +100,7 @@ class AdminController extends Controller
     public function dueClear(Request $request, $id)
     {
         $this->validate($request, [
-            'course_fee' => 'required',
+            'total_fee' => 'required',
             'advance' => 'required',
             'due' => 'required',
         ]);
