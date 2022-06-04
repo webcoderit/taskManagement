@@ -109,6 +109,9 @@ Route::get('/admission/form/download/{id}', [\App\Http\Controllers\UserControlle
 Route::get('/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'expanse']);
 Route::get('/add/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'addExpanse']);
 Route::post('/add/new/expanse', [\App\Http\Controllers\Admin\ExpanseController::class, 'addNewExpanse']);
+Route::get('/edit/expanse/{id}', [\App\Http\Controllers\Admin\ExpanseController::class, 'editExpanse']);
+Route::post('/update/expanse/{id}', [\App\Http\Controllers\Admin\ExpanseController::class, 'updateExpanse']);
+Route::get('/delete/expanse/{id}', [\App\Http\Controllers\Admin\ExpanseController::class, 'deleteExpanse']);
 Route::get('/salary', [\App\Http\Controllers\Admin\ExpanseController::class, 'salary']);
 Route::post('/salary/submit', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryPay']);
 Route::get('/salary/advance', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryAdvance']);
