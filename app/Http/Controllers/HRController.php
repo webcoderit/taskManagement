@@ -17,6 +17,6 @@ class HRController extends Controller
 
     public function hrProfileShow()
     {
-
+        return view('backend.admin.hrm.profile');
     }
 }
