@@ -79,35 +79,50 @@
     <div class="search-form-wrapper card p-4">
         <div class="container">
             <div class="row">
-                <div class="col-md-10 m-auto">
+                <div class="col-md-12">
                     <form class="form-group">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-3">
                                 <label for="employe_name" style="font-weight: 600; margin-bottom: 5px;">
                                     Employe Name
                                 </label><br>
                                 <select name="employe_name" class="form-control">
                                     <option selected disabled>--- Select Employee Name ---</option>
-                                    <option class="al amin saki">Al-Amin</option>
-                                    <option class="rakib">Rakib</option>
-                                    <option class="rony">Rony</option>
-                                    <option class="limon">Limon</option>
-                                    <option class="utso">Utso</option>
-                                    <option class="forid">Forid</option>
-                                    <option class="shibly">Shibly</option>
-                                    <option class="masum">Masum</option>
+                                    <option value="al amin saki">Al-Amin</option>
+                                    <option value="rakib">Rakib</option>
+                                    <option value="rony">Rony</option>
+                                    <option value="limon">Limon</option>
+                                    <option value="utso">Utso</option>
+                                    <option value="forid">Forid</option>
+                                    <option value="shibly">Shibly</option>
+                                    <option value="masum">Masum</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for="date" style="font-weight: 600; margin-bottom: 5px;">
                                     Date
                                 </label><br>
                                 <input type="date" name="date" class="form-control" placeholder="Date">
                             </div>
                             <div class="col-md-3">
+                                <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
+                                    Batch No
+                                </label><br>
+                                <select name="batch_no" id="batchNo" class="form-control">
+                                    <option selected disabled>--- Select Batch No</option>
+                                    <option value="10">10</option>
+                                    <option value="10">10</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="input-group" style="margin-top: 25px;">
-                                    <button type="submit" class="input-group-text btn btn-primary">Search</button>
-                                    <a href="#" class="input-group-text btn btn-danger">Clear</a>
+                                    <button type="submit" class="input-group-text btn btn-primary">
+                                        Search
+                                    </button>
+                                    <a href="#" class="input-group-text btn btn-danger">
+                                        Clear
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +140,7 @@
                             <th>ID</th>
                             <th>Employee Name</th>
                             <th>Date</th>
-                            <th>batch</th>
+                            <th>Batch</th>
                             <th>Studenrt Name</th>                            
                             <th>Student Phone</th>
                             <th>Student Email</th>
