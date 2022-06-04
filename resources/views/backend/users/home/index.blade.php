@@ -28,6 +28,16 @@
             <div class="col">
                 <div class="card radius-10" id="grad1">
                     <div class="card-body text-center">
+                       <p class="mb-1 text-white" style="font-size: 24px;">Today Admission</p>
+                       <h3 class="mb-3">
+                           250
+                       </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card radius-10" id="grad1">
+                    <div class="card-body text-center">
                        <p class="mb-1 text-white" style="font-size: 24px;">Monthly Admission</p>
                        <h3 class="mb-3">{{ count(\App\Models\AdmissionForm::whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
                     </div>
@@ -67,6 +77,26 @@
                                                 $q->where('user_id', auth()->user()->id);
                                             })
                                         ->get()) }}</h3>
+                   </div>
+               </div>
+           </div>
+           <div class="col col-md-12">
+               <div class="card radius-10" id="grad5">
+                   <div class="card-body text-center">
+                      <p class="mb-1 text-white" style="font-size: 24px;">50% Interested</p>
+                      <h3 class="mb-3">
+                          250
+                      </h3>
+                   </div>
+               </div>
+           </div>
+           <div class="col col-md-12">
+               <div class="card radius-10" id="grad5">
+                   <div class="card-body text-center">
+                      <p class="mb-1 text-white" style="font-size: 24px;">Others</p>
+                      <h3 class="mb-3">
+                          250
+                      </h3>
                    </div>
                </div>
            </div>
