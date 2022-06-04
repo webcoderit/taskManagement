@@ -14,4 +14,9 @@ class HRController extends Controller
         $editAdmissionForm = AdmissionForm::find($id);
         return view('backend.admin.hrm.edit-admission-form', compact('batchNumber', 'editAdmissionForm'));
     }
+
+    public function hrProfileShow()
+    {
+
+    }
 }
