@@ -30,7 +30,9 @@
                     <div class="card-body text-center">
                        <p class="mb-1 text-white" style="font-size: 24px;">Today Admission</p>
                        <h3 class="mb-3">
-                           250
+                           {{ count(\App\Models\AdmissionForm::whereHas('moneyReceipt', function ($today){
+                                $today->where('admission_date', date('Y-m-d'));
+                                })->where('user_id', auth()->user()->id)->get()) }}
                        </h3>
                     </div>
                 </div>
@@ -43,14 +45,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-               <div class="card radius-10" id="grad2">
-                   <div class="card-body text-center">
-                      <p class="mb-1 text-white" style="font-size: 24px;">Pending</p>
-                      <h3 class="mb-3">{{ count(\App\Models\Task::where('status', 0)->whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
-                   </div>
-               </div>
-           </div>
+            <a href="{{ url('/pending/task') }}">
+                <div class="col">
+                    <div class="card radius-10" id="grad2">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white" style="font-size: 24px;">Pending</p>
+                            <h3 class="mb-3">{{ count(\App\Models\Task::where('status', 0)->whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
            <div class="col">
                <div class="card radius-10" id="grad3">
                    <div class="card-body text-center">
@@ -59,47 +63,61 @@
                    </div>
                </div>
            </div>
-           <div class="col">
-               <div class="card radius-10" id="grad4">
-                   <div class="card-body text-center">
-                      <p class="mb-1 text-white" style="font-size: 24px;">Not Interested</p>
-                      <h3 class="mb-3">{{ count(\App\Models\Intereste::where('interest_level', 'not')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
+           <a href="{{ url('/not/interested') }}">
+               <div class="col">
+                   <div class="card radius-10" id="grad4">
+                       <div class="card-body text-center">
+                           <p class="mb-1 text-white" style="font-size: 24px;">Not Interested</p>
+                           <h3 class="mb-3">{{ count(\App\Models\Intereste::where('interest_level', 'not')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
                                         $q->where('user_id', auth()->user()->id);
                                         })->get()) }}</h3>
+                       </div>
                    </div>
                </div>
-           </div>
-           <div class="col col-md-12">
-               <div class="card radius-10" id="grad5">
-                   <div class="card-body text-center">
-                      <p class="mb-1 text-white" style="font-size: 24px;">Highly Interested</p>
-                      <h3 class="mb-3">{{ count(\App\Models\Intereste::where('interest_level', 'highly')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
+           </a>
+           <a href="{{ url('/highly/interested') }}">
+               <div class="col col-md-12">
+                   <div class="card radius-10" id="grad5">
+                       <div class="card-body text-center">
+                           <p class="mb-1 text-white" style="font-size: 24px;">Highly Interested</p>
+                           <h3 class="mb-3">{{ count(\App\Models\Intereste::where('interest_level', 'highly')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
                                                 $q->where('user_id', auth()->user()->id);
                                             })
                                         ->get()) }}</h3>
+                       </div>
                    </div>
                </div>
-           </div>
-           <div class="col col-md-12">
-               <div class="card radius-10" id="grad5">
-                   <div class="card-body text-center">
-                      <p class="mb-1 text-white" style="font-size: 24px;">50% Interested</p>
-                      <h3 class="mb-3">
-                          250
-                      </h3>
+           </a>
+           <a href="{{ url('/interested') }}">
+               <div class="col col-md-12">
+                   <div class="card radius-10" id="grad5">
+                       <div class="card-body text-center">
+                           <p class="mb-1 text-white" style="font-size: 24px;">50% Interested</p>
+                           <h3 class="mb-3">
+                               {{ count(\App\Models\Intereste::where('interest_level', '50%')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
+                                                     $q->where('user_id', auth()->user()->id);
+                                                 })
+                                             ->get()) }}
+                           </h3>
+                       </div>
                    </div>
                </div>
-           </div>
-           <div class="col col-md-12">
-               <div class="card radius-10" id="grad5">
-                   <div class="card-body text-center">
-                      <p class="mb-1 text-white" style="font-size: 24px;">Others</p>
-                      <h3 class="mb-3">
-                          250
-                      </h3>
+           </a>
+           <a href="{{ url('/others') }}">
+               <div class="col col-md-12">
+                   <div class="card radius-10" id="grad5">
+                       <div class="card-body text-center">
+                           <p class="mb-1 text-white" style="font-size: 24px;">Others</p>
+                           <h3 class="mb-3">
+                               {{ count(\App\Models\Intereste::where('interest_level', 'others')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
+                                                     $q->where('user_id', auth()->user()->id);
+                                                 })
+                                             ->get()) }}
+                           </h3>
+                       </div>
                    </div>
                </div>
-           </div>
+           </a>
         </div><!--end row-->
     </div>
    </div>

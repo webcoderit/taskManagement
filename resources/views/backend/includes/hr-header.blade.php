@@ -18,6 +18,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><div class="dropdown-divider mb-0"></div></li>
+                    <li><a class="dropdown-item" href="{{ url('/admin/hr/profile') }}"><i class='bx bx-log-out-circle'></i><span>Profile</span></a></li>
                     <li><a class="dropdown-item" href="{{ url('/admin/user/logout') }}"><i class='bx bx-log-out-circle'></i><span>Logout</span></a></li>
                 </ul>
             </div>
