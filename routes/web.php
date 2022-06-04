@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/highly/interested', [App\Http\Controllers\Admin\TaskController::class, 'highlyInterested'])->name('admin.highly.interested');
             Route::get('/interested', [App\Http\Controllers\Admin\TaskController::class, 'interested'])->name('admin.interested');
             Route::get('/recall', [App\Http\Controllers\Admin\TaskController::class, 'recall'])->name('admin.recall');
+            Route::get('/task/filtering', [App\Http\Controllers\Admin\TaskController::class, 'taskFiltering'])->name('admin.filtering');
             Route::get('/task/view/{id}', [App\Http\Controllers\Admin\TaskController::class, 'allTaskView'])->name('admin.employee.task.view');
 
             //=============== Expanse list =================//

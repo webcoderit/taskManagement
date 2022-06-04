@@ -109,7 +109,7 @@
                                     Batch No
                                 </label><br>
                                 <select name="batch_no" id="batchNo" class="form-control">
-                                    <option selected disabled>--- Select Batch No</option>
+                                    <option selected disabled>--- Select Batch No ---</option>
                                     <option value="10">10</option>
                                     <option value="10">10</option>
                                     <option value="10">10</option>

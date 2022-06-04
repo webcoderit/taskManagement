@@ -28,12 +28,31 @@
                     <div class="row">
                         <form class="form-group" action="{{ url('/admin/user/expanse/list') }}" method="get">
                             @csrf
-                            <div class="col-md-6 m-auto">
-                                <div class="input-group mb-2">
-                                    <input type="date" name="expanse_date" class="form-control">
-                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
-                                    <a href="{{ url('/admin/user/expanse/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
-                                </div>
+                            <div class="col-md-10 m-auto">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label style="font-weight: 600;margin-bottom: 5px;">Select Bill Type</label><br>
+                                        <select name="bill_type" id="bill-type" class="form-control">
+                                            <option selected disabled>--- Select Bill Type ---</option>
+                                            <option value="mobile bill">Mobile Bill</option>
+                                            <option value="net bill">Net Bill</option>
+                                            <option value="electricity bill">Electricity Bill</option>
+                                            <option value="others bill">Others Bill</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label style="font-weight: 600;margin-bottom: 5px;">
+                                            Date
+                                        </label><br>
+                                        <input type="date" name="expanse_date" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                       <div class="input-group" style="margin-top: 25px;">                     
+                                            <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                            <a href="{{ url('/admin/user/expanse/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                        </div> 
+                                    </div>
+                                </div>                                
                             </div>
                         </form>
                     </div>

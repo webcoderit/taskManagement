@@ -19,7 +19,7 @@ class HRController extends Controller
 
     public function hrProfileShow()
     {
-
+        return view('backend.admin.hrm.profile');
     }
 
     public function admissionFormUpdate(AdmissionRequest $request, $id)
