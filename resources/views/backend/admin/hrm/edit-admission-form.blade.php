@@ -227,17 +227,14 @@
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
                                             <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" onchange="imagePreview(event)" />
-                                            <img src="{{ asset('student/'.$editAdmissionForm->avatar) }}" style="height: 200px; width: 220px;" id="">
                                             <label for="imageUpload"></label>
                                             <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
                                         </div>
-                                        @if(auth()->check())
-                                            <div class="avatar-preview">
-                                                <div>
-                                                    <img src="{{ asset('backend/') }}/assets/images/download.png" style="height: 200px; width: 220px;" id="pre-avatar">
-                                                </div>
+                                        <div class="avatar-preview">
+                                            <div>
+                                                <img src="{{ asset('student/'.$editAdmissionForm->avatar) }}" style="height: 200px; width: 220px;" id="">
                                             </div>
-                                        @endif
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-center">

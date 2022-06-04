@@ -80,22 +80,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form class="form-group">
+                    <form class="form-group" action="{{ url('/admin/hr/dashboard') }}" method="get">
+                        @csrf
                         <div class="row">
                             <div class="col-md-3">
-                                <label for="employe_name" style="font-weight: 600; margin-bottom: 5px;">
+                                <label for="user_id" style="font-weight: 600; margin-bottom: 5px;">
                                     Employee Name
                                 </label><br>
-                                <select name="employe_name" class="form-control">
+                                <select name="user_id" class="form-control">
                                     <option selected disabled>--- Select Employee Name ---</option>
-                                    <option value="al amin saki">Al-Amin</option>
-                                    <option value="rakib">Rakib</option>
-                                    <option value="rony">Rony</option>
-                                    <option value="limon">Limon</option>
-                                    <option value="utso">Utso</option>
-                                    <option value="forid">Forid</option>
-                                    <option value="shibly">Shibly</option>
-                                    <option value="masum">Masum</option>
+                                    @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->full_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-3">
@@ -110,9 +106,9 @@
                                 </label><br>
                                 <select name="batch_no" id="batchNo" class="form-control">
                                     <option selected disabled>--- Select Batch No ---</option>
-                                    <option value="10">10</option>
-                                    <option value="10">10</option>
-                                    <option value="10">10</option>
+                                    @foreach($admissionStudentsBatch as $batchNo)
+                                        <option value="{{ $batchNo[0]->batch_no }}">{{ ucfirst($batchNo[0]->course) }} - {{ ucfirst($batchNo[0]->batch_no) }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-3">
@@ -120,7 +116,7 @@
                                     <button type="submit" class="input-group-text btn btn-primary">
                                         Search
                                     </button>
-                                    <a href="#" class="input-group-text btn btn-danger">
+                                    <a href="{{ url('/admin/hr/dashboard') }}" class="input-group-text btn btn-danger">
                                         Clear
                                     </a>
                                 </div>
@@ -139,6 +135,7 @@
                         <tr>
                             <th>Date</th>
                             <th>Employee Name</th>
+                            <th>Course Name</th>
                             <th>Batch</th>
                             <th>Student Name</th>
                             <th>Student Phone</th>
@@ -146,22 +143,60 @@
                             <th>Total Fee</th>
                             <th>Advance</th>
                             <th>Due</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @php
+                        $sum = 0
+                    @endphp
+                    @foreach($admissionStudents as $admissionStudent)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $admissionStudent->moneyReceipt->admission_date->format('Y-m-d') }}</td>
+                            <td>{{ $admissionStudent->user->full_name?? '' }}</td>
+                            <td>
+                                @if($admissionStudent->course == 'web')
+                                    Full stack web development
+                                @elseif($admissionStudent->course == 'digital')
+                                    Advanced digital marketing
+                                @else
+                                    Communication english
+                                @endif
+                            </td>
+                            <td>{{ $admissionStudent->batch_no?? '' }}</td>
+                            <td>{{ $admissionStudent->s_name?? '' }}</td>
+                            <td>{{ $admissionStudent->s_phone ?? '' }}</td>
+                            <td>{{ $admissionStudent->s_email ?? '' }}</td>
+                            <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
+                            <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
+                            <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>
+{{--                            <td>--}}
+{{--                                @if($admissionStudent->moneyReceipt->due == 0)--}}
+{{--                                    <a href="#" class="btn btn-sm btn-success">--}}
+{{--                                        <i class="bx bx-check-circle"></i>--}}
+{{--                                    </a>--}}
+{{--                                @else--}}
+{{--                                    <a href="{{ url('/admin/admission/student/info/'.$admissionStudent->moneyReceipt->id) }}" class="btn btn-sm btn-primary">--}}
+{{--                                        <i class="bx bx-user-circle"></i>--}}
+{{--                                    </a>--}}
+{{--                                @endif--}}
+{{--                                <a href="{{ url('/admin/admission/student/info/edit/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">--}}
+{{--                                    <i class="bx bx-edit-alt"></i>--}}
+{{--                                </a>--}}
+{{--                            </td>--}}
                         </tr>
+                        @php
+                            $sum += $admissionStudent->moneyReceipt->advance
+                        @endphp
+                    @endforeach
+                    <tr>
+                        <td colspan="8"></td>
+                        <td>
+                            <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
+                {{ $admissionStudents->links() }}
             </div>
         </div>
     </div>
