@@ -112,6 +112,7 @@ Route::get('/salary', [\App\Http\Controllers\Admin\ExpanseController::class, 'sa
 Route::post('/salary/submit', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryPay']);
 Route::get('/salary/advance', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryAdvance']);
 Route::get('/admin/admission/student/info/edit/{id}', [\App\Http\Controllers\HRController::class, 'editAdmissionForm']);
+Route::get('/admin/hr/profile', [\App\Http\Controllers\HRController::class, 'hrProfileShow']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
