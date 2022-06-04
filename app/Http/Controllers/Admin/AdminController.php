@@ -78,7 +78,15 @@ class AdminController extends Controller
         $monthlyDueCollect = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('today_pay');
         $monthlyDebit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('due');
         $todayDueCollect = MoneyReceipt::whereDate('updated_at', Carbon::today())->get()->sum('today_pay');
-        return view('backend.admin.hrm.index', compact('users', 'todayCredit', 'todayDue', 'monthlyDueCollect', 'monthlyDebit', 'todayDueCollect'));
+        $admissionStudentsBatch = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no');
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+        if (isset(request()->user_id) && isset(request()->date)&& isset(request()->batch_no)){
+            $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
+                $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
+            })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
+        }
+        $admissionStudents = $sql->paginate(50);
+        return view('backend.admin.hrm.index', compact('users', 'todayCredit', 'todayDue', 'monthlyDueCollect', 'monthlyDebit', 'todayDueCollect', 'admissionStudentsBatch', 'admissionStudents'));
     }
 
     public function studentList(){
