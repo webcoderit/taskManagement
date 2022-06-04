@@ -101,6 +101,9 @@ class TaskController extends Controller
         $recalls = Intereste::where('interest_level', '!=', 'done')->paginate(30);
         return view('backend.admin.task.recall', compact('recalls'));
     }
+    public function taskFiltering(){
+        return view('backend.admin.task.task-filtering');
+    }
 
 //    public function taskStore(TaskRequest $request)
 //    {
