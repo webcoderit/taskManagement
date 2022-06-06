@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin'], function(){
 
             //=============== Expanse list =================//
             Route::get('/expanse/list', [App\Http\Controllers\Admin\AdminController::class, 'expanse']);
+            Route::get('/admission/filtering', [App\Http\Controllers\Admin\AdminController::class, 'admissionFiltering']);
         });
     });
 });

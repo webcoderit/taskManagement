@@ -232,7 +232,7 @@
                                         </div>
                                         <div class="avatar-preview">
                                             <div>
-                                                <img src="{{ asset('student/'.$editAdmissionForm->avatar) }}" style="height: 200px; width: 220px;" id="">
+                                                <img src="{{ asset('student/'.$editAdmissionForm->avatar) }}" style="height: 200px; width: 220px!important;" id="pre-avatar">
                                             </div>
                                         </div>
                                     </div>
