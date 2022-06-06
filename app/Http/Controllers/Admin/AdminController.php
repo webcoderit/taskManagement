@@ -261,4 +261,8 @@ class AdminController extends Controller
         $expanses = $sql->paginate(50);
         return view('backend.admin.home.expanse', compact('expanses'));
     }
+
+    public function admissionFiltering(){
+        return view('backend.admin.home.admission-filtering');
+    }
 }

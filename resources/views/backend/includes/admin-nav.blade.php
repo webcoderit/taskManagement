@@ -65,6 +65,7 @@
           </a>
           <ul>
               <li> <a href="{{ url('/admin/user/expanse/list') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
+              <li> <a href="{{ url('admin/user/admission/filtering') }}"><i class="bx bx-right-arrow-alt"></i>Admission Filtering</a></li>
           </ul>
       </li>
   </ul>
