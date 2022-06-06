@@ -24,12 +24,21 @@
 	                </div>
 	            </div>
 	            <!--end breadcrumb-->
-                <div class="col-md-12">
-                    <div class="row">
-                        <form action="{{ url('/admin/student/list') }}" method="get">
-                            <div class="col-md-6 m-auto">
+                <div class="col-md-12">                    
+                    <form action="{{ url('/admin/student/list') }}" method="get">
+                        <div class="row" style="padding: 0px 100px;">
+                            <div class="col-md-5">
+                                <label for="phone" style="font-weight: 600;">
+                                    Phone
+                                </label><br>
+                                <input type="number" name="phone" placeholder="Phone" class="form-control">
+                            </div>
+                            <div class="col-md-7">                                
+                                @csrf
+                                <label for="phone" style="font-weight: 600;">
+                                    Batch No.
+                                </label><br>
                                 <div class="input-group mb-3">
-                                    @csrf
                                     <select class="form-control" name="batch_no">
                                         <option selected disabled>----Select A Batch No----</option>
                                         @foreach($admissionStudentsBatch as $admissionStudentBatch)
@@ -40,8 +49,8 @@
                                     <a href="{{ url('/admin/student/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>                    
                 </div>
 	            <hr/>
 	            <div class="card">
