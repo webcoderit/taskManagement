@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdmissionRequest;
+use App\Models\Admin;
 use App\Models\AdmissionForm;
 use App\Models\Batch;
 use App\Models\MoneyReceipt;
 use Illuminate\Http\Request;
-
+use Hash;
 class HRController extends Controller
 {
     public function editAdmissionForm($id)
@@ -19,7 +20,54 @@ class HRController extends Controller
 
     public function hrProfileShow()
     {
-        return view('backend.admin.hrm.profile');
+        $hrProfileUpdate = Admin::where('type', 'hr')->first();
+        return view('backend.admin.hrm.profile', compact('hrProfileUpdate'));
+    }
+
+    public function hrProfileUpdate(Request $request, $id)
+    {
+        try {
+            $updateProfile = Admin::where('id', $id)->first();
+            $updateProfile->name = $request->name;
+            $updateProfile->email = $request->email;
+            $updateProfile->save();
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+
+        return redirect()->back()->with('success', 'Profile has been updated');
+    }
+
+    public function hrProfilePasswordUpdate(Request $request, $id)
+    {
+        try {
+            $hashedPassword = Admin::find($id);
+            if (\Hash::check($request->old_password , $hashedPassword->password )) {
+
+                if (!\Hash::check($request->password , $hashedPassword->password)) {
+
+                    $hr = Admin::find($hashedPassword->id);
+                    $hr->password = bcrypt($request->password);
+                    Admin::where( 'id' , $hashedPassword->id)->update( array( 'password' =>  $hr->password));
+
+                    session()->flash('success','password updated successfully');
+                    return redirect()->back();
+                }
+
+                else{
+                    session()->flash('error','new password can not be the old password!');
+                    return redirect()->back();
+                }
+
+            }
+
+            else{
+                session()->flash('error','old password doesnt matched ');
+                return redirect()->back();
+            }
+        }catch (\Exception $exception){
+
+        }
     }
 
     public function admissionFormUpdate(AdmissionRequest $request, $id)

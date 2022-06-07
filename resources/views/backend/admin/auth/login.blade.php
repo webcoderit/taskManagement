@@ -35,7 +35,7 @@
 									<div class="text-center">
 										<h3 class="">Admin Sign in</h3>
 									</div>
-                                    @if(Session::has('id'))
+                                    @if(Session::has('error'))
                                         <div class="alert alert-danger">
                                             {{ Session::get('error') }}
                                         </div>

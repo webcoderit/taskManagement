@@ -98,10 +98,4 @@ class ExpanseController extends Controller
             return redirect('/salary')->with('success', 'Salary has been added');
         }
     }
-//    public function salaryPay(){
-//        return view('backend.admin.hrm.salary-pay');
-//    }
-//    public function salaryAdvance(){
-//        return view('backend.admin.hrm.salary-advance');
-//    }
 }
