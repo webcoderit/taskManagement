@@ -78,7 +78,9 @@
                 <div class="card radius-10" style="background-color: #CD5C5C">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Montly ADM Admission</p>
-                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereDate('created_at', \Carbon\Carbon::today())->get()->sum('price'),2) }}</h3>
+                        <h3 class="mb-3 text-white">
+                            0.00
+                        </h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -87,7 +89,9 @@
                 <div class="card radius-10" style="background-color: #6495ED">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Montly Web Admission</p>
-                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereDate('created_at', \Carbon\Carbon::today())->get()->sum('price'),2) }}</h3>
+                        <h3 class="mb-3 text-white">
+                            0.00
+                        </h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -96,7 +100,9 @@
                 <div class="card radius-10" style="background-color: #800080">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Montly English Admission</p>
-                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereDate('created_at', \Carbon\Carbon::today())->get()->sum('price'),2) }}</h3>
+                        <h3 class="mb-3 text-white">
+                            0.00
+                        </h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
