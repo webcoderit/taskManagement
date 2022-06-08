@@ -9,12 +9,12 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="{{ url('/admin/hr/dashboard') }}"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Expanse</li>
+                        <li class="breadcrumb-item active" aria-current="page">Update Expanse</li>
                     </ol>
                 </nav>
             </div>
         </div>
-        <h6 class="mb-0 text-uppercase">Add Expanse</h6>
+        <h6 class="mb-0 text-uppercase">Update Expanse</h6>
         <hr/>
 		<div class="container">
 			<div class="row">
@@ -27,20 +27,20 @@
 							</a>
 						</div>
 						<hr>
-						<form class="add-expanse-form form-group" action="{{ url('/add/new/expanse') }}" method="post">
+						<form class="add-expanse-form form-group" action="{{ url('/update/expanse/'.$expanse->id) }}" method="post">
                             @csrf
                             <label style="font-weight: 600;margin-bottom: 5px;">Select Bill Type</label><br>
                             <select name="bill_type" id="bill-type" class="form-control">
                             	<option selected disabled>--- Select Bill Type ---</option>
-                            	<option value="mobile">Mobile Bill</option>
-                            	<option value="net">Net Bill</option>
-                            	<option value="electricity">Electricity Bill</option>
-                            	<option value="others">Others Bill</option>
+                            	<option value="mobile" {{ $expanse->bill_type == 'mobile' ? 'selected' : '' }}>Mobile Bill</option>
+                            	<option value="net" {{ $expanse->bill_type == 'net' ? 'selected' : '' }}>Net Bill</option>
+                            	<option value="electricity" {{ $expanse->bill_type == 'electricity' ? 'selected' : '' }}>Electricity Bill</option>
+                            	<option value="others" {{ $expanse->bill_type == 'others' ? 'selected' : '' }}>Others Bill</option>
                             </select><br>
 							<label style="font-weight: 600;margin-bottom: 5px;">Price</label><br>
-							<input type="number" name="price" placeholder="Total Fee" class="form-control"><br>
+							<input type="number" name="price" value="{{ $expanse->price ?? '' }}" placeholder="Total Fee" class="form-control"><br>
 							<label style="font-weight: 600;margin-bottom: 5px;">Note</label><br>
-							<textarea class="form-control" rows="4" name="note" cols="20"></textarea>
+							<textarea class="form-control" rows="4" name="note" cols="20">{{ $expanse->note ?? '' }}</textarea>
 							<div style="text-align: center;margin-top: 20px;">
 								<button type="submit" class="btn btn-success">Submit</button>
 							</div>

@@ -110,11 +110,16 @@ Route::get('/admission/form/download/{id}', [\App\Http\Controllers\UserControlle
 Route::get('/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'expanse']);
 Route::get('/add/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'addExpanse']);
 Route::post('/add/new/expanse', [\App\Http\Controllers\Admin\ExpanseController::class, 'addNewExpanse']);
+Route::get('/edit/expanse/{id}', [\App\Http\Controllers\Admin\ExpanseController::class, 'editExpanse']);
+Route::post('/update/expanse/{id}', [\App\Http\Controllers\Admin\ExpanseController::class, 'updateExpanse']);
+Route::get('/delete/expanse/{id}', [\App\Http\Controllers\Admin\ExpanseController::class, 'deleteExpanse']);
 Route::get('/salary', [\App\Http\Controllers\Admin\ExpanseController::class, 'salary']);
 Route::post('/salary/submit', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryPay']);
 Route::get('/salary/advance', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryAdvance']);
 Route::get('/admin/admission/student/info/edit/{id}', [\App\Http\Controllers\HRController::class, 'editAdmissionForm']);
 Route::get('/admin/hr/profile', [\App\Http\Controllers\HRController::class, 'hrProfileShow']);
+Route::post('/hr/profile/update/{id}', [\App\Http\Controllers\HRController::class, 'hrProfileUpdate']);
+Route::post('/hr/password/update/{id}', [\App\Http\Controllers\HRController::class, 'hrProfilePasswordUpdate']);
 Route::post('/admission/update/{id}', [\App\Http\Controllers\HRController::class, 'admissionFormUpdate']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

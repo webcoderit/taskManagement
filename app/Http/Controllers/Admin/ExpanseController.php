@@ -29,13 +29,44 @@ class ExpanseController extends Controller
         $this->validate($request, [
             'price' => 'required',
             'note' => 'required',
+            'bill_type' => 'required',
         ]);
 
         $expanse = new Expance();
+        $expanse->bill_type = $request->bill_type;
         $expanse->price = $request->price;
         $expanse->note = $request->note;
         $expanse->save();
         return redirect('/expanse')->with('success', 'Expanse has been added');
+    }
+
+    public function editExpanse($id)
+    {
+        $expanse = Expance::find($id);
+        return view('backend.admin.hrm.edit-expanse', compact('expanse'));
+    }
+
+    public function updateExpanse(Request $request, $id)
+    {
+        $this->validate($request, [
+            'price' => 'required',
+            'note' => 'required',
+            'bill_type' => 'required',
+        ]);
+
+        $expanse = Expance::find($id);
+        $expanse->bill_type = $request->bill_type;
+        $expanse->price = $request->price;
+        $expanse->note = $request->note;
+        $expanse->save();
+        return redirect('/expanse')->with('success', 'Expanse has been updated');
+    }
+
+    public function deleteExpanse($id)
+    {
+        $expanse = Expance::find($id);
+        $expanse->delete();
+        return redirect('/expanse')->with('success', 'Expanse has been deleted');
     }
 
     public function salary(){
@@ -67,10 +98,4 @@ class ExpanseController extends Controller
             return redirect('/salary')->with('success', 'Salary has been added');
         }
     }
-//    public function salaryPay(){
-//        return view('backend.admin.hrm.salary-pay');
-//    }
-//    public function salaryAdvance(){
-//        return view('backend.admin.hrm.salary-advance');
-//    }
 }

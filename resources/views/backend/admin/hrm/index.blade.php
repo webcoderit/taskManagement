@@ -14,8 +14,16 @@
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Admission Advance</p>
                         <h3 class="mb-3 text-white">
-                            {{ number_format($todayCredit,2 ?? 0) }}
+                            {{ number_format($data['todayAmounts']->sum('advance'),2 ?? 0) }}
                         </h3>
+                        <span style="background-color: purple;
+                            color: white;
+                            padding: 10px 40px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            border-radius: 5px;">
+                            {{ \App\Models\AdmissionForm::whereDate('created_at', \Carbon\Carbon::today())->count() }}
+                        </span>
                         <div id="chart1"></div>
                     </div>
                 </div>
@@ -24,7 +32,7 @@
                 <div class="card radius-10" style="background-color: darkred">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Admission Due</p>
-                        <h3 class="mb-3 text-white">{{ number_format($todayDue,2 ?? 0) }}</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($data['todayAmounts']->sum('due'),2 ?? 0) }}</h3>
                         <div id="chart4"></div>
                     </div>
                 </div>
@@ -33,7 +41,7 @@
                 <div class="card radius-10" style="background-color: rebeccapurple">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Admission Due</p>
-                        <h3 class="mb-3 text-white">{{ number_format($monthlyDebit,2 ?? 0) }}</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmounts']->sum('due'),2 ?? 0) }}</h3>
                         <div id="chart3"></div>
                     </div>
                 </div>
@@ -41,8 +49,8 @@
             <div class="col">
                 <div class="card radius-10" style="background-color: deepskyblue">
                     <div class="card-body text-center">
-                        <p class="mb-1 text-white">Monthly Due Collect</p>
-                        <h3 class="mb-3 text-white">{{ number_format($monthlyDueCollect,2 ?? 0) }}</h3>
+                        <p class="mb-1 text-white">Monthly Admission Advance</p>
+                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmounts']->sum('advance'),2 ?? 0) }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -51,7 +59,7 @@
                 <div class="card radius-10" style="background-color: orangered">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Due Collect</p>
-                        <h3 class="mb-3 text-white">{{ number_format($todayDueCollect, 2) }}</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($data['todayAmounts']->sum('today_pay'), 2) }}</h3>
                         <div id="chart5"></div>
                     </div>
                 </div>
@@ -77,10 +85,8 @@
             <div class="col">
                 <div class="card radius-10" style="background-color: #CD5C5C">
                     <div class="card-body text-center">
-                        <p class="mb-1 text-white">Montly ADM Admission</p>
-                        <h3 class="mb-3 text-white">
-                            0.00
-                        </h3>
+                        <p class="mb-1 text-white">Monthly ADM Admission</p>
+                        <h3 class="mb-3 text-white">{{ \App\Models\AdmissionForm::where('course', 'digital')->whereMonth('created_at', date('m'))->count() ?? 0 }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -88,10 +94,8 @@
             <div class="col">
                 <div class="card radius-10" style="background-color: #6495ED">
                     <div class="card-body text-center">
-                        <p class="mb-1 text-white">Montly Web Admission</p>
-                        <h3 class="mb-3 text-white">
-                            0.00
-                        </h3>
+                        <p class="mb-1 text-white">Monthly Web Admission</p>
+                        <h3 class="mb-3 text-white">{{ \App\Models\AdmissionForm::where('course', 'web')->whereMonth('created_at', date('m'))->count() ?? 0 }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -99,10 +103,8 @@
             <div class="col col-md-12">
                 <div class="card radius-10" style="background-color: #800080">
                     <div class="card-body text-center">
-                        <p class="mb-1 text-white">Montly English Admission</p>
-                        <h3 class="mb-3 text-white">
-                            0.00
-                        </h3>
+                        <p class="mb-1 text-white">Monthly English Admission</p>
+                        <h3 class="mb-3 text-white">{{ \App\Models\AdmissionForm::where('course', 'english')->whereMonth('created_at', date('m'))->count() ?? 0 }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -122,7 +124,7 @@
                                 </label><br>
                                 <select name="user_id" class="form-control">
                                     <option selected disabled>--- Select Employee Name ---</option>
-                                    @foreach($users as $user)
+                                    @foreach($data['users'] as $user)
                                     <option value="{{ $user->id }}">{{ $user->full_name }}</option>
                                     @endforeach
                                 </select>
@@ -139,7 +141,7 @@
                                 </label><br>
                                 <select name="batch_no" id="batchNo" class="form-control">
                                     <option selected disabled>--- Select Batch No ---</option>
-                                    @foreach($admissionStudentsBatch as $batchNo)
+                                    @foreach($data['admissionStudentsBatch'] as $batchNo)
                                         <option value="{{ $batchNo[0]->batch_no }}">{{ ucfirst($batchNo[0]->course) }} - {{ ucfirst($batchNo[0]->batch_no) }}</option>
                                     @endforeach
                                 </select>

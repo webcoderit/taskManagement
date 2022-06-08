@@ -24,8 +24,9 @@
 	                </div>
 	            </div>
 	            <!--end breadcrumb-->
-                <div class="col-md-12">                    
+                <div class="col-md-12">
                     <form action="{{ url('/admin/student/list') }}" method="get">
+                        @csrf
                         <div class="row" style="padding: 0px 100px;">
                             <div class="col-md-5">
                                 <label for="phone" style="font-weight: 600;">
@@ -33,7 +34,7 @@
                                 </label><br>
                                 <input type="number" name="phone" placeholder="Phone" class="form-control">
                             </div>
-                            <div class="col-md-7">                                
+                            <div class="col-md-7">
                                 @csrf
                                 <label for="phone" style="font-weight: 600;">
                                     Batch No.
@@ -41,7 +42,7 @@
                                 <div class="input-group mb-3">
                                     <select class="form-control" name="batch_no">
                                         <option selected disabled>----Select A Batch No----</option>
-                                        @foreach($admissionStudentsBatch as $admissionStudentBatch)
+                                        @foreach($data['admissionStudentsBatch'] as $admissionStudentBatch)
                                             <option value="{{ $admissionStudentBatch[0]->batch_no }}">{{ ucfirst($admissionStudentBatch[0]->course) }} - {{ ucfirst($admissionStudentBatch[0]->batch_no) }}</option>
                                         @endforeach
                                     </select>
@@ -50,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>                    
+                    </form>
                 </div>
 	            <hr/>
 	            <div class="card">
