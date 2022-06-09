@@ -33,10 +33,18 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/hr/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'hr_dashboard'])->name('admin.hr.dashboard');
         Route::get('/admission/student/info/{id}', [App\Http\Controllers\Admin\AdminController::class, 'showAdmissionDueModal']);
         Route::post('/due/clear/{id}', [App\Http\Controllers\Admin\AdminController::class, 'dueClear']);
-        Route::get('/student/list', [App\Http\Controllers\Admin\AdminController::class, 'studentList']);
+        Route::get('/student/list', [App\Http\Controllers\HRController::class, 'studentList']);
+        Route::get('/students/list', [App\Http\Controllers\Admin\AdminController::class, 'adminStudentList']);
         Route::get('/batch/create', [App\Http\Controllers\Admin\AdminController::class, 'batchCreateForm']);
         Route::post('/batch/store', [App\Http\Controllers\Admin\AdminController::class, 'batchStore']);
         Route::get('/batch/delete/{id}', [App\Http\Controllers\Admin\AdminController::class, 'batchDelete']);
+        Route::get('/salary/list', [\App\Http\Controllers\Admin\AdminController::class, 'salary']);
+        Route::post('/salary/submit', [\App\Http\Controllers\Admin\AdminController::class, 'salaryPay']);
+        Route::post('/admission/update/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'adminAdmissionFormUpdate']);
+        Route::get('/admission/form/edit/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'adminEditAdmissionForm']);
+        Route::get('/admission/student/info/delete/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'studentDelete']);
+        Route::get('/admission/student/due/{id}', [App\Http\Controllers\Admin\AdminController::class, 'adminShowAdmissionDueModal']);
+        Route::post('/student/due/clear/{id}', [App\Http\Controllers\Admin\AdminController::class, 'adminDueClear']);
 
         Route::group(['prefix' => 'user'], function (){
             Route::post('/store', [App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.user.register');
@@ -117,6 +125,7 @@ Route::get('/salary', [\App\Http\Controllers\Admin\ExpanseController::class, 'sa
 Route::post('/salary/submit', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryPay']);
 Route::get('/salary/advance', [\App\Http\Controllers\Admin\ExpanseController::class, 'salaryAdvance']);
 Route::get('/admin/admission/student/info/edit/{id}', [\App\Http\Controllers\HRController::class, 'editAdmissionForm']);
+Route::get('/admin/admission/student/info/delete/{id}', [\App\Http\Controllers\HRController::class, 'studentDelete']);
 Route::get('/admin/hr/profile', [\App\Http\Controllers\HRController::class, 'hrProfileShow']);
 Route::post('/hr/profile/update/{id}', [\App\Http\Controllers\HRController::class, 'hrProfileUpdate']);
 Route::post('/hr/password/update/{id}', [\App\Http\Controllers\HRController::class, 'hrProfilePasswordUpdate']);

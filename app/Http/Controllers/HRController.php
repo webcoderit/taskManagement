@@ -120,4 +120,30 @@ class HRController extends Controller
         return redirect('/admin/student/list')->with('success', 'Admission successfully updated.');
 
     }
+
+    public function studentList(){
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+        if (isset(request()->batch_no)){
+            $sql->where('batch_no', 'LIKE','%'.request()->batch_no.'%');
+        }
+        if (isset(request()->phone)){
+            $sql->where('s_phone', 'LIKE','%'.request()->phone.'%');
+        }
+        $admissionStudents = $sql->paginate(50);
+        $data = [
+            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no')
+        ];
+        return view('backend.admin.hrm.student-list', compact('admissionStudents', 'data'));
+    }
+
+    public function studentDelete($id)
+    {
+        $studentDelete = AdmissionForm::with('moneyReceipt')->find($id);
+        if (!$studentDelete){
+            return redirect()->back()->with('error', 'Student information not found');
+        }
+        $studentDelete->delete();
+        MoneyReceipt::where('admission_id', $studentDelete->id)->first()->delete();
+        return redirect()->back()->with('success', 'Student has been permanently deleted');
+    }
 }

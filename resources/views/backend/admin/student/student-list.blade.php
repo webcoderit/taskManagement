@@ -1,4 +1,4 @@
-@extends('backend.admin.hr-master')
+@extends('backend.admin.admin-master')
 
 @section('content')
 	<div class="wrapper">
@@ -16,7 +16,7 @@
 	                <div class="ps-3">
 	                    <nav aria-label="breadcrumb">
 	                        <ol class="breadcrumb mb-0 p-0">
-	                            <li class="breadcrumb-item"><a href="{{ url('/admin/hr/dashboard') }}"><i class="bx bx-home-alt"></i></a>
+	                            <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="bx bx-home-alt"></i></a>
 	                            </li>
 	                            <li class="breadcrumb-item active" aria-current="page">Student List</li>
 	                        </ol>
@@ -25,7 +25,7 @@
 	            </div>
 	            <!--end breadcrumb-->
                 <div class="col-md-12">
-                    <form action="{{ url('/admin/student/list') }}" method="get">
+                    <form action="{{ url('/admin/students/list') }}" method="get">
                         @csrf
                         <div class="row" style="padding: 0px 100px;">
                             <div class="col-md-5">
@@ -47,7 +47,7 @@
                                         @endforeach
                                     </select>
                                     <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
-                                    <a href="{{ url('/admin/student/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                    <a href="{{ url('/admin/students/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,13 @@
                                         </td>
                                         <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
-                                        <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>
+                                        <td>
+                                            @if($admissionStudent->moneyReceipt->due == 0)
+                                                Paid
+                                            @else
+                                                {{ $admissionStudent->moneyReceipt->due ?? '' }}
+                                            @endif
+                                        </td>
                                         <td>{{ $admissionStudent->note ?? '' }}</td>
                                         <td>{{ $admissionStudent->other_admission_note ?? '' }}</td>
                                         <td>
@@ -102,11 +108,11 @@
                                                     <i class="bx bx-check-circle"></i>
                                                 </a>
                                             @else
-                                                <a href="{{ url('/admin/admission/student/info/'.$admissionStudent->moneyReceipt->id) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ url('/admin/admission/student/due/'.$admissionStudent->moneyReceipt->id) }}" class="btn btn-sm btn-primary">
                                                     <i class="bx bx-user-circle"></i>
                                                 </a>
                                             @endif
-                                                <a href="{{ url('/admin/admission/student/info/edit/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">
+                                                <a href="{{ url('/admin/admission/form/edit/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">
                                                     <i class="bx bx-edit-alt"></i>
                                                 </a>
                                                 <a href="{{ url('/admin/admission/student/info/delete/'.$admissionStudent->id) }}" onclick="return confirm('Are you sure delete this student info ?')" class="btn btn-sm btn-danger">

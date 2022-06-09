@@ -71,7 +71,7 @@
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Batch No<small class="text-danger">*</small></label>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user'></i></span>
-                                    <input type="number" class="form-control border-start-0" name="batch_no" id="batch_no" placeholder="Enter batch name...." />
+                                    <input type="text" class="form-control border-start-0" name="batch_no" id="batch_no" placeholder="Enter batch name...." />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('batch_no') ? $errors->first('batch_no') : ' ' }}</span>
                             </div>

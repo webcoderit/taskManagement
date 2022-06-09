@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\AttendanceMultiSheetReport;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdmissionRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Admin;
@@ -13,6 +14,7 @@ use App\Models\Batch;
 use App\Models\Expance;
 use App\Models\Intereste;
 use App\Models\MoneyReceipt;
+use App\Models\Salary;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -88,7 +90,8 @@ class AdminController extends Controller
         return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents'));
     }
 
-    public function studentList(){
+    //======== For admin ==========//
+    public function adminStudentList(){
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
         if (isset(request()->batch_no)){
             $sql->where('batch_no', 'LIKE','%'.request()->batch_no.'%');
@@ -100,13 +103,22 @@ class AdminController extends Controller
         $data = [
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no')
         ];
-        return view('backend.admin.hrm.student-list', compact('admissionStudents', 'data'));
+        return view('backend.admin.student.student-list', compact('admissionStudents', 'data'));
     }
+    //====== For HR =========//
 
     public function showAdmissionDueModal($id)
     {
         $courseDueCollection = MoneyReceipt::with('admissionForm')->where('id', $id)->first();
         return view('backend.admin.hrm.edit', compact('courseDueCollection'));
+    }
+
+    //====== For HR =========//
+
+    public function adminShowAdmissionDueModal($id)
+    {
+        $courseDueCollection = MoneyReceipt::with('admissionForm')->where('id', $id)->first();
+        return view('backend.admin.student.edit', compact('courseDueCollection'));
     }
 
     public function dueClear(Request $request, $id)
@@ -127,6 +139,27 @@ class AdminController extends Controller
         $updateStudentNote->note = $request->note;
         $updateStudentNote->save();
         return redirect('/admin/student/list')->with('success', 'Updated.');
+    }
+
+    //====== For Admin =========//
+    public function adminDueClear(Request $request, $id)
+    {
+        $this->validate($request, [
+            'total_fee' => 'required',
+            'advance' => 'required',
+            'due' => 'required',
+        ]);
+
+        $dueClear = MoneyReceipt::where('id', $id)->first();
+        $dueClear->advance = $dueClear->advance + $request->due_payment;
+        $dueClear->due = $request->due;
+        $dueClear->today_pay = $request->due_payment;
+        $dueClear->save();
+        //Student opinion
+        $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
+        $updateStudentNote->note = $request->note;
+        $updateStudentNote->save();
+        return redirect('/admin/students/list')->with('success', 'Updated.');
     }
 
     public function register()
@@ -268,5 +301,106 @@ class AdminController extends Controller
 
     public function admissionFiltering(){
         return view('backend.admin.home.admission-filtering');
+    }
+
+    //=========== Salary information ==========//
+    public function salary(){
+        $employees = User::orderBy('id', 'desc')->get();
+        $sql = Salary::with('user');
+        if (isset(request()->month)){
+            $sql->where('month', 'LIKE', '%'.request()->month.'%');
+        }
+        $salaries = $sql->get();
+        return view('backend.admin.salary.salary', compact('employees', 'salaries'));
+    }
+
+    public function salaryPay(Request $request)
+    {
+        $this->validate($request, [
+            'month' => 'required',
+            'user_id' => 'required',
+            'salary' => 'required',
+        ]);
+        $isSalaryPaid = Salary::where('month', strtolower($request->month))->where('user_id', $request->user_id)->first();
+        if ($isSalaryPaid){
+            return redirect()->back()->with('error', 'Salary already paid in this month');
+        }else{
+            $salary = new Salary();
+            $salary->user_id = $request->user_id;
+            $salary->month = $request->month;
+            $salary->salary = $request->salary;
+            $salary->save();
+            return redirect('/admin/salary/list')->with('success', 'Salary has been added');
+        }
+    }
+
+    //========= Student admission form update ===============//
+    public function adminEditAdmissionForm($id)
+    {
+        $batchNumber = Batch::orderBy('created_at', 'desc')->get();
+        $editAdmissionForm = AdmissionForm::with('moneyReceipt')->find($id);
+        return view('backend.admin.student.edit-admission-form', compact('batchNumber', 'editAdmissionForm'));
+    }
+
+    public function adminAdmissionFormUpdate(AdmissionRequest $request, $id)
+    {
+        $updateAdmissionForm = AdmissionForm::find($id);
+
+        if($request->hasFile('avatar')){
+            if($updateAdmissionForm->avatar && file_exists(public_path('avatar/'.$updateAdmissionForm->avatar))){
+                unlink(public_path('avatar/'.$updateAdmissionForm->avatar));
+            }
+            $name = time() . '.' . $request->avatar->getClientOriginalExtension();
+            $request->avatar->move('avatar/', $name);
+            $updateAdmissionForm->avatar = $name;
+        }
+
+        $updateAdmissionForm->s_name = $request->s_name;
+        $updateAdmissionForm->s_email = $request->s_email;
+        $updateAdmissionForm->f_name = $request->f_name;
+        $updateAdmissionForm->m_name = $request->m_name;
+        $updateAdmissionForm->s_phone = $request->s_phone;
+        $updateAdmissionForm->f_phone = $request->f_phone;
+        $updateAdmissionForm->dob = $request->dob;
+        $updateAdmissionForm->profession = $request->profession;
+        $updateAdmissionForm->gender = $request->gender;
+        $updateAdmissionForm->blood_group = $request->blood_group;
+        $updateAdmissionForm->qualification = $request->qualification;
+        $updateAdmissionForm->nid = $request->nid;
+        $updateAdmissionForm->present_address = $request->present_address;
+        $updateAdmissionForm->course = $request->course;
+        $updateAdmissionForm->batch_no = $request->batch_no;
+        $updateAdmissionForm->batch_type = $request->batch_type;
+        $updateAdmissionForm->class_shedule = $request->class_shedule;
+        $updateAdmissionForm->class_time = $request->class_time;
+        $updateAdmissionForm->other_admission = $request->other_admission;
+        $updateAdmissionForm->other_admission_note = $request->other_admission_note;
+        $updateAdmissionForm->save();
+
+        if ($updateAdmissionForm){
+            MoneyReceipt::where('admission_id', $updateAdmissionForm->id)->first()->delete();
+            $moneyReceipt = new MoneyReceipt();
+            $moneyReceipt->admission_id = $updateAdmissionForm->id;
+            $moneyReceipt->payment_type = $request->payment_type;
+            $moneyReceipt->admission_date = $request->admission_date;
+            $moneyReceipt->in_word = $request->in_word;
+            $moneyReceipt->total_fee = $request->total_fee;
+            $moneyReceipt->advance = $request->advance;
+            $moneyReceipt->due = $request->due;
+            $moneyReceipt->save();
+        }
+        return redirect('/admin/students/list')->with('success', 'Admission successfully updated.');
+
+    }
+
+    public function studentDelete($id)
+    {
+        $studentDelete = AdmissionForm::with('moneyReceipt')->find($id);
+        if (!$studentDelete){
+            return redirect()->back()->with('error', 'Student information not found');
+        }
+        $studentDelete->delete();
+        MoneyReceipt::where('admission_id', $studentDelete->id)->first()->delete();
+        return redirect()->back()->with('success', 'Student has been permanently deleted');
     }
 }
