@@ -110,6 +110,9 @@ class AdminController extends Controller
     public function showAdmissionDueModal($id)
     {
         $courseDueCollection = MoneyReceipt::with('admissionForm')->where('id', $id)->first();
+        if (!$courseDueCollection){
+            return redirect()->back()->with('error', 'Student not found');
+        }
         return view('backend.admin.hrm.edit', compact('courseDueCollection'));
     }
 
@@ -118,6 +121,9 @@ class AdminController extends Controller
     public function adminShowAdmissionDueModal($id)
     {
         $courseDueCollection = MoneyReceipt::with('admissionForm')->where('id', $id)->first();
+        if (!$courseDueCollection){
+            return redirect()->back()->with('error', 'Student not found');
+        }
         return view('backend.admin.student.edit', compact('courseDueCollection'));
     }
 
