@@ -90,7 +90,7 @@
            </a>
            <a href="{{ url('/interested') }}">
                <div class="col col-md-12">
-                   <div class="card radius-10" id="grad5">
+                   <div class="card radius-10" id="grad5" style="background: #A52A2A">
                        <div class="card-body text-center">
                            <p class="mb-1 text-white" style="font-size: 24px;">50% Interested</p>
                            <h3 class="mb-3">
@@ -105,7 +105,7 @@
            </a>
            <a href="{{ url('/others') }}">
                <div class="col col-md-12">
-                   <div class="card radius-10" id="grad5">
+                   <div class="card radius-10" id="grad5" style="background: #C70039">
                        <div class="card-body text-center">
                            <p class="mb-1 text-white" style="font-size: 24px;">Others</p>
                            <h3 class="mb-3">
