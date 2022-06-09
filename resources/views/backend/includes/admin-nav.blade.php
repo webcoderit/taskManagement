@@ -66,6 +66,17 @@
           <ul>
               <li> <a href="{{ url('/admin/user/expanse/list') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
               <li> <a href="{{ url('admin/user/admission/filtering') }}"><i class="bx bx-right-arrow-alt"></i>Admission Filtering</a></li>
+              <li> <a href="{{ url('/admin/salary/list') }}"><i class="bx bx-right-arrow-alt"></i>Salary</a></li>
+          </ul>
+      </li>
+      <li>
+          <a href="javascript:;" class="has-arrow">
+              <div class="parent-icon"><i class='bx bx-user'></i>
+              </div>
+              <div class="menu-title">Students</div>
+          </a>
+          <ul>
+              <li> <a href="{{ url('/admin/students/list') }}"><i class="bx bx-right-arrow-alt"></i>Student list</a></li>
           </ul>
       </li>
   </ul>
