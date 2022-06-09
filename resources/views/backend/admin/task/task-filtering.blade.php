@@ -31,18 +31,11 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="employe_name" style="font-weight: 600; margin-bottom: 5px;">
-                                            Employe Name
+                                            Employee Name
                                         </label><br>
                                         <select name="employe_name" class="form-control">
                                             <option selected disabled>--- Select Employee Name ---</option>
                                             <option value="al amin saki">Al-Amin</option>
-                                            <option value="rakib">Rakib</option>
-                                            <option value="rony">Rony</option>
-                                            <option value="limon">Limon</option>
-                                            <option value="utso">Utso</option>
-                                            <option value="forid">Forid</option>
-                                            <option value="shibly">Shibly</option>
-                                            <option value="masum">Masum</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
