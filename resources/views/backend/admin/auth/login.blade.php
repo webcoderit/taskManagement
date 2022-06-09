@@ -25,71 +25,26 @@
 
 <body>
 	<!--wrapper-->
-		{{-- <div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
-			<div class="container-fluid">
-				<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
-					<div class="col mx-auto">
-						<div class="card">
-							<div class="card-body">
-								<div class="border p-4 rounded">
-									<div class="text-center">
-										<h3 class="">Admin Sign in</h3>
-									</div>
-                                    @if(Session::has('error'))
-                                        <div class="alert alert-danger">
-                                            {{ Session::get('error') }}
-                                        </div>
-                                    @endif
-									<div class="form-body">
-										<form class="row g-3" action="{{ route('admin.login') }}" method="post">
-											@csrf
-											<div class="col-12">
-												<label for="inputEmailAddress" class="form-label">Email Address</label>
-												<input type="email" class="form-control" name="email" required id="inputEmailAddress" placeholder="Email Address">
-                                                <span style="color: red"> {{ $errors->has('email') ? $errors->first('email') : ' ' }}</span>
-											</div>
-											<div class="col-12">
-												<label for="inputChoosePassword" class="form-label">Enter Password</label>
-												<div class="input-group" id="show_hide_password">
-													<input type="password" class="form-control border-end-0" name="password" required id="inputChoosePassword" value="12345678" placeholder="Enter Password">
-                                                    <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
-                                                    <span style="color: red"> {{ $errors->has('password') ? $errors->first('password') : ' ' }}</span>
-												</div>
-											</div>
-											<div class="col-lg-12 col-md-12 col-sm-12 mt-3">
-												<div class="d-grid">
-													<button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Sign in</button>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--end row-->
-			</div>
-		</div> --}}
-		<div class="login-box">
-		  	<h2>Admin Login</h2>
-		  	<form action="{{ route('admin.login') }}" method="post">
-		  		@csrf
-		    	<div class="box">
-		      		<input type="email" name="email" required id="inputEmailAddress">
-		      		<label>Email</label>
-		      		<span style="color: red"> {{ $errors->has('email') ? $errors->first('email') : ' ' }}</span>
-		    	</div>
-		    	<div class="box" id="show_hide_password">
-		      		<input type="password" name="password" required id="inputChoosePassword" value="12345678">
-		      		<label>Password</label>
-		      		<a href="javascript:;" class="hide-show-icon"><i class='bx bx-hide'></i></a>
-                    <span style="color: red"> {{ $errors->has('password') ? $errors->first('password') : ' ' }}</span>
-		    	</div>
-		    	<button type="submit" class="admin-login-btn"><i class="bx bxs-lock-open"></i>Sign in</button>
-		  </form>
-		</div>
+	<div class="login-box">
+	  	<h2>Admin Login</h2>
+	  	<form action="{{ route('admin.login') }}" method="post">
+	  		@csrf
+	    	<div class="box">
+	      		<input type="email" name="email" required id="inputEmailAddress">
+	      		<label>Email</label>
+	      		<span style="color: red"> {{ $errors->has('email') ? $errors->first('email') : ' ' }}</span>
+	    	</div>
+	    	<div class="box" id="show_hide_password">
+	      		<input type="password" name="password" required id="inputChoosePassword" value="12345678">
+	      		<label>Password</label>
+	      		<a href="javascript:;" class="hide-show-icon"><i class='bx bx-hide'></i></a>
+                <span style="color: red"> {{ $errors->has('password') ? $errors->first('password') : ' ' }}</span>
+	    	</div>
+	    	<button type="submit" class="admin-login-btn"><i class="bx bxs-lock-open"></i>Sign in</button>
+	  </form>
+	</div>
 	<!--end wrapper-->
+	
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('backend/') }}/assets/js/bootstrap.bundle.min.js"></script>
 	<!--plugins-->
