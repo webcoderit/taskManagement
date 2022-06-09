@@ -752,5 +752,14 @@ address {
     opacity: 0.5;
 }
 
-
 /* Chat Page Section Csss End */
+
+.expense-badge {
+    background: #E74C3C;
+    color: #fff;
+    margin-left: 10px;
+    padding: 5px 29px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
