@@ -18,9 +18,11 @@
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase">Expanse</h6>
-            <div class="add-expanse-btn-outer" style="text-align: end;">
-
+            <div style="display: flex;align-items: center;">
+                <h6 class="mb-0 text-uppercase">Expanse</h6>
+                <span class="expense-badge">
+                    Total : 3522 Tk
+                </span>
             </div>
             <hr/>
             <div class="card">
@@ -28,9 +30,9 @@
                     <div class="row">
                         <form class="form-group" action="{{ url('/admin/user/expanse/list') }}" method="get">
                             @csrf
-                            <div class="col-md-10 m-auto">
+                            <div class="col-md-12 m-auto">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label style="font-weight: 600;margin-bottom: 5px;">Select Bill Type</label><br>
                                         <select name="bill_type" id="bill-type" class="form-control">
                                             <option selected disabled>--- Select Bill Type ---</option>
@@ -40,11 +42,17 @@
                                             <option value="others bill">Others Bill</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label style="font-weight: 600;margin-bottom: 5px;">
-                                            Date
+                                            Date From
                                         </label><br>
                                         <input type="date" name="expanse_date" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label style="font-weight: 600;margin-bottom: 5px;">
+                                            Date To
+                                        </label><br>
+                                        <input type="date" name="to_date" class="form-control">
                                     </div>
                                     <div class="col-md-3">
                                        <div class="input-group" style="margin-top: 25px;">                     
