@@ -322,7 +322,7 @@ class AdminController extends Controller
         $sql = Expance::orderBy('created_at', 'desc');
         $dateFormat = date('Y-m-d', strtotime(request()->expanse_date));
         if (isset(request()->expanse_date)){
-            $sql->where('created_at', 'LIKE', '%'. $dateFormat.'%');
+            $sql->where('created_at', 'LIKE', '%'. $dateFormat.'%')->where('bill_type', 'like', '%'.request()->bill_type.'%');
         }
         $expanses = $sql->paginate(50);
         return view('backend.admin.home.expanse', compact('expanses'));
