@@ -14,6 +14,12 @@
                 </nav>
             </div>
         </div>
+        @if(Session::has('error'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> {{ Session::get('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <h6 class="mb-0 text-uppercase">Add Expanse</h6>
         <hr/>
 		<div class="container">

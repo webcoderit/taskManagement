@@ -21,7 +21,7 @@
             <div style="display: flex;align-items: center;">
                 <h6 class="mb-0 text-uppercase">Expanse</h6>
                 <span class="expense-badge">
-                    Total : 3522 Tk
+                    Total : 000 Tk
                 </span>
             </div>
             <hr/>
@@ -55,12 +55,12 @@
                                         <input type="date" name="to_date" class="form-control">
                                     </div>
                                     <div class="col-md-3">
-                                       <div class="input-group" style="margin-top: 25px;">                     
+                                       <div class="input-group" style="margin-top: 25px;">
                                             <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
                                             <a href="{{ url('/admin/user/expanse/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
-                                        </div> 
+                                        </div>
                                     </div>
-                                </div>                                
+                                </div>
                             </div>
                         </form>
                     </div>

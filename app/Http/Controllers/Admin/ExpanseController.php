@@ -32,11 +32,15 @@ class ExpanseController extends Controller
             'bill_type' => 'required',
         ]);
 
-        $expanse = new Expance();
-        $expanse->bill_type = $request->bill_type;
-        $expanse->price = $request->price;
-        $expanse->note = $request->note;
-        $expanse->save();
+        try {
+            $expanse = new Expance();
+            $expanse->bill_type = $request->bill_type;
+            $expanse->price = $request->price;
+            $expanse->note = $request->note;
+            $expanse->save();
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
         return redirect('/expanse')->with('success', 'Expanse has been added');
     }
 
