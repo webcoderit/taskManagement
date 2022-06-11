@@ -24,7 +24,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-group" action="{{ url('/admin/user/admission/filtering') }}" method="get">
+                            <form class="form-group" action="{{ url('/admin/user/task/filtering') }}" method="get">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-3">

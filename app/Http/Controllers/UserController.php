@@ -136,34 +136,34 @@ class UserController extends Controller
     }
 
     public function confirmAddmission(){
-        $complete = AdmissionForm::with('user', 'moneyReceipt')->where('other_admission', 1)->where('user_id', auth()->user()->id)->get();
+        $complete = AdmissionForm::with('user', 'moneyReceipt')->where('user_id', auth()->user()->id)->orderByDesc('created_at')->get();
         return view('backend.users.task.confirm-addmission', compact('complete'));
     }
 
     public function notInterested(){
         $notInterested = Intereste::where('interest_level' , 'not')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->get();
+        })->orderByDesc('created_at')->get();
         return view('backend.users.task.not-interested', compact('notInterested'));
     }
 
     public function highlyInterested(){
         $highlyInterested = Intereste::where('interest_level' , 'highly')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->get();
+        })->orderByDesc('created_at')->get();
         return view('backend.users.task.highly-interested' , compact('highlyInterested'));
     }
 
     public function interested(){
         $interested = Intereste::where('interest_level' , '50%')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->get();
+        })->orderByDesc('created_at')->get();
         return view('backend.users.task.interested' , compact('interested'));
     }
     public function others(){
         $others = Intereste::where('interest_level', 'others')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->get();
+        })->orderByDesc('created_at')->get();
         return view('backend.users.task.others' , compact('others'));
     }
 

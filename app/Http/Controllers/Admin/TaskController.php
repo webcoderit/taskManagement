@@ -9,6 +9,7 @@ use App\Imports\TaskImport;
 use App\Models\AdmissionForm;
 use App\Models\AssignNumber;
 use App\Models\Intereste;
+use App\Models\MoneyReceipt;
 use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
@@ -129,7 +130,20 @@ class TaskController extends Controller
         return view('backend.admin.task.recall', compact('recalls', 'users'));
     }
     public function taskFiltering(){
-        return view('backend.admin.task.task-filtering');
+        $data = [
+            'users' => User::orderBy('updated_at', 'desc')->get(),
+            'todayAmounts' => MoneyReceipt::whereDate('created_at', Carbon::today())->get(),
+            'monthlyAmounts' => MoneyReceipt::whereMonth('created_at', date('m'))->get(),
+            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
+        ];
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+        if (isset(request()->user_id) && isset(request()->date)&& isset(request()->batch_no)){
+            $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
+                $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
+            })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
+        }
+        $admissionStudents = $sql->paginate(50);
+        return view('backend.admin.task.task-filtering', compact('admissionStudents', 'data'));
     }
 
 //    public function taskStore(TaskRequest $request)
