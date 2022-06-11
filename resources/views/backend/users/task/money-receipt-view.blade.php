@@ -25,13 +25,13 @@
                                 </div>
                                 <div class="admission-date">
                                     <span class="money-receipt-view-label">Admission Date :</span>
-                                    <span>{{ $moneyReceiptView->admission_date }}</span>
+                                    <span>{{ $moneyReceiptView->admission_date->format('Y-m-d') ?? ' ' }}</span>
                                 </div>
                             </div>
                             <div class="money-receipt-info-item">
                                 <div>
                                     <span class="money-receipt-view-label">Student Name :</span>
-                                    <span>{{ $moneyReceiptView->admissionForm->s_name ?? '' }}</span>
+                                    <span>{{ $moneyReceiptView->admissionForm->s_name ?? ' ' }}</span>
                                 </div>
                             </div>
                             <div class="money-receipt-info-item">

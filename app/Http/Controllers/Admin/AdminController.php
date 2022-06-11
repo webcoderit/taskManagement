@@ -135,15 +135,19 @@ class AdminController extends Controller
             'due' => 'required',
         ]);
 
-        $dueClear = MoneyReceipt::where('id', $id)->first();
-        $dueClear->advance = $dueClear->advance + $request->due_payment;
-        $dueClear->due = $request->due;
-        $dueClear->today_pay = $request->due_payment;
-        $dueClear->save();
-        //Student opinion
-        $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
-        $updateStudentNote->note = $request->note;
-        $updateStudentNote->save();
+        try {
+            $dueClear = MoneyReceipt::where('id', $id)->first();
+            $dueClear->advance = $dueClear->advance + $request->due_payment;
+            $dueClear->due = $request->due;
+            $dueClear->today_pay = $request->due_payment;
+            $dueClear->save();
+            //Student opinion
+            $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
+            $updateStudentNote->note = $request->note;
+            $updateStudentNote->save();
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
         return redirect('/admin/student/list')->with('success', 'Updated.');
     }
 
@@ -156,15 +160,19 @@ class AdminController extends Controller
             'due' => 'required',
         ]);
 
-        $dueClear = MoneyReceipt::where('id', $id)->first();
-        $dueClear->advance = $dueClear->advance + $request->due_payment;
-        $dueClear->due = $request->due;
-        $dueClear->today_pay = $request->due_payment;
-        $dueClear->save();
-        //Student opinion
-        $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
-        $updateStudentNote->note = $request->note;
-        $updateStudentNote->save();
+        try {
+            $dueClear = MoneyReceipt::where('id', $id)->first();
+            $dueClear->advance = $dueClear->advance + $request->due_payment;
+            $dueClear->due = $request->due;
+            $dueClear->today_pay = $request->due_payment;
+            $dueClear->save();
+            //Student opinion
+            $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
+            $updateStudentNote->note = $request->note;
+            $updateStudentNote->save();
+        }catch (\Exception $exception){
+            return redirect('/admin/students/list')->with('error', $exception->getMessage());
+        }
         return redirect('/admin/students/list')->with('success', 'Updated.');
     }
 
@@ -181,22 +189,26 @@ class AdminController extends Controller
 
     public function store(UserRegistrationRequest $request)
     {
-        if ($request->file('avatar')){
-            $file = $request->file('avatar');
-            $name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('avatar/', $name);
+        try {
+            if ($request->file('avatar')){
+                $file = $request->file('avatar');
+                $name = time() . '.' . $file->getClientOriginalExtension();
+                $file->move('avatar/', $name);
+            }
+            $user = new User();
+            $user->first_name = $request->first_name;
+            $user->last_name  = $request->last_name;
+            $user->email      = $request->email;
+            $user->phone      = $request->phone;
+            $user->mac_address      = $request->mac_address;
+            if ($request->file('avatar')){
+                $user->avatar      = $name;
+            }
+            $user->password   = bcrypt($request->password);
+            $user->save();
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
         }
-        $user = new User();
-        $user->first_name = $request->first_name;
-        $user->last_name  = $request->last_name;
-        $user->email      = $request->email;
-        $user->phone      = $request->phone;
-        $user->mac_address      = $request->mac_address;
-        if ($request->file('avatar')){
-            $user->avatar      = $name;
-        }
-        $user->password   = bcrypt($request->password);
-        $user->save();
         return redirect()->back()->withSuccess('User has been created.');
     }
 
@@ -207,20 +219,24 @@ class AdminController extends Controller
 
     public function update(UserUpdateRequest $request, User $user)
     {
-        if($request->hasFile('avatar')){
-            if($user->avatar && file_exists(public_path('avatar/'.$user->avatar))){
-                unlink(public_path('avatar/'.$user->avatar));
+        try {
+            if($request->hasFile('avatar')){
+                if($user->avatar && file_exists(public_path('avatar/'.$user->avatar))){
+                    unlink(public_path('avatar/'.$user->avatar));
+                }
+                $name = time() . '.' . $request->avatar->getClientOriginalExtension();
+                $request->avatar->move('avatar/', $name);
+                $user->avatar = $name;
             }
-            $name = time() . '.' . $request->avatar->getClientOriginalExtension();
-            $request->avatar->move('avatar/', $name);
-            $user->avatar = $name;
+            $user->first_name = $request->first_name;
+            $user->last_name  = $request->last_name;
+            $user->email      = $request->email;
+            $user->phone      = $request->phone;
+            $user->mac_address      = $request->mac_address;
+            $user->save();
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
         }
-        $user->first_name = $request->first_name;
-        $user->last_name  = $request->last_name;
-        $user->email      = $request->email;
-        $user->phone      = $request->phone;
-        $user->mac_address      = $request->mac_address;
-        $user->save();
         return redirect('admin/register')->withSuccess('User has been updated.');
     }
 
@@ -280,16 +296,23 @@ class AdminController extends Controller
             'batch_no' => 'required',
         ]);
 
-        $addNewBatch = new Batch();
-        $addNewBatch->course_name = $request->course_name;
-        $addNewBatch->batch_no = trim($request->batch_no);
-        $addNewBatch->save();
+        try {
+            $addNewBatch = new Batch();
+            $addNewBatch->course_name = $request->course_name;
+            $addNewBatch->batch_no = trim($request->batch_no);
+            $addNewBatch->save();
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
         return redirect()->back()->with('success', 'Add new batch');
     }
 
     public function batchDelete($id)
     {
         $deleteBatch = Batch::find($id);
+        if (!$deleteBatch){
+            return redirect()->back()->with('error', 'No Batch Found');
+        }
         $deleteBatch->delete();
         return redirect()->back()->with('error', 'Batch has been deleted');
     }

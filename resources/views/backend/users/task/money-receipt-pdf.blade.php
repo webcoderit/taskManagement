@@ -25,31 +25,31 @@
     <tbody>
     <tr style="border-bottom: 1px solid #ddd;">
         <td style="padding: 0px 0px 10px 20px;">
-                    <span style="font-size: 15px;color: #000;font-weight: 600;">
-                        Student ID :
-                    </span>
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Student ID :
+            </span>
             <span style="color: #000;">
-                        {{ ucfirst($data['moneyReceipt']->admissionForm->course) }} - {{ $data['moneyReceipt']->admissionForm->student_id }}
-                    </span>
+                {{ ucfirst($data['moneyReceipt']->admissionForm->course) }} - {{ $data['moneyReceipt']->admissionForm->student_id }}
+            </span>
         </td>
         <td style="width: 180px;"></td>
         <td style="width: 200px;text-align: center;padding: 0px 20px 10px 0;">
-                    <span style="font-size: 15px;color: #000;font-weight: 600;">
-                        Admission Date :
-                    </span>
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Admission Date :
+            </span>
             <span style="color: #000;">
-                        {{ $data['moneyReceipt']->admission_date }}
-                    </span>
+                 {{ $data['moneyReceipt']->admission_date->format('Y-m-d') }}
+            </span>
         </td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
         <td colspan="3" style="padding: 10px 0 10px 20px;">
-                    <span style="font-size: 15px;color: #000;font-weight: 600;">
-                        Student Name :
-                    </span>
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Student Name :
+            </span>
             <span style="color: #000;">
-                        {{ $data['moneyReceipt']->admissionForm->s_name }}
-                    </span>
+                {{ $data['moneyReceipt']->admissionForm->s_name }}
+            </span>
         </td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
@@ -59,7 +59,7 @@
                     </span>
 
             <span style="color: #000;">
-                        @if($data['moneyReceipt']->admissionForm->course == 'web')
+                @if($data['moneyReceipt']->admissionForm->course == 'web')
                     Full stack web development
                 @elseif($data['moneyReceipt']->admissionForm->course == 'digital')
                     Advance Digital Marketing

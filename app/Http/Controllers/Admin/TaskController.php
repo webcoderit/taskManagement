@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskRequest;
 use App\Imports\ImportUser;
 use App\Imports\TaskImport;
+use App\Models\AdmissionForm;
 use App\Models\AssignNumber;
 use App\Models\Intereste;
 use App\Models\Task;
@@ -26,7 +27,7 @@ class TaskController extends Controller
 
     public function allTaskView($id)
     {
-        $tasks = Task::with('user')->where('user_id', $id)->get();
+        $tasks = Task::with('user')->where('status', 0)->where('user_id', $id)->get();
         return view('backend.admin.task.view', compact('tasks'));
     }
 
@@ -71,35 +72,61 @@ class TaskController extends Controller
 
     public function completeAddmission(Request $request)
     {
-        $sql = Intereste::with('task')->where('interest_level', 'done');
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
         if (isset($request->user_id)){
-            $sql->whereHas('task', function($q) use($request){
-                $q->where('user_id', 'LIKE','%'.$request->user_id.'%');
-            });
+            $sql->where('user_id', 'LIKE','%'.$request->user_id.'%');
         }
-        $complete = $sql->get();
+        $complete = $sql->paginate(50);
         $users = User::all();
         return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
     }
     public function notInterested()
     {
-        $notInterested = Intereste::where('interest_level' , 'not')->get();
-        return view('backend.admin.task.not-interested' , compact('notInterested'));
+        $sql = Intereste::with('task')->where('interest_level' , 'not')->orderByDesc('created_at');
+        if (isset(request()->user_id)){
+            $sql->whereHas('task', function ($q){
+                $q->where('user_id', 'like', '%'.request()->user_id.'%');
+            });
+        }
+        $notInterested = $sql->paginate(50);
+        $users = User::all();
+        return view('backend.admin.task.not-interested' , compact('notInterested', 'users'));
     }
     public function highlyInterested()
     {
-        $highlyInterested = Intereste::where('interest_level' , 'highly')->get();
-        return view('backend.admin.task.highly-interested' , compact('highlyInterested'));
+        $sql = Intereste::where('interest_level' , 'highly');
+        if (isset(request()->user_id)){
+            $sql->whereHas('task', function ($q){
+                $q->where('user_id', 'like', '%'.request()->user_id.'%');
+            });
+        }
+        $highlyInterested = $sql->paginate(50);
+        $users = User::all();
+        return view('backend.admin.task.highly-interested' , compact('highlyInterested', 'users'));
     }
     public function interested()
     {
-        $interested = Intereste::where('interest_level' , '50%')->get();
-        return view('backend.admin.task.interested' , compact('interested'));
+        $sql = Intereste::where('interest_level' , '50%');
+        if (isset(request()->user_id)){
+            $sql->whereHas('task', function ($q){
+                $q->where('user_id', 'like', '%'.request()->user_id.'%');
+            });
+        }
+        $interested = $sql->paginate(50);
+        $users = User::all();
+        return view('backend.admin.task.interested' , compact('interested', 'users'));
     }
     public function recall()
     {
-        $recalls = Intereste::where('interest_level', '!=', 'done')->paginate(30);
-        return view('backend.admin.task.recall', compact('recalls'));
+        $sql = Intereste::where('interest_level', '!=', 'done');
+        if (isset(request()->user_id)){
+            $sql->whereHas('task', function ($q){
+                $q->where('user_id', 'like', '%'.request()->user_id.'%');
+            });
+        }
+        $recalls = $sql->paginate(50);
+        $users = User::all();
+        return view('backend.admin.task.recall', compact('recalls', 'users'));
     }
     public function taskFiltering(){
         return view('backend.admin.task.task-filtering');
