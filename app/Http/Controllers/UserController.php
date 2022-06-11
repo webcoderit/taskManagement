@@ -181,10 +181,16 @@ class UserController extends Controller
     }
     public function moneyReceiptView($id){
         $moneyReceiptView = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
+        if (!$moneyReceiptView){
+            return redirect()->back()->with('error', 'No money receipt found');
+        }
         return view('backend.users.task.money-receipt-view' , compact('moneyReceiptView'));
     }
     public function admissionFormView($id){
         $admissionForm = AdmissionForm::with('moneyReceipt')->where('id' , $id)->first();
+        if (!$admissionForm){
+            return redirect()->back()->with('error', 'No admission form found');
+        }
         return view('backend.users.task.admission-form-view' , compact('admissionForm'));
     }
     public function admissionFormPdf(){
