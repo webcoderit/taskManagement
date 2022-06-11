@@ -36,10 +36,10 @@
                                         <label style="font-weight: 600;margin-bottom: 5px;">Select Bill Type</label><br>
                                         <select name="bill_type" id="bill-type" class="form-control">
                                             <option selected disabled>--- Select Bill Type ---</option>
-                                            <option value="mobile bill">Mobile Bill</option>
-                                            <option value="net bill">Net Bill</option>
-                                            <option value="electricity bill">Electricity Bill</option>
-                                            <option value="others bill">Others Bill</option>
+                                            <option value="mobile">Mobile Bill</option>
+                                            <option value="net">Net Bill</option>
+                                            <option value="electricity">Electricity Bill</option>
+                                            <option value="others">Others Bill</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
