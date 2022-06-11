@@ -41,6 +41,7 @@
                                 <th>Phone</th>
                                 <th>Fb link</th>
                                 <th>PC/Laptop</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -53,6 +54,7 @@
                                     <td>{{ $task->phone ?? 'No phone found' }}</td>
                                     <td>{{ $task->fb_id ?? 'No Fb link found' }}</td>
                                     <td style="text-transform: capitalize">{{ $task->device ?? 'No Device name found' }}</td>
+                                    <td style="text-transform: capitalize">{{ $task->status == 0 ? 'Pending' : 'Done' }}</td>
                                     <td width="10%">
                                         <a href="{{ url('/admin/user/task/edit/'.$task->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>

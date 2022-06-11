@@ -17,13 +17,13 @@
                     </nav>
                 </div>
             </div>
+            @if(Session::has('success'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> {{ Session::get('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <!--end breadcrumb-->
-            <div style="display: flex;align-items: center;">
-                <h6 class="mb-0 text-uppercase">Expanse</h6>
-                <span class="expense-badge">
-                    Total : 000 Tk
-                </span>
-            </div>
             <hr/>
             <div class="card">
                 <div class="card-body">

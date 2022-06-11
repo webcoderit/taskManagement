@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <form class="form-group" action="" method="">
+                        <form class="form-group" action="{{ url('/admin/user/recall') }}" method="get">
                             @csrf
                             <div class="col-md-8 m-auto">
                                 <div class="row">
@@ -34,27 +34,20 @@
                                         <label style="font-weight: 600;margin-bottom: 5px;">
                                             Select Employee Name
                                         </label><br>
-                                        <select name="employee_name" id="employee_name" class="form-control">
+                                        <select name="user_id" id="user_id" class="form-control">
                                             <option selected disabled>--- Select Employee ---</option>
-                                            <option value="saidul">Saidul Islam</option>
-                                            <option value="shahariar">Shahariar Ikbal</option>
-                                            <option value="farid">Shak Farid</option>
-                                            <option value="utso">Utsho</option>
-                                            <option value="shibly">Shibly</option>
-                                            <option value="masum">Masum</option>
-                                            <option value="rakib">Rakib</option>
-                                            <option value="saki">Al Amin Saki</option>
-                                            <option value="rony">Rony</option>
-                                            <option value="limon">Limon</option>
+                                            @foreach($users as $user)
+                                                <option value="{{ $user->id }}">{{ $user->full_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                       <div class="input-group" style="margin-top: 25px;">                     
+                                        <div class="input-group" style="margin-top: 25px;">
                                             <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
-                                            <a href="#" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
-                                        </div> 
+                                            <a href="{{ url('/admin/user/recall') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                        </div>
                                     </div>
-                                </div>                                
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -63,12 +56,12 @@
                         <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
-                                <th>SL</th>
+                                <th>Date</th>
                                 <th>Employee Name</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Profession</th>
+                                <th width="15%">Note</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -79,7 +72,7 @@
                                     <td>{{ $data->task->name ?? '' }}</td>
                                     <td>{{ $data->task->email ?? '' }}</td>
                                     <td>{{ $data->task->phone ?? '' }}</td>
-                                    <td>{{ $data->task->profession ?? '' }}</td>
+                                    <td>{{ $data->note ?? '' }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

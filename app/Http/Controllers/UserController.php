@@ -265,56 +265,62 @@ class UserController extends Controller
 
     public function admissionStore(AdmissionRequest $request)
     {
-        if ($request->file('avatar')){
-            $file = $request->file('avatar');
-            $name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('student/', $name);
-        }
+        \DB::transaction(function() use($request){
+            try {
+                if ($request->file('avatar')){
+                    $file = $request->file('avatar');
+                    $name = time() . '.' . $file->getClientOriginalExtension();
+                    $file->move('student/', $name);
+                }
 
-        $newStudent = new AdmissionForm();
-        $newStudent->user_id = auth()->user()->id;
-        $lastInvoiceID = $newStudent->orderBy('id', 'desc')->pluck('id')->first();
-        if (!$lastInvoiceID){
-            $newStudent->student_id = 1;
-        }else{
-            $newStudent->student_id = $lastInvoiceID + 1;
-        }
-        $newStudent->s_name = $request->s_name;
-        $newStudent->s_email = $request->s_email;
-        $newStudent->f_name = $request->f_name;
-        $newStudent->m_name = $request->m_name;
-        $newStudent->s_phone = $request->s_phone;
-        $newStudent->f_phone = $request->f_phone;
-        $newStudent->dob = $request->dob;
-        $newStudent->profession = $request->profession;
-        $newStudent->gender = $request->gender;
-        $newStudent->blood_group = $request->blood_group;
-        $newStudent->qualification = $request->qualification;
-        $newStudent->nid = $request->nid;
-        $newStudent->present_address = $request->present_address;
-        $newStudent->course = $request->course;
-        $newStudent->batch_no = $request->batch_no;
-        $newStudent->batch_type = $request->batch_type;
-        $newStudent->class_shedule = $request->class_shedule;
-        $newStudent->class_time = $request->class_time;
-        $newStudent->other_admission = $request->other_admission;
-        $newStudent->other_admission_note = $request->other_admission_note;
-        if ($request->file('avatar')){
-            $newStudent->avatar      = $name;
-        }
-        $newStudent->save();
+                $newStudent = new AdmissionForm();
+                $newStudent->user_id = auth()->user()->id;
+                $lastInvoiceID = $newStudent->orderBy('id', 'desc')->pluck('id')->first();
+                if (!$lastInvoiceID){
+                    $newStudent->student_id = 1;
+                }else{
+                    $newStudent->student_id = $lastInvoiceID + 1;
+                }
+                $newStudent->s_name = $request->s_name;
+                $newStudent->s_email = $request->s_email;
+                $newStudent->f_name = $request->f_name;
+                $newStudent->m_name = $request->m_name;
+                $newStudent->s_phone = $request->s_phone;
+                $newStudent->f_phone = $request->f_phone;
+                $newStudent->dob = $request->dob;
+                $newStudent->profession = $request->profession;
+                $newStudent->gender = $request->gender;
+                $newStudent->blood_group = $request->blood_group;
+                $newStudent->qualification = $request->qualification;
+                $newStudent->nid = $request->nid;
+                $newStudent->present_address = $request->present_address;
+                $newStudent->course = $request->course;
+                $newStudent->batch_no = $request->batch_no;
+                $newStudent->batch_type = $request->batch_type;
+                $newStudent->class_shedule = $request->class_shedule;
+                $newStudent->class_time = $request->class_time;
+                $newStudent->other_admission = $request->other_admission;
+                $newStudent->other_admission_note = $request->other_admission_note;
+                if ($request->file('avatar')){
+                    $newStudent->avatar      = $name;
+                }
+                $newStudent->save();
 
-        if ($newStudent){
-            $moneyReceipt = new MoneyReceipt();
-            $moneyReceipt->admission_id = $newStudent->id;
-            $moneyReceipt->payment_type = $request->payment_type;
-            $moneyReceipt->admission_date = $request->admission_date;
-            $moneyReceipt->in_word = $request->in_word;
-            $moneyReceipt->total_fee = $request->total_fee;
-            $moneyReceipt->advance = $request->advance;
-            $moneyReceipt->due = $request->due;
-            $moneyReceipt->save();
-        }
+                if ($newStudent){
+                    $moneyReceipt = new MoneyReceipt();
+                    $moneyReceipt->admission_id = $newStudent->id;
+                    $moneyReceipt->payment_type = $request->payment_type;
+                    $moneyReceipt->admission_date = $request->admission_date;
+                    $moneyReceipt->in_word = $request->in_word;
+                    $moneyReceipt->total_fee = $request->total_fee;
+                    $moneyReceipt->advance = $request->advance;
+                    $moneyReceipt->due = $request->due;
+                    $moneyReceipt->save();
+                }
+            }catch (\Exception $exception){
+                return redirect()->back()->with('error', $exception->getMessage());
+            }
+        });
         return redirect()->back()->with('success', 'Admission successfully done.');
     }
 

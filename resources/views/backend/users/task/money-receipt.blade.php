@@ -40,7 +40,7 @@
                             <tbody>
                             @foreach($moneyReceipt as $receipt)
                                 <tr>
-                                    <td>{{ $receipt->moneyReceipt->admission_date ?? '' }}</td>
+                                    <td>{{ $receipt->moneyReceipt->admission_date->format('Y-m-d') ?? '' }}</td>
                                     <td>{{ $receipt->s_name?? '' }}</td>
                                     <td>{{ number_format($receipt->moneyReceipt->total_fee,2) ?? '' }} tk</td>
                                     <td>{{ number_format($receipt->moneyReceipt->advance,2) ?? '' }} tk</td>
