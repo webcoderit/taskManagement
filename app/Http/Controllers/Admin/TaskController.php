@@ -173,28 +173,38 @@ class TaskController extends Controller
     public function taskEdit($id)
     {
         $task = Task::find($id);
+        if (!$task){
+            return redirect()->back()->with('error', 'No task found');
+        }
         $users = User::orderBy('created_at', 'desc')->get();
         return view('backend.admin.task.edit', compact('task', 'users'));
     }
 
     public function taskUpdate(TaskRequest $request, $id)
     {
-        $taskUpdate = Task::find($id);
-        $taskUpdate->user_id = $request->user_id;
-        $taskUpdate->name = $request->name;
-        $taskUpdate->email = $request->email;
-        $taskUpdate->fb_id = $request->fb_id;
-        $taskUpdate->address = $request->address;
-        $taskUpdate->device = $request->device;
-        $taskUpdate->phone = $request->phone;
-        $taskUpdate->profession = $request->profession;
-        $taskUpdate->save();
+        try {
+            $taskUpdate = Task::find($id);
+            $taskUpdate->user_id = $request->user_id;
+            $taskUpdate->name = $request->name;
+            $taskUpdate->email = $request->email;
+            $taskUpdate->fb_id = $request->fb_id;
+            $taskUpdate->address = $request->address;
+            $taskUpdate->device = $request->device;
+            $taskUpdate->phone = $request->phone;
+            $taskUpdate->profession = $request->profession;
+            $taskUpdate->save();
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
         return redirect()->back()->withSuccess('Task has been updated');
     }
 
     public function taskDelete($id)
     {
         $taskDelete = Task::find($id);
+        if (!$taskDelete){
+            return redirect()->back()->with('error', 'No task found');
+        }
         $taskDelete->delete();
         return redirect()->back()->withError('Task has been deleted');
     }
