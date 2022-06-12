@@ -65,7 +65,13 @@
                                 </div>
                                 <div>
                                     <span class="money-receipt-view-label">Due :</span>
-                                    <span>{{ $moneyReceiptView->due }} TK</span>
+                                    <span>
+                                        @if($moneyReceiptView->due == 0)
+                                            Paid
+                                        @else
+                                            {{ $moneyReceiptView->due }}
+                                        @endif
+                                    </span>
                                 </div>
                             </div>
                             <div class="money-receipt-info-item">

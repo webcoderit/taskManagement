@@ -99,8 +99,12 @@
                         Due :
                     </span>
             <span style="color: #000;">
-                        {{ $data['moneyReceipt']->due }} TK
-                    </span>
+                @if($data['moneyReceipt']->due  == 0)
+                    Paid
+                @else
+                    {{ $data['moneyReceipt']->due }}
+                @endif
+            </span>
         </td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
