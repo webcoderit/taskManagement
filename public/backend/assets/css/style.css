@@ -763,3 +763,10 @@ address {
     font-size: 16px;
     font-weight: 600;
 }
+span.total-student-count {
+    background: #f16522;
+    color: #fff;
+    font-size: 20px;
+    padding: 7px 40px;
+    border-radius: 5px;
+}

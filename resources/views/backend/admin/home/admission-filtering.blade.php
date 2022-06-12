@@ -69,6 +69,41 @@
                             </form>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <form class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="batch" style="font-weight: 600; margin-bottom: 10px;">
+                                            Total Student:
+                                        </label><br>
+                                        <span class="total-student-count">3000</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
+                                            Batch No
+                                        </label><br>
+                                        <select name="batch_no" id="batchNo" class="form-control">
+                                            <option selected disabled>--- Select Batch No ---</option>
+                                            @foreach($data['admissionStudentsBatch'] as $batchNo)
+                                                <option value="{{ $batchNo[0]->batch_no }}">{{ ucfirst($batchNo[0]->course) }} - {{ ucfirst($batchNo[0]->batch_no) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group" style="margin-top: 25px;">
+                                            <button type="submit" class="input-group-text btn btn-primary">
+                                                Search
+                                            </button>
+                                            <a href="{{ url('/admin/user/admission/filtering') }}" class="input-group-text btn btn-danger">
+                                                Clear
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card">
