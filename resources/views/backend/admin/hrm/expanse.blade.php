@@ -81,6 +81,7 @@
                                     <span></span>
                                 </td>
                                 <td></td>
+                                <td></td>
                                 <td>
                                     <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
                                 </td>
