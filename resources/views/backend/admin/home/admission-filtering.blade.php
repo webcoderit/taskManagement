@@ -27,10 +27,15 @@
                             <form class="form-group" action="{{ url('/admin/user/admission/filtering') }}" method="get">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-3"></div>
                                     <div class="col-md-3">
                                         <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
-                                            Batch No
+                                            Select Month:
+                                        </label><br>
+                                        <input type="month" name="month" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
+                                            Batch No:
                                         </label><br>
                                         <select name="batch_no" id="batchNo" class="form-control">
                                             <option selected disabled>--- Select Batch No ---</option>
