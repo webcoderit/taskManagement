@@ -770,3 +770,16 @@ span.total-student-count {
     padding: 7px 40px;
     border-radius: 5px;
 }
+.download-btn {
+    display: inline-block;
+    background: #f16522;
+    color: #fff;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 25px;
+}
+.download-btn:hover{
+    color: #fff;
+}
