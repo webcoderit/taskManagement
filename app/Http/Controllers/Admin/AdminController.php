@@ -334,15 +334,15 @@ class AdminController extends Controller
             'todayAmounts' => MoneyReceipt::whereDate('created_at', Carbon::today())->get(),
             'monthlyAmounts' => MoneyReceipt::whereMonth('created_at', date('m'))->get(),
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
+            'batch' => Batch::orderByDesc('created_at')->get(),
         ];
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
-        if (isset(request()->user_id) && isset(request()->date)&& isset(request()->batch_no)){
-            $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
-                $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
-            })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
+        if (isset(request()->batch_no)){
+            $sql->where('batch_no', request()->batch_no);
+            $admissionStudents = $sql->get();
+            return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
         }
-        $admissionStudents = $sql->paginate(50);
-        return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
+        return view('backend.admin.home.admission-filtering', compact('data'));
     }
 
     //=========== Salary information ==========//

@@ -85,6 +85,9 @@ Route::group(['prefix' => 'admin'], function(){
 
 Auth::routes();
 
+//============== Batch wise student count =================//
+//Route::get('/batch/wise/student/count', [App\Http\Controllers\Admin\AdminController::class, 'batchWiseStudentCount']);
+
 Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
 Route::get('/today/task', [\App\Http\Controllers\UserController::class, 'todayTask']);
 Route::get('/view/details/{id}', [\App\Http\Controllers\UserController::class, 'viewDetails']);

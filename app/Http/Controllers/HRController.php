@@ -72,51 +72,58 @@ class HRController extends Controller
 
     public function admissionFormUpdate(AdmissionRequest $request, $id)
     {
-        $updateAdmissionForm = AdmissionForm::find($id);
+        \DB::transaction(function() use($request, $id){
+            try {
+                $updateAdmissionForm = AdmissionForm::find($id);
 
-        if($request->hasFile('avatar')){
-            if($updateAdmissionForm->avatar && file_exists(public_path('avatar/'.$updateAdmissionForm->avatar))){
-                unlink(public_path('avatar/'.$updateAdmissionForm->avatar));
+                if($request->hasFile('avatar')){
+                    if($updateAdmissionForm->avatar && file_exists(public_path('avatar/'.$updateAdmissionForm->avatar))){
+                        unlink(public_path('avatar/'.$updateAdmissionForm->avatar));
+                    }
+                    $name = time() . '.' . $request->avatar->getClientOriginalExtension();
+                    $request->avatar->move('avatar/', $name);
+                    $updateAdmissionForm->avatar = $name;
+                }
+
+                $updateAdmissionForm->s_name = $request->s_name;
+                $updateAdmissionForm->s_email = $request->s_email;
+                $updateAdmissionForm->f_name = $request->f_name;
+                $updateAdmissionForm->m_name = $request->m_name;
+                $updateAdmissionForm->s_phone = $request->s_phone;
+                $updateAdmissionForm->f_phone = $request->f_phone;
+                $updateAdmissionForm->dob = $request->dob;
+                $updateAdmissionForm->profession = $request->profession;
+                $updateAdmissionForm->gender = $request->gender;
+                $updateAdmissionForm->blood_group = $request->blood_group;
+                $updateAdmissionForm->qualification = $request->qualification;
+                $updateAdmissionForm->nid = $request->nid;
+                $updateAdmissionForm->present_address = $request->present_address;
+                $updateAdmissionForm->course = $request->course;
+                $updateAdmissionForm->batch_no = $request->batch_no;
+                $updateAdmissionForm->batch_type = $request->batch_type;
+                $updateAdmissionForm->class_shedule = $request->class_shedule;
+                $updateAdmissionForm->class_time = $request->class_time;
+                $updateAdmissionForm->other_admission = $request->other_admission;
+                $updateAdmissionForm->other_admission_note = $request->other_admission_note;
+                $updateAdmissionForm->save();
+
+                if ($updateAdmissionForm){
+                    MoneyReceipt::where('admission_id', $updateAdmissionForm->id)->first()->delete();
+                    $moneyReceipt = new MoneyReceipt();
+                    $moneyReceipt->admission_id = $updateAdmissionForm->id;
+                    $moneyReceipt->payment_type = $request->payment_type;
+                    $moneyReceipt->admission_date = $request->admission_date;
+                    $moneyReceipt->in_word = $request->in_word;
+                    $moneyReceipt->total_fee = $request->total_fee;
+                    $moneyReceipt->advance = $request->advance;
+                    $moneyReceipt->due = $request->due;
+                    $moneyReceipt->save();
+                }
+            }catch (\Exception $exception){
+                return redirect()->back()->with('error', $exception->getMessage());
             }
-            $name = time() . '.' . $request->avatar->getClientOriginalExtension();
-            $request->avatar->move('avatar/', $name);
-            $updateAdmissionForm->avatar = $name;
-        }
+        });
 
-        $updateAdmissionForm->s_name = $request->s_name;
-        $updateAdmissionForm->s_email = $request->s_email;
-        $updateAdmissionForm->f_name = $request->f_name;
-        $updateAdmissionForm->m_name = $request->m_name;
-        $updateAdmissionForm->s_phone = $request->s_phone;
-        $updateAdmissionForm->f_phone = $request->f_phone;
-        $updateAdmissionForm->dob = $request->dob;
-        $updateAdmissionForm->profession = $request->profession;
-        $updateAdmissionForm->gender = $request->gender;
-        $updateAdmissionForm->blood_group = $request->blood_group;
-        $updateAdmissionForm->qualification = $request->qualification;
-        $updateAdmissionForm->nid = $request->nid;
-        $updateAdmissionForm->present_address = $request->present_address;
-        $updateAdmissionForm->course = $request->course;
-        $updateAdmissionForm->batch_no = $request->batch_no;
-        $updateAdmissionForm->batch_type = $request->batch_type;
-        $updateAdmissionForm->class_shedule = $request->class_shedule;
-        $updateAdmissionForm->class_time = $request->class_time;
-        $updateAdmissionForm->other_admission = $request->other_admission;
-        $updateAdmissionForm->other_admission_note = $request->other_admission_note;
-        $updateAdmissionForm->save();
-
-        if ($updateAdmissionForm){
-            MoneyReceipt::where('admission_id', $updateAdmissionForm->id)->first()->delete();
-            $moneyReceipt = new MoneyReceipt();
-            $moneyReceipt->admission_id = $updateAdmissionForm->id;
-            $moneyReceipt->payment_type = $request->payment_type;
-            $moneyReceipt->admission_date = $request->admission_date;
-            $moneyReceipt->in_word = $request->in_word;
-            $moneyReceipt->total_fee = $request->total_fee;
-            $moneyReceipt->advance = $request->advance;
-            $moneyReceipt->due = $request->due;
-            $moneyReceipt->save();
-        }
         return redirect('/admin/student/list')->with('success', 'Admission successfully updated.');
 
     }

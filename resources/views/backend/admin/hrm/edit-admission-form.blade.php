@@ -226,13 +226,13 @@
                                     <label for="avatar" class="mt-2">Avatar</label>
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
-                                            <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" onchange="imagePreview(event)" />
+                                            <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" />
                                             <label for="imageUpload"></label>
                                             <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
                                         </div>
                                         <div class="avatar-preview">
                                             <div>
-                                                <img src="{{ asset('student/'.$editAdmissionForm->avatar) }}" style="height: 200px; width: 220px!important;" id="pre-avatar">
+                                                <img src="{{ asset('/avatar/'.$editAdmissionForm->avatar) }}" style="height: 200px; width: 220px!important;" id="pre-avatar">
                                             </div>
                                         </div>
                                     </div>
