@@ -12,46 +12,30 @@
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{ url('/admin/dashboard') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Admission Filter</li>
+                            <li class="breadcrumb-item active" aria-current="page">Admission Filtering Count</li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase">Admission Filtering</h6>
+            <h6 class="mb-0 text-uppercase">Admission Filtering Count</h6>
             <hr/>
             <div class="search-form-wrapper card p-4">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-group" action="{{ url('/admin/user/task/filtering') }}" method="get">
+                            <form class="form-group" action="{{ url('/admin/user/admission/filtering') }}" method="get">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <label for="employe_name" style="font-weight: 600; margin-bottom: 5px;">
-                                            Employee Name
-                                        </label><br>
-                                        <select name="user_id" class="form-control">
-                                            <option selected disabled>--- Select Employee Name ---</option>
-                                            @foreach($data['users'] as $user)
-                                                <option value="{{ $user->id }}">{{ $user->full_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="date" style="font-weight: 600; margin-bottom: 5px;">
-                                            Date
-                                        </label><br>
-                                        <input type="date" name="date" class="form-control" placeholder="Date">
-                                    </div>
+                                    <div class="col-md-3"></div>
                                     <div class="col-md-3">
                                         <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
                                             Batch No
                                         </label><br>
                                         <select name="batch_no" id="batchNo" class="form-control">
                                             <option selected disabled>--- Select Batch No ---</option>
-                                            @foreach($data['admissionStudentsBatch'] as $batchNo)
-                                                <option value="{{ $batchNo[0]->batch_no }}">{{ ucfirst($batchNo[0]->course) }} - {{ ucfirst($batchNo[0]->batch_no) }}</option>
+                                            @foreach($data['batch'] as $batchNo)
+                                                <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ $batchNo->batch_no }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -65,42 +49,19 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <form class="form-group">
-                                <div class="row">
                                     <div class="col-md-3">
                                         <label for="batch" style="font-weight: 600; margin-bottom: 10px;">
                                             Total Student:
                                         </label><br>
-                                        <span class="total-student-count">3000</span>
+                                        <span class="total-student-count">
+                                            @if(isset($admissionStudents) > 0)
+                                                {{ count($admissionStudents) }}
+                                            @else
+                                                0
+                                            @endif
+                                        </span>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
-                                            Batch No
-                                        </label><br>
-                                        <select name="batch_no" id="batchNo" class="form-control">
-                                            <option selected disabled>--- Select Batch No ---</option>
-                                            @foreach($data['admissionStudentsBatch'] as $batchNo)
-                                                <option value="{{ $batchNo[0]->batch_no }}">{{ ucfirst($batchNo[0]->course) }} - {{ ucfirst($batchNo[0]->batch_no) }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="input-group" style="margin-top: 25px;">
-                                            <button type="submit" class="input-group-text btn btn-primary">
-                                                Search
-                                            </button>
-                                            <a href="{{ url('/admin/user/admission/filtering') }}" class="input-group-text btn btn-danger">
-                                                Clear
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>                                
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -124,6 +85,7 @@
                                 <th>Due</th>
                             </tr>
                             </thead>
+                            @if(isset($admissionStudents))
                             <tbody>
                             @php
                                 $sum = 0
@@ -160,8 +122,8 @@
                                 </td>
                             </tr>
                             </tbody>
+                            @endif
                         </table>
-                        {{ $admissionStudents->links() }}
                     </div>
                 </div>
             </div>

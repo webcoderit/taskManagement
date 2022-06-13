@@ -137,7 +137,8 @@ class TaskController extends Controller
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
         ];
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
-        if (isset(request()->user_id) && isset(request()->date)&& isset(request()->batch_no)){
+        if (isset(request()->user_id) && isset(request()->date) && isset(request()->batch_no)){
+            //dd(request()->date);
             $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
                 $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
             })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
