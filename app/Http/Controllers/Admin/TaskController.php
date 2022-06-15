@@ -15,6 +15,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class TaskController extends Controller
 {
@@ -71,13 +72,25 @@ class TaskController extends Controller
 
     public function completeAddmission(Request $request)
     {
-        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
-        if (isset($request->user_id) && isset($request->month)){
-            $sql->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
+        $sqlDownloadPdf = AdmissionForm::with('moneyReceipt', 'user')->where('user_id', request()->user_id)
+            ->whereMonth('created_at', date('m', strtotime(request()->month)))
+            ->orderByDesc('created_at');
+        if ($sqlDownloadPdf){
+            if (isset(request()->user_id) && isset(request()->month)){
+                $sqlDownloadPdf->where('user_id', request()->user_id)->whereMonth('created_at',  date('m', strtotime(request()->month)));
+            }
+            $reports = $sqlDownloadPdf->get();
+            $callReportPdf = \PDF::loadView('backend.admin.pdf.report', compact('reports'))->setPaper([0, 0, 685, 800], 'landscape');
+            return $callReportPdf->download('Report' . '.' . 'pdf');
+        }else{
+            $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+            if (isset($request->user_id) && isset($request->month)){
+                $sql->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
+            }
+            $complete = $sql->paginate(100);
+            $users = User::all();
+            return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
         }
-        $complete = $sql->paginate(100);
-        $users = User::all();
-        return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
     }
     public function notInterested(Request $request)
     {
@@ -220,5 +233,20 @@ class TaskController extends Controller
         }
         $taskDelete->delete();
         return redirect()->back()->withError('Task has been deleted');
+    }
+
+
+    //=============================== Call report download ========================================//
+    public function callReportDownload()
+    {
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->where('user_id', request()->user_id)
+            ->whereMonth('created_at', date('m', strtotime(request()->month)))
+            ->orderByDesc('created_at');
+        if (isset(request()->user_id) && isset(request()->month)){
+            $sql->where('user_id', request()->user_id)->whereMonth('created_at',  date('m', strtotime(request()->month)));
+        }
+        $reports = $sql->get();
+        $callReportPdf = \PDF::loadView('backend.admin.pdf.report', compact('reports'))->setPaper([0, 0, 685, 800], 'landscape');
+        return $callReportPdf->download('Report' . '.' . 'pdf');
     }
 }

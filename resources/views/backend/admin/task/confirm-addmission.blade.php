@@ -57,9 +57,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3" style="text-align-last: end;">
-                                       <a href="#" class="download-btn">
+                                       <a href="{{ url('/employee/call-report/download') }}" class="download-btn">
                                             <i class="fa fa-cloud-download"></i>
-                                            Download Pdf
+                                            Download PDF
                                         </a>
                                     </div>
                                 </div>
