@@ -88,6 +88,9 @@
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tr>
+                                <td style="font-weight: 700">Total Admission : {{ count($notInterested) }}</td>
+                            </tr>
                         </table>
                         {{ $notInterested->links() }}
                     </div>

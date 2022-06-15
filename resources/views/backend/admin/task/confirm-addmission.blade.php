@@ -99,6 +99,9 @@
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tr>
+                                <td style="font-weight: 700">Total Admission : {{ count($complete) }}</td>
+                            </tr>
                         </table>
                         {{ $complete->links() }}
                     </div>

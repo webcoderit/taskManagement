@@ -15,8 +15,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow\Constant\Periodic\Interest;
-use PhpParser\Node\Stmt\TryCatch;
 
 class TaskController extends Controller
 {
@@ -74,58 +72,58 @@ class TaskController extends Controller
     public function completeAddmission(Request $request)
     {
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
-        if (isset($request->user_id)){
-            $sql->where('user_id', 'LIKE','%'.$request->user_id.'%');
+        if (isset($request->user_id) && isset($request->month)){
+            $sql->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
         }
-        $complete = $sql->paginate(50);
+        $complete = $sql->paginate(100);
         $users = User::all();
         return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
     }
-    public function notInterested()
+    public function notInterested(Request $request)
     {
         $sql = Intereste::with('task')->where('interest_level' , 'not')->orderByDesc('created_at');
-        if (isset(request()->user_id)){
-            $sql->whereHas('task', function ($q){
-                $q->where('user_id', 'like', '%'.request()->user_id.'%');
+        if (isset($request->user_id) && isset($request->month)){
+            $sql->whereHas('task', function ($q) use ($request){
+                $q->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
             });
         }
-        $notInterested = $sql->paginate(50);
+        $notInterested = $sql->paginate(100);
         $users = User::all();
         return view('backend.admin.task.not-interested' , compact('notInterested', 'users'));
     }
-    public function highlyInterested()
+    public function highlyInterested(Request $request)
     {
         $sql = Intereste::where('interest_level' , 'highly');
-        if (isset(request()->user_id)){
-            $sql->whereHas('task', function ($q){
-                $q->where('user_id', 'like', '%'.request()->user_id.'%');
+        if (isset($request->user_id) && isset($request->month)){
+            $sql->whereHas('task', function ($q) use ($request){
+                $q->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
             });
         }
-        $highlyInterested = $sql->paginate(50);
+        $highlyInterested = $sql->paginate(100);
         $users = User::all();
         return view('backend.admin.task.highly-interested' , compact('highlyInterested', 'users'));
     }
-    public function interested()
+    public function interested(Request $request)
     {
         $sql = Intereste::where('interest_level' , '50%');
-        if (isset(request()->user_id)){
-            $sql->whereHas('task', function ($q){
-                $q->where('user_id', 'like', '%'.request()->user_id.'%');
+        if (isset($request->user_id) && isset($request->month)){
+            $sql->whereHas('task', function ($q) use ($request){
+                $q->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
             });
         }
-        $interested = $sql->paginate(50);
+        $interested = $sql->paginate(100);
         $users = User::all();
         return view('backend.admin.task.interested' , compact('interested', 'users'));
     }
-    public function recall()
+    public function recall(Request $request)
     {
         $sql = Intereste::where('interest_level', '!=', 'done');
-        if (isset(request()->user_id)){
-            $sql->whereHas('task', function ($q){
-                $q->where('user_id', 'like', '%'.request()->user_id.'%');
+        if (isset($request->user_id) && isset($request->month)){
+            $sql->whereHas('task', function ($q) use ($request){
+                $q->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
             });
         }
-        $recalls = $sql->paginate(50);
+        $recalls = $sql->paginate(100);
         $users = User::all();
         return view('backend.admin.task.recall', compact('recalls', 'users'));
     }
