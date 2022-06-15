@@ -338,7 +338,7 @@ class AdminController extends Controller
         ];
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
         if (isset(request()->batch_no)){
-            $sql->where('batch_no', request()->batch_no);
+            $sql->where('batch_no', request()->batch_no)->orWhereMonth('created_at', request()->month);
             $admissionStudents = $sql->get();
             return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
         }
