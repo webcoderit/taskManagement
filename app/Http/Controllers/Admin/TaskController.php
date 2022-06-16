@@ -15,6 +15,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class TaskController extends Controller
 {
@@ -220,5 +221,17 @@ class TaskController extends Controller
         }
         $taskDelete->delete();
         return redirect()->back()->withError('Task has been deleted');
+    }
+
+
+    //=============================== Call report download ========================================//
+    public function callReportDownload($month, $user_id)
+    {
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->where('user_id', $user_id)
+            ->whereMonth('created_at', date('m', strtotime($month)))
+            ->orderByDesc('created_at');
+        $reports = $sql->get();
+        $callReportPdf = \PDF::loadView('backend.admin.pdf.report', compact('reports'))->setPaper([0, 0, 685, 800], 'landscape');
+        return $callReportPdf->download('Report' . '.' . 'pdf');
     }
 }

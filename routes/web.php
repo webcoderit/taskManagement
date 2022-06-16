@@ -75,7 +75,6 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/recall', [App\Http\Controllers\Admin\TaskController::class, 'recall'])->name('admin.recall');
             Route::get('/task/filtering', [App\Http\Controllers\Admin\TaskController::class, 'taskFiltering'])->name('admin.filtering');
             Route::get('/task/view/{id}', [App\Http\Controllers\Admin\TaskController::class, 'allTaskView'])->name('admin.employee.task.view');
-
             //=============== Expanse list =================//
             Route::get('/expanse/list', [App\Http\Controllers\Admin\AdminController::class, 'expanse']);
             Route::get('/admission/filtering', [App\Http\Controllers\Admin\AdminController::class, 'admissionFiltering']);
@@ -85,8 +84,9 @@ Route::group(['prefix' => 'admin'], function(){
 
 Auth::routes();
 
-//============== Batch wise student count =================//
-//Route::get('/batch/wise/student/count', [App\Http\Controllers\Admin\AdminController::class, 'batchWiseStudentCount']);
+
+//========== Employee Call report download ============//
+Route::get('/employee/call-report/download/{month}/{user_id}', [App\Http\Controllers\Admin\TaskController::class, 'callReportDownload']);
 
 Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
 Route::get('/today/task', [\App\Http\Controllers\UserController::class, 'todayTask']);
