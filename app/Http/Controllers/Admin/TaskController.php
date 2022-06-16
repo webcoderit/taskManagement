@@ -72,25 +72,13 @@ class TaskController extends Controller
 
     public function completeAddmission(Request $request)
     {
-        $sqlDownloadPdf = AdmissionForm::with('moneyReceipt', 'user')->where('user_id', request()->user_id)
-            ->whereMonth('created_at', date('m', strtotime(request()->month)))
-            ->orderByDesc('created_at');
-        if ($sqlDownloadPdf){
-            if (isset(request()->user_id) && isset(request()->month)){
-                $sqlDownloadPdf->where('user_id', request()->user_id)->whereMonth('created_at',  date('m', strtotime(request()->month)));
-            }
-            $reports = $sqlDownloadPdf->get();
-            $callReportPdf = \PDF::loadView('backend.admin.pdf.report', compact('reports'))->setPaper([0, 0, 685, 800], 'landscape');
-            return $callReportPdf->download('Report' . '.' . 'pdf');
-        }else{
-            $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
-            if (isset($request->user_id) && isset($request->month)){
-                $sql->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
-            }
-            $complete = $sql->paginate(100);
-            $users = User::all();
-            return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+        if (isset($request->user_id) && isset($request->month)){
+            $sql->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
         }
+        $complete = $sql->paginate(100);
+        $users = User::all();
+        return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
     }
     public function notInterested(Request $request)
     {
@@ -237,14 +225,11 @@ class TaskController extends Controller
 
 
     //=============================== Call report download ========================================//
-    public function callReportDownload()
+    public function callReportDownload($month, $user_id)
     {
-        $sql = AdmissionForm::with('moneyReceipt', 'user')->where('user_id', request()->user_id)
-            ->whereMonth('created_at', date('m', strtotime(request()->month)))
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->where('user_id', $user_id)
+            ->whereMonth('created_at', date('m', strtotime($month)))
             ->orderByDesc('created_at');
-        if (isset(request()->user_id) && isset(request()->month)){
-            $sql->where('user_id', request()->user_id)->whereMonth('created_at',  date('m', strtotime(request()->month)));
-        }
         $reports = $sql->get();
         $callReportPdf = \PDF::loadView('backend.admin.pdf.report', compact('reports'))->setPaper([0, 0, 685, 800], 'landscape');
         return $callReportPdf->download('Report' . '.' . 'pdf');

@@ -21,12 +21,13 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($reports as $report)
+        @foreach($sql as $report)
             <tr>
                 <td>{{ date('d-m-Y', strtotime($report->created_at)) }}</td>
                 <td>{{ $report->user->full_name ?? '' }}</td>
                 <td>{{ $report->s_name ?? '' }}</td>
                 <td>{{ $report->s_phone ?? '' }}</td>
+                <td>{{ $report->s_email ?? '' }}</td>
                 <td style="text-transform: capitalize">
                     @if($report->course == 'web')
                         Full stack web development

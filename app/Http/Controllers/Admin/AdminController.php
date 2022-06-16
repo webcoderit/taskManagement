@@ -69,7 +69,14 @@ class AdminController extends Controller
         $monthlyCredit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('advance');
         $monthlyDebit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('due');
         $totalDue = MoneyReceipt::get()->sum('due');
-        return view('backend.admin.home.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'totalDue'));
+        $admissionChats = AdmissionForm::select(\DB::raw("COUNT(*) as count"), \DB::raw("MONTHNAME(created_at) as month_name"))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(\DB::raw("Month(created_at)"))
+            ->pluck('count', 'month_name');
+
+        $labels = $admissionChats->keys();
+        $data = $admissionChats->values();
+        return view('backend.admin.home.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'totalDue', 'labels', 'data'));
     }
 
     public function hr_dashboard()

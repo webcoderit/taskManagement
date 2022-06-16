@@ -156,63 +156,67 @@
 
 <div class="wrapper">
     <div class="page-wrapper" style="margin-left: 20px!important;">
-        <div class="page-content">
-            <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase">Employee Tracking list</h6>
-            <hr/>
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>SL</th>
-                                <th>Name</th>
-                                <th>In time</th>
-                                <th>Out time</th>
-                                <th>Active Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($users as $user)
-                                <tr>
-                                    <td>{{ $loop->index+1 }}</td>
-                                    @if($user->status == 1)
-                                        <td class="user-online-offline-b">
-                                            <img src="{{ asset('/avatar/'.$user->avatar) }}" height="30" width="30" style="border-radius: 50%" />
-                                            {{ $user->full_name ?? 'No name found' }}
-                                        </td>
-                                    @else
-                                        <td class="user-online-offline-c">
-                                            <img src="{{ asset('/avatar/'.$user->avatar) }}" height="30" width="30" style="border-radius: 50%" />
-                                            {{ $user->full_name ?? 'No name found' }}
-                                        </td>
-                                    @endif
-                                    <td>{{ $user->in_time != null ? $user->in_time->format('g:i a') : '00:00' }}</td>
-                                    <td>{{ $user->out_time != null ? $user->out_time->format('g:i a') : '00:00' }}</td>
-                                    <td>
-                                        @if($user->status == 1)
-                                            <span class="custom-green-badge">Active</span>
-                                        @else
-                                            <span class="custom-red-badge">{{ $user->updated_at->diffforhumans() }}</span>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <canvas id="myChart" height="100px"></canvas>
     </div>
 </div>
 @endsection
 
 @push('script')
-    <script>
-        setInterval(function() {
-            window.location.reload();
-        }, 10000);
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script type="text/javascript">
+
+        var labels =  {{ Js::from($labels) }};
+        var users =  {{ Js::from($data) }};
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Admissions',
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1,
+                data: users,
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
     </script>
+{{--    <script>--}}
+{{--        setInterval(function() {--}}
+{{--            window.location.reload();--}}
+{{--        }, 10000);--}}
+{{--    </script>--}}
 @endpush

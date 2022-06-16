@@ -86,7 +86,7 @@ Auth::routes();
 
 
 //========== Employee Call report download ============//
-Route::get('/employee/call-report/download', [App\Http\Controllers\Admin\TaskController::class, 'callReportDownload']);
+Route::get('/employee/call-report/download/{month}/{user_id}', [App\Http\Controllers\Admin\TaskController::class, 'callReportDownload']);
 
 Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
 Route::get('/today/task', [\App\Http\Controllers\UserController::class, 'todayTask']);
