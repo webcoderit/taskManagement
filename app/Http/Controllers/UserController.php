@@ -39,7 +39,11 @@ class UserController extends Controller
     }
     public function allTask()
     {
-        $allTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->paginate(20);
+        $sql = Task::with('interestes')->where('user_id', auth()->check() ? auth()->user()->id : '')->orderBy('updated_at', 'ASC');
+        if (isset(request()->search)){
+            $sql->where('phone', 'LIKE', '%' .request()->search.'%');
+        }
+        $allTask = $sql->paginate(30);
         return view('backend.users.task.all-task', compact('allTask'));
     }
 
@@ -131,7 +135,7 @@ class UserController extends Controller
         }
     }
     public function pendingTask(){
-        $pendingTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->where('status', 0)->orderBy('created_at', 'desc')->get();
+        $pendingTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->where('status', 0)->orderBy('updated_at', 'desc')->get();
         return view('backend.users.task.pending-task', compact('pendingTask'));
     }
 
@@ -143,27 +147,27 @@ class UserController extends Controller
     public function notInterested(){
         $notInterested = Intereste::where('interest_level' , 'not')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->orderByDesc('created_at')->get();
+        })->orderByDesc('updated_at')->get();
         return view('backend.users.task.not-interested', compact('notInterested'));
     }
 
     public function highlyInterested(){
         $highlyInterested = Intereste::where('interest_level' , 'highly')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->orderByDesc('created_at')->get();
+        })->orderByDesc('updated_at')->get();
         return view('backend.users.task.highly-interested' , compact('highlyInterested'));
     }
 
     public function interested(){
         $interested = Intereste::where('interest_level' , '50%')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->orderByDesc('created_at')->get();
+        })->orderByDesc('updated_at')->get();
         return view('backend.users.task.interested' , compact('interested'));
     }
     public function others(){
         $others = Intereste::where('interest_level', 'others')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->orderByDesc('created_at')->get();
+        })->orderByDesc('updated_at')->get();
         return view('backend.users.task.others' , compact('others'));
     }
 
