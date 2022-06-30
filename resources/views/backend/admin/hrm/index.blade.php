@@ -182,6 +182,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @if(count($admissionStudents) > 0)
                     @php
                         $sum = 0
                     @endphp
@@ -219,8 +220,8 @@
                     </tr>
                     </tbody>
                 </table>
-                {{ $admissionStudents->links() }}
             </div>
+            @endif
         </div>
     </div>
 </div>

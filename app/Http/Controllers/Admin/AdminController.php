@@ -92,8 +92,10 @@ class AdminController extends Controller
             $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
                 $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
             })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
+            $admissionStudents = $sql->get();
+            return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents'));
         }
-        $admissionStudents = $sql->paginate(50);
+        $admissionStudents = '';
         return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents'));
     }
 
