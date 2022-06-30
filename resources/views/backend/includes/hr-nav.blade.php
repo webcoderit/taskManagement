@@ -21,6 +21,8 @@
         <div class="menu-title">Students</div>
       </a>
       <ul>
+          <li> <a href="{{ url('/admin/addmission/form') }}"><i class="bx bx-right-arrow-alt"></i>Admission Form</a></li>
+          <li> <a href="{{ url('/admin/money-receipt') }}"><i class="bx bx-right-arrow-alt"></i>All Money receipt</a></li>
         <li> <a href="{{ url('admin/student/list') }}"><i class="bx bx-right-arrow-alt"></i>Student list</a></li>
       </ul>
     </li>

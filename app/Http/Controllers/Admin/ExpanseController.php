@@ -16,7 +16,7 @@ class ExpanseController extends Controller
         if (isset(request()->expanse_date)){
             $sql->where('created_at', 'LIKE', '%'. $dateFormat.'%');
         }
-        $expanses = $sql->paginate(50);
+        $expanses = $sql->get();
         return view('backend.admin.hrm.expanse', compact('expanses'));
     }
 
@@ -38,10 +38,10 @@ class ExpanseController extends Controller
             $expanse->price = $request->price;
             $expanse->note = $request->note;
             $expanse->save();
+            return redirect('/expanse')->with('success', 'Expanse has been added');
         }catch (\Exception $exception){
             return redirect()->back()->with('error', $exception->getMessage());
         }
-        return redirect('/expanse')->with('success', 'Expanse has been added');
     }
 
     public function editExpanse($id)

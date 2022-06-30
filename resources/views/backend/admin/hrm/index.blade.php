@@ -178,6 +178,7 @@
                             <th>Total Fee</th>
                             <th>Advance</th>
                             <th>Due</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -204,6 +205,7 @@
                             <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
                             <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
                             <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>
+                            <td>Checked</td>
                         </tr>
                         @php
                             $sum += $admissionStudent->moneyReceipt->advance
