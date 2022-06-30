@@ -168,6 +168,7 @@
                 <table id="" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Date</th>
                             <th>Employee Name</th>
                             <th>Course Name</th>
@@ -188,6 +189,9 @@
                     @endphp
                     @foreach($admissionStudents as $admissionStudent)
                         <tr>
+                            <td>
+                                <input type="checkbox" name="check">
+                            </td>
                             <td>{{ $admissionStudent->moneyReceipt->admission_date->format('Y-m-d') }}</td>
                             <td>{{ $admissionStudent->user->full_name?? '' }}</td>
                             <td>

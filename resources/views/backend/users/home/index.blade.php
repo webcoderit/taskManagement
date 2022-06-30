@@ -37,14 +37,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card radius-10" id="grad1">
-                    <div class="card-body text-center">
-                       <p class="mb-1 text-white" style="font-size: 24px;">Monthly Admission</p>
-                       <h3 class="mb-3">{{ count(\App\Models\AdmissionForm::whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
+            <a href="{{ url('/confirm/addmission') }}">
+                <div class="col">
+                    <div class="card radius-10" id="grad1">
+                        <div class="card-body text-center">
+                           <p class="mb-1 text-white" style="font-size: 24px;">Monthly Admission</p>
+                           <h3 class="mb-3">{{ count(\App\Models\AdmissionForm::whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             <a href="{{ url('/pending/task') }}">
                 <div class="col">
                     <div class="card radius-10" id="grad2">
@@ -55,14 +57,16 @@
                     </div>
                 </div>
             </a>
-           <div class="col">
-               <div class="card radius-10" id="grad3">
-                   <div class="card-body text-center">
-                      <p class="mb-1 text-white" style="font-size: 24px;">Total Task</p>
-                      <h3 class="mb-3">{{ count(\App\Models\Task::whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
-                   </div>
-               </div>
-           </div>
+            <a href="{{ url('/all/task') }}">
+                <div class="col">
+                    <div class="card radius-10" id="grad3">
+                        <div class="card-body text-center">
+                          <p class="mb-1 text-white" style="font-size: 24px;">Total Task</p>
+                          <h3 class="mb-3">{{ count(\App\Models\Task::whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
            <a href="{{ url('/not/interested') }}">
                <div class="col">
                    <div class="card radius-10" id="grad4">

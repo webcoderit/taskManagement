@@ -2,10 +2,8 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use App\Models\AttendanceLog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -34,30 +32,6 @@ trait AuthenticatesUsers
     public function login(Request $request)
     {
         $this->validateLogin($request);
-
-        //$macAddress = explode(' ',exec('getmac'));
-        $user = \App\Models\User::where('email', $request->email)->first();
-        if (!$user){
-            return redirect()->back()->withError('Unauthorised user');
-        }
-        $user->status = 1;
-        $user->in_time = Carbon::now();
-        $user->out_time = null;
-        $user->save();
-
-        //============ Attendance log ==============//
-        $userLogCheck = AttendanceLog::whereDate('created_at', Carbon::today())->where('user_id', $user->id)->first();
-        if ($userLogCheck){
-            $userLogUpdate = AttendanceLog::where('user_id', $userLogCheck->user_id)->whereDate('created_at', Carbon::today())->first();
-            $userLogUpdate->in_time = Carbon::now();
-            $userLogUpdate->save();
-        }else{
-            $log = new AttendanceLog();
-            $log->user_id = $user->id;
-            $log->in_time = Carbon::now();
-            $log->out_time = null;
-            $log->save();
-        }
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -110,7 +84,7 @@ trait AuthenticatesUsers
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
+            $this->credentials($request), $request->boolean('remember')
         );
     }
 
@@ -191,16 +165,6 @@ trait AuthenticatesUsers
      */
     public function logout(Request $request)
     {
-        $user = \App\Models\User::where('id', auth()->user()->id)->first();
-        $user->status = 0;
-        $user->out_time = Carbon::now();
-        $user->save();
-
-        //============== Attendance log ===============//
-        $userCheckout = AttendanceLog::where('user_id', $user->id)->whereDate('created_at', Carbon::today())->first();
-        $userCheckout->out_time = Carbon::now();
-        $userCheckout->save();
-
         $this->guard()->logout();
 
         $request->session()->invalidate();
