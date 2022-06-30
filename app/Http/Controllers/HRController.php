@@ -163,6 +163,20 @@ class HRController extends Controller
         return view('backend.admin.hrm.money-receipt-view' , compact('moneyReceiptView'));
     }
 
+    public function admissionCheck(Request $request)
+    {
+        if ($request->admin_check == null){
+            return redirect()->back()->with('error', 'Please select minimum one number.');
+        }
+        $admissionCheck = AdmissionForm::whereIn('id', $request->admin_check)->get();
+        //return $admissionCheck;
+        foreach ($admissionCheck as $key => $check){
+            $check->admin_check = $request->admin_check[$key];
+            $check->save();
+        }
+        return redirect()->back()->with('success', 'Your information has been updated.');
+    }
+
     public function studentDelete($id)
     {
         $studentDelete = AdmissionForm::with('moneyReceipt')->find($id);

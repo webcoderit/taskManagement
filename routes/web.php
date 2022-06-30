@@ -136,6 +136,7 @@ Route::post('/admission/update/{id}', [\App\Http\Controllers\HRController::class
 Route::get('/admin/addmission/form', [App\Http\Controllers\HRController::class, 'admissionForm']);
 Route::get('/admin/money-receipt', [App\Http\Controllers\HRController::class, 'allMoneyReceipt']);
 Route::get('/admin/money/receipt/view/{id}', [App\Http\Controllers\HRController::class, 'viewMoneyReceipt']);
+Route::post('/admin/admission/checked', [App\Http\Controllers\HRController::class, 'admissionCheck']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

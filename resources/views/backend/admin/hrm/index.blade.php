@@ -162,11 +162,25 @@
             </div>
         </div>
     </div>
-    <div class="card">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
+    <form action="{{ url('/admin/admission/checked') }}" method="post">
+        @csrf
+        <div class="card">
+            <div class="card-body">
+                @if(Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> {{ Session::get('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                    @if(Session::has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> {{ Session::get('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                <div class="table-responsive">
+                    <table id="" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
                         <tr>
                             <th></th>
                             <th>Date</th>
@@ -179,55 +193,69 @@
                             <th>Total Fee</th>
                             <th>Advance</th>
                             <th>Due</th>
-                            <th>Status</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                    @if(count($admissionStudents) > 0)
-                    @php
-                        $sum = 0
-                    @endphp
-                    @foreach($admissionStudents as $admissionStudent)
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="check">
-                            </td>
-                            <td>{{ $admissionStudent->moneyReceipt->admission_date->format('Y-m-d') }}</td>
-                            <td>{{ $admissionStudent->user->full_name?? '' }}</td>
-                            <td>
-                                @if($admissionStudent->course == 'web')
-                                    Full stack web development
-                                @elseif($admissionStudent->course == 'digital')
-                                    Advanced digital marketing
-                                @else
-                                    Communication english
-                                @endif
-                            </td>
-                            <td>{{ $admissionStudent->batch_no?? '' }}</td>
-                            <td>{{ $admissionStudent->s_name?? '' }}</td>
-                            <td>{{ $admissionStudent->s_phone ?? '' }}</td>
-                            <td>{{ $admissionStudent->s_email ?? '' }}</td>
-                            <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
-                            <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
-                            <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>
-                            <td>Checked</td>
-                        </tr>
-                        @php
-                            $sum += $admissionStudent->moneyReceipt->advance
-                        @endphp
-                    @endforeach
-                    <tr>
-                        <td colspan="8"></td>
-                        <td>
-                            <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @if(!empty($admissionStudents))
+                            @php
+                                $sum = 0
+                            @endphp
+                            @foreach($admissionStudents as $admissionStudent)
+                                <tr>
+                                    @if($admissionStudent->admin_check == null)
+                                    <td>
+                                        <input type="checkbox" name="admin_check[]" value="{{ $admissionStudent->id }}" />
+                                    </td>
+                                    @else
+                                        <td>
+                                            <span class="badge rounded-pill bg-success">Checked</span>
+                                        </td>
+                                    @endif
+                                    <td>{{ $admissionStudent->moneyReceipt->admission_date->format('Y-m-d') }}</td>
+                                    <td>{{ $admissionStudent->user->full_name?? '' }}</td>
+                                    <td>
+                                        @if($admissionStudent->course == 'web')
+                                            Full stack web development
+                                        @elseif($admissionStudent->course == 'digital')
+                                            Advanced digital marketing
+                                        @else
+                                            Communication english
+                                        @endif
+                                    </td>
+                                    <td>{{ $admissionStudent->batch_no?? '' }}</td>
+                                    <td>{{ $admissionStudent->s_name?? '' }}</td>
+                                    <td>{{ $admissionStudent->s_phone ?? '' }}</td>
+                                    <td>{{ $admissionStudent->s_email ?? '' }}</td>
+                                    <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
+                                    <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
+                                    <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>
+                                </tr>
+                                @php
+                                    $sum += $admissionStudent->moneyReceipt->advance
+                                @endphp
+                            @endforeach
+                            <tr>
+                                <td colspan="8"></td>
+                                <td>
+                                    <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
+                                </td>
+                                <td colspan="3">
+                                    <button type="submit" class="btn btn-sm btn-success float-end">Update</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        @else
+                            <tr>
+                                <td colspan="11">
+                                    <p class="text-center mt-3">Please Select Employee Name or Batch No or Date and Then Hit Search</p>
+                                </td>
+                            </tr>
+                        @endif
+                    </table>
+                </div>
             </div>
-            @endif
         </div>
-    </div>
+    </form>
 </div>
 @endsection
 
