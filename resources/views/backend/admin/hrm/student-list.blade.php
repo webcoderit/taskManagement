@@ -66,6 +66,7 @@
 	                                <th>Email</th>
 	                                <th>Phone</th>
 	                                <th>Course Name</th>
+	                                <th>Batch No</th>
 	                                <th>Course Fee</th>
 	                                <th>Advance</th>
 	                                <th>Due</th>
@@ -78,7 +79,7 @@
                                 @foreach($admissionStudents as $admissionStudent)
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $admissionStudent->user->full_name?? '' }}</td>
+                                        <td>{{ $admissionStudent->user->full_name?? session()->get('name') }}</td>
                                         <td>{{ $admissionStudent->s_name?? '' }}</td>
                                         <td>{{ $admissionStudent->s_email ?? '' }}</td>
                                         <td>{{ $admissionStudent->s_phone ?? '' }}</td>
@@ -91,6 +92,7 @@
                                                 Communication english
                                             @endif
                                         </td>
+                                        <td>{{ $admissionStudent->batch_no ?? '' }}</td>
                                         <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>

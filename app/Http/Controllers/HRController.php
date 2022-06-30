@@ -77,11 +77,11 @@ class HRController extends Controller
                 $updateAdmissionForm = AdmissionForm::find($id);
 
                 if($request->hasFile('avatar')){
-                    if($updateAdmissionForm->avatar && file_exists(public_path('avatar/'.$updateAdmissionForm->avatar))){
-                        unlink(public_path('avatar/'.$updateAdmissionForm->avatar));
+                    if($updateAdmissionForm->avatar && file_exists(public_path('student/'.$updateAdmissionForm->avatar))){
+                        unlink(public_path('student/'.$updateAdmissionForm->avatar));
                     }
                     $name = time() . '.' . $request->avatar->getClientOriginalExtension();
-                    $request->avatar->move('avatar/', $name);
+                    $request->avatar->move('student/', $name);
                     $updateAdmissionForm->avatar = $name;
                 }
 
@@ -141,6 +141,26 @@ class HRController extends Controller
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no')
         ];
         return view('backend.admin.hrm.student-list', compact('admissionStudents', 'data'));
+    }
+
+    public function admissionForm()
+    {
+        $batchNumber = Batch::orderBy('created_at', 'desc')->get();
+        return view('backend.admin.hrm.addmission-form', compact('batchNumber'));
+    }
+
+    public function allMoneyReceipt()
+    {
+        $moneyReceipt = AdmissionForm::with('moneyReceipt')->orderBy('created_at', 'desc')->get();
+        return view('backend.admin.hrm.money-receipt', compact('moneyReceipt'));
+    }
+
+    public function viewMoneyReceipt($id){
+        $moneyReceiptView = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
+        if (!$moneyReceiptView){
+            return redirect()->back()->with('error', 'No money receipt found');
+        }
+        return view('backend.admin.hrm.money-receipt-view' , compact('moneyReceiptView'));
     }
 
     public function studentDelete($id)

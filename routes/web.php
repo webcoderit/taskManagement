@@ -133,6 +133,9 @@ Route::get('/admin/hr/profile', [\App\Http\Controllers\HRController::class, 'hrP
 Route::post('/hr/profile/update/{id}', [\App\Http\Controllers\HRController::class, 'hrProfileUpdate']);
 Route::post('/hr/password/update/{id}', [\App\Http\Controllers\HRController::class, 'hrProfilePasswordUpdate']);
 Route::post('/admission/update/{id}', [\App\Http\Controllers\HRController::class, 'admissionFormUpdate']);
+Route::get('/admin/addmission/form', [App\Http\Controllers\HRController::class, 'admissionForm']);
+Route::get('/admin/money-receipt', [App\Http\Controllers\HRController::class, 'allMoneyReceipt']);
+Route::get('/admin/money/receipt/view/{id}', [App\Http\Controllers\HRController::class, 'viewMoneyReceipt']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

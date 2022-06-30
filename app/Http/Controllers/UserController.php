@@ -176,11 +176,11 @@ class UserController extends Controller
         return view('backend.users.task.addmission-form', compact('batchNumber'));
     }
     public function moneyReceipt(){
-        $moneyReceipt = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->where('user_id', auth()->user()->id)->get();
+        $moneyReceipt = AdmissionForm::with('moneyReceipt')->orderBy('created_at', 'desc')->where('user_id', auth()->user()->id)->get();
         return view('backend.users.task.money-receipt', compact('moneyReceipt'));
     }
     public function addmissionList(){
-        $admissionForms = AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->where('user_id', auth()->user()->id)->get();
+        $admissionForms = AdmissionForm::with('moneyReceipt')->orderBy('created_at', 'desc')->where('user_id', auth()->user()->id)->get();
         return view('backend.users.task.addmission-list', compact('admissionForms'));
     }
     public function moneyReceiptView($id){
@@ -284,7 +284,7 @@ class UserController extends Controller
                 }
 
                 $newStudent = new AdmissionForm();
-                $newStudent->user_id = auth()->user()->id;
+                $newStudent->user_id = auth()->user()->id ?? session()->get('id');
                 $lastInvoiceID = $newStudent->orderBy('id', 'desc')->pluck('id')->first();
                 if (!$lastInvoiceID){
                     $newStudent->student_id = 1;
