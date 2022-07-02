@@ -118,6 +118,14 @@
                                      <label for="nid_birth_no">NID/Birth Certificate No.</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <input type="number" name="nid" value="{{ old('nid') }}" placeholder="NID/Birth Certificate No." class="form-control">
                                 </div>
+                                <div class="col-md-6">
+                                     <label for="student_fb_name">Student FB Name/ FB Link</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                     <input type="text" name="student_fb_name" value="" placeholder="Student FB Name" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                     <label for="student_ref_name">Student Reference Name</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                     <input type="text" name="student_ref_name" value="" placeholder="Student Reference Name" class="form-control">
+                                </div>
                                 <div class="col-md-12">
                                      <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <textarea name="present_address" rows="2" cols="50" class="form-control">{{ old('present_address') }}</textarea>

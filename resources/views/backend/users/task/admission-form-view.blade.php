@@ -104,6 +104,16 @@
                         </div>
                         <div class="admission-form-view-item">
                             <div>
+                                <span class="admission-form-view-label">FB Name/Link : </span>
+                                <a href="https://www.facebook.com/saidulislamjihad20" target="_blank" class="admission-form-view-value">https://www.facebook.com/saidulislamjihad20</a>
+                            </div>
+                            <div>
+                                <span class="admission-form-view-label">Student Ref. Name : </span>
+                                <span class="admission-form-view-value">Ashik Rahaman</span>
+                            </div>
+                        </div>
+                        <div class="admission-form-view-item">
+                            <div>
                                 <span class="admission-form-view-label">Address : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->present_address }}</span>
                             </div>
