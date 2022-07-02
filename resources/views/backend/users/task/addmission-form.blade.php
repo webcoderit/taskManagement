@@ -119,12 +119,12 @@
                                      <input type="number" name="nid" value="{{ old('nid') }}" placeholder="NID/Birth Certificate No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="student_fb_name">Student Facebook Name</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                     <label for="student_fb_name">Student FB Name/ FB Link</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <input type="text" name="student_fb_name" value="" placeholder="Student FB Name" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="student_ref_name">Student Refarence Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="student_ref_name" value="" placeholder="Student Refarence Name" class="form-control">
+                                     <label for="student_ref_name">Student Reference Name</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                     <input type="text" name="student_ref_name" value="" placeholder="Student Reference Name" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                      <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>
