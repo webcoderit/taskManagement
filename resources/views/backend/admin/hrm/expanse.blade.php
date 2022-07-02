@@ -27,18 +27,41 @@
             <hr/>
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <form class="form-group" action="{{ url('/expanse') }}" method="get">
-                            @csrf
-                            <div class="col-md-6 m-auto">
-                                <div class="input-group mb-2">
-                                    <input type="date" name="expanse_date" class="form-control">
-                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
-                                    <a href="{{ url('/expanse') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+{{--                    <div class="row">--}}
+{{--                        <form class="form-group" action="{{ url('/expanse') }}" method="get">--}}
+{{--                            @csrf--}}
+{{--                            <div class="col-md-6 m-auto">--}}
+{{--                                <div class="input-group mb-2">--}}
+{{--                                    <input type="date" name="expanse_date" class="form-control">--}}
+{{--                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>--}}
+{{--                                    <a href="{{ url('/expanse') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+                    <form action="{{ url('/expanse') }}" method="get" class="form-group">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label>From date</label>
+                                    <div class="input-group mb-2">
+                                        <input type="date" name="from_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <label>To date</label>
+                                    <div class="input-group mb-2">
+                                        <input type="date" name="to_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2" style="margin-top: 20px;">Search</button>
+                                    <a href="{{ url('/expanse') }}" class="input-group-text btn btn-danger" id="basic-addon2" style="margin-top: 20px;">Clear</a>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                     <hr>
                     <div class="table-responsive">
                         <table id="" class="table table-striped table-bordered" style="width:100%">

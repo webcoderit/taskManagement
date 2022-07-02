@@ -37,12 +37,18 @@
                     </div>
                 </div>
             </div>
+            @php
+            $monthlyAdmissionCount = \App\Models\AdmissionForm::where('user_id', auth()->user()->id)
+                ->whereHas('moneyReceipt', function ($q) {
+                    $q->whereMonth('admission_date', date('m'));
+            })->get();
+            @endphp
             <a href="{{ url('/confirm/addmission') }}">
                 <div class="col">
                     <div class="card radius-10" id="grad1">
                         <div class="card-body text-center">
                            <p class="mb-1 text-white" style="font-size: 24px;">Monthly Admission</p>
-                           <h3 class="mb-3">{{ count(\App\Models\AdmissionForm::whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
+                           <h3 class="mb-3">{{ count($monthlyAdmissionCount) }}</h3>
                         </div>
                     </div>
                 </div>

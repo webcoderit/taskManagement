@@ -41,7 +41,7 @@
                             <tbody>
                             @foreach($admissionForms as $admissionForm)
                                 <tr>
-                                    <td>{{ $admissionForm->moneyReceipt->admission_date ?? '' }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($admissionForm->moneyReceipt->admission_date)) ?? '' }}</td>
                                     <td>
                                         @if($admissionForm->course == 'web')
                                             <span>Full Stack Web Development</span>

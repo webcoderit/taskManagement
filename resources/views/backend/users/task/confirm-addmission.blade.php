@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach ($complete as $data )
                                     <tr>
-                                        <td>{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($data->moneyReceipt->admission_date)) ?? 'No date found' }}</td>
                                         <td>{{ $data->s_name ?? '' }}</td>
                                         <td>{{ $data->s_email ?? '' }}</td>
                                         <td>{{ $data->s_phone ?? '' }}</td>

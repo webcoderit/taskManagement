@@ -11,10 +11,14 @@ use Illuminate\Http\Request;
 class ExpanseController extends Controller
 {
     public function expanse(){
-        $sql = Expance::orderBy('created_at', 'desc');
-        $dateFormat = date('Y-m-d', strtotime(request()->expanse_date));
-        if (isset(request()->expanse_date)){
-            $sql->where('created_at', 'LIKE', '%'. $dateFormat.'%');
+        $sql = Expance::orderBy('created_at', 'desc')->whereMonth('created_at', date('m'));
+        $dateFrom = date('Y-m-d', strtotime(request()->from_date));
+        $dateTo = date('Y-m-d', strtotime(request()->to_date));
+        if (isset(request()->from_date) && isset(request()->to_date)) {
+            $sqlFiltering = Expance::orderBy('created_at', 'desc');
+            $sqlFiltering->whereDate('created_at', '>=', $dateFrom)->whereDate('created_at', '<=', $dateTo);
+            $expanses = $sqlFiltering->get();
+            return view('backend.admin.hrm.expanse', compact('expanses'));
         }
         $expanses = $sql->get();
         return view('backend.admin.hrm.expanse', compact('expanses'));
