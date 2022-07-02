@@ -120,11 +120,11 @@
                                 </div>
                                 <div class="col-md-6">
                                      <label for="student_fb_name">Student FB Name/ FB Link</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="student_fb_name" value="" placeholder="Student FB Name" class="form-control">
+                                     <input type="text" name="fb_id" value="{{ old('fb_id') }}" placeholder="Student FB Name or ID" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                      <label for="student_ref_name">Student Reference Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="student_ref_name" value="" placeholder="Student Reference Name" class="form-control">
+                                     <input type="text" name="reference" value="{{ old('reference') }}" placeholder="Student Reference Name" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                      <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>

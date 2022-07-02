@@ -123,6 +123,14 @@
                                     <input type="number" name="nid" value="{{ $editAdmissionForm->nid }}" placeholder="NID/Birth Certificate No." class="form-control">
                                     <span style="color: red"> {{ $errors->has('nid') ? $errors->first('nid') : ' ' }}</span>
                                 </div>
+                                <div class="col-md-6">
+                                    <label for="student_fb_name">Student FB Name/ FB Link</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="fb_id" value="{{ $editAdmissionForm->fb_id ? $editAdmissionForm->fb_id : old('fb_id') }}" placeholder="Student FB Name or ID" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="student_ref_name">Student Reference Name</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="reference" value="{{ $editAdmissionForm->reference ? $editAdmissionForm->reference : old('reference') }}" placeholder="Student Reference Name" class="form-control">
+                                </div>
                                 <div class="col-md-12">
                                     <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <textarea name="present_address" rows="2" cols="50" class="form-control">{{ $editAdmissionForm->present_address }}</textarea>

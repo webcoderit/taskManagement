@@ -303,6 +303,8 @@ class UserController extends Controller
                 $newStudent->blood_group = $request->blood_group;
                 $newStudent->qualification = $request->qualification;
                 $newStudent->nid = $request->nid;
+                $newStudent->fb_id = $request->fb_id;
+                $newStudent->reference = $request->reference;
                 $newStudent->present_address = $request->present_address;
                 $newStudent->course = $request->course;
                 $newStudent->batch_no = $request->batch_no;

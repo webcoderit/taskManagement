@@ -418,6 +418,8 @@ class AdminController extends Controller
         $updateAdmissionForm->blood_group = $request->blood_group;
         $updateAdmissionForm->qualification = $request->qualification;
         $updateAdmissionForm->nid = $request->nid;
+        $updateAdmissionForm->fb_id = $request->fb_id;
+        $updateAdmissionForm->reference = $request->reference;
         $updateAdmissionForm->present_address = $request->present_address;
         $updateAdmissionForm->course = $request->course;
         $updateAdmissionForm->batch_no = $request->batch_no;

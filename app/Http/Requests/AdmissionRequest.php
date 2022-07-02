@@ -45,6 +45,8 @@ class AdmissionRequest extends FormRequest
             'advance' => 'required',
             'due' => 'required',
             'admission_date' => 'required',
+            'fb_id' => 'required',
+            'reference' => 'required',
         ];
     }
 }
