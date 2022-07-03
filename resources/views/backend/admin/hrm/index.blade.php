@@ -38,15 +38,6 @@
                 </div>
             </div>
             <div class="col">
-                <div class="card radius-10" style="background-color: rebeccapurple">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Monthly Admission Due</p>
-                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmounts']->sum('due'),2 ?? 0) }}</h3>
-                        <div id="chart3"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
                 <div class="card radius-10" style="background-color: deepskyblue">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Admission Advance</p>
@@ -55,11 +46,29 @@
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="card radius-10" style="background-color: rebeccapurple">
+                    <div class="card-body text-center">
+                        <p class="mb-1 text-white">Monthly Admission Due</p>
+                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmounts']->sum('due'),2 ?? 0) }}</h3>
+                        <div id="chart3"></div>
+                    </div>
+                </div>
+            </div>
             <div class="col col-md-12">
                 <div class="card radius-10" style="background-color: orangered">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Due Collect</p>
-                        <h3 class="mb-3 text-white">{{ number_format($data['todayAmounts']->sum('today_pay'), 2) }}</h3>
+                        <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereDate('updated_at', \Carbon\Carbon::today())->sum('today_pay') }}</h3>
+                        <div id="chart5"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-12">
+                <div class="card radius-10" style="background-color: hotpink">
+                    <div class="card-body text-center">
+                        <p class="mb-1 text-white">Monthly Due Collect</p>
+                        <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereMonth('updated_at', \Carbon\Carbon::now()->format('m'))->sum('today_pay') }}</h3>
                         <div id="chart5"></div>
                     </div>
                 </div>
@@ -235,7 +244,8 @@
                                 @endphp
                             @endforeach
                             <tr>
-                                <td colspan="8"></td>
+                                <td colspan="7"></td>
+                                <td>Total Student : {{ count($admissionStudents) ?? 0 }}</td>
                                 <td>
                                     <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
                                 </td>

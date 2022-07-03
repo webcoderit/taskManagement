@@ -83,8 +83,8 @@ class AdminController extends Controller
     {
         $data = [
             'users' => User::orderBy('updated_at', 'desc')->get(),
-            'todayAmounts' => MoneyReceipt::whereDate('created_at', Carbon::today())->get(),
-            'monthlyAmounts' => MoneyReceipt::whereMonth('created_at', date('m'))->get(),
+            'todayAmounts' => MoneyReceipt::whereDate('admission_date', Carbon::today())->get(),
+            'monthlyAmounts' => MoneyReceipt::whereMonth('admission_date', date('m'))->get(),
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
         ];
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');

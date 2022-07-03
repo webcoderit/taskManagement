@@ -65,12 +65,13 @@
 	                                <th>Name</th>
 	                                <th>Email</th>
 	                                <th>Phone</th>
+                                    <th>Student FB ID</th>
 	                                <th>Course Name</th>
 	                                <th>Batch No</th>
 	                                <th>Course Fee</th>
 	                                <th>Advance</th>
 	                                <th>Due</th>
-	                                <th>Due Opinion</th>
+	                                <th style="width: 100px;!important;">Due Opinion</th>
 	                                <th>Admission Opinion</th>
 	                                <th>Action</th>
 	                            </tr>
@@ -84,12 +85,15 @@
                                         <td>{{ $admissionStudent->s_email ?? '' }}</td>
                                         <td>{{ $admissionStudent->s_phone ?? '' }}</td>
                                         <td>
+                                            <a href="{{ $admissionStudent->fb_id ?? '' }}" target="_blank">{{ $admissionStudent->fb_id ?? '' }}</a>
+                                        </td>
+                                        <td>
                                             @if($admissionStudent->course == 'web')
-                                                Full stack web development
+                                                Web
                                             @elseif($admissionStudent->course == 'digital')
-                                                Advance digital marketing
+                                                ADM
                                             @else
-                                                Communication english
+                                                Eng
                                             @endif
                                         </td>
                                         <td>{{ $admissionStudent->batch_no ?? '' }}</td>
