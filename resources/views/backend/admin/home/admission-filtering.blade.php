@@ -68,6 +68,29 @@
                                     </div>
                                 </div>
                             </form>
+                            <form action="{{ url('/admin/user/admission/filtering') }}" method="get" class="form-group">
+                                @csrf
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label>From date</label>
+                                            <div class="input-group mb-2">
+                                                <input type="date" name="from_date" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label>To date</label>
+                                            <div class="input-group mb-2">
+                                                <input type="date" name="to_date" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2" style="margin-top: 20px;">Search</button>
+                                            <a href="{{ url('/admin/user/admission/filtering') }}" class="input-group-text btn btn-danger" id="basic-addon2" style="margin-top: 20px;">Clear</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

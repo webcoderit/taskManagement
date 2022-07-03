@@ -329,11 +329,17 @@ class AdminController extends Controller
     public function expanse()
     {
         $sql = Expance::orderBy('created_at', 'desc');
-        $dateFormat = date('Y-m-d', strtotime(request()->expanse_date));
-        if (isset(request()->expanse_date)){
-            $sql->where('created_at', 'LIKE', '%'. $dateFormat.'%')->where('bill_type', 'like', '%'.request()->bill_type.'%');
+        $dateFrom = date('Y-m-d', strtotime(request()->expanse_date));
+        $dateTo = date('Y-m-d', strtotime(request()->to_date));
+        if (isset(request()->expanse_date) && isset(request()->to_date) && isset(request()->bill_type)){
+            $sql->whereDate('created_at', '>=', $dateFrom)->whereDate('created_at','<=', $dateTo)->where('bill_type', request()->bill_type);
         }
-        $expanses = $sql->paginate(50);
+        if (isset(request()->user_id) && isset(request()->bill_type)){
+            $userMobileBill = Expance::where('user_id', request()->user_id)->where('bill_type', request()->bill_type);
+            $expanses = $userMobileBill->get();
+            return view('backend.admin.home.expanse', compact('expanses'));
+        }
+        $expanses = $sql->get();
         return view('backend.admin.home.expanse', compact('expanses'));
     }
 
@@ -349,6 +355,15 @@ class AdminController extends Controller
         if (isset(request()->batch_no)){
             $sql->where('batch_no', request()->batch_no)->orWhereMonth('created_at', request()->month);
             $admissionStudents = $sql->get();
+            return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
+        }
+        $dateRangStudentFilter = AdmissionForm::orderBy('created_at', 'desc');
+        $dateFrom = date('Y-m-d', strtotime(request()->from_date));
+        $dateTo = date('Y-m-d', strtotime(request()->to_date));
+        if (isset(request()->from_date) && isset(request()->to_date)) {
+            $sqlFiltering = AdmissionForm::orderBy('created_at', 'desc');
+            $sqlFiltering->whereDate('created_at', '>=', $dateFrom)->whereDate('created_at', '<=', $dateTo);
+            $admissionStudents = $dateRangStudentFilter->get();
             return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
         }
         return view('backend.admin.home.admission-filtering', compact('data'));

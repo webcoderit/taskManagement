@@ -41,6 +41,12 @@ class ExpanseController extends Controller
             $expanse->bill_type = $request->bill_type;
             $expanse->price = $request->price;
             $expanse->note = $request->note;
+            if ($request->user_id){
+                $expanse->user_id = $request->user_id;
+            }
+            if ($request->minute){
+                $expanse->minute = $request->minute;
+            }
             $expanse->save();
             return redirect('/expanse')->with('success', 'Expanse has been added');
         }catch (\Exception $exception){
@@ -66,6 +72,12 @@ class ExpanseController extends Controller
         $expanse->bill_type = $request->bill_type;
         $expanse->price = $request->price;
         $expanse->note = $request->note;
+        if ($request->user_id){
+            $expanse->user_id = $request->user_id;
+        }
+        if ($request->minute){
+            $expanse->minute = $request->minute;
+        }
         $expanse->save();
         return redirect('/expanse')->with('success', 'Expanse has been updated');
     }

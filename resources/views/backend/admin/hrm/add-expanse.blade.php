@@ -41,17 +41,28 @@
 						<hr>
 						<form class="add-expanse-form form-group" action="{{ url('/add/new/expanse') }}" method="post">
                             @csrf
-                            <label style="font-weight: 600;margin-bottom: 5px;">Select Bill Type</label><br>
-                            <select name="bill_type" id="bill-type" class="form-control">
+                            <label style="font-weight: 600;margin-bottom: 5px;">Select A User</label><br>
+                            <select name="user_id" id="user_id" class="form-control">
+                                <option selected disabled>--- Select A User ---</option>
+                                @foreach(\App\Models\User::all() as $user)
+                                <option value="{{ $user->id }}">{{ $user->full_name }}</option>
+                                @endforeach
+                            </select><br>
+                            <label style="font-weight: 600;margin-bottom: 5px;">Select Bill Type*</label><br>
+                            <select name="bill_type" id="bill_type" class="form-control" onchange="mobileBill(this.value)">
                             	<option selected disabled>--- Select Bill Type ---</option>
                             	<option value="mobile">Mobile Bill</option>
                             	<option value="net">Net Bill</option>
                             	<option value="electricity">Electricity Bill</option>
                             	<option value="others">Others Bill</option>
                             </select><br>
-							<label style="font-weight: 600;margin-bottom: 5px;">Price</label><br>
+                            <div id="minute">
+                                <label style="font-weight: 600;margin-bottom: 5px;">Mobile Minute</label><br>
+                                <input type="text" name="minute" placeholder="Total minute" class="form-control"><br>
+                            </div>
+							<label style="font-weight: 600;margin-bottom: 5px;">Price*</label><br>
 							<input type="number" name="price" placeholder="Total Fee" class="form-control"><br>
-							<label style="font-weight: 600;margin-bottom: 5px;">Note</label><br>
+							<label style="font-weight: 600;margin-bottom: 5px;">Note*</label><br>
 							<textarea class="form-control" rows="4" name="note" cols="20"></textarea>
 							<div style="text-align: center;margin-top: 20px;">
 								<button type="submit" class="btn btn-success">Submit</button>
@@ -63,3 +74,17 @@
 		</div>
 	</section>
 @endsection
+
+@push('script')
+    <script>
+        $('#minute').hide();
+        function mobileBill(e){
+            if( e == 'mobile'){
+                $('#minute').show();
+            }
+            else{
+                $('#minute').hide();
+            }
+        }
+    </script>
+@endpush
