@@ -151,8 +151,110 @@
                 </div>
             </div>
         </div>
+        <div class="card radius-10 p-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="" method="" class="form-group mb-5">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label style="font-weight: 600;margin-bottom: 5px;">
+                                    View Admission
+                                </label><br>
+                                <select name="" id="" class="form-control">
+                                    <option selected disabled>--- View Admission ---</option>
+                                    <option value="">Today</option>
+                                    <option value="">Yesterday</option>
+                                    <option value="">Last 7 Days</option>
+                                    <option value="">Last 15 Days</option>
+                                    <option value="">Last 30 Days</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="input-group" style="margin-top: 25px;">
+                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                    <a href="#" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card radius-10" style="background-color: rebeccapurple">
+                                <div class="card-body text-center">
+                                    <p class="mb-1 text-white">Total Admission</p>
+                                    <h3 class="mb-3 text-white"> 
+                                        20000 
+                                    </h3>
+                                    <div id="chart3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card radius-10" style="background-color: rebeccapurple">
+                                <div class="card-body text-center">
+                                    <p class="mb-1 text-white">Total Advance</p>
+                                    <h3 class="mb-3 text-white"> 
+                                        20000 Tk.
+                                    </h3>
+                                    <div id="chart3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card radius-10" style="background-color: rebeccapurple">
+                                <div class="card-body text-center">
+                                    <p class="mb-1 text-white">Total Due</p>
+                                    <h3 class="mb-3 text-white"> 
+                                        20000 Tk.
+                                    </h3>
+                                    <div id="chart3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form action="" method="" class="form-group mb-5">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label style="font-weight: 600;margin-bottom: 5px;">
+                                    View Expanse
+                                </label><br>
+                                <select name="" id="" class="form-control">
+                                    <option selected disabled>--- View Expanse ---</option>
+                                    <option value="">Today</option>
+                                    <option value="">Yesterday</option>
+                                    <option value="">Last 7 Days</option>
+                                    <option value="">Last 15 Days</option>
+                                    <option value="">Last 30 Days</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="input-group" style="margin-top: 25px;">
+                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                    <a href="#" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card radius-10" style="background-color: deepskyblue">
+                                <div class="card-body text-center">
+                                    <p class="mb-1 text-white">Total Expanse</p>
+                                    <h3 class="mb-3 text-white">
+                                        300000 Tk.
+                                    </h3>
+                                    <div id="chart3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                
     </div>
-   </div>
+</div>
 
 <div class="wrapper">
     <div class="page-wrapper" style="margin-left: 20px!important;">
