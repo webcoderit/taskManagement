@@ -57,7 +57,7 @@
 	            <div class="card">
 	                <div class="card-body">
 	                    <div class="table-responsive">
-	                        <table id="" class="table table-striped table-bordered" style="width:100%">
+	                        <table id="" class="table table-striped table-bordered">
 	                            <thead>
 	                            <tr>
 	                                <th>SL</th>
@@ -71,7 +71,7 @@
 	                                <th>Course Fee</th>
 	                                <th>Advance</th>
 	                                <th>Due</th>
-	                                <th style="width: 100px;!important;">Due Opinion</th>
+	                                <th>Due Opinion</th>
 	                                <th>Admission Opinion</th>
 	                                <th>Action</th>
 	                            </tr>
