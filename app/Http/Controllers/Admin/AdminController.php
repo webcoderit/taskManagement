@@ -63,11 +63,12 @@ class AdminController extends Controller
 
     public function deshboard()
     {
+        
         $users = User::orderBy('updated_at', 'desc')->get();
-        $todayCredit = MoneyReceipt::whereDate('created_at', Carbon::today())->get()->sum('advance');
-        $todayDue = MoneyReceipt::whereDate('created_at', Carbon::today())->get()->sum('due');
-        $monthlyCredit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('advance');
-        $monthlyDebit = MoneyReceipt::whereMonth('created_at', date('m'))->get()->sum('due');
+        $todayCredit = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('advance');
+        $todayDue = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('due');
+        $monthlyCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('advance');
+        $monthlyDebit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('due');
         $totalDue = MoneyReceipt::get()->sum('due');
         $admissionChats = AdmissionForm::select(\DB::raw("COUNT(*) as count"), \DB::raw("MONTHNAME(created_at) as month_name"))
             ->whereYear('created_at', date('Y'))
@@ -83,11 +84,27 @@ class AdminController extends Controller
     {
         $data = [
             'users' => User::orderBy('updated_at', 'desc')->get(),
-            'todayAmounts' => MoneyReceipt::whereDate('admission_date', Carbon::today())->get(),
-            'monthlyAmounts' => MoneyReceipt::whereMonth('admission_date', date('m'))->get(),
+
+            'todayAmounts' => MoneyReceipt::with('admissionForm')->whereDate('admission_date', Carbon::today())->get(),
+
+            'monthlyAmounts' => MoneyReceipt::with('admissionForm')->whereMonth('admission_date', date('m'))->get(),
+
+            'monthlyWebAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
+                $q->where('course', 'web');
+            })->whereMonth('admission_date', date('m'))->get(),
+
+            'monthlyAdmAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
+                $q->where('course', 'digital');
+            })->whereMonth('admission_date', date('m'))->get(),
+
+            'monthlyEngAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
+                $q->where('course', 'english');
+            })->whereMonth('admission_date', date('m'))->get(),
+
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
         ];
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+
         if (isset(request()->user_id) && isset(request()->date)&& isset(request()->batch_no)){
             $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
                 $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
@@ -96,7 +113,8 @@ class AdminController extends Controller
             return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents'));
         }
         $admissionStudents = '';
-        return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents'));
+        $totalDue = MoneyReceipt::get()->sum('due');
+        return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
     }
 
     //======== For admin ==========//
@@ -351,20 +369,20 @@ class AdminController extends Controller
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
             'batch' => Batch::orderByDesc('created_at')->get(),
         ];
-        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
-        if (isset(request()->batch_no)){
+        if (isset(request()->batch_no) && isset(request()->month)){
+            $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
             $sql->where('batch_no', request()->batch_no)->orWhereMonth('created_at', request()->month);
+
             $admissionStudents = $sql->get();
             return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
         }
-        $dateRangStudentFilter = AdmissionForm::orderBy('created_at', 'desc');
-        $dateFrom = date('Y-m-d', strtotime(request()->from_date));
-        $dateTo = date('Y-m-d', strtotime(request()->to_date));
         if (isset(request()->from_date) && isset(request()->to_date)) {
-            $sqlFiltering = AdmissionForm::orderBy('created_at', 'desc');
-            $sqlFiltering->whereDate('created_at', '>=', $dateFrom)->whereDate('created_at', '<=', $dateTo);
-            $admissionStudents = $dateRangStudentFilter->get();
-            return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
+            $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+                ->whereDate('admission_date', '>=', request()->from_date)
+                ->whereDate('admission_date', '<=', request()->to_date);
+
+            $admissionStudentsDateFiltering = $sqlFiltering->get();
+            return view('backend.admin.home.admission-filtering', compact('admissionStudentsDateFiltering', 'data'));
         }
         return view('backend.admin.home.admission-filtering', compact('data'));
     }

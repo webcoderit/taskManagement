@@ -32,7 +32,7 @@
                <div class="card radius-10">
                    <div class="card-body text-center">
                       <p class="mb-1">Today Admission</p>
-                      <h3 class="mb-3">{{ count(\App\Models\AdmissionForm::whereDate('created_at', \Carbon\Carbon::today())->get()) }}</h3>
+                      <h3 class="mb-3">{{ count(\App\Models\MoneyReceipt::whereDate('admission_date', \Carbon\Carbon::today())->get()) }}</h3>
                       <div id="chart3"></div>
                    </div>
                </div>

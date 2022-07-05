@@ -24,69 +24,76 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-group" action="{{ url('/admin/user/admission/filtering') }}" method="get">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
-                                            Select Month:
-                                        </label><br>
-                                        <input type="month" name="month" class="form-control">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
-                                            Batch No:
-                                        </label><br>
-                                        <select name="batch_no" id="batchNo" class="form-control">
-                                            <option selected disabled>--- Select Batch No ---</option>
-                                            @foreach($data['batch'] as $batchNo)
-                                                <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ $batchNo->batch_no }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="input-group" style="margin-top: 25px;">
-                                            <button type="submit" class="input-group-text btn btn-primary">
-                                                Search
-                                            </button>
-                                            <a href="{{ url('/admin/user/admission/filtering') }}" class="input-group-text btn btn-danger">
-                                                Clear
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="batch" style="font-weight: 600; margin-bottom: 10px;">
-                                            Total Student:
-                                        </label><br>
-                                        <span class="total-student-count">
-                                            @if(isset($admissionStudents) > 0)
-                                                {{ count($admissionStudents) }}
-                                            @else
-                                                0
-                                            @endif
-                                        </span>
-                                    </div>
-                                </div>
-                            </form>
+{{--                            <form class="form-group" action="{{ url('/admin/user/admission/filtering') }}" method="get">--}}
+{{--                                @csrf--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-md-3">--}}
+{{--                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">--}}
+{{--                                            Select Month:--}}
+{{--                                        </label><br>--}}
+{{--                                        <input type="month" name="month" class="form-control">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-3">--}}
+{{--                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">--}}
+{{--                                            Batch No:--}}
+{{--                                        </label><br>--}}
+{{--                                        <select name="batch_no" id="batchNo" class="form-control">--}}
+{{--                                            <option selected disabled>--- Select Batch No ---</option>--}}
+{{--                                            @foreach($data['batch'] as $batchNo)--}}
+{{--                                                <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ $batchNo->batch_no }}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-3">--}}
+{{--                                        <div class="input-group" style="margin-top: 25px;">--}}
+{{--                                            <button type="submit" class="input-group-text btn btn-primary">--}}
+{{--                                                Search--}}
+{{--                                            </button>--}}
+{{--                                            <a href="{{ url('/admin/user/admission/filtering') }}" class="input-group-text btn btn-danger">--}}
+{{--                                                Clear--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-3">--}}
+{{--                                        <label for="batch" style="font-weight: 600; margin-bottom: 10px;">--}}
+{{--                                            Total Student:--}}
+{{--                                        </label><br>--}}
+{{--                                        @if(isset($admissionStudents) > 0)--}}
+{{--                                        <span class="total-student-count">--}}
+{{--                                           {{ count($admissionStudents) }}--}}
+{{--                                        </span>--}}
+{{--                                        @endif--}}
+{{--                                        @if(isset($admissionStudentsDateFiltering) > 0)--}}
+{{--                                        <span class="total-student-count">--}}
+{{--                                           {{ count($admissionStudentsDateFiltering) }}--}}
+{{--                                        </span>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </form>--}}
                             <form action="{{ url('/admin/user/admission/filtering') }}" method="get" class="form-group">
                                 @csrf
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <label>From date</label>
                                             <div class="input-group mb-2">
                                                 <input type="date" name="from_date" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <label>To date</label>
                                             <div class="input-group mb-2">
                                                 <input type="date" name="to_date" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-4">
                                             <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2" style="margin-top: 20px;">Search</button>
                                             <a href="{{ url('/admin/user/admission/filtering') }}" class="input-group-text btn btn-danger" id="basic-addon2" style="margin-top: 20px;">Clear</a>
+
+                                            @if(isset($admissionStudentsDateFiltering) > 0)
+                                                <a href="#" class="input-group-text btn btn-danger" id="basic-addon2" style="margin-top: 20px;">{{ count($admissionStudentsDateFiltering) }}</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -113,43 +120,82 @@
                                 <th>Due</th>
                             </tr>
                             </thead>
-                            @if(isset($admissionStudents))
-                            <tbody>
-                            @php
-                                $sum = 0
-                            @endphp
-                            @foreach($admissionStudents as $admissionStudent)
-                                <tr>
-                                    <td>{{ $admissionStudent->moneyReceipt->admission_date->format('Y-m-d') }}</td>
-                                    <td>{{ $admissionStudent->user->full_name?? '' }}</td>
-                                    <td>
-                                        @if($admissionStudent->course == 'web')
-                                            Full stack web development
-                                        @elseif($admissionStudent->course == 'digital')
-                                            Advanced digital marketing
-                                        @else
-                                            Communication english
-                                        @endif
-                                    </td>
-                                    <td>{{ $admissionStudent->batch_no?? '' }}</td>
-                                    <td>{{ $admissionStudent->s_name?? '' }}</td>
-                                    <td>{{ $admissionStudent->s_phone ?? '' }}</td>
-                                    <td>{{ $admissionStudent->s_email ?? '' }}</td>
-                                    <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
-                                    <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
-                                    <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>
-                                </tr>
+{{--                            @if(isset($admissionStudents))--}}
+{{--                            <tbody>--}}
+{{--                            @php--}}
+{{--                                $sum = 0--}}
+{{--                            @endphp--}}
+{{--                            @foreach($admissionStudents as $admissionStudent)--}}
+{{--                                <tr>--}}
+{{--                                    <td>{{ $admissionStudent->moneyReceipt->admission_date->format('Y-m-d') }}</td>--}}
+{{--                                    <td>{{ $admissionStudent->user->full_name?? '' }}</td>--}}
+{{--                                    <td>--}}
+{{--                                        @if($admissionStudent->course == 'web')--}}
+{{--                                            Full stack web development--}}
+{{--                                        @elseif($admissionStudent->course == 'digital')--}}
+{{--                                            Advanced digital marketing--}}
+{{--                                        @else--}}
+{{--                                            Communication english--}}
+{{--                                        @endif--}}
+{{--                                    </td>--}}
+{{--                                    <td>{{ $admissionStudent->batch_no?? '' }}</td>--}}
+{{--                                    <td>{{ $admissionStudent->s_name?? '' }}</td>--}}
+{{--                                    <td>{{ $admissionStudent->s_phone ?? '' }}</td>--}}
+{{--                                    <td>{{ $admissionStudent->s_email ?? '' }}</td>--}}
+{{--                                    <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>--}}
+{{--                                    <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>--}}
+{{--                                    <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>--}}
+{{--                                </tr>--}}
+{{--                                @php--}}
+{{--                                    $sum += $admissionStudent->moneyReceipt->advance--}}
+{{--                                @endphp--}}
+{{--                            @endforeach--}}
+{{--                            <tr>--}}
+{{--                                <td colspan="8"></td>--}}
+{{--                                <td>--}}
+{{--                                    <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>--}}
+{{--                                </td>--}}
+{{--                            </tr>--}}
+{{--                            </tbody>--}}
+{{--                            @endif--}}
+
+                            @if(isset($admissionStudentsDateFiltering))
+                                <tbody>
                                 @php
-                                    $sum += $admissionStudent->moneyReceipt->advance
+                                    $sum = 0
                                 @endphp
-                            @endforeach
-                            <tr>
-                                <td colspan="8"></td>
-                                <td>
-                                    <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
-                                </td>
-                            </tr>
-                            </tbody>
+                                @foreach($admissionStudentsDateFiltering as $admissionStudentFilter)
+                                    <tr>
+                                        <td>{{ $admissionStudentFilter->admission_date->format('Y-m-d') }}</td>
+                                        <td>{{ $admissionStudentFilter->admissionForm->user->full_name?? '' }}</td>
+                                        <td>
+                                            @if($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'web' : '')
+                                                Full stack web development
+                                            @elseif($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'digital' : '')
+                                                Advanced digital marketing
+                                            @else
+                                                Communication english
+                                            @endif
+                                        </td>
+                                        <td>{{ $admissionStudentFilter->admissionForm->batch_no?? '' }}</td>
+                                        <td>{{ $admissionStudentFilter->admissionForm->s_name?? '' }}</td>
+                                        <td>{{ $admissionStudentFilter->admissionForm->s_phone ?? '' }}</td>
+                                        <td>{{ $admissionStudentFilter->admissionForm->s_email ?? '' }}</td>
+                                        <td>{{ $admissionStudentFilter->total_fee ?? '' }}Tk.</td>
+                                        <td>{{ $admissionStudentFilter->advance ?? '' }}Tk.</td>
+                                        <td>{{ $admissionStudentFilter->due ?? '' }}Tk.</td>
+                                    </tr>
+                                    @php
+                                        $sum += $admissionStudentFilter->advance
+                                    @endphp
+                                @endforeach
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td>
+                                        <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
+                                    </td>
+                                </tr>
+                                </tbody>
                             @endif
                         </table>
                     </div>

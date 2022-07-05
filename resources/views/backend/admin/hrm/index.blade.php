@@ -22,7 +22,7 @@
                             font-size: 16px;
                             font-weight: 700;
                             border-radius: 5px;">
-                            {{ \App\Models\AdmissionForm::whereDate('created_at', \Carbon\Carbon::today())->count() }}
+                            {{ count(\App\Models\MoneyReceipt::whereDate('admission_date', \Carbon\Carbon::today())->get()) }}
                         </span>
                         <div id="chart1"></div>
                     </div>
@@ -73,6 +73,15 @@
                     </div>
                 </div>
             </div>
+            <div class="col col-md-12">
+                <div class="card radius-10" style="background-color: orangered">
+                    <div class="card-body text-center">
+                        <p class="mb-1 text-white">Total Due</p>
+                        <h3 class="mb-3 text-white">{{ number_format($totalDue,2 ?? 0) }} Tk.</h3>
+                        <div id="chart5"></div>
+                    </div>
+                </div>
+            </div>
             <div class="col">
                 <div class="card radius-10" style="background-color: lightskyblue">
                     <div class="card-body text-center">
@@ -95,7 +104,7 @@
                 <div class="card radius-10" style="background-color: #CD5C5C">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly ADM Admission</p>
-                        <h3 class="mb-3 text-white">{{ \App\Models\AdmissionForm::where('course', 'digital')->whereMonth('created_at', date('m'))->count() ?? 0 }}</h3>
+                        <h3 class="mb-3 text-white">{{ count($data['monthlyAdmAdmission']) ?? 0 }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -104,7 +113,7 @@
                 <div class="card radius-10" style="background-color: #6495ED">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Web Admission</p>
-                        <h3 class="mb-3 text-white">{{ \App\Models\AdmissionForm::where('course', 'web')->whereMonth('created_at', date('m'))->count() ?? 0 }}</h3>
+                        <h3 class="mb-3 text-white">{{ count($data['monthlyWebAdmission']) ?? 0 }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -113,7 +122,7 @@
                 <div class="card radius-10" style="background-color: #800080">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly English Admission</p>
-                        <h3 class="mb-3 text-white">{{ \App\Models\AdmissionForm::where('course', 'english')->whereMonth('created_at', date('m'))->count() ?? 0 }}</h3>
+                        <h3 class="mb-3 text-white">{{ count($data['monthlyEngAdmission']) ?? 0 }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
