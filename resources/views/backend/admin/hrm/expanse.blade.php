@@ -42,6 +42,11 @@
                     <form action="{{ url('/expanse') }}" method="get" class="form-group">
                         @csrf
                         <div class="col-md-12">
+                            @if(Session::has('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col-md-5">
                                     <label>From date</label>
@@ -67,10 +72,11 @@
                         <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
-                                <th>SL</th>
                                 <th>Date</th>
+                                <th>User name</th>
                                 <th>Bill Type</th>
                                 <th>Amount</th>
+                                <th>Minute</th>
                                 <th width="40%">Note</th>
                                 <th width="15%">Action</th>
                             </tr>
@@ -81,10 +87,11 @@
                             @endphp
                             @foreach($expanses as $expanse)
                                 <tr>
-                                    <td>{{ $loop->index+1 }}</td>
                                     <td>{{ date('Y-m-d', strtotime($expanse->created_at))  }}</td>
+                                    <td>{{ $expanse->user->full_name ?? 'No User Name' }}</td>
                                     <td>{{ ucfirst($expanse->bill_type)  }} Bill</td>
                                     <td>{{ number_format($expanse->price,2) }}</td>
+                                    <td>{{ $expanse->minute ?? '0' }} Minute</td>
                                     <td>{{ ucfirst($expanse->note) }}</td>
                                     <td>
                                         <a href="{{ url('/edit/expanse/'.$expanse->id) }}" class="btn btn-info">

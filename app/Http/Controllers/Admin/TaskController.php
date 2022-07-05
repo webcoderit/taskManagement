@@ -74,7 +74,9 @@ class TaskController extends Controller
     {
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
         if (isset($request->user_id) && isset($request->month)){
-            $sql->where('user_id', $request->user_id)->whereMonth('created_at',  date('m', strtotime($request->month)));
+            $sql->where('user_id', $request->user_id)->whereHas('moneyReceipt', function ($q) use ($request){
+                $q->whereMonth('admission_date',  date('m', strtotime($request->month)));
+            });
         }
         $complete = $sql->paginate(100);
         $users = User::all();

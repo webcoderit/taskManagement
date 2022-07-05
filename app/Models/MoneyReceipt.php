@@ -12,6 +12,8 @@ class MoneyReceipt extends Model
 
     protected $guarded = [];
 
+//    protected $dates = ['admission_date'];
+
     public function getAdmissionDateAttribute($date)
     {
         return Carbon::parse($date);
