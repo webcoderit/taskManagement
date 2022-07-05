@@ -154,25 +154,26 @@
         <div class="card radius-10 p-4">
             <div class="row">
                 <div class="col-md-6">
-                    <form action="" method="" class="form-group mb-5">
+                    <form action="{{ url('/admin/dashboard') }}" method="get" class="form-group mb-5">
+                        @csrf
                         <div class="row">
                             <div class="col-md-7">
                                 <label style="font-weight: 600;margin-bottom: 5px;">
                                     View Admission
                                 </label><br>
-                                <select name="" id="" class="form-control">
+                                <select name="admission_filtering" id="admission_filtering" class="form-control">
                                     <option selected disabled>--- View Admission ---</option>
-                                    <option value="">Today</option>
-                                    <option value="">Yesterday</option>
-                                    <option value="">Last 7 Days</option>
-                                    <option value="">Last 15 Days</option>
-                                    <option value="">Last 30 Days</option>
+                                    <option value="{{ \Carbon\Carbon::today() }}">Today</option>
+                                    <option value="{{ \Carbon\Carbon::yesterday() }}">Yesterday</option>
+                                    <option value="{{ \Carbon\Carbon::now()->subDays(7) }}">Last 7 Days</option>
+                                    <option value="{{ \Carbon\Carbon::now()->subDays(15) }}">Last 15 Days</option>
+                                    <option value="{{ \Carbon\Carbon::now()->subDays(30) }}">Last 30 Days</option>
                                 </select>
                             </div>
                             <div class="col-md-5">
                                 <div class="input-group" style="margin-top: 25px;">
                                     <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
-                                    <a href="#" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                    <a href="{{ url('/admin/dashboard') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
                                 </div>
                             </div>
                         </div>
@@ -182,8 +183,20 @@
                             <div class="card radius-10" style="background-color: rebeccapurple">
                                 <div class="card-body text-center">
                                     <p class="mb-1 text-white">Total Admission</p>
-                                    <h3 class="mb-3 text-white"> 
-                                        20000 
+                                    <h3 class="mb-3 text-white">
+                                        @if(count($filterAdmission['today']) > 0)
+                                            {{ count($filterAdmission['today']) }}
+                                        @elseif(count($filterAdmission['yesterday']) > 0)
+                                            {{ count($filterAdmission['yesterday']) }}
+                                        @elseif(count($filterAdmission['last7Days']) > 0)
+                                            {{ count($filterAdmission['last7Days']) }}
+                                        @elseif(count($filterAdmission['last15Days']) > 0)
+                                            {{ count($filterAdmission['last15Days']) }}
+                                        @elseif(count($filterAdmission['last30Days']) > 0)
+                                            {{ count($filterAdmission['last30Days']) }}
+                                        @else
+                                            0
+                                        @endif
                                     </h3>
                                     <div id="chart3"></div>
                                 </div>
@@ -193,8 +206,18 @@
                             <div class="card radius-10" style="background-color: rebeccapurple">
                                 <div class="card-body text-center">
                                     <p class="mb-1 text-white">Total Advance</p>
-                                    <h3 class="mb-3 text-white"> 
-                                        20000 Tk.
+                                    <h3 class="mb-3 text-white">
+                                        @if(count($filterAdmission['today']) > 0)
+                                            {{ number_format($filterAdmission['today']->sum('advance'), 2) }}. Tk
+                                        @elseif(count($filterAdmission['yesterday']) > 0)
+                                            {{ number_format($filterAdmission['yesterday']->sum('advance'), 2) }}. Tk
+                                        @elseif(count($filterAdmission['last7Days']) > 0)
+                                            {{ number_format($filterAdmission['last7Days']->sum('advance'), 2) }}. Tk
+                                        @elseif(count($filterAdmission['last15Days']) > 0)
+                                            {{ number_format($filterAdmission['last15Days']->sum('advance'),2) }}. Tk
+                                        @elseif(count($filterAdmission['last30Days']) > 0)
+                                            {{ number_format($filterAdmission['last30Days']->sum('advance'),2) }}. Tk
+                                        @endif
                                     </h3>
                                     <div id="chart3"></div>
                                 </div>
@@ -204,8 +227,18 @@
                             <div class="card radius-10" style="background-color: rebeccapurple">
                                 <div class="card-body text-center">
                                     <p class="mb-1 text-white">Total Due</p>
-                                    <h3 class="mb-3 text-white"> 
-                                        20000 Tk.
+                                    <h3 class="mb-3 text-white">
+                                        @if(count($filterAdmission['today']) > 0)
+                                            {{ number_format($filterAdmission['today']->sum('due'), 2) }}. Tk
+                                        @elseif(count($filterAdmission['yesterday']) > 0)
+                                            {{ number_format($filterAdmission['yesterday']->sum('due'), 2) }}. Tk
+                                        @elseif(count($filterAdmission['last7Days']) > 0)
+                                            {{ number_format($filterAdmission['last7Days']->sum('due'), 2) }}. Tk
+                                        @elseif(count($filterAdmission['last15Days']) > 0)
+                                            {{ number_format($filterAdmission['last15Days']->sum('due'),2) }}. Tk
+                                        @elseif(count($filterAdmission['last30Days']) > 0)
+                                            {{ number_format($filterAdmission['last30Days']->sum('due'),2) }}. Tk
+                                        @endif
                                     </h3>
                                     <div id="chart3"></div>
                                 </div>
@@ -214,25 +247,25 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <form action="" method="" class="form-group mb-5">
+                    <form action="{{ url('/admin/dashboard') }}" method="get" class="form-group mb-5">
                         <div class="row">
                             <div class="col-md-7">
                                 <label style="font-weight: 600;margin-bottom: 5px;">
                                     View Expanse
                                 </label><br>
-                                <select name="" id="" class="form-control">
+                                <select name="expanse_filtering" id="" class="form-control">
                                     <option selected disabled>--- View Expanse ---</option>
-                                    <option value="">Today</option>
-                                    <option value="">Yesterday</option>
-                                    <option value="">Last 7 Days</option>
-                                    <option value="">Last 15 Days</option>
-                                    <option value="">Last 30 Days</option>
+                                    <option value="{{ \Carbon\Carbon::today() }}">Today</option>
+                                    <option value="{{ \Carbon\Carbon::yesterday() }}">Yesterday</option>
+                                    <option value="{{ \Carbon\Carbon::now()->subDays(7) }}">Last 7 Days</option>
+                                    <option value="{{ \Carbon\Carbon::now()->subDays(15) }}">Last 15 Days</option>
+                                    <option value="{{ \Carbon\Carbon::now()->subDays(30) }}">Last 30 Days</option>
                                 </select>
                             </div>
                             <div class="col-md-5">
                                 <div class="input-group" style="margin-top: 25px;">
                                     <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
-                                    <a href="#" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                    <a href="{{ url('/admin/dashboard') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
                                 </div>
                             </div>
                         </div>
@@ -243,7 +276,17 @@
                                 <div class="card-body text-center">
                                     <p class="mb-1 text-white">Total Expanse</p>
                                     <h3 class="mb-3 text-white">
-                                        300000 Tk.
+                                        @if(count($filterExpanse['todayExpanse']) > 0)
+                                            {{ number_format($filterExpanse['todayExpanse']->sum('price'), 2) }}. Tk
+                                        @elseif(count($filterExpanse['yesterdayExpanse']) > 0)
+                                            {{ number_format($filterExpanse['yesterdayExpanse']->sum('price'), 2) }}. Tk
+                                        @elseif(count($filterExpanse['last7DaysExpanse']) > 0)
+                                            {{ number_format($filterExpanse['last7DaysExpanse']->sum('price'), 2) }}. Tk
+                                        @elseif(count($filterExpanse['last15DaysExpanse']) > 0)
+                                            {{ number_format($filterExpanse['last15DaysExpanse']->sum('price'),2) }}. Tk
+                                        @elseif(count($filterExpanse['last30DaysExpanse']) > 0)
+                                            {{ number_format($filterExpanse['last30DaysExpanse']->sum('price'),2) }}. Tk
+                                        @endif
                                     </h3>
                                     <div id="chart3"></div>
                                 </div>
@@ -252,7 +295,7 @@
                     </div>
                 </div>
             </div>
-        </div>                
+        </div>
     </div>
 </div>
 

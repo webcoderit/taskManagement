@@ -63,7 +63,21 @@ class AdminController extends Controller
 
     public function deshboard()
     {
-        
+        //$dateFormate = date('Y-m-d', strtotime(request()->admission_filtering));
+        $filterAdmission = [
+            'today' => MoneyReceipt::whereDate('admission_date', request()->admission_filtering)->get(),
+            'yesterday' => MoneyReceipt::whereDate('admission_date', request()->admission_filtering)->get(),
+            'last7Days' => MoneyReceipt::whereDate('admission_date', '>=', date('Y-m-d', strtotime(request()->admission_filtering)))->get(),
+            'last15Days' => MoneyReceipt::whereDate('admission_date', '>=',  date('Y-m-d', strtotime(request()->admission_filtering)))->get(),
+            'last30Days' => MoneyReceipt::whereDate('admission_date', '>=',  date('Y-m-d', strtotime(request()->admission_filtering)))->get(),
+        ];
+        $filterExpanse = [
+            'todayExpanse' => Expance::whereDate('created_at', request()->expanse_filtering)->get(),
+            'yesterdayExpanse' => Expance::whereDate('created_at', request()->expanse_filtering)->get(),
+            'last7DaysExpanse' => Expance::whereDate('created_at', '>=', date('Y-m-d', strtotime(request()->expanse_filtering)))->get(),
+            'last15DaysExpanse' => Expance::whereDate('created_at', '>=', date('Y-m-d', strtotime(request()->expanse_filtering)))->get(),
+            'last30DaysExpanse' => Expance::whereDate('created_at', '>=', date('Y-m-d', strtotime(request()->expanse_filtering)))->get(),
+        ];
         $users = User::orderBy('updated_at', 'desc')->get();
         $todayCredit = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('advance');
         $todayDue = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('due');
@@ -77,7 +91,11 @@ class AdminController extends Controller
 
         $labels = $admissionChats->keys();
         $data = $admissionChats->values();
-        return view('backend.admin.home.index', compact('users', 'todayCredit', 'todayDue', 'monthlyCredit', 'monthlyDebit', 'totalDue', 'labels', 'data'));
+        return view('backend.admin.home.index', compact('users', 'todayCredit',
+            'todayDue', 'monthlyCredit',
+            'monthlyDebit', 'totalDue',
+            'labels', 'data',
+            'filterAdmission', 'filterExpanse'));
     }
 
     public function hr_dashboard()
