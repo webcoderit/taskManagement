@@ -163,11 +163,10 @@
                                 </label><br>
                                 <select name="admission_filtering" id="admission_filtering" class="form-control">
                                     <option selected disabled>--- View Admission ---</option>
-                                    <option value="{{ \Carbon\Carbon::today() }}">Today</option>
-                                    <option value="{{ \Carbon\Carbon::yesterday() }}">Yesterday</option>
-                                    <option value="{{ \Carbon\Carbon::now()->subDays(7) }}">Last 7 Days</option>
-                                    <option value="{{ \Carbon\Carbon::now()->subDays(15) }}">Last 15 Days</option>
-                                    <option value="{{ \Carbon\Carbon::now()->subDays(30) }}">Last 30 Days</option>
+                                    <option value="{{ date('Y-m-d', strtotime(\Carbon\Carbon::yesterday())) }}">Yesterday</option>
+                                    <option value="{{ date('Y-m-d', strtotime(\Carbon\Carbon::now()->subDays(7))) }}">Last 7 Days</option>
+                                    <option value="{{ date('Y-m-d', strtotime(\Carbon\Carbon::now()->subDays(15))) }}">Last 15 Days</option>
+                                    <option value="{{ date('Y-m-d', strtotime(\Carbon\Carbon::now()->subDays(30))) }}">Last 30 Days</option>
                                 </select>
                             </div>
                             <div class="col-md-5">
@@ -200,7 +199,7 @@
                                     <p class="mb-1 text-white">Total Advance</p>
                                     <h3 class="mb-3 text-white">
                                         @if(count($filterAdmission['admissionDayCount']) > 0)
-                                            {{ number_format($filterAdmission['admissionDayCount']->sum('advance'), 2) }}. Tk
+                                            {{ $filterAdmission['admissionDayCount'] ? number_format($filterAdmission['admissionDayCount']->sum('advance'), 2) : '0' }}. Tk
                                         @else
                                             0
                                         @endif
@@ -215,7 +214,7 @@
                                     <p class="mb-1 text-white">Total Due</p>
                                     <h3 class="mb-3 text-white">
                                         @if(count($filterAdmission['admissionDayCount']) > 0)
-                                            {{ number_format($filterAdmission['admissionDayCount']->sum('due'), 2) }}. Tk
+                                            {{ $filterAdmission['admissionDayCount'] ? number_format($filterAdmission['admissionDayCount']->sum('due'), 2) : '0' }}. Tk
                                         @else
                                             0
                                         @endif
@@ -235,11 +234,10 @@
                                 </label><br>
                                 <select name="expanse_filtering" id="" class="form-control">
                                     <option selected disabled>--- View Expanse ---</option>
-                                    <option value="{{ \Carbon\Carbon::today() }}">Today</option>
-                                    <option value="{{ \Carbon\Carbon::yesterday() }}">Yesterday</option>
-                                    <option value="{{ \Carbon\Carbon::now()->subDays(7) }}">Last 7 Days</option>
-                                    <option value="{{ \Carbon\Carbon::now()->subDays(15) }}">Last 15 Days</option>
-                                    <option value="{{ \Carbon\Carbon::now()->subDays(30) }}">Last 30 Days</option>
+                                    <option value="{{ date('Y-m-d', strtotime(\Carbon\Carbon::yesterday())) }}">Yesterday</option>
+                                    <option value="{{ date('Y-m-d', strtotime(\Carbon\Carbon::now()->subDays(7))) }}">Last 7 Days</option>
+                                    <option value="{{ date('Y-m-d', strtotime(\Carbon\Carbon::now()->subDays(15))) }}">Last 15 Days</option>
+                                    <option value="{{ date('Y-m-d', strtotime(\Carbon\Carbon::now()->subDays(30))) }}">Last 30 Days</option>
                                 </select>
                             </div>
                             <div class="col-md-5">

@@ -64,11 +64,12 @@ class AdminController extends Controller
     public function deshboard()
     {
         $start = request()->admission_filtering;
-        $today = Carbon::today();
+        $today = date('Y-m-d', strtotime(Carbon::today()));
+        //dd('Start date '.$start. '-' . 'Today date '. $today);
         $startExpanse = request()->expanse_filtering;
-        $todayExpanse = Carbon::today();
+        $todayExpanse = date('Y-m-d', strtotime(Carbon::today()));
         $filterAdmission = [
-            'admissionDayCount' => MoneyReceipt::whereBetween('admission_date', [$start, $today] )->get()
+            'admissionDayCount' => MoneyReceipt::whereBetween('admission_date', [$start, $today] )->get(),
         ];
         $filterExpanse = [
             'expanse' => Expance::whereBetween('created_at', [$startExpanse, $todayExpanse] )->get(),
