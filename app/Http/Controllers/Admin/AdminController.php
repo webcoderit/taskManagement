@@ -63,20 +63,15 @@ class AdminController extends Controller
 
     public function deshboard()
     {
-        //$dateFormate = date('Y-m-d', strtotime(request()->admission_filtering));
+        $start = request()->admission_filtering;
+        $today = Carbon::today();
+        $startExpanse = request()->expanse_filtering;
+        $todayExpanse = Carbon::today();
         $filterAdmission = [
-            'today' => MoneyReceipt::whereDate('admission_date', request()->admission_filtering)->get(),
-            'yesterday' => MoneyReceipt::whereDate('admission_date', request()->admission_filtering)->get(),
-            'last7Days' => MoneyReceipt::whereDate('admission_date', '>=', date('Y-m-d', strtotime(request()->admission_filtering)))->get(),
-            'last15Days' => MoneyReceipt::whereDate('admission_date', '>=',  date('Y-m-d', strtotime(request()->admission_filtering)))->get(),
-            'last30Days' => MoneyReceipt::whereDate('admission_date', '>=',  date('Y-m-d', strtotime(request()->admission_filtering)))->get(),
+            'admissionDayCount' => MoneyReceipt::whereBetween('admission_date', [$start, $today] )->get()
         ];
         $filterExpanse = [
-            'todayExpanse' => Expance::whereDate('created_at', request()->expanse_filtering)->get(),
-            'yesterdayExpanse' => Expance::whereDate('created_at', request()->expanse_filtering)->get(),
-            'last7DaysExpanse' => Expance::whereDate('created_at', '>=', date('Y-m-d', strtotime(request()->expanse_filtering)))->get(),
-            'last15DaysExpanse' => Expance::whereDate('created_at', '>=', date('Y-m-d', strtotime(request()->expanse_filtering)))->get(),
-            'last30DaysExpanse' => Expance::whereDate('created_at', '>=', date('Y-m-d', strtotime(request()->expanse_filtering)))->get(),
+            'expanse' => Expance::whereBetween('created_at', [$startExpanse, $todayExpanse] )->get(),
         ];
         $users = User::orderBy('updated_at', 'desc')->get();
         $todayCredit = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('advance');

@@ -184,16 +184,8 @@
                                 <div class="card-body text-center">
                                     <p class="mb-1 text-white">Total Admission</p>
                                     <h3 class="mb-3 text-white">
-                                        @if(count($filterAdmission['today']) > 0)
-                                            {{ count($filterAdmission['today']) }}
-                                        @elseif(count($filterAdmission['yesterday']) > 0)
-                                            {{ count($filterAdmission['yesterday']) }}
-                                        @elseif(count($filterAdmission['last7Days']) > 0)
-                                            {{ count($filterAdmission['last7Days']) }}
-                                        @elseif(count($filterAdmission['last15Days']) > 0)
-                                            {{ count($filterAdmission['last15Days']) }}
-                                        @elseif(count($filterAdmission['last30Days']) > 0)
-                                            {{ count($filterAdmission['last30Days']) }}
+                                        @if(count($filterAdmission['admissionDayCount']) > 0)
+                                            {{ count($filterAdmission['admissionDayCount']) }}
                                         @else
                                             0
                                         @endif
@@ -207,16 +199,10 @@
                                 <div class="card-body text-center">
                                     <p class="mb-1 text-white">Total Advance</p>
                                     <h3 class="mb-3 text-white">
-                                        @if(count($filterAdmission['today']) > 0)
-                                            {{ number_format($filterAdmission['today']->sum('advance'), 2) }}. Tk
-                                        @elseif(count($filterAdmission['yesterday']) > 0)
-                                            {{ number_format($filterAdmission['yesterday']->sum('advance'), 2) }}. Tk
-                                        @elseif(count($filterAdmission['last7Days']) > 0)
-                                            {{ number_format($filterAdmission['last7Days']->sum('advance'), 2) }}. Tk
-                                        @elseif(count($filterAdmission['last15Days']) > 0)
-                                            {{ number_format($filterAdmission['last15Days']->sum('advance'),2) }}. Tk
-                                        @elseif(count($filterAdmission['last30Days']) > 0)
-                                            {{ number_format($filterAdmission['last30Days']->sum('advance'),2) }}. Tk
+                                        @if(count($filterAdmission['admissionDayCount']) > 0)
+                                            {{ number_format($filterAdmission['admissionDayCount']->sum('advance'), 2) }}. Tk
+                                        @else
+                                            0
                                         @endif
                                     </h3>
                                     <div id="chart3"></div>
@@ -228,16 +214,10 @@
                                 <div class="card-body text-center">
                                     <p class="mb-1 text-white">Total Due</p>
                                     <h3 class="mb-3 text-white">
-                                        @if(count($filterAdmission['today']) > 0)
-                                            {{ number_format($filterAdmission['today']->sum('due'), 2) }}. Tk
-                                        @elseif(count($filterAdmission['yesterday']) > 0)
-                                            {{ number_format($filterAdmission['yesterday']->sum('due'), 2) }}. Tk
-                                        @elseif(count($filterAdmission['last7Days']) > 0)
-                                            {{ number_format($filterAdmission['last7Days']->sum('due'), 2) }}. Tk
-                                        @elseif(count($filterAdmission['last15Days']) > 0)
-                                            {{ number_format($filterAdmission['last15Days']->sum('due'),2) }}. Tk
-                                        @elseif(count($filterAdmission['last30Days']) > 0)
-                                            {{ number_format($filterAdmission['last30Days']->sum('due'),2) }}. Tk
+                                        @if(count($filterAdmission['admissionDayCount']) > 0)
+                                            {{ number_format($filterAdmission['admissionDayCount']->sum('due'), 2) }}. Tk
+                                        @else
+                                            0
                                         @endif
                                     </h3>
                                     <div id="chart3"></div>
@@ -276,16 +256,10 @@
                                 <div class="card-body text-center">
                                     <p class="mb-1 text-white">Total Expanse</p>
                                     <h3 class="mb-3 text-white">
-                                        @if(count($filterExpanse['todayExpanse']) > 0)
-                                            {{ number_format($filterExpanse['todayExpanse']->sum('price'), 2) }}. Tk
-                                        @elseif(count($filterExpanse['yesterdayExpanse']) > 0)
-                                            {{ number_format($filterExpanse['yesterdayExpanse']->sum('price'), 2) }}. Tk
-                                        @elseif(count($filterExpanse['last7DaysExpanse']) > 0)
-                                            {{ number_format($filterExpanse['last7DaysExpanse']->sum('price'), 2) }}. Tk
-                                        @elseif(count($filterExpanse['last15DaysExpanse']) > 0)
-                                            {{ number_format($filterExpanse['last15DaysExpanse']->sum('price'),2) }}. Tk
-                                        @elseif(count($filterExpanse['last30DaysExpanse']) > 0)
-                                            {{ number_format($filterExpanse['last30DaysExpanse']->sum('price'),2) }}. Tk
+                                        @if(count($filterExpanse['expanse']) > 0)
+                                            {{ number_format($filterExpanse['expanse']->sum('price'), 2) }}. Tk
+                                        @else
+                                            0
                                         @endif
                                     </h3>
                                     <div id="chart3"></div>
