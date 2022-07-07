@@ -172,13 +172,11 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'total_fee' => 'required',
-            'advance' => 'required',
             'due' => 'required',
         ]);
 
         try {
             $dueClear = MoneyReceipt::where('id', $id)->first();
-            $dueClear->advance = $dueClear->advance + $request->due_payment;
             $dueClear->due = $request->due;
             $dueClear->today_pay = $request->due_payment;
             $dueClear->save();
@@ -197,13 +195,11 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'total_fee' => 'required',
-            'advance' => 'required',
             'due' => 'required',
         ]);
 
         try {
             $dueClear = MoneyReceipt::where('id', $id)->first();
-            $dueClear->advance = $dueClear->advance + $request->due_payment;
             $dueClear->due = $request->due;
             $dueClear->today_pay = $request->due_payment;
             $dueClear->save();
@@ -376,6 +372,7 @@ class AdminController extends Controller
     }
 
     public function admissionFiltering(){
+        //dd(request()->from_date);
         $data = [
             'users' => User::orderBy('updated_at', 'desc')->get(),
             'todayAmounts' => MoneyReceipt::whereDate('created_at', Carbon::today())->get(),
