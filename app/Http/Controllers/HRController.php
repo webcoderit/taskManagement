@@ -186,7 +186,7 @@ class HRController extends Controller
             return redirect()->back()->with('error', 'Student information not found');
         }
         $studentDelete->delete();
-        MoneyReceipt::where('admission_id', $studentDelete->id)->first()->delete();
-        return redirect()->back()->with('success', 'Student has been permanently deleted');
+        //MoneyReceipt::where('admission_id', $studentDelete->id)->first()->delete();
+        return redirect()->back()->with('success', 'Student has been deleted');
     }
 }

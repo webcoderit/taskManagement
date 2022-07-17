@@ -24,53 +24,47 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-{{--                            <form class="form-group" action="{{ url('/admin/user/admission/filtering') }}" method="get">--}}
-{{--                                @csrf--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-md-3">--}}
-{{--                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">--}}
-{{--                                            Select Month:--}}
-{{--                                        </label><br>--}}
-{{--                                        <input type="month" name="month" class="form-control">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-3">--}}
-{{--                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">--}}
-{{--                                            Batch No:--}}
-{{--                                        </label><br>--}}
-{{--                                        <select name="batch_no" id="batchNo" class="form-control">--}}
-{{--                                            <option selected disabled>--- Select Batch No ---</option>--}}
-{{--                                            @foreach($data['batch'] as $batchNo)--}}
-{{--                                                <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ $batchNo->batch_no }}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-3">--}}
-{{--                                        <div class="input-group" style="margin-top: 25px;">--}}
-{{--                                            <button type="submit" class="input-group-text btn btn-primary">--}}
-{{--                                                Search--}}
-{{--                                            </button>--}}
-{{--                                            <a href="{{ url('/admin/user/admission/filtering') }}" class="input-group-text btn btn-danger">--}}
-{{--                                                Clear--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-3">--}}
-{{--                                        <label for="batch" style="font-weight: 600; margin-bottom: 10px;">--}}
-{{--                                            Total Student:--}}
-{{--                                        </label><br>--}}
-{{--                                        @if(isset($admissionStudents) > 0)--}}
-{{--                                        <span class="total-student-count">--}}
-{{--                                           {{ count($admissionStudents) }}--}}
-{{--                                        </span>--}}
-{{--                                        @endif--}}
-{{--                                        @if(isset($admissionStudentsDateFiltering) > 0)--}}
-{{--                                        <span class="total-student-count">--}}
-{{--                                           {{ count($admissionStudentsDateFiltering) }}--}}
-{{--                                        </span>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </form>--}}
+                            <form class="form-group" action="{{ url('/admin/user/admission/filtering') }}" method="get">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
+                                            Batch No:
+                                        </label><br>
+                                        <select name="batch_no" id="batchNo" class="form-control">
+                                            <option selected disabled>--- Select Batch No ---</option>
+                                            @foreach($data['batch'] as $batchNo)
+                                                <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ $batchNo->batch_no }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group" style="margin-top: 25px;">
+                                            <button type="submit" class="input-group-text btn btn-primary">
+                                                Search
+                                            </button>
+                                            <a href="{{ url('/admin/user/admission/filtering') }}" class="input-group-text btn btn-danger">
+                                                Clear
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="batch" style="font-weight: 600; margin-bottom: 10px;">
+                                            Total Student:
+                                        </label><br>
+                                        @if(isset($admissionStudents) > 0)
+                                        <span class="total-student-count">
+                                           {{ count($admissionStudents) }}
+                                        </span>
+                                        @endif
+                                        @if(isset($admissionStudentsDateFiltering) > 0)
+                                        <span class="total-student-count">
+                                           {{ count($admissionStudentsDateFiltering) }}
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </form>
                             <form action="{{ url('/admin/user/admission/filtering') }}" method="get" class="form-group">
                                 @csrf
                                 <div class="col-md-12">

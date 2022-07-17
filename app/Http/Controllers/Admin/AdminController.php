@@ -380,9 +380,9 @@ class AdminController extends Controller
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
             'batch' => Batch::orderByDesc('created_at')->get(),
         ];
-        if (isset(request()->batch_no) && isset(request()->month)){
+        if (isset(request()->batch_no)){
             $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
-            $sql->where('batch_no', request()->batch_no)->orWhereMonth('created_at', request()->month);
+            $sql->where('batch_no', request()->batch_no);
 
             $admissionStudents = $sql->get();
             return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
