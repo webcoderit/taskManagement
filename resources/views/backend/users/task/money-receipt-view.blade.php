@@ -33,6 +33,10 @@
                                     <span class="money-receipt-view-label">Student Name :</span>
                                     <span>{{ $moneyReceiptView->admissionForm->s_name ?? ' ' }}</span>
                                 </div>
+                                <div>
+                                    <span class="money-receipt-view-label">Phone :</span>
+                                    <span>{{ $moneyReceiptView->admissionForm->s_phone ?? ' ' }}</span>
+                                </div>
                             </div>
                             <div class="money-receipt-info-item">
                                 <div>

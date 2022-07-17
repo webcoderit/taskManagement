@@ -90,10 +90,12 @@
                    <div class="card radius-10" id="grad5">
                        <div class="card-body text-center">
                            <p class="mb-1 text-white" style="font-size: 24px;">Highly Interested</p>
-                           <h3 class="mb-3">{{ count(\App\Models\Intereste::where('interest_level', 'highly')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
+                           <h3 class="mb-3">
+                                {{ count(\App\Models\Intereste::where('interest_level', 'highly')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
                                                 $q->where('user_id', auth()->user()->id);
                                             })
-                                        ->get()) }}</h3>
+                                        ->get()) }}
+                            </h3>
                        </div>
                    </div>
                </div>

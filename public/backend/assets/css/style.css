@@ -173,10 +173,12 @@
     color: #000;
     text-transform: capitalize;
     margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .general-setting-form.form-group input {
     margin-bottom: 15px;
+    height: 50px;
 }
 
 .col-md-6.border-right {
