@@ -131,7 +131,7 @@ class HRController extends Controller
     }
 
     public function studentList(){
-        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at')->where('is_reject', 0);
         if (isset(request()->batch_no)){
             $sql->where('batch_no', 'LIKE','%'.request()->batch_no.'%');
         }
@@ -143,6 +143,34 @@ class HRController extends Controller
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no')
         ];
         return view('backend.admin.hrm.student-list', compact('admissionStudents', 'data'));
+    }
+
+    public function rejectStudent($id)
+    {
+        $rejectStudent = AdmissionForm::where('id', $id)->first();
+        $rejectStudent->is_reject = 1;
+        if ($rejectStudent->save()){
+            $rejectStudentMoneyReceipt = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
+            $rejectStudentMoneyReceipt->is_reject = 1;
+            $rejectStudentMoneyReceipt->save();
+        }
+        return redirect()->back()->with('success', 'Student move to rejected list');
+    }
+
+    public function rejectStudentList()
+    {
+        $admissionRejectStudents = AdmissionForm::with('moneyReceipt')->where('is_reject', 1)->get();
+        return view('backend.admin.hrm.student-reject-list', compact('admissionRejectStudents'));
+    }
+
+    public function paidStudentList()
+    {
+        $admissionPaidStudents = AdmissionForm::with('moneyReceipt')
+            ->whereHas('moneyReceipt', function ($q){
+                $q->where('due', 0);
+            })
+            ->get();
+        return view('backend.admin.hrm.student-paid-list', compact('admissionPaidStudents'));
     }
 
     public function admissionForm()

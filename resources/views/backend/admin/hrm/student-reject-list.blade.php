@@ -12,48 +12,48 @@
                 @endif
 	            <!--breadcrumb-->
 	            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-	                <div class="breadcrumb-title pe-3">Student List</div>
+	                <div class="breadcrumb-title pe-3">Student Reject List</div>
 	                <div class="ps-3">
 	                    <nav aria-label="breadcrumb">
 	                        <ol class="breadcrumb mb-0 p-0">
 	                            <li class="breadcrumb-item"><a href="{{ url('/admin/hr/dashboard') }}"><i class="bx bx-home-alt"></i></a>
 	                            </li>
-	                            <li class="breadcrumb-item active" aria-current="page">Student List</li>
+	                            <li class="breadcrumb-item active" aria-current="page">Student Reject List</li>
 	                        </ol>
 	                    </nav>
 	                </div>
 	            </div>
 	            <!--end breadcrumb-->
-                <div class="col-md-12">
-                    <form action="{{ url('/admin/student/list') }}" method="get">
-                        @csrf
-                        <div class="row" style="padding: 0px 100px;">
-                            <div class="col-md-5">
-                                <label for="phone" style="font-weight: 600;">
-                                    Phone
-                                </label><br>
-                                <input type="number" name="phone" placeholder="Phone" class="form-control">
-                            </div>
-                            <div class="col-md-7">
-                                @csrf
-                                <label for="phone" style="font-weight: 600;">
-                                    Batch No.
-                                </label><br>
-                                <div class="input-group mb-3">
-                                    <select class="form-control" name="batch_no">
-                                        <option selected disabled>----Select A Batch No----</option>
-                                        @foreach($data['admissionStudentsBatch'] as $admissionStudentBatch)
-                                            <option value="{{ $admissionStudentBatch[0]->batch_no }}">{{ ucfirst($admissionStudentBatch[0]->course) }} - {{ ucfirst($admissionStudentBatch[0]->batch_no) }}</option>
-                                        @endforeach
-                                    </select>
-                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
-                                    <a href="{{ url('/admin/student/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-	            <hr/>
+{{--                <div class="col-md-12">--}}
+{{--                    <form action="{{ url('/admin/student/list') }}" method="get">--}}
+{{--                        @csrf--}}
+{{--                        <div class="row" style="padding: 0px 100px;">--}}
+{{--                            <div class="col-md-5">--}}
+{{--                                <label for="phone" style="font-weight: 600;">--}}
+{{--                                    Phone--}}
+{{--                                </label><br>--}}
+{{--                                <input type="number" name="phone" placeholder="Phone" class="form-control">--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-7">--}}
+{{--                                @csrf--}}
+{{--                                <label for="phone" style="font-weight: 600;">--}}
+{{--                                    Batch No.--}}
+{{--                                </label><br>--}}
+{{--                                <div class="input-group mb-3">--}}
+{{--                                    <select class="form-control" name="batch_no">--}}
+{{--                                        <option selected disabled>----Select A Batch No----</option>--}}
+{{--                                        @foreach($data['admissionStudentsBatch'] as $admissionStudentBatch)--}}
+{{--                                            <option value="{{ $admissionStudentBatch[0]->batch_no }}">{{ ucfirst($admissionStudentBatch[0]->course) }} - {{ ucfirst($admissionStudentBatch[0]->batch_no) }}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>--}}
+{{--                                    <a href="{{ url('/admin/student/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--	            <hr/>--}}
 	            <div class="card">
 	                <div class="card-body">
 	                    <div class="table-responsive">
@@ -77,7 +77,7 @@
 	                            </tr>
 	                            </thead>
 	                            <tbody>
-                                @foreach($admissionStudents as $admissionStudent)
+                                @foreach($admissionRejectStudents as $admissionStudent)
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $admissionStudent->user->full_name?? session()->get('name') }}</td>
@@ -103,9 +103,9 @@
                                         <td>{{ $admissionStudent->note ?? '' }}</td>
                                         <td>{{ $admissionStudent->other_admission_note ?? '' }}</td>
                                         <td>
-                                            @if($admissionStudent->is_reject == 0)
-                                                <a href="{{ url('/admin/student/reject/'.$admissionStudent->id) }}" class="btn btn-sm btn-success">
-                                                    <i class="bx bx-check-circle"></i>
+                                            @if($admissionStudent->is_reject == 1)
+                                                <a href="{{ url('/admin/student/restore/'.$admissionStudent->id) }}" class="btn btn-sm btn-warning">
+                                                    <i class="bx bx-refresh"></i>
                                                 </a>
                                             @endif
                                             @if($admissionStudent->moneyReceipt->due == 0)
@@ -117,18 +117,11 @@
                                                     <i class="bx bx-user-circle"></i>
                                                 </a>
                                             @endif
-                                                <a href="{{ url('/admin/admission/student/info/edit/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">
-                                                    <i class="bx bx-edit-alt"></i>
-                                                </a>
-                                                <a href="{{ url('/admin/admission/student/info/delete/'.$admissionStudent->id) }}" onclick="return confirm('Are you sure delete this student info ?')" class="btn btn-sm btn-danger">
-                                                    <i class="bx bx-trash-alt"></i>
-                                                </a>
                                         </td>
                                     </tr>
                                 @endforeach
 	                            </tbody>
 	                        </table>
-                            {{ $admissionStudents->links() }}
 	                    </div>
 	                </div>
 	            </div>

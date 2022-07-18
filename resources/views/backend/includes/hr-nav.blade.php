@@ -23,7 +23,9 @@
       <ul>
           <li> <a href="{{ url('/admin/addmission/form') }}"><i class="bx bx-right-arrow-alt"></i>Admission Form</a></li>
           <li> <a href="{{ url('/admin/money-receipt') }}"><i class="bx bx-right-arrow-alt"></i>All Money receipt</a></li>
-        <li> <a href="{{ url('admin/student/list') }}"><i class="bx bx-right-arrow-alt"></i>Student list</a></li>
+          <li> <a href="{{ url('admin/student/list') }}"><i class="bx bx-right-arrow-alt"></i>Student list</a></li>
+          <li> <a href="{{ url('/admin/reject/student/list') }}"><i class="bx bx-right-arrow-alt"></i>Reject Student</a></li>
+          <li> <a href="{{ url('admin/student/paid/list') }}"><i class="bx bx-right-arrow-alt"></i>Paid Student</a></li>
       </ul>
     </li>
     <li>

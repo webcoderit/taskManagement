@@ -127,7 +127,7 @@ class AdminController extends Controller
             return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents'));
         }
         $admissionStudents = '';
-        $totalDue = MoneyReceipt::get()->sum('due');
+        $totalDue = MoneyReceipt::where('is_reject', 0)->get()->sum('due');
         return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
     }
 
