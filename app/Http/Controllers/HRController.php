@@ -131,18 +131,68 @@ class HRController extends Controller
     }
 
     public function studentList(){
-        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+        $data = [
+            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
+            'batch' => Batch::orderByDesc('created_at')->get(),
+        ];
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at')->where('is_reject', 0);
+
         if (isset(request()->batch_no)){
-            $sql->where('batch_no', 'LIKE','%'.request()->batch_no.'%');
+            $sql->where('batch_no', 'LIKE','%'.request()->batch_number.'%');
         }
         if (isset(request()->phone)){
             $sql->where('s_phone', 'LIKE','%'.request()->phone.'%');
         }
-        $admissionStudents = $sql->paginate(50);
-        $data = [
-            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no')
-        ];
+
+        if (isset(request()->batch_no)){
+            $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at')->where('is_reject', 0);
+            $sql->where('batch_no', request()->batch_no);
+
+            $admissionStudents = $sql->get();
+            return view('backend.admin.hrm.student-list', compact('admissionStudents', 'data'));
+        }
+
+        $admissionStudents = $sql->get();
         return view('backend.admin.hrm.student-list', compact('admissionStudents', 'data'));
+    }
+
+    public function rejectStudent($id)
+    {
+        $rejectStudent = AdmissionForm::where('id', $id)->first();
+        $rejectStudent->is_reject = 1;
+        if ($rejectStudent->save()){
+            $rejectStudentMoneyReceipt = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
+            $rejectStudentMoneyReceipt->is_reject = 1;
+            $rejectStudentMoneyReceipt->save();
+        }
+        return redirect()->back()->with('success', 'Student move to rejected list');
+    }
+    public function restoreStudent($id)
+    {
+        $restoreStudent = AdmissionForm::where('id', $id)->first();
+        $restoreStudent->is_reject = 0;
+        if ($restoreStudent->save()){
+            $restoreStudentMoneyReceipt = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
+            $restoreStudentMoneyReceipt->is_reject = 0;
+            $restoreStudentMoneyReceipt->save();
+        }
+        return redirect()->back()->with('success', 'Student restore successfully');
+    }
+
+    public function rejectStudentList()
+    {
+        $admissionRejectStudents = AdmissionForm::with('moneyReceipt')->where('is_reject', 1)->get();
+        return view('backend.admin.hrm.student-reject-list', compact('admissionRejectStudents'));
+    }
+
+    public function paidStudentList()
+    {
+        $admissionPaidStudents = AdmissionForm::with('moneyReceipt')
+            ->whereHas('moneyReceipt', function ($q){
+                $q->where('due', 0);
+            })
+            ->get();
+        return view('backend.admin.hrm.student-paid-list', compact('admissionPaidStudents'));
     }
 
     public function admissionForm()
@@ -186,7 +236,7 @@ class HRController extends Controller
             return redirect()->back()->with('error', 'Student information not found');
         }
         $studentDelete->delete();
-        MoneyReceipt::where('admission_id', $studentDelete->id)->first()->delete();
-        return redirect()->back()->with('success', 'Student has been permanently deleted');
+        //MoneyReceipt::where('admission_id', $studentDelete->id)->first()->delete();
+        return redirect()->back()->with('success', 'Student has been deleted');
     }
 }

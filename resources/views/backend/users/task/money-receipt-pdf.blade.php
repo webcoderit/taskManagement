@@ -43,12 +43,20 @@
         </td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
-        <td colspan="3" style="padding: 10px 0 10px 20px;">
+        <td style="padding: 10px 0 10px 20px;">
             <span style="font-size: 15px;color: #000;font-weight: 600;">
                 Student Name :
             </span>
             <span style="color: #000;">
                 {{ $data['moneyReceipt']->admissionForm->s_name }}
+            </span>
+        </td>
+        <td style="padding: 10px 0 10px 20px;">
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Student Phone :
+            </span>
+            <span style="color: #000;">
+                {{ $data['moneyReceipt']->admissionForm->s_phone }}
             </span>
         </td>
     </tr>

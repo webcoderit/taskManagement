@@ -144,7 +144,7 @@ class TaskController extends Controller
                 $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
             })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
         }
-        $admissionStudents = $sql->paginate(50);
+        $admissionStudents = $sql->get();
         return view('backend.admin.task.task-filtering', compact('admissionStudents', 'data'));
     }
 

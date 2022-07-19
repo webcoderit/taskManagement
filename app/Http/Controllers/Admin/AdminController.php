@@ -127,7 +127,7 @@ class AdminController extends Controller
             return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents'));
         }
         $admissionStudents = '';
-        $totalDue = MoneyReceipt::get()->sum('due');
+        $totalDue = MoneyReceipt::where('is_reject', 0)->get()->sum('due');
         return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
     }
 
@@ -172,13 +172,11 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'total_fee' => 'required',
-            'advance' => 'required',
             'due' => 'required',
         ]);
 
         try {
             $dueClear = MoneyReceipt::where('id', $id)->first();
-            $dueClear->advance = $dueClear->advance + $request->due_payment;
             $dueClear->due = $request->due;
             $dueClear->today_pay = $request->due_payment;
             $dueClear->save();
@@ -197,13 +195,11 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'total_fee' => 'required',
-            'advance' => 'required',
             'due' => 'required',
         ]);
 
         try {
             $dueClear = MoneyReceipt::where('id', $id)->first();
-            $dueClear->advance = $dueClear->advance + $request->due_payment;
             $dueClear->due = $request->due;
             $dueClear->today_pay = $request->due_payment;
             $dueClear->save();
@@ -376,6 +372,7 @@ class AdminController extends Controller
     }
 
     public function admissionFiltering(){
+        //dd(request()->from_date);
         $data = [
             'users' => User::orderBy('updated_at', 'desc')->get(),
             'todayAmounts' => MoneyReceipt::whereDate('created_at', Carbon::today())->get(),
@@ -383,9 +380,9 @@ class AdminController extends Controller
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
             'batch' => Batch::orderByDesc('created_at')->get(),
         ];
-        if (isset(request()->batch_no) && isset(request()->month)){
+        if (isset(request()->batch_no)){
             $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
-            $sql->where('batch_no', request()->batch_no)->orWhereMonth('created_at', request()->month);
+            $sql->where('batch_no', request()->batch_no);
 
             $admissionStudents = $sql->get();
             return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
