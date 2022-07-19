@@ -131,17 +131,28 @@ class HRController extends Controller
     }
 
     public function studentList(){
+        $data = [
+            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
+            'batch' => Batch::orderByDesc('created_at')->get(),
+        ];
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at')->where('is_reject', 0);
+
         if (isset(request()->batch_no)){
-            $sql->where('batch_no', 'LIKE','%'.request()->batch_no.'%');
+            $sql->where('batch_no', 'LIKE','%'.request()->batch_number.'%');
         }
         if (isset(request()->phone)){
             $sql->where('s_phone', 'LIKE','%'.request()->phone.'%');
         }
-        $admissionStudents = $sql->paginate(50);
-        $data = [
-            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no')
-        ];
+
+        if (isset(request()->batch_no)){
+            $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at')->where('is_reject', 0);
+            $sql->where('batch_no', request()->batch_no);
+
+            $admissionStudents = $sql->get();
+            return view('backend.admin.hrm.student-list', compact('admissionStudents', 'data'));
+        }
+
+        $admissionStudents = $sql->get();
         return view('backend.admin.hrm.student-list', compact('admissionStudents', 'data'));
     }
 
@@ -155,6 +166,17 @@ class HRController extends Controller
             $rejectStudentMoneyReceipt->save();
         }
         return redirect()->back()->with('success', 'Student move to rejected list');
+    }
+    public function restoreStudent($id)
+    {
+        $restoreStudent = AdmissionForm::where('id', $id)->first();
+        $restoreStudent->is_reject = 0;
+        if ($restoreStudent->save()){
+            $restoreStudentMoneyReceipt = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
+            $restoreStudentMoneyReceipt->is_reject = 0;
+            $restoreStudentMoneyReceipt->save();
+        }
+        return redirect()->back()->with('success', 'Student restore successfully');
     }
 
     public function rejectStudentList()

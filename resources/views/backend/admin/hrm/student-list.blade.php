@@ -40,7 +40,7 @@
                                     Batch No.
                                 </label><br>
                                 <div class="input-group mb-3">
-                                    <select class="form-control" name="batch_no">
+                                    <select class="form-control" name="batch_number">
                                         <option selected disabled>----Select A Batch No----</option>
                                         @foreach($data['admissionStudentsBatch'] as $admissionStudentBatch)
                                             <option value="{{ $admissionStudentBatch[0]->batch_no }}">{{ ucfirst($admissionStudentBatch[0]->course) }} - {{ ucfirst($admissionStudentBatch[0]->batch_no) }}</option>
@@ -49,6 +49,42 @@
                                     <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
                                     <a href="{{ url('/admin/student/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
                                 </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="form-group" action="{{ url('/admin/student/list') }}" method="get">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
+                                    Batch No:
+                                </label><br>
+                                <select name="batch_no" id="batchNo" class="form-control">
+                                    <option selected disabled>--- Select Batch No ---</option>
+                                    @foreach($data['batch'] as $batchNo)
+                                        <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ $batchNo->batch_no }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group" style="margin-top: 25px;">
+                                    <button type="submit" class="input-group-text btn btn-primary">
+                                        Search
+                                    </button>
+                                    <a href="{{ url('/admin/user/admission/filtering') }}" class="input-group-text btn btn-danger">
+                                        Clear
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="batch" style="font-weight: 600; margin-bottom: 10px;">
+                                    Total Student:
+                                </label><br>
+                                @if(isset($admissionStudents) > 0)
+                                    <span class="total-student-count">
+                                        {{ count($admissionStudents) }}
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </form>
@@ -104,7 +140,7 @@
                                         <td>{{ $admissionStudent->other_admission_note ?? '' }}</td>
                                         <td>
                                             @if($admissionStudent->is_reject == 0)
-                                                <a href="{{ url('/admin/student/reject/'.$admissionStudent->id) }}" class="btn btn-sm btn-success">
+                                                <a href="{{ url('/admin/student/reject/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">
                                                     <i class="bx bx-check-circle"></i>
                                                 </a>
                                             @endif
@@ -128,7 +164,6 @@
                                 @endforeach
 	                            </tbody>
 	                        </table>
-                            {{ $admissionStudents->links() }}
 	                    </div>
 	                </div>
 	            </div>
