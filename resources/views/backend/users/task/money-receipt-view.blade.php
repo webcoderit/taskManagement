@@ -65,7 +65,7 @@
                                 </div>
                                 <div>
                                     <span class="money-receipt-view-label">Advance :</span>
-                                    <span>{{ $moneyReceiptView->advance }} TK</span>
+                                    <span>{{ $moneyReceiptView->advance }} TK. <small style="color: red">( Advance & {{ ucfirst($moneyReceiptView->payment_type) }} Cost )</small> </span>
                                 </div>
                                 <div>
                                     <span class="money-receipt-view-label">Due :</span>

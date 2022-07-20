@@ -99,8 +99,8 @@
                         Advance :
                     </span>
             <span style="color: #000;">
-                        {{ $data['moneyReceipt']->advance }} TK
-                    </span>
+                {{ $data['moneyReceipt']->advance }} TK. <small style="color: red">( Advance & {{ ucfirst($data['moneyReceipt']->admissionForm->payment_type) }} Cost )</small>
+            </span>
         </td>
         <td style="text-align: end;padding: 10px 20px 10px 0;">
                     <span style="font-size: 15px;color: #000;font-weight: 600;">

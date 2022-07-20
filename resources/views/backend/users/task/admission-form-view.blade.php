@@ -109,7 +109,7 @@
                             </div>
                             <div>
                                 <span class="admission-form-view-label">Student Ref. Name : </span>
-                                <span class="admission-form-view-value">Ashik Rahaman</span>
+                                <span class="admission-form-view-value">{{ $admissionForm->reference }}</span>
                             </div>
                         </div>
                         <div class="admission-form-view-item">
