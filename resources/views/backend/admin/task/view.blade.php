@@ -31,8 +31,35 @@
             <hr/>
             <div class="card">
                 <div class="card-body">
+                    <form action="{{ url('/admin/user/task/view/'.$id) }}" method="get" class="form-group">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>From date</label>
+                                    <div class="input-group mb-2">
+                                        <input type="date" name="from_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>To date</label>
+                                    <div class="input-group mb-2">
+                                        <input type="date" name="to_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2" style="margin-top: 20px;">Search</button>
+                                    <a href="{{ url('/admin/user/task/view/'.$id) }}" class="input-group-text btn btn-danger" id="basic-addon2" style="margin-top: 20px;">Clear</a>
+
+                                    @if(isset($tasks) > 0)
+                                        <a href="#" class="input-group-text btn btn-warning" id="basic-addon2" style="margin-top: 20px;">{{ count($tasks) }}</a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="table-responsive">
-                        <table id="myDataTable" class="table table-striped table-bordered" style="width:100%">
+                        <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th>SL</th>

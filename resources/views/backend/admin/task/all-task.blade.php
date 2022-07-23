@@ -37,6 +37,9 @@
                             <tr>
                                 <th>SL</th>
                                 <th>Employee name</th>
+                                <th>Total Task</th>
+                                <th>Today Total Task</th>
+                                <th>Yesterday Total Task</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -45,6 +48,9 @@
                                 <tr>
                                     <td>{{ $loop->index+1}}</td>
                                     <td>{{ $task[0]->user->full_name ?? 'No employee name' }}</td>
+                                    <td>{{ count($task) }}</td>
+                                    <td>{{ $task[$key]->whereDate('created_at', \Carbon\Carbon::today())->where('user_id', $task[$key]->user->id)->get()->count() }}</td>
+                                    <td>{{ $task[$key]->whereDate('created_at', \Carbon\Carbon::yesterday())->where('user_id', $task[$key]->user->id)->get()->count() }}</td>
                                     <td width="10%">
                                         <a href="{{ url('/admin/user/task/view/'.$task[0]->user->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>

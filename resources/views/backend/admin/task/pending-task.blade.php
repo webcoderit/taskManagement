@@ -29,6 +29,7 @@
                             <tr>
                                 <th>SL</th>
                                 <th>Employee name</th>
+                                <th>Total Pending</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -37,6 +38,7 @@
                                 <tr>
                                     <td>{{ $loop->index+1}}</td>
                                     <td>{{ $userName[0]->user->full_name ?? 'No employee name' }}</td>
+                                    <td>{{ count($userName) }}</td>
                                     <td width="10%">
                                         <a href="{{ url('/admin/user/task/view/'.$userName[0]->user->id) }}" class="btn btn-sm btn-primary">
                                             View all

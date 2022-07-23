@@ -28,7 +28,17 @@ class TaskController extends Controller
     public function allTaskView($id)
     {
         $tasks = Task::with('user')->where('status', 0)->where('user_id', $id)->get();
-        return view('backend.admin.task.view', compact('tasks'));
+
+        if (isset(request()->from_date) && isset(request()->to_date)) {
+            $sqlFiltering = Task::with('user')->where('status', 0)->where('user_id', $id)
+                ->whereDate('created_at', '>=', request()->from_date)
+                ->whereDate('created_at', '<=', request()->to_date);
+
+            $tasks = $sqlFiltering->get();
+            return view('backend.admin.task.view', compact('tasks', 'id'));
+        }
+
+        return view('backend.admin.task.view', compact('tasks', 'id'));
     }
 
     public function addTask()
