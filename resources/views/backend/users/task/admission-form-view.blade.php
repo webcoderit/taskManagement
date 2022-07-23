@@ -105,7 +105,9 @@
                         <div class="admission-form-view-item">
                             <div>
                                 <span class="admission-form-view-label">FB Name/Link : </span>
-                                <a href="https://www.facebook.com/saidulislamjihad20" target="_blank" class="admission-form-view-value">https://www.facebook.com/saidulislamjihad20</a>
+                                <a href="https://www.facebook.com/saidulislamjihad20" target="_blank" class="admission-form-view-value">
+                                    {{ $admissionForm->fb_id }}
+                                </a>
                             </div>
                             <div>
                                 <span class="admission-form-view-label">Student Ref. Name : </span>

@@ -125,7 +125,6 @@
 	                        </table>
                             {{ $admissionStudents->links() }}
 	                    </div>
-	                </div>
 	            </div>
 	        </div>
 	    </div>

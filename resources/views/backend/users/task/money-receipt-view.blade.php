@@ -73,7 +73,7 @@
                                         @if($moneyReceiptView->due == 0)
                                             Paid
                                         @else
-                                            {{ $moneyReceiptView->due }}
+                                            {{ $moneyReceiptView->due }} TK
                                         @endif
                                     </span>
                                 </div>
