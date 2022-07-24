@@ -102,6 +102,7 @@
                         <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
+                                <th>SL</th>
                                 <th>Date</th>
                                 <th>Employee Name</th>
                                 <th>Course Name</th>
@@ -156,10 +157,13 @@
                             @if(isset($admissionStudentsDateFiltering))
                                 <tbody>
                                 @php
-                                    $sum = 0
+                                    $sum = 0;
+                                    $web = 0;
+                                    $adm = 0
                                 @endphp
                                 @foreach($admissionStudentsDateFiltering as $admissionStudentFilter)
                                     <tr>
+                                        <td>{{ $loop->index+1 }}</td>
                                         <td>{{ $admissionStudentFilter->admission_date->format('Y-m-d') }}</td>
                                         <td>{{ $admissionStudentFilter->admissionForm->user->full_name?? '' }}</td>
                                         <td>
@@ -180,13 +184,25 @@
                                         <td>{{ $admissionStudentFilter->due ?? '' }}Tk.</td>
                                     </tr>
                                     @php
-                                        $sum += $admissionStudentFilter->advance
+                                        if($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'web' : ''){
+                                            $web += count(array($admissionStudentFilter->admissionForm->course));
+                                        }
+                                        if($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'digital' : ''){
+                                            $adm += count(array($admissionStudentFilter->admissionForm->course));
+                                        }
+                                        $sum += $admissionStudentFilter->advance;
                                     @endphp
                                 @endforeach
                                 <tr>
-                                    <td colspan="8"></td>
+                                    <td colspan="6"></td>
                                     <td>
                                         <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
+                                    </td>
+                                    <td>
+                                        <span style="font-weight: bold">Total Web Admission : {{ $web }}</span>
+                                    </td>
+                                    <td>
+                                        <span style="font-weight: bold">Total ADM Admission : {{ $adm }}</span>
                                     </td>
                                 </tr>
                                 </tbody>

@@ -80,6 +80,7 @@
                         <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
+                                <th>SL</th>
                                 <th>Date</th>
                                 <th>Employee Name</th>
                                 <th>Course Name</th>
@@ -98,6 +99,7 @@
                             @endphp
                             @foreach($admissionStudents as $admissionStudent)
                                 <tr>
+                                    <td>{{ $loop->index+1 }}</td>
                                     <td>{{ $admissionStudent->moneyReceipt->admission_date->format('Y-m-d') }}</td>
                                     <td>{{ $admissionStudent->user->full_name?? '' }}</td>
                                     <td>
@@ -129,7 +131,6 @@
                             </tr>
                             </tbody>
                         </table>
-                        {{ $admissionStudents->links() }}
                     </div>
                 </div>
             </div>

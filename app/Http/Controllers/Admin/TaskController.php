@@ -21,8 +21,15 @@ class TaskController extends Controller
 {
     public function listTask()
     {
+        $page = '';
+        if (isset(request()->task_date)){
+            $page = 'task_date';
+            $tasksDateFiltering = Task::with('user')->whereDate('created_at', request()->task_date);
+            $tasks = $tasksDateFiltering->get()->groupBy('user_id');
+            return view('backend.admin.task.index', compact('tasks', 'page'));
+        }
         $tasks = Task::with('user')->whereDate('created_at', Carbon::today())->get()->groupBy('user_id');
-        return view('backend.admin.task.index', compact('tasks'));
+        return view('backend.admin.task.index', compact('tasks', 'page'));
     }
 
     public function allTaskView($id)
