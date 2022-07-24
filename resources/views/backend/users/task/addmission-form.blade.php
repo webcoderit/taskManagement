@@ -141,7 +141,7 @@
                                      </label><br>
                                      <textarea name="other_admission_note" id="other_admission_note" rows="2" cols="50" class="form-control">{{ old('other_admission_note') }}</textarea>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                      <label for="course">Course Name</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <select name="course" id="course" class="form-control">
                                           <option disabled selected>---Select Course Name---</option>
@@ -150,7 +150,7 @@
                                           <option value="english">Communication English</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                      <label for="batch_no">Batch No.</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <select name="batch_no" id="batch_no" class="form-control">
                                         <option disabled selected>---Select Batch Number---</option>
@@ -159,7 +159,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                      <label for="batch_type">Batch Type</label><span style="color: red; font-size: 16px;"> *</span><br>
                                      <select name="batch_type" id="batch_type" class="form-control">
                                           <option disabled selected>---Select Batch Type---</option>
@@ -167,9 +167,13 @@
                                           <option value="offline">Offline</option>
                                     </select>
                                 </div>
+                                <div class="col-md-3">
+                                    <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="date" name="admission_date" value="{{old('admission_date')}}" placeholder="Admission Date" class="form-control">
+                                </div>
                                 <div class="col-md-6">
                                     <label for="cash">Payment Type</label><br>
-                                    <select name="payment_type" id="payment_type" class="form-control">
+                                    <select name="payment_type" id="payment_type" class="form-control" onchange="chargeField(this.value)">
                                           <option disabled selected>---Select Payment Type---</option>
                                           <option value="cash">Cash</option>
                                           <option value="bkash">Bkash</option>
@@ -179,8 +183,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="date" name="admission_date" value="{{old('admission_date')}}" placeholder="Admission Date" class="form-control">
+                                    <label for="advance">Bkash / Rocket / Nogod Charge</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="number" name="online_charge" value="{{old('online_charge')}}" id="online_charge" placeholder="Online Charge" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="total_fee">Total Fee</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -252,6 +256,14 @@
                 x.style.display = "block";
             } else {
                 x.style.display = "none";
+            }
+        }
+
+        function chargeField(e){
+            if(e == 'cash'){
+                $('#online_charge').hide();
+            }else {
+                $('#online_charge').show();
             }
         }
 
