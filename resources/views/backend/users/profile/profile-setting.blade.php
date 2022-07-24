@@ -44,7 +44,7 @@
 				                        </div>
 				                        <div class="avatar-preview">
 				                            <div>
-                                                <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" style="height: 188px; width: 188px;" id="pre-avatar">
+                                                <img src="{{ asset('/avatar/'.auth()->user()->avatar) }}" style="height: 200px; width: 220px;" id="pre-avatar">
                                             </div>
 				                        </div>
 				                    </div>
