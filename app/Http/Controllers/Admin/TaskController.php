@@ -8,6 +8,7 @@ use App\Imports\ImportUser;
 use App\Imports\TaskImport;
 use App\Models\AdmissionForm;
 use App\Models\AssignNumber;
+use App\Models\Expance;
 use App\Models\Intereste;
 use App\Models\MoneyReceipt;
 use App\Models\Task;
@@ -95,7 +96,7 @@ class TaskController extends Controller
                 $q->whereMonth('admission_date',  date('m', strtotime($request->month)));
             });
         }
-        $complete = $sql->paginate(100);
+        $complete = $sql->paginate(200);
         $users = User::all();
         return view('backend.admin.task.confirm-addmission' , compact('complete', 'users'));
     }
@@ -243,7 +244,7 @@ class TaskController extends Controller
     }
 
 
-    //=============================== Call report download ========================================//
+    //=============================== All report download ========================================//
     public function callReportDownload($month, $user_id)
     {
         $sql = AdmissionForm::with('moneyReceipt', 'user')->where('user_id', $user_id)
@@ -252,5 +253,15 @@ class TaskController extends Controller
         $reports = $sql->get();
         $callReportPdf = \PDF::loadView('backend.admin.pdf.report', compact('reports'))->setPaper([0, 0, 685, 800], 'landscape');
         return $callReportPdf->download('Report' . '.' . 'pdf');
+    }
+
+    public function expanseReportDownload($from, $to)
+    {
+        $sql = Expance::orderBy('created_at', 'desc');
+
+        $sql->whereDate('created_at', '>=', $from)->whereDate('created_at','<=', $to);
+        $expanseReports = $sql->get();
+        $callReportPdf = \PDF::loadView('backend.admin.pdf.expanse', compact('expanseReports'))->setPaper([0, 0, 685, 800], 'landscape');
+        return $callReportPdf->download('ExpanseReport' . '.' . 'pdf');
     }
 }

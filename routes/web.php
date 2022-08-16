@@ -78,6 +78,8 @@ Route::group(['prefix' => 'admin'], function(){
             //=============== Expanse list =================//
             Route::get('/expanse/list', [App\Http\Controllers\Admin\AdminController::class, 'expanse']);
             Route::get('/admission/filtering', [App\Http\Controllers\Admin\AdminController::class, 'admissionFiltering']);
+            Route::get('/admission/filtering/report/download/{from}/{to}', [App\Http\Controllers\Admin\AdminController::class, 'admissionFilteringReportDownload']);
+            Route::get('/due/collect/report', [App\Http\Controllers\Admin\AdminController::class, 'dueCollectReport']);
         });
     });
 });
@@ -87,6 +89,7 @@ Auth::routes();
 
 //========== Employee Call report download ============//
 Route::get('/employee/call-report/download/{month}/{user_id}', [App\Http\Controllers\Admin\TaskController::class, 'callReportDownload']);
+Route::get('/admin/user/expanse/list/download/{from}/{to}', [App\Http\Controllers\Admin\TaskController::class, 'expanseReportDownload']);
 
 Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
 Route::get('/today/task', [\App\Http\Controllers\UserController::class, 'todayTask']);

@@ -171,7 +171,7 @@
                                     <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="date" name="admission_date" value="{{old('admission_date')}}" placeholder="Admission Date" class="form-control">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label for="cash">Payment Type</label><br>
                                     <select name="payment_type" id="payment_type" class="form-control" onchange="chargeField(this.value)">
                                           <option disabled selected>---Select Payment Type---</option>
@@ -182,9 +182,13 @@
                                           <option value="bank">Bank</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label for="advance">Bkash / Rocket / Nogod Charge</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="number" name="online_charge" value="{{old('online_charge')}}" id="online_charge" placeholder="Online Charge" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="advance">Transaction ID</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="transaction_id" value="{{old('transaction_id')}}" id="transaction_id" placeholder="Transaction Id" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="total_fee">Total Fee</label><span style="color: red; font-size: 16px;"> *</span><br>

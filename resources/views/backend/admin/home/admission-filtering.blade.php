@@ -99,6 +99,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
+                        @if(isset($admissionStudentsDateFiltering))
+                        <a href="{{ url('/admin/user/admission/filtering/report/download/'.request()->from_date . '/' . request()->to_date) }}" class="input-group-text btn btn-info float-end" id="basic-addon2" style="">Admission Report Download</a>
+                        @endif
                         <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>

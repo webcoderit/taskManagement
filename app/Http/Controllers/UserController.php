@@ -322,6 +322,7 @@ class UserController extends Controller
                     $moneyReceipt = new MoneyReceipt();
                     $moneyReceipt->admission_id = $newStudent->id;
                     $moneyReceipt->payment_type = $request->payment_type;
+                    $moneyReceipt->transaction_id = $request->transaction_id;
                     $moneyReceipt->admission_date = $request->admission_date;
                     $moneyReceipt->in_word = $request->in_word;
                     $moneyReceipt->total_fee = $request->total_fee;

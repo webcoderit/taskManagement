@@ -359,6 +359,14 @@ class AdminController extends Controller
         $sql = Expance::orderBy('created_at', 'desc');
         $dateFrom = date('Y-m-d', strtotime(request()->expanse_date));
         $dateTo = date('Y-m-d', strtotime(request()->to_date));
+
+        $fromDate = date('Y-m-d', strtotime(request()->from_date));
+        $toDate = date('Y-m-d', strtotime(request()->to_date));
+
+        if (isset(request()->from_date) && isset(request()->to_date)){
+            $sql->whereDate('created_at', '>=', $fromDate)->whereDate('created_at','<=', $toDate);
+        }
+
         if (isset(request()->expanse_date) && isset(request()->to_date) && isset(request()->bill_type)){
             $sql->whereDate('created_at', '>=', $dateFrom)->whereDate('created_at','<=', $dateTo)->where('bill_type', request()->bill_type);
         }
@@ -396,6 +404,16 @@ class AdminController extends Controller
             return view('backend.admin.home.admission-filtering', compact('admissionStudentsDateFiltering', 'data'));
         }
         return view('backend.admin.home.admission-filtering', compact('data'));
+    }
+
+    public function admissionFilteringReportDownload($from, $to)
+    {
+        $sql = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc');
+                $sql->whereDate('admission_date', '>=', $from)->whereDate('admission_date', '<=', $to);
+
+            $admissionStudentsDateFilteringDownload = $sql->get();
+        $callReportPdf = \PDF::loadView('backend.admin.pdf.admission', compact('admissionStudentsDateFilteringDownload'))->setPaper([0, 0, 685, 800], 'landscape');
+        return $callReportPdf->download('AdmissionReport' . '.' . 'pdf');
     }
 
     //=========== Salary information ==========//
@@ -479,6 +497,7 @@ class AdminController extends Controller
             $moneyReceipt = new MoneyReceipt();
             $moneyReceipt->admission_id = $updateAdmissionForm->id;
             $moneyReceipt->payment_type = $request->payment_type;
+            $moneyReceipt->transaction_id = $request->transaction_id;
             $moneyReceipt->admission_date = $request->admission_date;
             $moneyReceipt->in_word = $request->in_word;
             $moneyReceipt->total_fee = $request->total_fee;
@@ -499,5 +518,13 @@ class AdminController extends Controller
         $studentDelete->delete();
         MoneyReceipt::where('admission_id', $studentDelete->id)->first()->delete();
         return redirect()->back()->with('success', 'Student has been permanently deleted');
+    }
+
+
+    //Due collect report
+    public function dueCollectReport()
+    {
+        $admissionStudents = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at')->get();
+        return view('backend.admin.home.due-collect', compact('admissionStudents'));
     }
 }
