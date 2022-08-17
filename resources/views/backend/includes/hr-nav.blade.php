@@ -26,6 +26,7 @@
           <li> <a href="{{ url('admin/student/list') }}"><i class="bx bx-right-arrow-alt"></i>Student list</a></li>
           <li> <a href="{{ url('/admin/reject/student/list') }}"><i class="bx bx-right-arrow-alt"></i>Reject Student</a></li>
           <li> <a href="{{ url('admin/student/paid/list') }}"><i class="bx bx-right-arrow-alt"></i>Paid Student</a></li>
+          <li> <a href="{{ url('admin/student/due/list') }}"><i class="bx bx-right-arrow-alt"></i>Due Student</a></li>
       </ul>
     </li>
     <li>
@@ -36,7 +37,7 @@
       </a>
       <ul>
         <li> <a href="{{ url('/expanse') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
-        <li> <a href="{{ url('/salary') }}"><i class="bx bx-right-arrow-alt"></i>Salary</a></li>
+        {{-- <li> <a href="{{ url('/salary') }}"><i class="bx bx-right-arrow-alt"></i>Salary</a></li> --}}
       </ul>
     </li>
 

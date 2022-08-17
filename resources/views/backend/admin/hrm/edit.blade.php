@@ -36,9 +36,9 @@
                             @csrf
 
 							<label style="font-weight: 600;">Total Fee</label><br>
-							<input type="number" name="total_fee" readonly id="course_fee" value="{{ $courseDueCollection->total_fee }}" placeholder="Total Fee" class="form-control">
+							<input type="number" readonly name="total_fee" readonly id="course_fee" value="{{ $courseDueCollection->total_fee }}" placeholder="Total Fee" class="form-control">
 							<label style="font-weight: 600;">Advance</label><br>
-							<input type="number" name="advance" readonly id="advance" value="{{ $courseDueCollection->advance }}" placeholder="Advance" class="form-control">
+							<input type="number" readonly name="advance" readonly id="advance" value="{{ $courseDueCollection->advance }}" placeholder="Advance" class="form-control">
 							<label style="font-weight: 600;">Due</label><br>
 							<input type="number" name="due" readonly id="due" value="{{ $courseDueCollection->due }}" placeholder="Due" class="form-control">
 							<label style="font-weight: 600;">Payment</label><br>
@@ -46,8 +46,16 @@
                                 <input type="number" name="due_payment" id="due_payment" placeholder="Payment" disabled class="form-control">
                             @else
                                 <input type="number" name="due_payment" id="due_payment" placeholder="Payment" onblur="calculate()" class="form-control">
-                                <label style="font-weight: 600;">Student Note</label><br>
-                                <textarea class="form-control" name="note" rows="5" placeholder="Student opinion here..."></textarea>
+								<label style="font-weight: 600;">Is pay</label>
+								<select class="form-control" name="is_pay" id="isPay" onchange="isPayStudent(this.value)" required>
+									<option selected disabled>Select A Option</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+                                <div id="note" style="display: none">
+									<label style="font-weight: 600;">Student Note</label><br>
+                                	<textarea class="form-control" name="note" rows="5" placeholder="Student opinion here..."></textarea>
+								</div>
                             @endif
                             @if($courseDueCollection->due == 0)
                                 <div style="text-align: center;margin-top: 20px;">
@@ -73,5 +81,15 @@
             let payment = document.getElementById('due_payment').value;
             document.getElementById('due').value = parseInt(dueFee) - parseInt(payment);
         }
+
+		let note = document.getElementById('note');
+		
+		function isPayStudent(e){
+			if(e == 0){
+				note.style.display = "block";
+			}else{
+				note.style.display = "none";
+			}
+		}
     </script>
 @endpush

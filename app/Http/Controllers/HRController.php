@@ -196,6 +196,16 @@ class HRController extends Controller
         return view('backend.admin.hrm.student-paid-list', compact('admissionPaidStudents'));
     }
 
+    public function dueStudentList()
+    {
+        $admissionDueStudents = AdmissionForm::with('moneyReceipt')
+            ->whereHas('moneyReceipt', function ($q){
+                $q->where('is_pay', 0);
+            })
+            ->get();
+        return view('backend.admin.hrm.student-due-list', compact('admissionPaidStudents'));
+    }
+
     public function admissionForm()
     {
         $batchNumber = Batch::orderBy('created_at', 'desc')->get();

@@ -1,4 +1,4 @@
-@extends('backend.admin.hr-master')
+@extends('backend.admin.admin-master')
 
 @section('content')
 	<div class="wrapper">
@@ -45,14 +45,21 @@
 	                                <th>Advance</th>
 	                                <th>Due</th>
 	                                <th>Due Opinion</th>
-	                                <th width="15%">Admission Opinion</th>
-	                                <th>Action</th>
+	                                {{-- <th width="15%">Admission Opinion</th> --}}
+	                                {{-- <th>Action</th> --}}
 	                            </tr>
 	                            </thead>
 	                            <tbody>
                                 @foreach($admissionStudents as $admissionStudent)
                                     <tr>
-                                        <td>{{ $admissionStudent->moneyReceipt->updated_at->format('Y-m-d') }}</td>
+                                        <td>
+                                            @if($admissionStudent->moneyReceipt->is_pay == 1)
+                                                {{ $admissionStudent->moneyReceipt->updated_at->format('Y-m-d') }}
+                                            @else
+                                                <span>Pay not yet</span>
+                                            @endif
+                                            
+                                        </td>
                                         <td>{{ $admissionStudent->user->full_name?? session()->get('name') }}</td>
                                         <td>{{ $admissionStudent->s_name?? '' }}</td>
                                         <td>{{ $admissionStudent->s_phone ?? '' }}</td>
@@ -73,8 +80,8 @@
                                         <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->note ?? '' }}</td>
-                                        <td width="15%">{{ $admissionStudent->other_admission_note ?? '' }}</td>
-                                        <td>
+                                        {{-- <td width="15%">{{ $admissionStudent->other_admission_note ?? '' }}</td> --}}
+                                        {{-- <td>
                                             @if($admissionStudent->is_reject == 0)
                                                 <a href="{{ url('/admin/student/reject/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">
                                                     <i class="bx bx-check-circle"></i>
@@ -95,7 +102,7 @@
                                                 <a href="{{ url('/admin/admission/student/info/delete/'.$admissionStudent->id) }}" onclick="return confirm('Are you sure delete this student info ?')" class="btn btn-sm btn-danger">
                                                     <i class="bx bx-trash-alt"></i>
                                                 </a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
 	                            </tbody>

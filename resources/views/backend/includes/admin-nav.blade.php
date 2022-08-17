@@ -59,7 +59,7 @@
           </a>
           <ul>
               <li> <a href="{{ url('/admin/user/expanse/list') }}"><i class="bx bx-right-arrow-alt"></i>Expanse</a></li>
-              <li> <a href="{{ url('/admin/user/due/collect/report') }}"><i class="bx bx-right-arrow-alt"></i>Due Collect Report</a></li>
+              <li> <a href="{{ url('/admin/user/due/report') }}"><i class="bx bx-right-arrow-alt"></i>Due Collect Report</a></li>
           </ul>
       </li>
       <li>

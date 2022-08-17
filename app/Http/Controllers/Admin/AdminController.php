@@ -179,6 +179,7 @@ class AdminController extends Controller
             $dueClear = MoneyReceipt::where('id', $id)->first();
             $dueClear->due = $request->due;
             $dueClear->today_pay = $request->due_payment;
+            $dueClear->is_pay = $request->is_pay;
             $dueClear->save();
             //Student opinion
             $updateStudentNote = AdmissionForm::find($dueClear->admission_id);

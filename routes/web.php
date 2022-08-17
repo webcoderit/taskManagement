@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/expanse/list', [App\Http\Controllers\Admin\AdminController::class, 'expanse']);
             Route::get('/admission/filtering', [App\Http\Controllers\Admin\AdminController::class, 'admissionFiltering']);
             Route::get('/admission/filtering/report/download/{from}/{to}', [App\Http\Controllers\Admin\AdminController::class, 'admissionFilteringReportDownload']);
-            Route::get('/due/collect/report', [App\Http\Controllers\Admin\AdminController::class, 'dueCollectReport']);
+            Route::get('/due/report', [App\Http\Controllers\Admin\AdminController::class, 'dueCollectReport']);
         });
     });
 });
@@ -144,6 +144,7 @@ Route::get('/admin/student/reject/{id}', [App\Http\Controllers\HRController::cla
 Route::get('/admin/student/restore/{id}', [App\Http\Controllers\HRController::class, 'restoreStudent']);
 Route::get('/admin/reject/student/list', [App\Http\Controllers\HRController::class, 'rejectStudentList']);
 Route::get('/admin/student/paid/list', [App\Http\Controllers\HRController::class, 'paidStudentList']);
+Route::get('/admin/student/due/list', [App\Http\Controllers\HRController::class, 'dueStudentList']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
