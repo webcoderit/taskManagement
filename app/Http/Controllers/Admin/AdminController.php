@@ -525,7 +525,17 @@ class AdminController extends Controller
     //Due collect report
     public function dueCollectReport()
     {
-        $admissionStudents = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at')->get();
-        return view('backend.admin.home.due-collect', compact('admissionStudents'));
+        if (isset(request()->batch_no)){
+            $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('updated_at');
+            $sql->where('batch_no', request()->batch_no);
+
+            $admissionStudents = $sql->get();
+            $batchs = Batch::orderByDesc('created_at')->get();
+            return view('backend.admin.home.due-collect', compact('admissionStudents', 'batchs'));
+        }
+
+        $admissionStudents = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('updated_at')->get();
+        $batchs = Batch::orderByDesc('created_at')->get();
+        return view('backend.admin.home.due-collect', compact('admissionStudents', 'batchs'));
     }
 }

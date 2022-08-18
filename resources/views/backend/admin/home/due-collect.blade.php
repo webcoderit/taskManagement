@@ -30,7 +30,43 @@
 	            <hr/>
 	            <div class="card">
 	                <div class="card-body">
-	                    <div class="table-responsive">
+                        <form class="form-group" action="{{ url('/admin/user/due/report') }}" method="get">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="batch" style="font-weight: 600; margin-bottom: 5px;">
+                                        Batch No:
+                                    </label><br>
+                                    <select name="batch_no" id="batchNo" class="form-control">
+                                        <option selected disabled>--- Select Batch No ---</option>
+                                        @foreach($batchs as $batchNo)
+                                            <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ $batchNo->batch_no }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="input-group" style="margin-top: 25px;">
+                                        <button type="submit" class="input-group-text btn btn-primary">
+                                            Search
+                                        </button>
+                                        <a href="{{ url('/admin/user/due/report') }}" class="input-group-text btn btn-danger">
+                                            Clear
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    @if(isset($admissionStudents) > 0)
+                                    <label for="batch" style="font-weight: 600; margin-bottom: 10px;">
+                                        Total Student:
+                                    </label><br>
+                                        <span class="total-student-count">
+                                            {{ count($admissionStudents) }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </form>
+	                    <div class="table-responsive mt-3">
 	                        <table id="" class="table table-striped table-bordered">
 	                            <thead>
 	                            <tr>
@@ -54,11 +90,13 @@
                                     <tr>
                                         <td>
                                             @if($admissionStudent->moneyReceipt->is_pay == 1)
-                                                {{ $admissionStudent->moneyReceipt->updated_at->format('Y-m-d') }}
+                                                {{ $admissionStudent->moneyReceipt->updated_at->format('Y-m-d') }} <br/>
+                                                <a href="{{ url('/paid/money/receipt/download/'.$admissionStudent->id) }}" class="btn btn-sm btn-facebook" title="Download Money Receipt">
+                                                    <i class="bx bx-download"></i>
+                                                </a>
                                             @else
                                                 <span>Pay not yet</span>
                                             @endif
-                                            
                                         </td>
                                         <td>{{ $admissionStudent->user->full_name?? session()->get('name') }}</td>
                                         <td>{{ $admissionStudent->s_name?? '' }}</td>

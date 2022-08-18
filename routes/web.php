@@ -119,6 +119,7 @@ Route::get('/chat', [\App\Http\Controllers\UserController::class, 'communityChat
 //====================== PDF Download =======================//
 Route::get('/money/receipt/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionPdfDownload']);
 Route::get('/admission/form/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionFormPdfDownload']);
+Route::get('/paid/money/receipt/download/{id}', [\App\Http\Controllers\UserController::class, 'paidMoneyReceiptDownload']);
 
 //================== Expanse =========================//
 Route::get('/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'expanse']);
