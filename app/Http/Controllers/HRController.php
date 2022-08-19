@@ -114,6 +114,7 @@ class HRController extends Controller
                     $moneyReceipt = new MoneyReceipt();
                     $moneyReceipt->admission_id = $updateAdmissionForm->id;
                     $moneyReceipt->payment_type = $request->payment_type;
+                    $moneyReceipt->transaction_id = $request->transaction_id;
                     $moneyReceipt->admission_date = $request->admission_date;
                     $moneyReceipt->in_word = $request->in_word;
                     $moneyReceipt->total_fee = $request->total_fee;
@@ -193,6 +194,27 @@ class HRController extends Controller
             })
             ->get();
         return view('backend.admin.hrm.student-paid-list', compact('admissionPaidStudents'));
+    }
+
+    public function dueStudentList()
+    {
+        if (isset(request()->batch_no)){
+            $sql = AdmissionForm::with('moneyReceipt', 'user')->whereHas('moneyReceipt', function ($q){
+                $q->where('is_pay', 0)->where('due', '!=', 0)->where('is_reject', 0);
+            });
+            $sql->where('batch_no', request()->batch_no);
+
+            $admissionDueStudents = $sql->get();
+            $batchs = Batch::orderByDesc('created_at')->get();
+            return view('backend.admin.hrm.student-due-list', compact('admissionDueStudents', 'batchs'));
+        }
+        $admissionDueStudents = AdmissionForm::with('moneyReceipt')
+            ->whereHas('moneyReceipt', function ($q){
+                $q->where('is_pay', 0)->where('due', '!=', 0)->where('is_reject', 0);
+            })
+            ->get();
+        $batchs = Batch::orderByDesc('created_at')->get();
+        return view('backend.admin.hrm.student-due-list', compact('admissionDueStudents', 'batchs'));
     }
 
     public function admissionForm()

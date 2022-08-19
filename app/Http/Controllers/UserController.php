@@ -322,6 +322,7 @@ class UserController extends Controller
                     $moneyReceipt = new MoneyReceipt();
                     $moneyReceipt->admission_id = $newStudent->id;
                     $moneyReceipt->payment_type = $request->payment_type;
+                    $moneyReceipt->transaction_id = $request->transaction_id;
                     $moneyReceipt->admission_date = $request->admission_date;
                     $moneyReceipt->in_word = $request->in_word;
                     $moneyReceipt->total_fee = $request->total_fee;
@@ -343,6 +344,16 @@ class UserController extends Controller
             'moneyReceipt' => MoneyReceipt::with('admissionForm')->where('id', $id)->first()
         ];
         $moneyReceiptPdf = PDF::loadView('backend.users.task.money-receipt-pdf', compact('data'))->setPaper([0, 0, 350, 685], 'landscape');
+        return $moneyReceiptPdf->download($data['moneyReceipt']->admissionForm->s_name . '.' . 'pdf');
+
+    }
+
+    public function paidMoneyReceiptDownload($id)
+    {
+        $data = [
+            'moneyReceipt' => MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first()
+        ];
+        $moneyReceiptPdf = PDF::loadView('backend.users.task.paid-money-receipt-pdf', compact('data'))->setPaper([0, 0, 350, 685], 'landscape');
         return $moneyReceiptPdf->download($data['moneyReceipt']->admissionForm->s_name . '.' . 'pdf');
 
     }

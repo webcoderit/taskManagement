@@ -47,6 +47,7 @@ class ImportUser implements ToModel,SkipsOnError, WithHeadingRow, WithValidation
                 'required',
                 'string',
             ],
+            'phone' => 'required|unique:tasks,phone'
         ];
     }
 }

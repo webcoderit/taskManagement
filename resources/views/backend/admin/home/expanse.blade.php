@@ -65,6 +65,36 @@
                             </div>
                         </form>
 
+                        <!--Report download-->
+                        <span style="font-weight: 600; font-size: 18px; margin-top: 20px;">Expanse Report Download</span>
+                        <form class="form-group" action="{{ url('/admin/user/expanse/list') }}" method="get">
+                            @csrf
+                            <div class="col-md-12 m-auto">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label style="font-weight: 600;margin-bottom: 5px;">
+                                            Date From
+                                        </label><br>
+                                        <input type="date" name="from_date" class="form-control">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label style="font-weight: 600;margin-bottom: 5px;">
+                                            Date To
+                                        </label><br>
+                                        <input type="date" name="to_date" class="form-control">
+                                    </div>
+                                    <div class="col-md-4">
+                                       <div class="input-group" style="margin-top: 25px;">
+                                            <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                            <a href="{{ url('/admin/user/expanse/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                            <a href="{{ url('/admin/user/expanse/list/download/'.request()->from_date . '/' . request()->to_date) }}" class="input-group-text btn btn-success" id="basic-addon3" style="margin-left: 20px;">Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--Report download-->
+
                         <span style="font-weight: 600; font-size: 18px;" class="mt-5">Employee Mobile Minute Filtering</span>
                         <form action="{{ url('/admin/user/expanse/list') }}" method="get" class="mt-2">
                             @csrf
@@ -120,7 +150,7 @@
                             @foreach($expanses as $expanse)
                                 <tr>
                                     <td>{{ date('Y-m-d', strtotime($expanse->created_at))  }}</td>
-                                    <td>{{ $expanse->user->full_name ?? 'No User Name' }}</td>
+                                    <td>{{ $expanse->user->full_name ?? 'Admin' }}</td>
                                     <td>{{ number_format($expanse->price,2) }}</td>
                                     <td>{{ $expanse->minute }}</td>
                                     <td>{{ ucfirst($expanse->note) }}</td>

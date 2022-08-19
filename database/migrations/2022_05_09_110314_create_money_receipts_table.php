@@ -17,11 +17,16 @@ class CreateMoneyReceiptsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('admission_id');
             $table->string('payment_type');
+            $table->unsignedBigInteger('transaction_id');
+            $table->string('transaction_number')->nullable();
             $table->string('admission_date');
             $table->string('in_word')->nullable();
             $table->float('total_fee', 8, 2);
             $table->float('advance', 8, 2);
             $table->float('due', 8, 2)->default(0);
+            $table->float('today_pay', 8, 2)->nullable();
+            $table->boolean('is_reject')->default(0);
+            $table->boolean('is_pay')->default(0);
             $table->timestamps();
         });
     }

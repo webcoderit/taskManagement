@@ -78,6 +78,8 @@ Route::group(['prefix' => 'admin'], function(){
             //=============== Expanse list =================//
             Route::get('/expanse/list', [App\Http\Controllers\Admin\AdminController::class, 'expanse']);
             Route::get('/admission/filtering', [App\Http\Controllers\Admin\AdminController::class, 'admissionFiltering']);
+            Route::get('/admission/filtering/report/download/{from}/{to}', [App\Http\Controllers\Admin\AdminController::class, 'admissionFilteringReportDownload']);
+            Route::get('/due/report', [App\Http\Controllers\Admin\AdminController::class, 'dueCollectReport']);
         });
     });
 });
@@ -87,6 +89,7 @@ Auth::routes();
 
 //========== Employee Call report download ============//
 Route::get('/employee/call-report/download/{month}/{user_id}', [App\Http\Controllers\Admin\TaskController::class, 'callReportDownload']);
+Route::get('/admin/user/expanse/list/download/{from}/{to}', [App\Http\Controllers\Admin\TaskController::class, 'expanseReportDownload']);
 
 Route::get('/', [\App\Http\Controllers\UserController::class, 'userLoginForm']);
 Route::get('/today/task', [\App\Http\Controllers\UserController::class, 'todayTask']);
@@ -116,6 +119,7 @@ Route::get('/chat', [\App\Http\Controllers\UserController::class, 'communityChat
 //====================== PDF Download =======================//
 Route::get('/money/receipt/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionPdfDownload']);
 Route::get('/admission/form/download/{id}', [\App\Http\Controllers\UserController::class, 'admissionFormPdfDownload']);
+Route::get('/paid/money/receipt/download/{id}', [\App\Http\Controllers\UserController::class, 'paidMoneyReceiptDownload']);
 
 //================== Expanse =========================//
 Route::get('/expanse', [App\Http\Controllers\Admin\ExpanseController::class, 'expanse']);
@@ -141,6 +145,7 @@ Route::get('/admin/student/reject/{id}', [App\Http\Controllers\HRController::cla
 Route::get('/admin/student/restore/{id}', [App\Http\Controllers\HRController::class, 'restoreStudent']);
 Route::get('/admin/reject/student/list', [App\Http\Controllers\HRController::class, 'rejectStudentList']);
 Route::get('/admin/student/paid/list', [App\Http\Controllers\HRController::class, 'paidStudentList']);
+Route::get('/admin/student/due/list', [App\Http\Controllers\HRController::class, 'dueStudentList']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
