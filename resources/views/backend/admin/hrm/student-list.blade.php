@@ -105,7 +105,8 @@
 	                                <th>Course Name</th>
 	                                <th>Batch No</th>
 	                                <th>Course Fee</th>
-	                                <th>Advance</th>
+	                                <th>First Payment</th>
+	                                <th>Second Payment</th>
 	                                <th>Due</th>
 	                                <th>Due Opinion</th>
 	                                <th>Admission Opinion</th>
@@ -135,6 +136,7 @@
                                         <td>{{ $admissionStudent->batch_no ?? '' }}</td>
                                         <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
+                                        <td>{{ $admissionStudent->moneyReceipt->today_pay ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->note ?? '' }}</td>
                                         <td>{{ $admissionStudent->other_admission_note ?? '' }}</td>

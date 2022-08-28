@@ -4,28 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Money Receipt</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/style.css" />
-
-    <style>
-        @media print {
-            *{
-                visibility: hidden;
-            }
-            .money-receipt-view-wrapper,
-            .money-receipt-view-wrapper *{
-                visibility: visible;
-            }
-        }
-    </style>
+    <title>Document</title>
 </head>
 <body>
     <section class="money-receipt-view-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 m-auto">
-                    <div class="money-receipt-view-wrapper" style="border: 1px solid #ddd;">
+                    <div class="money-receipt-view-wrapper">
                         <div class="institute-address-wrapper">
                             <div class="address-title-outer">
                                 <h4 class="address-title">Money Receipt</h4>
@@ -118,20 +104,14 @@
                                 <i class="fa fa-phone"></i> 01810139951-8
                             </a>
                         </div>
-                    </div>
-                    <div class="money-receipt-print-btn-wrap pb-5 mt-5">
-                        <div class="btn btn-success money-receipt-print-btn">Print</div>
+                        <a href="{{ url('/money/receipt/download/'.$moneyReceiptView->id) }}" class="money-receipt-download-btn pull-right mt-3">
+                            <i class="fa fa-cloud-download"></i>
+                            Download
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript">
-        $('.money-receipt-print-btn').click(function(){
-            window.print();
-        })
-    </script>
 </body>
 </html>

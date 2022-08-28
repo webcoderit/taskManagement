@@ -1,6 +1,26 @@
-@extends('backend.admin.master')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admission form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/style.css" />
 
-@section('content')
+    <style>
+        /* @media print {
+            *{
+                visibility: hidden;
+            }
+            .money-receipt-view-wrapper,
+            .money-receipt-view-wrapper *{
+                visibility: visible;
+            }
+        } */
+    </style>
+</head>
+<body>
 <section class="student-addmission-form-section">
     <div class="container">
         <div class="row">
@@ -9,31 +29,10 @@
                     <div class="addmission-form-heading-view">
                         <div style="width: 360px;">
                             <h2 class="institute-name">Web<span>coder</span>-it</h2>
-                            <address>
-                                House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230
-                            </address>
-                            <span>
-                                <a href="tel:01648177071">
-                                    <i class="fa fa-phone" style="color: #f16522;"></i>
-                                    01648177071 ,
-                                </a>
-                            </span>
-                            <span>
-                                <a href="tel:01814812233">
-                                    <i class="fa fa-phone" style="color: #f16522;"></i>
-                                    01814812233
-                                </a>
-                            </span><br>
                             <span>
                                 <a href="https://webcoder-it.com/" target="_blank" title="Website">
                                     <i class="fa fa-chrome" style="color: #f16522;"></i>
                                     www.webcoder-it.com ,
-                                </a>
-                            </span>
-                            <span>
-                                <a href="mailto:webcoderit@gmail.com" title="Gmail Id">
-                                    <i class="fa fa-envelope" style="color: #f16522;"></i>
-                                    webcoderit@gmail.com
                                 </a>
                             </span>
                         </div>
@@ -125,11 +124,11 @@
                                 <span class="admission-form-view-label">Course Name : </span>
                                 <span class="admission-form-view-value">
                                     @if($admissionForm->course == 'web')
-                                        Full stack web development
+                                        WEB
                                     @elseif($admissionForm->course == 'digital')
-                                        Advance digital marketing
+                                        ADM
                                     @else
-                                        Communication English
+                                        ENG
                                     @endif
                                 </span>
                             </div>
@@ -158,12 +157,23 @@
                                 <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->total_fee ?? '' }} Tk.</span>
                             </div>
                             <div>
-                                <span class="admission-form-view-label">Advance : </span>
+                                <span class="admission-form-view-label">Due : </span>
+                                @if($admissionForm->moneyReceipt->due == 0)
+                                    Paid
+                                @else
+                                    <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->due ?? 'Paid' }} Tk.</span>
+                                @endif
+                                
+                            </div>
+                        </div>
+                        <div class="admission-form-view-item">
+                            <div>
+                                <span class="admission-form-view-label">First Payment : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->advance ?? '' }} Tk.</span>
                             </div>
                             <div>
-                                <span class="admission-form-view-label">Due : </span>
-                                <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->due ?? '' }} Tk.</span>
+                                <span class="admission-form-view-label">Second Payment : </span>
+                                <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->today_pay ?? '' }} Tk.</span>
                             </div>
                         </div>
                         <div class="admission-form-view-item">
@@ -197,14 +207,20 @@
                                 We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
                             </p>
                         </div>
-                        <a href="{{ url('/admission/form/download/'.$admissionForm->id) }}" class="admission-form-download-btn pull-right">
-                            <i class="fa fa-cloud-download"></i>
-                                Download
-                        </a>
+                    </div>
+                    <div class="money-receipt-print-btn-wrap pb-5 mt-5">
+                        <div class="btn btn-success money-receipt-print-btn">Print</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-@endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.money-receipt-print-btn').click(function(){
+            window.print();
+        })
+    </script>
+</body>
+</html>

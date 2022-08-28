@@ -37,7 +37,7 @@
 
 							<label style="font-weight: 600;">Total Fee</label><br>
 							<input type="number" readonly name="total_fee" readonly id="course_fee" value="{{ $courseDueCollection->total_fee }}" placeholder="Total Fee" class="form-control">
-							<label style="font-weight: 600;">Advance</label><br>
+							<label style="font-weight: 600;">First Payment</label><br>
 							<input type="number" readonly name="advance" readonly id="advance" value="{{ $courseDueCollection->advance }}" placeholder="Advance" class="form-control">
 							<label style="font-weight: 600;">Due</label><br>
 							<input type="number" name="due" readonly id="due" value="{{ $courseDueCollection->due }}" placeholder="Due" class="form-control">
