@@ -9,22 +9,25 @@
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/style.css" />
 
     <style>
-        /* @media print {
+         @media print {
             *{
                 visibility: hidden;
             }
-            .money-receipt-view-wrapper,
-            .money-receipt-view-wrapper *{
+            .addmission-form-wrapper,
+            .addmission-form-wrapper *{
                 visibility: visible;
             }
-        } */
+        } 
     </style>
 </head>
 <body>
-<section class="student-addmission-form-section">
+<section class="student-addmission-view mt-3">    
     <div class="container">
         <div class="row">
             <div class="col-md-10 m-auto">
+                <div class="money-receipt-print-btn-wrap pb-3">
+                    <div class="money-receipt-download-btn" style="cursor: pointer;">Print</div>
+                </div>
                 <div class="addmission-form-wrapper view">
                     <div class="addmission-form-heading-view">
                         <div style="width: 360px;">
@@ -207,10 +210,7 @@
                                 We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
                             </p>
                         </div>
-                    </div>
-                    <div class="money-receipt-print-btn-wrap pb-5 mt-5">
-                        <div class="btn btn-success money-receipt-print-btn">Print</div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -218,7 +218,7 @@
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
-        $('.money-receipt-print-btn').click(function(){
+        $('.money-receipt-download-btn').click(function(){
             window.print();
         })
     </script>

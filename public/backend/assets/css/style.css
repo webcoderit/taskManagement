@@ -452,6 +452,10 @@ a.addmission-list-btn-inner:hover {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+    border-left: 3px solid #f16522;
+    border-top: 3px solid #101439;
+    border-right: 3px solid #f16522;
+    border-bottom: 3px solid #101439;
 }
 
 .money-receipt-view-heading {
@@ -517,7 +521,7 @@ a.addmission-list-btn-inner:hover {
     width: 250px;
 }
 .institute-address-outer {
-    width: 210px;
+    width: 220px;
 }
 
 .address-title-outer {
@@ -528,6 +532,26 @@ a.addmission-list-btn-inner:hover {
 .institute-address-outer p {
     margin-bottom: 0;
     font-size: 13px;
+}
+.institute-address-outer p i{
+    font-size: 16px;
+    color: #f16522;
+}
+.website-link {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+}
+
+.website-link i {
+    color: #f16522;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.website-link:hover {
+    color: #000;
 }
 
 .address-title {
@@ -579,8 +603,10 @@ a.addmission-list-btn-inner:hover {
 .money-receipt-download-btn:hover {
     color: #fff;
 }
-
-
+.money-receipt-view-wrapper span {
+    font-weight: 700;
+    font-size: 16px;
+}
 /* Money Receipt View css End */
 
 
