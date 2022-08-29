@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/style.css" />
 
     <style>
+        .admission-form-logo p {
+            font-weight: 700;
+            color: #f16522;
+            margin-bottom: 0;
+        }
+        .admission-title-outer {
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
          @media print {
             *{
                 visibility: hidden;
@@ -30,20 +40,20 @@
                 </div>
                 <div class="addmission-form-wrapper view">
                     <div class="addmission-form-heading-view">
-                        <div style="width: 360px;">
-                            <h2 class="institute-name">Web<span>coder</span>-it</h2>
-                            <span>
-                                <a href="https://webcoder-it.com/" target="_blank" title="Website">
-                                    <i class="fa fa-chrome" style="color: #f16522;"></i>
-                                    www.webcoder-it.com ,
-                                </a>
-                            </span>
-                        </div>
+                        <div class="admission-form-logo">
+                            <img src="{{ asset('backend/') }}/assets/logo6.png" class="institute-logo">
+                            <p>
+                                One Time Learning & Lifetime Earning.
+                            </p>
+                        </div>                        
                         @if($admissionForm->avatar != null)
                             <div>
-                                <img src="{{ asset('/student/'.$admissionForm->avatar) }}" style="height: 130px; width: 150px; margin-bottom: 10px;">
+                                <img src="{{ asset('/student/'.$admissionForm->avatar) }}" style="height: 130px; width: 150px;">
                             </div>
-                        @endif
+                        @endif                        
+                    </div>
+                    <div class="admission-title-outer">
+                        <h4 class="address-title">Admission Form</h4>
                     </div>
                     <div class="admission-form-view">
                         <div class="admission-form-view-item">
@@ -96,7 +106,7 @@
                                 <span class="admission-form-view-value">{{ $admissionForm->blood_group }}</span>
                             </div>
                             <div>
-                                <span class="admission-form-view-label">Educational Qualification : </span>
+                                <span class="admission-form-view-label">Qualification : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->qualification }}</span>
                             </div>
                             <div>
@@ -120,6 +130,12 @@
                             <div>
                                 <span class="admission-form-view-label">Address : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->present_address }}</span>
+                            </div>
+                        </div>
+                        <div class="admission-form-view-item">
+                            <div>
+                                <span class="admission-form-view-label">Other Way Admission Note : </span>
+                                <span class="admission-form-view-value">{{ $admissionForm->other_admission_note }}</span>
                             </div>
                         </div>
                         <div class="admission-form-view-item">
@@ -154,6 +170,12 @@
                                 <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->admission_date ?? '' }}</span>
                             </div>
                         </div>
+                        <div class="admission-form-view-item">                            
+                            <div>
+                                <span class="admission-form-view-label">Transaction ID : </span>
+                                <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->transaction_id }}</span>
+                            </div>
+                        </div>
                         <div class="admission-form-view-item">
                             <div>
                                 <span class="admission-form-view-label">Total Fee : </span>
@@ -180,10 +202,6 @@
                             </div>
                         </div>
                         <div class="admission-form-view-item">
-                            <span class="admission-form-view-label">In Word : </span>
-                            <span class="admission-form-view-value"></span>
-                        </div>
-                        <div class="admission-form-view-item">
                             <div>
                                 <span class="admission-form-view-label">Class Shedule : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->class_shedule }}</span>
@@ -202,14 +220,14 @@
                             </div>
                             <div>
                                 <span class="admission-form-view-label">Authorized By : </span>
-                                <span class="">Webcoder-it</span>
+                                <span class="">Webcoder-IT</span>
                             </div>
                         </div>
-                        <div class="institute-service-note">
+                        <!-- <div class="institute-service-note">
                             <p>
                                 We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
                             </p>
-                        </div>
+                        </div> -->
                     </div>                    
                 </div>
             </div>

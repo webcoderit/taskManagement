@@ -613,8 +613,8 @@ a.addmission-list-btn-inner:hover {
 /* Admission Form View css start */
 
 .addmission-form-heading-view {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    /*margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;*/
     display: flex;
     justify-content: space-between;
 }
@@ -622,12 +622,13 @@ a.addmission-list-btn-inner:hover {
 .admission-form-view-label {
     font-size: 15px;
     color: #000;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .admission-form-view-value {
     font-size: 14px;
     color: #000;
+    font-weight: 500;
 }
 
 .addmission-form-heading-view span a {
@@ -659,6 +660,10 @@ address {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    border-left: 2px solid #f16522;
+    border-top: 2px solid #101439;
+    border-right: 2px solid #f16522;
+    border-bottom: 2px solid #101439;
 }
 
 .institute-note {
@@ -668,17 +673,17 @@ address {
 }
 
 .institute-service-note {
-    background: #f16522;
     margin-top: 10px;
+    border-top: 1px solid #ddd;
 }
 
 .institute-service-note p {
     margin-bottom: 0;
     padding: 5px 0;
     text-align: center;
-    color: #fff;
+    color: #f16522;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .admission-form-download-btn {
