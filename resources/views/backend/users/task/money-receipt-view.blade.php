@@ -1,11 +1,47 @@
-@extends('backend.admin.master')
+<<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Money Receipt</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/style.css" />
+    <style type="text/css">
+        @media print {
+            *{
+                visibility: hidden;
+            }
+            .money-receipt-view-wrapper,
+            .money-receipt-view-wrapper *{
+                visibility: visible;
+            }
+            /*.invoice-container {
+                max-width: 100%!important;
+                padding: 0;
+                padding-top: 0!important;
+            }
+            .invoice-pp.first-pp{
+                margin-top: 0;
+            }
 
-@section('content')
+            .invoice-main-content-inner {
+                -ms-flex: 0 0 100%!important;
+                flex: 0 0 100%!important;
+                max-width: 100%!important;
+                border: 0!important;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }*/
+        }
+    </style>
+</head>
+<body>
     <section class="money-receipt-view-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 m-auto">
-                    <div class="money-receipt-view-wrapper">
+                    <div class="money-receipt-view-wrapper" style="border: 1px solid #ddd;">
                         <div class="institute-address-wrapper">
                             <div class="address-title-outer">
                                 <h4 class="address-title">Money Receipt</h4>
@@ -97,14 +133,25 @@
                             <a href="tel:01810139951">
                                 <i class="fa fa-phone"></i> 01810139951-8
                             </a>
-                        </div>
-                        <a href="{{ url('/money/receipt/download/'.$moneyReceiptView->id) }}" class="money-receipt-download-btn pull-right mt-3">
-                            <i class="fa fa-cloud-download"></i>
-                            Download
-                        </a>
+                        </div>                        
+                    </div>
+                    <!-- <a href="{{ url('/money/receipt/download/'.$moneyReceiptView->id) }}" class="money-receipt-download-btn pull-right mt-3">
+                        <i class="fa fa-cloud-download"></i>
+                        Print
+                    </a> -->
+                    <div class="money-receipt-print-btn-wrap text-center pb-5">
+                        <div class="btn btn-success money-receipt-print-btn">Print</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-@endsection
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.money-receipt-print-btn').click(function(){
+            window.print();
+        })
+    </script>
+</body>
+</html>

@@ -6,7 +6,7 @@
     <title>Money Receipt Pdf</title>
 </head>
 <body>
-<table style="width: 700px;margin: auto;box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;border-collapse: collapse">
+<table style="width: 700px;margin: auto;box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;border-collapse: collapse;border: 1px solid #ddd;">
     <thead>
     <tr>
         <td colspan="2" style="text-align: center;">
@@ -29,7 +29,8 @@
                 Student ID :
             </span>
             <span style="color: #000;">
-                {{ ucfirst($data['moneyReceipt']->admissionForm->course) }} - {{ $data['moneyReceipt']->admissionForm->student_id }}
+                235232688
+                {{-- {{ ucfirst($data['moneyReceipt']->admissionForm->course) }} - {{ $data['moneyReceipt']->admissionForm->student_id }} --}}
             </span>
         </td>
         <td style="width: 180px;"></td>
@@ -38,7 +39,8 @@
                 Admission Date :
             </span>
             <span style="color: #000;">
-                 {{ $data['moneyReceipt']->admission_date->format('Y-m-d') }}
+                12/202/2020
+                 {{-- {{ $data['moneyReceipt']->admission_date->format('Y-m-d') }} --}}
             </span>
         </td>
     </tr>
@@ -48,15 +50,17 @@
                 Student Name :
             </span>
             <span style="color: #000;">
-                {{ $data['moneyReceipt']->admissionForm->s_name }}
+                Saidul Islam JIhad
+                {{-- {{ $data['moneyReceipt']->admissionForm->s_name }} --}}
             </span>
         </td>
-        <td style="padding: 10px 0 10px 20px;">
+        <td style="text-align: end;padding: 10px 20px 10px 0;" colspan="2">
             <span style="font-size: 15px;color: #000;font-weight: 600;">
                 Student Phone :
             </span>
             <span style="color: #000;">
-                {{ $data['moneyReceipt']->admissionForm->s_phone }}
+                016173925421558
+                {{-- {{ $data['moneyReceipt']->admissionForm->s_phone }} --}}
             </span>
         </td>
     </tr>
@@ -67,13 +71,14 @@
                     </span>
 
             <span style="color: #000;">
-                @if($data['moneyReceipt']->admissionForm->course == 'web')
+                Full stack web development
+                {{-- @if($data['moneyReceipt']->admissionForm->course == 'web')
                     Full stack web development
                 @elseif($data['moneyReceipt']->admissionForm->course == 'digital')
                     Advance Digital Marketing
                 @else
                     Communication English
-                @endif
+                @endif --}}
             </span>
         </td>
         <td style="text-align: end;padding: 10px 20px 10px 0;">
@@ -81,7 +86,8 @@
                 Batch No :
             </span>
             <span style="color: #000;">
-                 {{ $data['moneyReceipt']->admissionForm->batch_no }}
+                105
+                 {{-- {{ $data['moneyReceipt']->admissionForm->batch_no }} --}}
             </span>
         </td>
     </tr>
@@ -91,7 +97,8 @@
                         Total Fee :
                     </span>
             <span style="color: #000;">
-                         {{ $data['moneyReceipt']->total_fee }} TK
+                12000 tk
+                         {{-- {{ $data['moneyReceipt']->total_fee }} TK --}}
                     </span>
         </td>
         <td style="text-align: center;width: 200px;">
@@ -99,7 +106,8 @@
                         Advance :
                     </span>
             <span style="color: #000;">
-                {{ $data['moneyReceipt']->advance }} TK. <small style="color: red">( Advance & {{ ucfirst($data['moneyReceipt']->admissionForm->payment_type) }} Cost )</small>
+                5000 tk
+                {{-- {{ $data['moneyReceipt']->advance }} TK. <small style="color: red">( Advance & {{ ucfirst($data['moneyReceipt']->admissionForm->payment_type) }} Cost )</small> --}}
             </span>
         </td>
         <td style="text-align: end;padding: 10px 20px 10px 0;">
@@ -107,11 +115,12 @@
                         Due :
                     </span>
             <span style="color: #000;">
-                @if($data['moneyReceipt']->due  == 0)
+                4523 tk
+                {{-- @if($data['moneyReceipt']->due  == 0)
                     Paid
                 @else
                     {{ $data['moneyReceipt']->due }}
-                @endif
+                @endif --}}
             </span>
         </td>
     </tr>
