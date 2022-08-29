@@ -35,7 +35,7 @@
                             <div class="address-title-outer">
                                 <h4 class="address-title">Money Receipt</h4>
                             </div>
-                            <div class="institute-address-outer">                                
+                            <div class="institute-address-outer">
                                 <p class="address-inner" style="font-weight: 700;">
                                     <i class="fas fa-home"></i>
                                     House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230,                          01810139951-8
@@ -45,7 +45,7 @@
                                     webcoder-it.com
                                 </a>
                             </div>
-                        </div>                        
+                        </div>
                         <div class="money-receipt-info-wrapper">
                             <div class="money-receipt-info-item">
                                 <div class="stu-id">
@@ -110,8 +110,12 @@
                                     <span>{{ $moneyReceiptView->advance }} TK. <small style="color: red">( With Cost )</small> </span>
                                 </div>
                                 <div>
+                                    @if($moneyReceiptView->today_pay != null)
                                     <span class="money-receipt-view-label">Second Payment :</span>
                                     <span>{{ $moneyReceiptView->today_pay ?? "Not Yet" }} TK. <small style="color: red">( With Cost )</small> </span>
+                                    @else
+
+                                    @endif
                                 </div>
                             </div>
                             <div class="money-receipt-info-item">
@@ -129,7 +133,7 @@
                             <p style="color: #f16522;margin-bottom: 0;">
                                 <b>One Time Learning & Lifetime Earning.</b>
                             </p>
-                        </div>                        
+                        </div>
                     </div>
                     <!-- <a href="{{ url('/money/receipt/download/'.$moneyReceiptView->id) }}" class="money-receipt-download-btn pull-right mt-3">
                         <i class="fa fa-cloud-download"></i>

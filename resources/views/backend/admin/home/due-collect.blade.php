@@ -25,7 +25,7 @@
 	            </div>
 	            <!--end breadcrumb-->
                 <div class="col-md-12">
-                
+
                 </div>
 	            <hr/>
 	            <div class="card">
@@ -95,7 +95,7 @@
                                                     <i class="bx bx-download"></i>
                                                 </a>
                                             @else
-                                                <span>Pay not yet</span>
+                                                <span>Not paid yet</span>
                                             @endif
                                         </td>
                                         <td>{{ $admissionStudent->user->full_name?? session()->get('name') }}</td>

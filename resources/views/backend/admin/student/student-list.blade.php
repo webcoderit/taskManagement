@@ -72,7 +72,9 @@
                                     <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
                                     <a href="{{ url('/admin/students/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
                                     <a href="#" class="input-group-text btn btn-info" style="margin-left: 30px;" id="basic-addon2">{{ 'Total Student: ' . count($admissionStudents) }}</a>
+                                    @if(request()->batch_student)
                                     <a href="{{ url('/admin/user/student/batch/wise/download/'.request()->batch_student) }}" class="input-group-text btn btn-primary" style="margin-left: 30px;" id="basic-addon2">Download</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -93,7 +95,8 @@
 	                                <th>Course Name</th>
 	                                <th>Batch No</th>
 	                                <th>Course Fee</th>
-	                                <th>Advance</th>
+	                                <th>First Payment</th>
+	                                <th>Second Payment</th>
 	                                <th>Due</th>
 	                                <th>Due Opinion</th>
 	                                <th>Admission Opinion</th>
@@ -120,6 +123,7 @@
                                         <td>{{ $admissionStudent->batch_no?? '' }}</td>
                                         <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
+                                        <td>{{ $admissionStudent->moneyReceipt->today_pay ?? '' }}Tk.</td>
                                         <td>
                                             @if($admissionStudent->moneyReceipt->due == 0)
                                                 Paid
