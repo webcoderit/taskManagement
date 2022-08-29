@@ -156,9 +156,9 @@
                                                 <a href="{{ url('/admin/admission/student/info/edit/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">
                                                     <i class="bx bx-edit-alt"></i>
                                                 </a>
-                                                <a href="{{ url('/admin/admission/student/info/delete/'.$admissionStudent->id) }}" onclick="return confirm('Are you sure delete this student info ?')" class="btn btn-sm btn-danger">
+                                                {{-- <a href="{{ url('/admin/admission/student/info/delete/'.$admissionStudent->id) }}" onclick="return confirm('Are you sure delete this student info ?')" class="btn btn-sm btn-danger">
                                                     <i class="bx bx-trash-alt"></i>
-                                                </a>
+                                                </a> --}}
                                         </td>
                                     </tr>
                                 @endforeach

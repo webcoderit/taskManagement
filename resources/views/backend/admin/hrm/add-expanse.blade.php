@@ -54,6 +54,7 @@
                             	<option value="mobile">Mobile Bill</option>
                             	<option value="net">Net Bill</option>
                             	<option value="electricity">Electricity Bill</option>
+                            	<option value="food">Food</option>
                             	<option value="others">Others Bill</option>
                             </select><br>
                             <div id="minute">

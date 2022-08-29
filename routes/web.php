@@ -80,6 +80,9 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/admission/filtering', [App\Http\Controllers\Admin\AdminController::class, 'admissionFiltering']);
             Route::get('/admission/filtering/report/download/{from}/{to}', [App\Http\Controllers\Admin\AdminController::class, 'admissionFilteringReportDownload']);
             Route::get('/due/report', [App\Http\Controllers\Admin\AdminController::class, 'dueCollectReport']);
+
+            //================= Batch student list download ================//
+            Route::get('/student/batch/wise/download/{batchStudent}', [App\Http\Controllers\Admin\AdminController::class, 'studentDownloadFromBatchNumber']);
         });
     });
 });

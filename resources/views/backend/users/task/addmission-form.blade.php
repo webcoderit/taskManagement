@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="date" name="admission_date" value="{{old('admission_date')}}" placeholder="Admission Date" class="form-control">
+                                    <input type="date" name="admission_date" value="{{old('admission_date')}}" min="{{ date('Y-m-d') }}" placeholder="Admission Date" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="cash">Payment Type</label><br>

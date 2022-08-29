@@ -88,7 +88,7 @@
                             @foreach($expanses as $expanse)
                                 <tr>
                                     <td>{{ date('Y-m-d', strtotime($expanse->created_at))  }}</td>
-                                    <td>{{ $expanse->user->full_name ?? 'No User Name' }}</td>
+                                    <td>{{ $expanse->user->full_name ?? 'HR Admin' }}</td>
                                     <td>{{ ucfirst($expanse->bill_type)  }} Bill</td>
                                     <td>{{ number_format($expanse->price,2) }}</td>
                                     <td>{{ $expanse->minute ?? '0' }} Minute</td>
@@ -97,9 +97,9 @@
                                         <a href="{{ url('/edit/expanse/'.$expanse->id) }}" class="btn btn-info">
                                             <i class="bx bx-edit-alt"></i>
                                         </a>
-                                        <a href="{{ url('/delete/expanse/'.$expanse->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure delete this information ?')">
+                                        {{-- <a href="{{ url('/delete/expanse/'.$expanse->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure delete this information ?')">
                                             <i class="bx bx-trash-alt"></i>
-                                        </a>
+                                        </a> --}}
                                     </td>
                                 </tr>
                                 @php

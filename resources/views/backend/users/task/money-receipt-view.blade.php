@@ -1,12 +1,14 @@
-<<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Money Receipt</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/style.css" />
-    <style type="text/css">
+
+    <style>
         @media print {
             *{
                 visibility: hidden;
@@ -15,24 +17,6 @@
             .money-receipt-view-wrapper *{
                 visibility: visible;
             }
-            /*.invoice-container {
-                max-width: 100%!important;
-                padding: 0;
-                padding-top: 0!important;
-            }
-            .invoice-pp.first-pp{
-                margin-top: 0;
-            }
-
-            .invoice-main-content-inner {
-                -ms-flex: 0 0 100%!important;
-                flex: 0 0 100%!important;
-                max-width: 100%!important;
-                border: 0!important;
-                position: absolute;
-                top: 0;
-                left: 0;
-            }*/
         }
     </style>
 </head>
@@ -139,7 +123,7 @@
                         <i class="fa fa-cloud-download"></i>
                         Print
                     </a> -->
-                    <div class="money-receipt-print-btn-wrap text-center pb-5">
+                    <div class="money-receipt-print-btn-wrap pb-5 mt-5">
                         <div class="btn btn-success money-receipt-print-btn">Print</div>
                     </div>
                 </div>
@@ -155,3 +139,4 @@
     </script>
 </body>
 </html>
+

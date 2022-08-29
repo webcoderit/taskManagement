@@ -53,6 +53,31 @@
                         </div>
                     </form>
                 </div>
+                <hr/>
+                <div class="col-md-12">
+                    <form action="{{ url('/admin/students/list') }}" method="get">
+                        @csrf
+                        <div class="" style="padding: 0px 100px;">
+                            <div class="">
+                                <label for="batchStudent" style="font-weight: 600;">
+                                    Batch No.
+                                </label><br>
+                                <div class="input-group mb-3">
+                                    <select class="form-control" name="batch_student">
+                                        <option selected disabled>----Select A Batch No----</option>
+                                        @foreach($data['admissionStudentsBatch'] as $admissionStudentBatch)
+                                            <option value="{{ $admissionStudentBatch[0]->batch_no }}">{{ ucfirst($admissionStudentBatch[0]->course) }} - {{ ucfirst($admissionStudentBatch[0]->batch_no) }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                    <a href="{{ url('/admin/students/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                    <a href="#" class="input-group-text btn btn-info" style="margin-left: 30px;" id="basic-addon2">{{ 'Total Student: ' . count($admissionStudents) }}</a>
+                                    <a href="{{ url('/admin/user/student/batch/wise/download/'.request()->batch_student) }}" class="input-group-text btn btn-primary" style="margin-left: 30px;" id="basic-addon2">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 	            <hr/>
 	            <div class="card">
 	                <div class="card-body">
@@ -66,6 +91,7 @@
 	                                <th>Email</th>
 	                                <th>Phone</th>
 	                                <th>Course Name</th>
+	                                <th>Batch No</th>
 	                                <th>Course Fee</th>
 	                                <th>Advance</th>
 	                                <th>Due</th>
@@ -91,6 +117,7 @@
                                                 Communication english
                                             @endif
                                         </td>
+                                        <td>{{ $admissionStudent->batch_no?? '' }}</td>
                                         <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
                                         <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
                                         <td>
@@ -123,7 +150,6 @@
                                 @endforeach
 	                            </tbody>
 	                        </table>
-                            {{ $admissionStudents->links() }}
 	                    </div>
 	            </div>
 	        </div>

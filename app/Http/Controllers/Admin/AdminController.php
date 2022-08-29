@@ -50,7 +50,10 @@ class AdminController extends Controller
                 Session::put('name', $admin->name);
                 if ($admin->type == 'admin'){
                     return redirect('/admin/dashboard');
-                }else{
+                }elseif($admin->type == 'manager'){
+                    return redirect('/admin/manager/dashboard');
+                }
+                else{
                     return redirect('/admin/hr/dashboard');
                 }
             }else {
@@ -140,11 +143,25 @@ class AdminController extends Controller
         if (isset(request()->phone)){
             $sql->where('s_phone', 'LIKE','%'.request()->phone.'%');
         }
-        $admissionStudents = $sql->paginate(50);
+
+        if (isset(request()->batch_student)){
+            $sql->where('batch_no', request()->batch_student);
+        }
+
+        $admissionStudents = $sql->get();
         $data = [
             'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no')
         ];
         return view('backend.admin.student.student-list', compact('admissionStudents', 'data'));
+    }
+
+    public function studentDownloadFromBatchNumber($batchStudent)
+    {
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->where('batch_no', $batchStudent);
+            
+        $admissionStudents = $sql->get();
+        $studentBatchReportPdf = \PDF::loadView('backend.admin.pdf.batch-student-pdf', compact('admissionStudents'))->setPaper([0, 0, 685, 800], 'landscape');
+        return $studentBatchReportPdf->download('Batch No '.$batchStudent . '.' . 'pdf');
     }
     //====== For HR =========//
 

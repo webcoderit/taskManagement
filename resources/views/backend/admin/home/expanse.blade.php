@@ -40,6 +40,7 @@
                                             <option value="mobile">Mobile Bill</option>
                                             <option value="net">Net Bill</option>
                                             <option value="electricity">Electricity Bill</option>
+                                            <option value="food">Food</option>
                                             <option value="others">Others Bill</option>
                                         </select>
                                     </div>
@@ -107,6 +108,7 @@
                                             <option value="mobile">Mobile Bill</option>
                                             <option value="net">Net Bill</option>
                                             <option value="electricity">Electricity Bill</option>
+                                            <option value="food">Food</option>
                                             <option value="others">Others Bill</option>
                                         </select>
                                     </div>
@@ -150,7 +152,7 @@
                             @foreach($expanses as $expanse)
                                 <tr>
                                     <td>{{ date('Y-m-d', strtotime($expanse->created_at))  }}</td>
-                                    <td>{{ $expanse->user->full_name ?? 'Admin' }}</td>
+                                    <td>{{ $expanse->user->full_name ?? 'HR Admin' }}</td>
                                     <td>{{ number_format($expanse->price,2) }}</td>
                                     <td>{{ $expanse->minute }}</td>
                                     <td>{{ ucfirst($expanse->note) }}</td>
