@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Money Receipt</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" href="{{ asset('backend/') }}/assets/images/favicon-32x32.png" type="image/png" />
     <link rel="stylesheet" href="{{ asset('backend/') }}/assets/css/style.css" />
 
     <style>
@@ -27,16 +28,19 @@
                 <div class="col-md-8 m-auto">
                     <div class="money-receipt-view-wrapper" style="border: 1px solid #ddd;">
                         <div class="institute-address-wrapper">
+                            <div class="institute-logo-wrapper">
+                                <img src="{{ asset('backend/') }}/assets/logo6.png" class="institute-logo">
+                            </div>
                             <div class="address-title-outer">
                                 <h4 class="address-title">Money Receipt</h4>
                             </div>
-                            <div class="institute-address-outer">
-                                <img src="{{ asset('backend/') }}/assets/logo3.png" class="institute-logo">
-                                <p class="address-inner" style="font-weight: 500;">
-                                    House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230
+                            <div class="institute-address-outer">                                
+                                <p class="address-inner" style="font-weight: 700;">
+                                    House#06, Level#03 Road-1/A, Sector#09 Housebuilding, Uttara Dhaka-1230<br>
+                                    01810139951-8
                                 </p>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="money-receipt-info-wrapper">
                             <div class="money-receipt-info-item">
                                 <div class="stu-id">
@@ -81,11 +85,7 @@
                             <div class="money-receipt-info-item">
                                 <div>
                                     <span class="money-receipt-view-label">Total Fee :</span>
-                                    <span>{{ $moneyReceiptView->total_fee }} TK</span>
-                                </div>
-                                <div>
-                                    <span class="money-receipt-view-label">Advance :</span>
-                                    <span>{{ $moneyReceiptView->advance }} TK. <small style="color: red">( Advance & {{ ucfirst($moneyReceiptView->payment_type) }} Cost )</small> </span>
+                                    <span>{{ $moneyReceiptView->total_fee }} TK </span>
                                 </div>
                                 <div>
                                     <span class="money-receipt-view-label">Due :</span>
@@ -98,6 +98,17 @@
                                     </span>
                                 </div>
                             </div>
+
+                            <div class="money-receipt-info-item">
+                                <div>
+                                    <span class="money-receipt-view-label">First Payment :</span>
+                                    <span>{{ $moneyReceiptView->advance }} TK. <small style="color: red">( With Cost )</small> </span>
+                                </div>
+                                <div>
+                                    <span class="money-receipt-view-label">Second Payment :</span>
+                                    <span>{{ $moneyReceiptView->today_pay ?? "Not Yet" }} TK. <small style="color: red">( With Cost )</small> </span>
+                                </div>
+                            </div>
                             <div class="money-receipt-info-item">
                                 <div>
                                     <span class="money-receipt-view-label">Received By :</span>
@@ -105,26 +116,22 @@
                                 </div>
                                 <div>
                                     <span class="money-receipt-view-label">Authorised By :</span>
-                                    <span>WebCoder-it</span>
+                                    <span>Webcoder-IT</span>
                                 </div>
                             </div>
                         </div>
                         <div class="website-link-outer">
-                            <a href="https://webcoder-it.com" target="_blank">
-                                <i class="fa fa-chrome"></i>
-                                https://webcoder-it.com ,
-                            </a>
-                            <a href="tel:01810139951">
-                                <i class="fa fa-phone"></i> 01810139951-8
-                            </a>
+                            <p style="color: #f16522;margin-bottom: 0;">
+                                <b>One Time Learning & Lifetime Earning.</b>
+                            </p>
                         </div>                        
                     </div>
                     <!-- <a href="{{ url('/money/receipt/download/'.$moneyReceiptView->id) }}" class="money-receipt-download-btn pull-right mt-3">
                         <i class="fa fa-cloud-download"></i>
                         Print
                     </a> -->
-                    <div class="money-receipt-print-btn-wrap pb-5 mt-5">
-                        <div class="btn btn-success money-receipt-print-btn">Print</div>
+                    <div class="money-receipt-print-btn-wrap pb-5 mt-3">
+                        <div class="money-receipt-download-btn" style="cursor: pointer;">Print</div>
                     </div>
                 </div>
             </div>
@@ -133,7 +140,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
-        $('.money-receipt-print-btn').click(function(){
+        $('.money-receipt-download-btn').click(function(){
             window.print();
         })
     </script>
