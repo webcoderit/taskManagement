@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 m-auto">
-                    <div class="money-receipt-view-wrapper" style="border: 1px solid #ddd;">
+                    <div class="money-receipt-view-wrapper">
                         <div class="institute-address-wrapper">
                             <div class="institute-logo-wrapper">
                                 <img src="{{ asset('backend/') }}/assets/logo6.png" class="institute-logo">
@@ -137,7 +137,6 @@
             </div>
         </div>
     </section>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
         $('.money-receipt-download-btn').click(function(){

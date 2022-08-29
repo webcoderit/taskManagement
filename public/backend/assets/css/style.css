@@ -448,6 +448,10 @@ a.addmission-list-btn-inner:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     position: relative;
     z-index: 9;
+    background: url(../logo4.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .money-receipt-view-heading {
