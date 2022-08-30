@@ -76,7 +76,7 @@
                                         @if($moneyReceiptView->admissionForm->course == 'web')
                                                 Full stack web development
                                             @elseif($moneyReceiptView->admissionForm->course == 'digital')
-                                                Advance Digital Marketing
+                                                Advanced Digital Marketing
                                             @else
                                                 Communication English
                                             @endif
