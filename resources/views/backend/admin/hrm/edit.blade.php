@@ -47,7 +47,7 @@
                             @else
                                 <input type="number" name="due_payment" id="due_payment" placeholder="Payment" onblur="calculate()" class="form-control">
 								<label style="font-weight: 600;">Is pay</label>
-								<select class="form-control" name="is_pay" id="isPay" onchange="isPayStudent(this.value)" required>
+								<select class="form-control" name="is_pay" id="isPay" onclick="isPayStudent(this.value)" required>
 									<option selected disabled>Select A Option</option>
 									<option value="1">Yes</option>
 									<option value="0">No</option>
@@ -57,6 +57,16 @@
                                 	<textarea class="form-control" name="note" rows="5" placeholder="Student opinion here..."></textarea>
 								</div>
                             @endif
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" name="is_paid" onclick="isDiscountPaid(this)" value="1" id="isPaid">
+                                <label class="form-check-label" for="isPaid" style="font-weight: 600;">
+                                    Is Paid
+                                </label>
+                            </div>
+                            <div id="disCountNote" style="display: none">
+                                <label style="font-weight: 600;">Is paid note</label><br>
+                                <textarea class="form-control" name="is_paid_note" rows="5" placeholder="Is paid note..."></textarea>
+                            </div>
                             @if($courseDueCollection->due == 0)
                                 <div style="text-align: center;margin-top: 20px;">
                                     <button type="submit" class="btn btn-success" disabled>Submit</button>
@@ -83,7 +93,7 @@
         }
 
 		let note = document.getElementById('note');
-		
+
 		function isPayStudent(e){
 			if(e == 0){
 				note.style.display = "block";
@@ -91,5 +101,13 @@
 				note.style.display = "none";
 			}
 		}
+
+
+        function isDiscountPaid(discount){
+            let discountNoteIsPaid = document.getElementById('disCountNote');
+            let dueFeeClear = document.getElementById('due');
+            discountNoteIsPaid.style.display = discount.checked ? "block" : "none";
+            dueFeeClear.value = '0.00'
+        }
     </script>
 @endpush

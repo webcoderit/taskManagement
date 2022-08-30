@@ -27,6 +27,7 @@ class CreateMoneyReceiptsTable extends Migration
             $table->float('today_pay', 8, 2)->nullable();
             $table->boolean('is_reject')->default(0);
             $table->boolean('is_pay')->default(0);
+            $table->boolean('is_paid')->default(0)->nullable();
             $table->timestamps();
         });
     }

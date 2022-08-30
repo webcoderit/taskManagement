@@ -158,7 +158,7 @@ class AdminController extends Controller
     public function studentDownloadFromBatchNumber($batchStudent)
     {
         $sql = AdmissionForm::with('moneyReceipt', 'user')->where('batch_no', $batchStudent);
-            
+
         $admissionStudents = $sql->get();
         $studentBatchReportPdf = \PDF::loadView('backend.admin.pdf.batch-student-pdf', compact('admissionStudents'))->setPaper([0, 0, 685, 800], 'landscape');
         return $studentBatchReportPdf->download('Batch No '.$batchStudent . '.' . 'pdf');
@@ -197,10 +197,15 @@ class AdminController extends Controller
             $dueClear->due = $request->due;
             $dueClear->today_pay = $request->due_payment;
             $dueClear->is_pay = $request->is_pay;
+            $dueClear->is_paid = $request->is_paid;
             $dueClear->save();
             //Student opinion
             $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
-            $updateStudentNote->note = $request->note;
+            if ($request->note){
+                $updateStudentNote->note = $request->note;
+            }else{
+                $updateStudentNote->note = $request->is_paid_note;
+            }
             $updateStudentNote->save();
         }catch (\Exception $exception){
             return redirect()->back()->with('error', $exception->getMessage());

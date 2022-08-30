@@ -27,11 +27,11 @@
             .addmission-form-wrapper *{
                 visibility: visible;
             }
-        } 
+        }
     </style>
 </head>
 <body>
-<section class="student-addmission-view mt-3">    
+<section class="student-addmission-view mt-3">
     <div class="container">
         <div class="row">
             <div class="col-md-10 m-auto">
@@ -45,12 +45,12 @@
                             <p>
                                 One Time Learning & Lifetime Earning.
                             </p>
-                        </div>                        
+                        </div>
                         @if($admissionForm->avatar != null)
                             <div>
                                 <img src="{{ asset('/student/'.$admissionForm->avatar) }}" style="height: 130px; width: 150px;">
                             </div>
-                        @endif                        
+                        @endif
                     </div>
                     <div class="admission-title-outer">
                         <h4 class="address-title">Admission Form</h4>
@@ -170,7 +170,7 @@
                                 <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->admission_date ?? '' }}</span>
                             </div>
                         </div>
-                        <div class="admission-form-view-item">                            
+                        <div class="admission-form-view-item">
                             <div>
                                 <span class="admission-form-view-label">Transaction ID : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->transaction_id }}</span>
@@ -188,7 +188,7 @@
                                 @else
                                     <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->due ?? 'Paid' }} Tk.</span>
                                 @endif
-                                
+
                             </div>
                         </div>
                         <div class="admission-form-view-item">
@@ -203,7 +203,7 @@
                         </div>
                         <div class="admission-form-view-item">
                             <div>
-                                <span class="admission-form-view-label">Class Shedule : </span>
+                                <span class="admission-form-view-label">Class Schedule : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->class_shedule }}</span>
                             </div>
                             <div>
@@ -228,7 +228,7 @@
                                 We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
                             </p>
                         </div> -->
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
