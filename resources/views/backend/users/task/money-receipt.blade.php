@@ -29,11 +29,13 @@
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
-                                <th>Date</th>
+                                <th>Admission Date</th>
+                                <th>Due Clear Date</th>
                                 <th>Name</th>
                                 <th>Total Fee</th>
-                                <th>Advance</th>
-                                <th>Due</th>
+                                <th>First Payment</th>
+                                <th>Second Payment</th>
+                                <th>Due Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -41,10 +43,18 @@
                             @foreach($moneyReceipt as $receipt)
                                 <tr>
                                     <td>{{ $receipt->moneyReceipt->admission_date->format('Y-m-d') ?? '' }}</td>
+                                    <td>{{ $receipt->moneyReceipt->updated_at->format('Y-m-d') ?? '' }}</td>
                                     <td>{{ $receipt->s_name?? '' }}</td>
                                     <td>{{ number_format($receipt->moneyReceipt->total_fee,2) ?? '' }} tk</td>
                                     <td>{{ number_format($receipt->moneyReceipt->advance,2) ?? '' }} tk</td>
-                                    <td>{{ number_format($receipt->moneyReceipt->due,2) ?? '' }} tk</td>
+                                    <td>{{ number_format($receipt->moneyReceipt->today_pay,2).'Tk' ?? 'Not yet' }}</td>
+                                    <td>
+                                        @if($receipt->moneyReceipt->due == 0)
+                                            <span class="badge rounded-pill bg-success">Paid</span>
+                                        @else
+                                            {{ $receipt->moneyReceipt->due ?? '' }}
+                                        @endif
+                                    </td>
                                     <td width="15%">
                                         <a href="{{ url('/money/receipt/view/'.$receipt->id) }}" class="btn btn-sm btn-primary">
                                             <i class="bx bx-edit-alt"></i>
