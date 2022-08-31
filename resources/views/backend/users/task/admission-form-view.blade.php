@@ -170,13 +170,17 @@
                                 <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->admission_date ?? '' }}</span>
                             </div>
                         </div>
-                        <div class="admission-form-view-item">                            
+                        <!-- <div class="admission-form-view-item">                            
                             <div>
                                 <span class="admission-form-view-label">Transaction ID : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->transaction_id }}</span>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="admission-form-view-item">
+                            <div>
+                                <span class="admission-form-view-label">Transaction ID : </span>
+                                <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->transaction_id }}</span>
+                            </div>
                             <div>
                                 <span class="admission-form-view-label">Total Fee : </span>
                                 <span class="admission-form-view-value">{{ $admissionForm->moneyReceipt->total_fee ?? '' }} Tk.</span>
@@ -211,23 +215,21 @@
                                 <span class="">{{ $admissionForm->class_time }}</span>
                             </div>
                         </div>
-                        <div class="institute-note">
-                            <div>
-                                <span class="admission-form-view-label">Note : </span>
-                                <span class="admission-form-view-value">
-                                    Incomplete Application will be Cancelled.
-                                </span>
-                            </div>
+                        <div class="institute-note">                            
                             <div>
                                 <span class="admission-form-view-label">Authorized By : </span>
                                 <span class="">Webcoder-IT</span>
                             </div>
+                            <div>
+                                <span class="admission-form-view-label">Admission By : </span>
+                                <span class="">{{ auth()->user()->full_name }}</span>
+                            </div>
                         </div>
-                        <!-- <div class="institute-service-note">
+                        <div class="institute-service-note">
                             <p>
-                                We Build Any Kinds of Website and We Provide Complete Digital Marketing Solution for your Company.
+                                Incomplete Application will be Cancelled.
                             </p>
-                        </div> -->
+                        </div>
                     </div>                    
                 </div>
             </div>
