@@ -196,7 +196,11 @@ class AdminController extends Controller
             $dueClear = MoneyReceipt::where('id', $id)->first();
             $dueClear->due = $request->due;
             $dueClear->today_pay = $request->due_payment;
-            $dueClear->is_pay = $request->is_pay;
+            if ($request->is_paid){
+                $dueClear->is_pay = 1;
+            }else{
+                $dueClear->is_pay = $request->is_pay;
+            }
             $dueClear->is_paid = $request->is_paid;
             $dueClear->save();
             //Student opinion
