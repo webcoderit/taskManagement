@@ -424,7 +424,7 @@ class AdminController extends Controller
                 ->whereDate('admission_date', '<=', request()->to_date);
 
             $admissionStudentsDateFiltering = $sqlFiltering->get();
-            return view('backend.admin.home.admission-filtering', compact('admissionStudentsDateFiltering', 'data'));
+            return view('backend.admin.pdf.admission-filtering-list', compact('admissionStudentsDateFiltering', 'data'));
         }
         return view('backend.admin.home.admission-filtering', compact('data'));
     }
@@ -434,7 +434,7 @@ class AdminController extends Controller
         $sql = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc');
                 $sql->whereDate('admission_date', '>=', $from)->whereDate('admission_date', '<=', $to);
 
-            $admissionStudentsDateFilteringDownload = $sql->get();
+        $admissionStudentsDateFilteringDownload = $sql->get();
         $callReportPdf = \PDF::loadView('backend.admin.pdf.admission', compact('admissionStudentsDateFilteringDownload'))->setPaper([0, 0, 685, 800], 'landscape');
         return $callReportPdf->download('AdmissionReport' . '.' . 'pdf');
     }
@@ -554,6 +554,16 @@ class AdminController extends Controller
             $admissionStudents = $sql->get();
             $batchs = Batch::orderByDesc('created_at')->get();
             return view('backend.admin.home.due-collect', compact('admissionStudents', 'batchs'));
+        }
+
+        if (isset(request()->from_date) && isset(request()->to_date)){
+            $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('updated_at');
+            $sql->whereHas('moneyReceipt', function ($q){
+                $q->whereDate('updated_at', '>=', request()->from_date)->whereDate('updated_at', '>=', request()->to_date)->where('today_pay', '!=', null);
+            });
+
+            $admissionStudents = $sql->get();
+            return view('backend.admin.home.due-collect-report', compact('admissionStudents'));
         }
 
         $admissionStudents = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('updated_at')->get();

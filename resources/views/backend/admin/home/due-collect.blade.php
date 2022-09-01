@@ -25,7 +25,29 @@
 	            </div>
 	            <!--end breadcrumb-->
                 <div class="col-md-12">
-
+                    <form action="{{ url('/admin/user/due/report') }}" method="get" class="form-group">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>From date</label>
+                                    <div class="input-group mb-2">
+                                        <input type="date" name="from_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>To date</label>
+                                    <div class="input-group mb-2">
+                                        <input type="date" name="to_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2" style="margin-top: 20px;">Search</button>
+                                    <a href="{{ url('/admin/user/due/report') }}" class="input-group-text btn btn-danger" id="basic-addon2" style="margin-top: 20px;">Clear</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 	            <hr/>
 	            <div class="card">
@@ -67,6 +89,7 @@
                             </div>
                         </form>
 	                    <div class="table-responsive mt-3">
+{{--                            <a href="{{ url('/admin/user/admission/filtering/report/download/'.request()->from_date . '/' . request()->to_date) }}" class="input-group-text btn btn-info float-end" id="basic-addon2" style="">Due Report Download</a>--}}
 	                        <table id="" class="table table-striped table-bordered">
 	                            <thead>
 	                            <tr>
