@@ -20,12 +20,13 @@
     </style>
 </head>
 <body>
-<div class="money-receipt-print-btn-wrap pb-3">
+<div class="money-receipt-print-btn-wrap" style="padding-left: 20px;margin-top: 20px;">
     <div class="money-receipt-download-btn btn btn-success" style="cursor: pointer;">Print</div>
 </div>
 
 <div class="addmission-form-wrapper">
     <h2 style="text-align: center;">Monthly Admission Report</h2>
+    <hr>
     <table style="border: 1px solid #000000; margin: auto; height: auto; width: 100%" class="table table-bordered">
         <thead>
         <tr style="background-color: #0bb2d3; border: 1px solid #000">

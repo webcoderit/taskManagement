@@ -12,31 +12,30 @@
             *{
                 visibility: hidden;
             }
-            .addmission-form-wrapper,
-            .addmission-form-wrapper *{
+            .due-report,
+            .due-report *{
                 visibility: visible;
             }
         }
     </style>
 </head>
 <body>
-<div class="money-receipt-print-btn-wrap pb-3">
+<div class="money-receipt-print-btn-wrap" style="padding-left: 20px;margin-top: 20px;">
     <div class="money-receipt-download-btn btn btn-success" style="cursor: pointer;">Print</div>
 </div>
-	<div class="wrapper">
+	<div class="wrapper due-report">
 	    <div class="page-wrapper" style="margin-left: 20px!important;">
 	        <div class="page-content">
-	            <!--end breadcrumb-->
-                <div class="col-md-12">
-
-                </div>
+	            <h2 style="text-align: center;">
+                    Due Collect Report   
+                </h2>
 	            <hr/>
 	            <div class="card">
 	                <div class="card-body">
 	                    <div class="table-responsive mt-3">
 	                        <table id="" class="table table-striped table-bordered">
 	                            <thead>
-	                            <tr>
+	                            <tr style="background-color: #0bb2d3;">
 	                                <th>Due Collect Date</th>
 	                                <th>Marketing Officer Name</th>
 	                                <th>Name</th>
