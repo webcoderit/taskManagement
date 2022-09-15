@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="qualificaton">Educational Qualification</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="text" name="qualification" value="{{ $editAdmissionForm->blood_group }}" placeholder="Educational Qualifications" class="form-control">
+                                    <input type="text" name="qualification" value="{{ $editAdmissionForm->qualification }}" placeholder="Educational Qualifications" class="form-control">
                                     <span style="color: red"> {{ $errors->has('qualification') ? $errors->first('qualification') : ' ' }}</span>
                                 </div>
                                 <div class="col-md-6">
@@ -147,9 +147,10 @@
                                         Other Way Admission Note
                                     </label><br>
                                     <textarea name="other_admission_note" id="edit_other_admission_note" rows="2" cols="50" class="form-control">{{ $editAdmissionForm->other_admission_note }}</textarea>
-                                    <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                    <span style="color: red"> {{ $errors->has('other_admission_note') ? $errors->first('other_admission_note') : ' ' }}</span>
                                 </div>
-                                <div class="col-md-4">
+
+                                <div class="col-md-3">
                                     <label for="course">Course Name</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <select name="course" id="course" class="form-control">
                                         <option disabled selected>---Select Course Name---</option>
@@ -159,7 +160,7 @@
                                     </select>
                                     <span style="color: red"> {{ $errors->has('course') ? $errors->first('course') : ' ' }}</span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="batch_no">Batch No.</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <select name="batch_no" id="batch_no" class="form-control">
                                         <option disabled selected>---Select Batch Number---</option>
@@ -167,20 +168,25 @@
                                             <option value="{{ $batch->batch_no }}" {{ $batch->batch_no == $editAdmissionForm->batch_no ? 'selected' : '' }}>{{ $batch->batch_no }}</option>
                                         @endforeach
                                     </select>
-                                    <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                    <span style="color: red"> {{ $errors->has('batch_no') ? $errors->first('batch_no') : ' ' }}</span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="batch_type">Batch Type</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <select name="batch_type" id="batch_type" class="form-control">
                                         <option disabled selected>---Select Batch Type---</option>
                                         <option value="online" {{ $editAdmissionForm->batch_type == 'online' ? 'selected' : '' }}>Online</option>
                                         <option value="offline" {{ $editAdmissionForm->batch_type == 'offline' ? 'selected' : '' }}>Offline</option>
                                     </select>
-                                    <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                    <span style="color: red"> {{ $errors->has('batch_type') ? $errors->first('batch_type') : ' ' }}</span>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="admission_date" readonly value="{{ $editAdmissionForm->moneyReceipt->admission_date->format('Y-m-d') ?? '' }}" placeholder="Admission Date" class="form-control">
+                                    <span style="color: red"> {{ $errors->has('admission_date') ? $errors->first('admission_date') : ' ' }}</span>
+                                </div>
+                                <div class="col-md-4">
                                     <label for="cash">Payment Type</label><br>
-                                    <select name="payment_type" id="payment_type" class="form-control">
+                                    <select name="payment_type" id="payment_type" class="form-control" onchange="chargeField(this.value)">
                                         <option disabled selected>---Select Payment Type---</option>
                                         <option value="cash" {{ $editAdmissionForm->moneyReceipt->payment_type == 'cash' ? 'selected' : '' }}>Cash</option>
                                         <option value="bkash" {{ $editAdmissionForm->moneyReceipt->payment_type == 'bkash' ? 'selected' : '' }}>Bkash</option>
@@ -188,13 +194,18 @@
                                         <option value="rocket" {{ $editAdmissionForm->moneyReceipt->payment_type == 'rocket' ? 'selected' : '' }}>Rocket</option>
                                         <option value="bank" {{ $editAdmissionForm->moneyReceipt->payment_type == 'bank' ? 'selected' : '' }}>Bank</option>
                                     </select>
-                                    <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                    <span style="color: red"> {{ $errors->has('payment_type') ? $errors->first('payment_type') : ' ' }}</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="date" name="admission_date" value="{{ $editAdmissionForm->moneyReceipt->admission_date->format('Y-m-d') ?? '' }}" placeholder="Admission Date" class="form-control">
-                                    <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                <div class="col-md-4">
+                                    <label for="advance">Bkash / Rocket / Nogod Charge</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="number" name="online_charge" value="{{old('online_charge')}}" id="online_charge" placeholder="Online Charge" class="form-control">
                                 </div>
+                                <div class="col-md-4">
+                                    <label for="advance">Transaction ID</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="transaction_id" value="{{old('transaction_id')}}" id="transaction_id" placeholder="Transaction Id" class="form-control">
+                                    <span style="color: red"> {{ $errors->has('transaction_id') ? $errors->first('transaction_id') : ' ' }}</span>
+                                </div>
+
                                 <div class="col-md-4">
                                     <label for="total_fee">Total Fee</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="number" name="total_fee" value="{{ $editAdmissionForm->moneyReceipt->total_fee ?? '' }}" id="total_fee" placeholder="Total Taka" class="form-control">
@@ -203,7 +214,7 @@
                                 <div class="col-md-4">
                                     <label for="advance">Advance</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="number" name="advance" value="{{ $editAdmissionForm->moneyReceipt->advance ?? '' }}" id="advance" placeholder="Advance" onblur="calculate()" class="form-control">
-                                    <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                    <span style="color: red"> {{ $errors->has('total_fee') ? $errors->first('total_fee') : ' ' }}</span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="due">Due</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -213,12 +224,12 @@
                                 <div class="col-md-12">
                                     <label for="word">In Word</label><br>
                                     <input type="text" name="word" value="{{ $editAdmissionForm->word }}" placeholder="In Word" class="form-control">
-                                    <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                    <span style="color: red"> {{ $errors->has('due') ? $errors->first('due') : ' ' }}</span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="time">Class Time</label><span style="color: red; font-size: 16px;"> *</span>
                                     <input type="text" name="class_time" value="{{ $editAdmissionForm->class_time }}" placeholder="Class Time" class="form-control">
-                                    <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                    <span style="color: red"> {{ $errors->has('class_time') ? $errors->first('class_time') : ' ' }}</span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>
@@ -227,7 +238,7 @@
                                         <label for="first_day" style="font-weight: 400;">Sat Mon Wed</label><br>
                                         <input type="radio" id="last_day" name="class_shedule" value="Sun-Tue-Thu" {{ $editAdmissionForm->class_shedule ===  'Sun-Tue-Thu' ? 'checked' : '' }}>
                                         <label for="last_day" style="font-weight: 400;">Sun Tue Thu</label>
-                                        <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                        <span style="color: red"> {{ $errors->has('class_shedule') ? $errors->first('class_shedule') : ' ' }}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -236,7 +247,7 @@
                                         <div class="avatar-edit">
                                             <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" onchange="imagePreview(event)" />
                                             <label for="imageUpload"></label>
-                                            <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
+                                            <span style="color: red"> {{ $errors->has('avatar') ? $errors->first('avatar') : ' ' }}</span>
                                         </div>
                                         <div class="avatar-preview">
                                             <div>
@@ -282,6 +293,14 @@
                 x.style.display = "block";
             } else {
                 x.style.display = "none";
+            }
+        }
+
+        function chargeField(e){
+            if(e == 'cash'){
+                $('#online_charge').hide();
+            }else {
+                $('#online_charge').show();
             }
         }
 

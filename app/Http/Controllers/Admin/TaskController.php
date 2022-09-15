@@ -26,23 +26,23 @@ class TaskController extends Controller
         if (isset(request()->task_date)){
             $page = 'task_date';
             $tasksDateFiltering = Task::with('user')->whereDate('created_at', request()->task_date);
-            $tasks = $tasksDateFiltering->get()->groupBy('user_id');
+            $tasks = $tasksDateFiltering->paginate(200)->groupBy('user_id');
             return view('backend.admin.task.index', compact('tasks', 'page'));
         }
-        $tasks = Task::with('user')->whereDate('created_at', Carbon::today())->get()->groupBy('user_id');
+        $tasks = Task::with('user')->whereDate('created_at', Carbon::today())->paginate(200)->groupBy('user_id');
         return view('backend.admin.task.index', compact('tasks', 'page'));
     }
 
     public function allTaskView($id)
     {
-        $tasks = Task::with('user')->where('status', 0)->where('user_id', $id)->get();
+        $tasks = Task::with('user')->where('status', 0)->where('user_id', $id)->paginate(200);
 
         if (isset(request()->from_date) && isset(request()->to_date)) {
             $sqlFiltering = Task::with('user')->where('status', 0)->where('user_id', $id)
                 ->whereDate('created_at', '>=', request()->from_date)
                 ->whereDate('created_at', '<=', request()->to_date);
 
-            $tasks = $sqlFiltering->get();
+            $tasks = $sqlFiltering->paginate(200);
             return view('backend.admin.task.view', compact('tasks', 'id'));
         }
 
@@ -51,7 +51,7 @@ class TaskController extends Controller
 
     public function addTask()
     {
-        $users = User::orderBy('created_at', 'desc')->get();
+        $users = User::orderBy('created_at', 'desc')->paginate(200);
         return view('backend.admin.task.create', compact('users'));
     }
 
@@ -71,7 +71,7 @@ class TaskController extends Controller
 
     public function allTask()
     {
-        $tasks = Task::with('user')->get()->groupBy('user_id');
+        $tasks = Task::with('user')->paginate(200)->groupBy('user_id');
         return view('backend.admin.task.all-task', compact('tasks'));
     }
     public function pendingTask(Request $request)
@@ -84,7 +84,7 @@ class TaskController extends Controller
 //        }
 //        $pendingTasks = $sql->paginate(10);
 //        $users = User::all();
-        $pendingTasks = Task::with('user')->get()->where('status', 0)->groupBy('user_id');
+        $pendingTasks = Task::with('user')->where('status', 0)->get()->groupBy('user_id');
         return view('backend.admin.task.pending-task', compact('pendingTasks'));
     }
 
@@ -151,9 +151,9 @@ class TaskController extends Controller
     public function taskFiltering(){
         $data = [
             'users' => User::orderBy('updated_at', 'desc')->get(),
-            'todayAmounts' => MoneyReceipt::whereDate('created_at', Carbon::today())->get(),
-            'monthlyAmounts' => MoneyReceipt::whereMonth('created_at', date('m'))->get(),
-            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
+            'todayAmounts' => MoneyReceipt::whereDate('created_at', Carbon::today())->paginate(200),
+            'monthlyAmounts' => MoneyReceipt::whereMonth('created_at', date('m'))->paginate(200),
+            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->paginate(200)->groupBy('batch_no'),
         ];
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
         if (isset(request()->user_id) && isset(request()->date) && isset(request()->batch_no)){
@@ -162,7 +162,7 @@ class TaskController extends Controller
                 $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
             })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
         }
-        $admissionStudents = $sql->get();
+        $admissionStudents = $sql->paginate(200);
         return view('backend.admin.task.task-filtering', compact('admissionStudents', 'data'));
     }
 
@@ -250,7 +250,7 @@ class TaskController extends Controller
         $sql = AdmissionForm::with('moneyReceipt', 'user')->where('user_id', $user_id)
             ->whereMonth('created_at', date('m', strtotime($month)))
             ->orderByDesc('created_at');
-        $reports = $sql->get();
+        $reports = $sql->paginate(200);
         $callReportPdf = \PDF::loadView('backend.admin.pdf.report', compact('reports'))->setPaper([0, 0, 685, 800], 'landscape');
         return $callReportPdf->download('Report' . '.' . 'pdf');
     }
@@ -260,7 +260,7 @@ class TaskController extends Controller
         $sql = Expance::orderBy('created_at', 'desc');
 
         $sql->whereDate('created_at', '>=', $from)->whereDate('created_at','<=', $to);
-        $expanseReports = $sql->get();
+        $expanseReports = $sql->paginate(200);
         $callReportPdf = \PDF::loadView('backend.admin.pdf.expanse', compact('expanseReports'))->setPaper([0, 0, 685, 800], 'landscape');
         return $callReportPdf->download('ExpanseReport' . '.' . 'pdf');
     }

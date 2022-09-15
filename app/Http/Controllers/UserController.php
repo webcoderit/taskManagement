@@ -24,7 +24,11 @@ class UserController extends Controller
     }
     public function todayTask()
     {
-        $todayTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->whereDate('created_at', Carbon::today())->get();
+        $sql = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->whereDate('created_at', Carbon::today());
+        if (isset(request()->search)){
+            $sql->where('phone', request()->search)->orWhere('name',request()->search);
+        }
+        $todayTask = $sql->paginate(50);
         //dd($todayTask);
         return view('backend.users.task.today-task', compact('todayTask'));
     }
@@ -41,9 +45,9 @@ class UserController extends Controller
     {
         $sql = Task::with('interestes')->where('user_id', auth()->check() ? auth()->user()->id : '')->orderBy('updated_at', 'ASC');
         if (isset(request()->search)){
-            $sql->where('phone', 'LIKE', '%' .request()->search.'%');
+            $sql->where('phone', request()->search)->orWhere('name',request()->search);
         }
-        $allTask = $sql->paginate(30);
+        $allTask = $sql->paginate(50);
         return view('backend.users.task.all-task', compact('allTask'));
     }
 
@@ -135,52 +139,69 @@ class UserController extends Controller
         }
     }
     public function pendingTask(){
-        $pendingTask = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->where('status', 0)->orderBy('updated_at', 'desc')->get();
+         $sql = Task::where('user_id', auth()->check() ? auth()->user()->id : '')->where('status', 0)->orderBy('updated_at', 'desc');
+        if (isset(request()->search)){
+            $sql->where('phone', request()->search)->orWhere('name',request()->search);
+        }
+        $pendingTask = $sql->paginate(50);
         return view('backend.users.task.pending-task', compact('pendingTask'));
     }
 
     public function confirmAddmission(){
-        $complete = AdmissionForm::with('user', 'moneyReceipt')->where('user_id', auth()->user()->id)->orderByDesc('created_at')->get();
+         $sql = AdmissionForm::with('user', 'moneyReceipt')->where('user_id', auth()->user()->id)->orderByDesc('created_at');
+        if (isset(request()->search)){
+            $sql->where('batch_no', request()->search);
+        }
+        $complete = $sql->paginate(50);
         return view('backend.users.task.confirm-addmission', compact('complete'));
     }
 
     public function notInterested(){
         $notInterested = Intereste::where('interest_level' , 'not')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->orderByDesc('updated_at')->get();
+        })->orderByDesc('updated_at')->paginate(50);
         return view('backend.users.task.not-interested', compact('notInterested'));
     }
 
     public function highlyInterested(){
         $highlyInterested = Intereste::where('interest_level' , 'highly')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->orderByDesc('updated_at')->get();
+        })->orderByDesc('updated_at')->paginate(50);
         return view('backend.users.task.highly-interested' , compact('highlyInterested'));
     }
 
     public function interested(){
         $interested = Intereste::where('interest_level' , '50%')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->orderByDesc('updated_at')->get();
+        })->orderByDesc('updated_at')->paginate(50);
         return view('backend.users.task.interested' , compact('interested'));
     }
     public function others(){
         $others = Intereste::where('interest_level', 'others')->whereHas('task', function ($q){
             $q->where('user_id', auth()->check() ? auth()->user()->id : '');
-        })->orderByDesc('updated_at')->get();
+        })->orderByDesc('updated_at')->paginate(50);
         return view('backend.users.task.others' , compact('others'));
     }
 
     public function addmissionForm(){
-        $batchNumber = Batch::orderBy('created_at', 'desc')->get();
+        $batchNumber = Batch::orderBy('created_at', 'desc')->paginate(50);
         return view('backend.users.task.addmission-form', compact('batchNumber'));
     }
     public function moneyReceipt(){
-        $moneyReceipt = AdmissionForm::with('moneyReceipt')->orderBy('created_at', 'desc')->where('user_id', auth()->user()->id)->get();
+        $sql = AdmissionForm::with('moneyReceipt')->orderBy('created_at', 'desc')->where('user_id', auth()->user()->id);
+        if (isset(request()->search)){
+            $sql->where('batch_no', request()->search);
+        }
+        $moneyReceipt = $sql->paginate(50);
         return view('backend.users.task.money-receipt', compact('moneyReceipt'));
     }
     public function addmissionList(){
-        $admissionForms = AdmissionForm::with('moneyReceipt')->orderBy('created_at', 'desc')->where('user_id', auth()->user()->id)->get();
+        $sql = AdmissionForm::with('moneyReceipt')->orderBy('created_at', 'desc')->where('user_id', auth()->user()->id);
+        if (isset(request()->search) && isset(auth()->user()->id)){
+            $sql->where('batch_no', request()->search);
+        }
+
+        $admissionForms = $sql->paginate(50);
         return view('backend.users.task.addmission-list', compact('admissionForms'));
     }
     public function moneyReceiptView($id){
@@ -211,7 +232,7 @@ class UserController extends Controller
     //============= Update information ================//
     public function updateInformation($id)
     {
-         $interest = Intereste::with('task')->find($id);
+        $interest = Intereste::with('task')->find($id);
         if ($interest == null){
             return redirect()->back();
         }

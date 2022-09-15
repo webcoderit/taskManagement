@@ -25,14 +25,33 @@
             <hr/>
             <div class="card">
                 <div class="card-body">
+                    <form class="form-group" action="{{ url('/addmission/list') }}" method="get">
+                        @csrf
+                        <div class="col-md-12" style="padding-left: 10%;">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-4">
+                                    <input type="number" name="search" class="form-control" placeholder="Enter only batch no...">
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                        <a href="{{ url('/addmission/list') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="text-align-last: end;"></div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th>Date</th>
                                 <th>Course Name</th>
                                 <th>Name</th>
                                 <th>Profession</th>
+                                <th>Batch No</th>
                                 <th>Phone</th>
                                 <th>Gender</th>
                                 <th>Action</th>
@@ -53,6 +72,7 @@
                                     </td>
                                     <td>{{ $admissionForm->s_name }}</td>
                                     <td>{{ $admissionForm->profession }}</td>
+                                    <td>{{ $admissionForm->batch_no }}</td>
                                     <td>{{ $admissionForm->s_phone }}</td>
                                     <td>{{ $admissionForm->gender }}</td>
                                     <td width="15%">
@@ -66,6 +86,7 @@
                             </tbody>
                         </table>
                     </div>
+                    {{ $admissionForms->links() }}
                 </div>
             </div>
         </div>

@@ -160,7 +160,7 @@
                                 <select name="batch_no" id="batchNo" class="form-control">
                                     <option selected disabled>--- Select Batch No ---</option>
                                     @foreach($data['admissionStudentsBatch'] as $batchNo)
-                                        <option value="{{ $batchNo[0]->batch_no }}">{{ ucfirst($batchNo[0]->course) }} - {{ ucfirst($batchNo[0]->batch_no) }}</option>
+                                        <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ ucfirst($batchNo->batch_no) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -221,9 +221,9 @@
                             @foreach($admissionStudents as $admissionStudent)
                                 <tr>
                                     @if($admissionStudent->admin_check == null)
-                                    <td>
-                                        <input type="checkbox" name="admin_check[]" value="{{ $admissionStudent->id }}" />
-                                    </td>
+                                        <td>
+                                            <input type="checkbox" name="admin_check[]" value="{{ $admissionStudent->id }}" />
+                                        </td>
                                     @else
                                         <td>
                                             <span class="badge rounded-pill bg-success">Checked</span>
@@ -244,6 +244,7 @@
                                     <td>{{ $admissionStudent->s_name?? '' }}</td>
                                     <td>{{ $admissionStudent->s_phone ?? '' }}</td>
                                     <td>{{ $admissionStudent->s_email ?? '' }}</td>
+                                    <td>{{ $admissionStudent->moneyReceipt->transaction_id ?? '' }}</td>
                                     <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
                                     <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
                                     <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>

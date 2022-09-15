@@ -133,7 +133,7 @@ class HRController extends Controller
 
     public function studentList(){
         $data = [
-            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
+            'admissionStudentsBatch' => Batch::select(['batch_no', 'course_name'])->orderByDesc('created_at')->paginate(30),
             'batch' => Batch::orderByDesc('created_at')->get(),
         ];
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at')->where('is_reject', 0);

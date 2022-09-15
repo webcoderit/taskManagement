@@ -30,10 +30,10 @@
                             <div class="col-md-12" style="padding-left: 10%;">
                                 <div class="row">
                                     <div class="col-md-3"></div>
-                                    <div class="col-md-3">
-                                        <input type="search" name="search" class="form-control" placeholder="Enter only phone number">
+                                    <div class="col-md-4">
+                                        <input type="search" name="search" class="form-control" placeholder="Enter Phone Number & Full Name">
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="input-group">
                                             <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
                                             <a href="{{ url('/all/task') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
