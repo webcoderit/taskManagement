@@ -115,9 +115,11 @@ class AdminController extends Controller
         $data = [
             'users' => User::orderBy('updated_at', 'desc')->get(),
 
-            'todayAmounts' => MoneyReceipt::with('admissionForm')->whereDate('admission_date', Carbon::today())->get(),
+            'todayAmountsAdvance' => MoneyReceipt::with('admissionForm')->select(['advance'])->whereDate('admission_date', Carbon::today())->get(),
+            'todayAmountsDue' => MoneyReceipt::with('admissionForm')->select(['due'])->whereDate('admission_date', Carbon::today())->get(),
 
-            'monthlyAmounts' => MoneyReceipt::with('admissionForm')->whereMonth('admission_date', date('m'))->get(),
+            'monthlyAmountsAdvance' => MoneyReceipt::with('admissionForm')->select(['advance'])->whereMonth('admission_date', date('m'))->get(),
+            'monthlyAmountsDue' => MoneyReceipt::with('admissionForm')->select(['due'])->whereMonth('admission_date', date('m'))->get(),
 
             'monthlyWebAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
                 $q->where('course', 'web');
@@ -140,11 +142,11 @@ class AdminController extends Controller
                 $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
             })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
             $admissionStudents = $sql->paginate(200);
-            $totalDue = MoneyReceipt::where('is_reject', 0)->get()->sum('due');
+            $totalDue = MoneyReceipt::get()->sum('due');
             return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
         }
         $admissionStudents = '';
-        $totalDue = MoneyReceipt::where('is_reject', 0)->get()->sum('due');
+        $totalDue = MoneyReceipt::get()->sum('due');
         return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
     }
 
@@ -201,10 +203,11 @@ class AdminController extends Controller
 
     public function dueClear(Request $request, $id)
     {
+        //dd($request->is_pay);
         $this->validate($request, [
             'total_fee' => 'required',
             'due' => 'required',
-            'is_paid' => 'required',
+            'is_pay' => 'required',
         ]);
 
         try {

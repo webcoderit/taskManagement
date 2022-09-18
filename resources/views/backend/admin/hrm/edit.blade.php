@@ -1,5 +1,14 @@
 @extends('backend.admin.hr-master')
 
+@push('style')
+    <style>
+        select[readonly]
+        {
+            pointer-events: none;
+        }
+    </style>
+@endpush
+
 @section('content')
 	<section class="student-due-edit-section" style="padding: 1.5rem;margin-left: 20px;">
 			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -48,10 +57,10 @@
                                 <input type="number" name="due_payment" id="due_payment" placeholder="Payment" onchange="calculate()" class="form-control">
 								<div id="payType" style="display: none;">
                                     <label style="font-weight: 600;">Is Pay</label>
-                                    <select class="form-control mt-2" name="is_pay" id="isPay" onclick="isPayStudent(this.value)" required disabled>
+                                    <select class="form-control mt-2" name="is_pay" id="isPay" onclick="isPayStudent(this.value)" required readonly>
                                         <option selected disabled>Select A Option</option>
-                                        <option id="yes" value="1">Yes</option>
-                                        <option id="partial" value="1">Partial</option>
+                                        <option id="yes" value="1">Paid</option>
+                                        <option id="partial" value="1">Paid Partial</option>
                                         <option id="no" value="0">No</option>
                                     </select>
                                 </div>

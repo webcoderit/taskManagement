@@ -78,7 +78,7 @@
                                 <th>Amount</th>
                                 <th>Minute</th>
                                 <th width="40%">Note</th>
-                                <th width="15%">Action</th>
+{{--                                <th width="15%">Action</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -93,14 +93,14 @@
                                     <td>{{ number_format($expanse->price,2) }}</td>
                                     <td>{{ $expanse->minute ?? '0' }} Minute</td>
                                     <td>{{ ucfirst($expanse->note) }}</td>
-                                    <td>
-                                        <a href="{{ url('/edit/expanse/'.$expanse->id) }}" class="btn btn-info">
-                                            <i class="bx bx-edit-alt"></i>
-                                        </a>
-                                        {{-- <a href="{{ url('/delete/expanse/'.$expanse->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure delete this information ?')">
-                                            <i class="bx bx-trash-alt"></i>
-                                        </a> --}}
-                                    </td>
+{{--                                    <td>--}}
+{{--                                        <a href="{{ url('/edit/expanse/'.$expanse->id) }}" class="btn btn-info">--}}
+{{--                                            <i class="bx bx-edit-alt"></i>--}}
+{{--                                        </a>--}}
+{{--                                        --}}{{-- <a href="{{ url('/delete/expanse/'.$expanse->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure delete this information ?')">--}}
+{{--                                            <i class="bx bx-trash-alt"></i>--}}
+{{--                                        </a> --}}
+{{--                                    </td>--}}
                                 </tr>
                                 @php
                                     $sum += $expanse->price

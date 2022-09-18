@@ -14,7 +14,7 @@
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Admission Advance</p>
                         <h3 class="mb-3 text-white">
-                            {{ number_format($data['todayAmounts']->sum('advance'),2 ?? 0) }}
+                            {{ number_format($data['todayAmountsAdvance']->sum('advance'),2 ?? 0) }}
                         </h3>
                         <span style="background-color: purple;
                             color: white;
@@ -32,7 +32,7 @@
                 <div class="card radius-10" style="background-color: darkred">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Admission Due</p>
-                        <h3 class="mb-3 text-white">{{ number_format($data['todayAmounts']->sum('due'),2 ?? 0) }}</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($data['todayAmountsDue']->sum('due'),2 ?? 0) }}</h3>
                         <div id="chart4"></div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="card radius-10" style="background-color: deepskyblue">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Admission Advance</p>
-                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmounts']->sum('advance'),2 ?? 0) }}</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmountsAdvance']->sum('advance'),2 ?? 0) }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="card radius-10" style="background-color: rebeccapurple">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Admission Due</p>
-                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmounts']->sum('due'),2 ?? 0) }}</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmountsDue']->sum('due'),2 ?? 0) }}</h3>
                         <div id="chart3"></div>
                     </div>
                 </div>

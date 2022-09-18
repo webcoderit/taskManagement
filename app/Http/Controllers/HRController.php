@@ -190,7 +190,7 @@ class HRController extends Controller
     {
         $admissionPaidStudents = AdmissionForm::with('moneyReceipt')
             ->whereHas('moneyReceipt', function ($q){
-                $q->where('due', 0);
+                $q->where('due', 0)->orderBy('updated_at', 'desc');
             })
             ->get();
         return view('backend.admin.hrm.student-paid-list', compact('admissionPaidStudents'));
@@ -200,7 +200,7 @@ class HRController extends Controller
     {
         if (isset(request()->batch_no)){
             $sql = AdmissionForm::with('moneyReceipt', 'user')->whereHas('moneyReceipt', function ($q){
-                $q->where('is_pay', 0)->where('due', '!=', 0)->where('is_reject', 0);
+                $q->where('is_pay', 0)->where('due', '!=', 0)->where('is_reject', 0)->orderBy('updated_at', 'desc');
             });
             $sql->where('batch_no', request()->batch_no);
 
@@ -210,7 +210,7 @@ class HRController extends Controller
         }
         $admissionDueStudents = AdmissionForm::with('moneyReceipt')
             ->whereHas('moneyReceipt', function ($q){
-                $q->where('is_pay', 0)->where('due', '!=', 0)->where('is_reject', 0);
+                $q->where('is_pay', 0)->where('due', '!=', 0)->where('is_reject', 0)->orderBy('updated_at', 'desc');
             })
             ->get();
         $batchs = Batch::orderByDesc('created_at')->get();
