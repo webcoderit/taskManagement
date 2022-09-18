@@ -592,4 +592,23 @@ class AdminController extends Controller
         $batchs = Batch::orderByDesc('created_at')->paginate(200);
         return view('backend.admin.home.due-collect', compact('admissionStudents', 'batchs'));
     }
+
+    //Admin dashboard action
+    public function todayAdmissionAdvanceInfo()
+    {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereDate('admission_date', Carbon::today()->format('Y-m-d'));
+
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.today-admission-advance-list', compact('admissionStudentsDateFiltering'));
+    }
+
+    public function monthlyAdmissionAdvanceInfo()
+    {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereMonth('admission_date', Carbon::today()->format('m'));
+
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.today-admission-advance-list', compact('admissionStudentsDateFiltering'));
+    }
 }

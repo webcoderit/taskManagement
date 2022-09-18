@@ -83,6 +83,12 @@ Route::group(['prefix' => 'admin'], function(){
 
             //================= Batch student list download ================//
             Route::get('/student/batch/wise/download/{batchStudent}', [App\Http\Controllers\Admin\AdminController::class, 'studentDownloadFromBatchNumber']);
+
+            //================= Admission and due report ================//
+            Route::get('/today/admission/advance/info', [App\Http\Controllers\Admin\AdminController::class, 'todayAdmissionAdvanceInfo']);
+            Route::get('/monthly/admission/advance/info', [App\Http\Controllers\Admin\AdminController::class, 'monthlyAdmissionAdvanceInfo']);
+            Route::get('/today/due/collect/info', [App\Http\Controllers\Admin\AdminController::class, 'todayDueCollectInfo']);
+            Route::get('/monthly/due/collect/info', [App\Http\Controllers\Admin\AdminController::class, 'monthlyDueCollectInfo']);
         });
     });
 });

@@ -58,17 +58,19 @@
         </div><!--end row-->
         <!--Admission debit and credit calculation-->
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-5 row-cols-xxl-5">
-            <div class="col">
-                <div class="card radius-10" style="background-color: #0bb2d3">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Today Admission Advance</p>
-                        <h3 class="mb-3 text-white">
-                            {{ number_format($todayCredit,2 ?? 0) }} Tk.
-                        </h3>
-                        <div id="chart1"></div>
+            <a href="{{ url('/admin/user/today/admission/advance/info') }}">
+                <div class="col">
+                    <div class="card radius-10" style="background-color: #0bb2d3">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Today Admission Advance</p>
+                            <h3 class="mb-3 text-white">
+                                {{ number_format($todayCredit,2 ?? 0) }} Tk.
+                            </h3>
+                            <div id="chart1"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             <div class="col">
                 <div class="card radius-10" style="background-color: darkred">
                     <div class="card-body text-center">
@@ -78,33 +80,39 @@
                     </div>
                 </div>
             </div>
-            <div class="col col-md-12">
-                <div class="card radius-10" style="background-color: orangered">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Today Due Collection</p>
-                        <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereDate('updated_at', \Carbon\Carbon::today())->get()->sum('today_pay') }} Tk.</h3>
-                        <div id="chart5"></div>
+            <a href="{{ url('/admin/user/today/due/collect/info') }}">
+                <div class="col col-md-12">
+                    <div class="card radius-10" style="background-color: orangered">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Today Due Collection</p>
+                            <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereDate('updated_at', \Carbon\Carbon::today())->get()->sum('today_pay') }} Tk.</h3>
+                            <div id="chart5"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card radius-10" style="background-color: rebeccapurple">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Today Total Expanse</p>
-                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereDate('created_at', \Carbon\Carbon::today())->get()->sum('price'),2) }} Tk.</h3>
-                        <div id="chart3"></div>
+            </a>
+            <a href="{{ url('/admin/user/monthly/due/collect/info') }}">
+                <div class="col">
+                    <div class="card radius-10" style="background-color: rebeccapurple">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Today Total Expanse</p>
+                            <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereDate('created_at', \Carbon\Carbon::today())->get()->sum('price'),2) }} Tk.</h3>
+                            <div id="chart3"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card radius-10" style="background-color: deepskyblue">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Monthly Admission Advance</p>
-                        <h3 class="mb-3 text-white">{{ number_format($monthlyCredit,2 ?? 0) }} Tk.</h3>
-                        <div id="chart2"></div>
+            </a>
+            <a href="{{ url('/admin/user/monthly/admission/advance/info') }}">
+                <div class="col">
+                    <div class="card radius-10" style="background-color: deepskyblue">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Monthly Admission Advance</p>
+                            <h3 class="mb-3 text-white">{{ number_format($monthlyCredit,2 ?? 0) }} Tk.</h3>
+                            <div id="chart2"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             <div class="col">
                 <div class="card radius-10" style="background-color: rebeccapurple">
                     <div class="card-body text-center">
