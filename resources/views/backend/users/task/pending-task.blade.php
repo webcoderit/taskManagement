@@ -52,6 +52,7 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Profession</th>
+                                <th>Laptop/PC</th>
                                 <th width="10%">Status</th>
                                 <th width="10%">Action</th>
                             </tr>
@@ -64,6 +65,7 @@
                                     <td>{{ $data->email ?? '' }}</td>
                                     <td>{{ $data->phone ?? '' }}</td>
                                     <td>{{ $data->profession ?? '' }}</td>
+                                    <td>{{ $data->device ?? '' }}</td>
                                     <td width="10%">
                                         <span style="background: red; color: #fff; padding: 5px">Padding</span>
                                     </td>

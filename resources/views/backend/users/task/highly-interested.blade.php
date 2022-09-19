@@ -52,6 +52,7 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Profession</th>
+                                <th>Laptop/PC</th>
                                 <th>Note</th>
                                 <th>Action</th>
                             </tr>
@@ -64,6 +65,7 @@
                                         <td>{{ $data->task->email ?? '' }}</td>
                                         <td>{{ $data->task->phone ?? '' }}</td>
                                         <td>{{ $data->task->profession ?? '' }}</td>
+                                        <td>{{ $data->task->device ?? '' }}</td>
                                         <td>{{ $data->note ?? '' }}</td>
                                         <td width="5%">
                                             <a href="{{ url('/update/information/'.$data->id) }}" class="btn btn-sm btn-primary" title="Update information">

@@ -71,27 +71,29 @@
                     </div>
                 </div>
             </a>
-            <div class="col">
-                <div class="card radius-10" style="background-color: darkred">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Today Admission Due</p>
-                        <h3 class="mb-3 text-white">{{ number_format($todayDue,2 ?? 0) }} Tk.</h3>
-                        <div id="chart4"></div>
+            <a href="{{ url('/admin/user/today/admission/due/info') }}">
+                <div class="col">
+                    <div class="card radius-10" style="background-color: darkred">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Today Admission Due</p>
+                            <h3 class="mb-3 text-white">{{ number_format($todayDue,2 ?? 0) }} Tk.</h3>
+                            <div id="chart4"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             <a href="{{ url('/admin/user/today/due/collect/info') }}">
                 <div class="col col-md-12">
                     <div class="card radius-10" style="background-color: orangered">
                         <div class="card-body text-center">
                             <p class="mb-1 text-white">Today Due Collection</p>
-                            <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereDate('updated_at', \Carbon\Carbon::today())->get()->sum('today_pay') }} Tk.</h3>
+                            <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::with('admissionForm')->whereDate('updated_at', \Carbon\Carbon::today())->where('is_pay', 1)->get()->sum('today_pay') }} Tk.</h3>
                             <div id="chart5"></div>
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="{{ url('/admin/user/monthly/due/collect/info') }}">
+            <a href="{{ url('/admin/user/today/total/expanse/info') }}">
                 <div class="col">
                     <div class="card radius-10" style="background-color: rebeccapurple">
                         <div class="card-body text-center">
@@ -113,6 +115,7 @@
                     </div>
                 </div>
             </a>
+            <a href="{{ url('/admin/user/monthly/admission/due/info') }}">
             <div class="col">
                 <div class="card radius-10" style="background-color: rebeccapurple">
                     <div class="card-body text-center">
@@ -122,35 +125,41 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col">
-                <div class="card radius-10" style="background-color: rebeccapurple">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Monthly Due Collection</p>
-                        <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereMonth('updated_at', date('m'))->where('is_pay', 1)->get()->sum('today_pay') }} Tk.</h3>
-                        <div id="chart3"></div>
+            </a>
+            <a href="{{ url('/admin/user/monthly/due/collect/info') }}">
+                <div class="col">
+                    <div class="card radius-10" style="background-color: rebeccapurple">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Monthly Due Collection</p>
+                            <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereMonth('updated_at', date('m'))->where('is_pay', 1)->get()->sum('today_pay') }} Tk.</h3>
+                            <div id="chart3"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col">
-                <div class="card radius-10" style="background-color: orangered">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Monthly Total Expanse</p>
-                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereMonth('created_at', date('m'))->get()->sum('price'),2) }} Tk.</h3>
-                        <div id="chart5"></div>
+            </a>
+            <a href="{{ url('/admin/user/monthly/total/expanse/info') }}">
+                <div class="col">
+                    <div class="card radius-10" style="background-color: orangered">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Monthly Total Expanse</p>
+                            <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereMonth('created_at', date('m'))->get()->sum('price'),2) }} Tk.</h3>
+                            <div id="chart5"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col col-md-12">
-                <div class="card radius-10" style="background-color: orangered">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Total Due</p>
-                        <h3 class="mb-3 text-white">{{ number_format($totalDue,2 ?? 0) }} Tk.</h3>
-                        <div id="chart5"></div>
+            </a>
+            <a href="{{ url('/admin/user/total/due/info') }}">
+                <div class="col col-md-12">
+                    <div class="card radius-10" style="background-color: orangered">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Total Due</p>
+                            <h3 class="mb-3 text-white">{{ number_format($totalDue,2 ?? 0) }} Tk.</h3>
+                            <div id="chart5"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
+            <a href="{{ url('/admin/user/total/collect/due/info') }}">
             <div class="col col-md-12">
                 <div class="card radius-10" style="background-color: orangered">
                     <div class="card-body text-center">
@@ -160,6 +169,8 @@
                     </div>
                 </div>
             </div>
+            </a>
+            <a href="{{ url('/admin/user/total/admission/advance/info') }}">
             <div class="col col-md-12">
                 <div class="card radius-10" style="background-color: orangered">
                     <div class="card-body text-center">
@@ -169,6 +180,8 @@
                     </div>
                 </div>
             </div>
+            </a>
+            <a href="{{ url('/admin/user/total/expanse/info') }}">
             <div class="col col-md-12">
                 <div class="card radius-10" style="background-color: orangered">
                     <div class="card-body text-center">
@@ -178,6 +191,8 @@
                     </div>
                 </div>
             </div>
+            </a>
+            <a href="{{ url('/admin/user/total/adm/admission/info') }}">
             <div class="col">
                 <div class="card radius-10" style="background-color: #CD5C5C">
                     <div class="card-body text-center">
@@ -187,6 +202,8 @@
                     </div>
                 </div>
             </div>
+            </a>
+            <a href="{{ url('/admin/user/total/web/admission/info') }}">
             <div class="col">
                 <div class="card radius-10" style="background-color: #6495ED">
                     <div class="card-body text-center">
@@ -196,6 +213,8 @@
                     </div>
                 </div>
             </div>
+            </a>
+            <a href="{{ url('/admin/user/total/eng/admission/info') }}">
             <div class="col col-md-12">
                 <div class="card radius-10" style="background-color: #800080">
                     <div class="card-body text-center">
@@ -205,16 +224,18 @@
                     </div>
                 </div>
             </div>
+            </a>
+            <a href="{{ url('/admin/user/total/monthly/admission/info') }}">
             <div class="col col-md-12">
                 <div class="card radius-10" style="background-color: #641111">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Total Monthly Admission</p>
                         <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereMonth('admission_date', date('m'))->count() }}</h3>
                         <div id="chart5"></div>
-
                     </div>
                 </div>
             </div>
+            </a>
         </div>
         <div class="card radius-10 p-4">
             <div class="row">

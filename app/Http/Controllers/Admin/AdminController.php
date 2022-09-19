@@ -611,4 +611,81 @@ class AdminController extends Controller
         $admissionStudentsDateFiltering = $sqlFiltering->get();
         return view('backend.admin.pdf.today-admission-advance-list', compact('admissionStudentsDateFiltering'));
     }
+    public function todayDueCollectInfo()
+    {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('updated_at', 'desc')
+            ->whereDate('updated_at', Carbon::today())->where('is_pay', 1);
+
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.today-due-collect-list', compact('admissionStudentsDateFiltering'));
+    }
+
+    public function monthlyDueCollectInfo()
+    {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('updated_at', 'desc')
+            ->whereMonth('updated_at', date('m'))->where('is_pay', 1);
+
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.monthly-due-collect-list', compact('admissionStudentsDateFiltering'));
+    }
+
+    public function todayAdmissionDue()
+    {
+
+    }
+
+    public function todayTotalExpanseInfo()
+    {
+
+    }
+
+    public function monthlyAdmissionDueInfo()
+    {
+
+    }
+
+    public function monthlyTotalExpanseInfo()
+    {
+
+    }
+
+    public function totalDueInfo()
+    {
+
+    }
+
+    public function totalCollectDueInfo()
+    {
+
+    }
+
+    public function totalAdmissionAdvanceInfo()
+    {
+
+    }
+
+    public function totalExpanseInfo()
+    {
+
+    }
+
+    public function totalAdmAdmission()
+    {
+
+    }
+
+    public function totalWebAdmission()
+    {
+
+    }
+
+    public function totalEngAdmission()
+    {
+
+    }
+
+    public function totalMonthlyAdmissionList()
+    {
+
+    }
 }
