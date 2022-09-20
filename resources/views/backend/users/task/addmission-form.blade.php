@@ -63,37 +63,37 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
-                                     <label for="student_name">Student Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="s_name" value="{{ old('s_name') }}" placeholder="Student Name" class="form-control">
+                                    <label for="student_name">Student Name</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="s_name" value="{{ old('s_name') }}" placeholder="Student Name" class="form-control">
                                     <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="email">Email</label><br>
-                                     <input type="email" name="s_email" value="{{ old('s_email') }}" placeholder="Student Email" class="form-control">
+                                    <label for="email">Email</label><br>
+                                    <input type="email" name="s_email" value="{{ old('s_email') }}" placeholder="Student Email" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="father_name">Father Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="f_name" value="{{ old('f_name') }}" placeholder="Father Name" class="form-control">
+                                    <label for="father_name">Father Name</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="f_name" value="{{ old('f_name') }}" placeholder="Father Name" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="mother_name">Mother Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="m_name" value="{{ old('m_name') }}" placeholder="Mother Name" class="form-control">
+                                    <label for="mother_name">Mother Name</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="m_name" value="{{ old('m_name') }}" placeholder="Mother Name" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="student_phone">Student Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="tel" name="s_phone" value="{{ old('s_phone') }}" placeholder="Student Phone No." class="form-control">
+                                    <label for="student_phone">Student Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="tel" name="s_phone" value="{{ old('s_phone') }}" placeholder="Student Phone No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="father_phone">Father Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="tel" name="f_phone" value="{{ old('f_phone') }}" placeholder="Father Phone No." class="form-control">
+                                    <label for="father_phone">Father Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="tel" name="f_phone" value="{{ old('f_phone') }}" placeholder="Father Phone No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="birth_date">Date Of Birth</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="date" name="dob" value="{{ old('dob') }}" placeholder="Date Of Birth" class="form-control">
+                                    <label for="birth_date">Date Of Birth</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="date" name="dob" value="{{ old('dob') }}" placeholder="Date Of Birth" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="profession">Profession</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="profession" value="{{ old('profession') }}" placeholder="Student Profession" class="form-control">
+                                    <label for="profession">Profession</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="profession" value="{{ old('profession') }}" placeholder="Student Profession" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="gender">Gender</label><span style="color: red; font-size: 16px;"> *</span>
@@ -107,51 +107,51 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="blood_group">Blood Group</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="blood_group" value="{{ old('blood_group') }}" placeholder="Blood Group " class="form-control">
+                                    <label for="blood_group">Blood Group</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="blood_group" value="{{ old('blood_group') }}" placeholder="Blood Group " class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="qualificaton">Educational Qualification</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="qualification" value="{{ old('qualification') }}" placeholder="Educational Qualifications" class="form-control">
+                                    <label for="qualificaton">Educational Qualification</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="qualification" value="{{ old('qualification') }}" placeholder="Educational Qualifications" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="nid_birth_no">NID/Birth Certificate No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="number" name="nid" value="{{ old('nid') }}" placeholder="NID/Birth Certificate No." class="form-control">
+                                    <label for="nid_birth_no">NID/Birth Certificate No.</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="number" name="nid" value="{{ old('nid') }}" placeholder="NID/Birth Certificate No." class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="student_fb_name">Student FB Name/ FB Link</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="fb_id" value="{{ old('fb_id') }}" placeholder="Student FB Name or ID" class="form-control">
+                                    <label for="student_fb_name">Student FB Name/ FB Link</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="fb_id" value="{{ old('fb_id') }}" placeholder="Student FB Name or ID" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                     <label for="student_ref_name">Student Reference Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <input type="text" name="reference" value="{{ old('reference') }}" placeholder="Student Reference Name" class="form-control">
+                                    <label for="student_ref_name">Student Reference Name</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="reference" value="{{ old('reference') }}" placeholder="Student Reference Name" class="form-control">
                                 </div>
                                 <div class="col-md-12">
-                                     <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <textarea name="present_address" rows="2" cols="50" class="form-control">{{ old('present_address') }}</textarea>
+                                    <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <textarea name="present_address" rows="2" cols="50" class="form-control">{{ old('present_address') }}</textarea>
                                 </div>
                                 <div class="col-md-12 mb-2">
                                     <label>Other Admission</label><br>
-                                     <input type="checkbox" id="other_admission" name="other_admission" value="1" style="margin-bottom: 0;height: 15px;margin-right: 5px;" onclick="otherAdmission()">
-                                     <label for="other_admission" style="font-weight: 400;">Other Way Admission</label>
+                                    <input type="checkbox" id="other_admission" name="other_admission" value="1" style="margin-bottom: 0;height: 15px;margin-right: 5px;" onclick="otherAdmission()">
+                                    <label for="other_admission" style="font-weight: 400;">Other Way Admission</label>
                                 </div>
                                 <div class="col-md-12" id="myAdmission" style="display: none">
-                                     <label for="present_address">
-                                         Other Way Admission Note
-                                     </label><br>
-                                     <textarea name="other_admission_note" id="other_admission_note" rows="2" cols="50" class="form-control">{{ old('other_admission_note') }}</textarea>
+                                    <label for="present_address">
+                                        Other Way Admission Note
+                                    </label><br>
+                                    <textarea name="other_admission_note" id="other_admission_note" rows="2" cols="50" class="form-control">{{ old('other_admission_note') }}</textarea>
                                 </div>
                                 <div class="col-md-3">
-                                     <label for="course">Course Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <select name="course" id="course" class="form-control">
-                                          <option disabled selected>---Select Course Name---</option>
-                                          <option value="web">Full Stack Web Development</option>
-                                          <option value="digital">Digital Marketing</option>
-                                          <option value="english">Communication English</option>
+                                    <label for="course">Course Name</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <select name="course" id="course" class="form-control">
+                                        <option disabled selected>---Select Course Name---</option>
+                                        <option value="web">Full Stack Web Development</option>
+                                        <option value="digital">Digital Marketing</option>
+                                        <option value="english">Communication English</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                     <label for="batch_no">Batch No.</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <label for="batch_no">Batch No.</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <select name="batch_no" id="batch_no" class="form-control">
                                         <option disabled selected>---Select Batch Number---</option>
                                         @foreach($batchNumber as $batch)
@@ -160,35 +160,39 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                     <label for="batch_type">Batch Type</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                     <select name="batch_type" id="batch_type" class="form-control">
-                                          <option disabled selected>---Select Batch Type---</option>
-                                          <option value="online">Online</option>
-                                          <option value="offline">Offline</option>
+                                    <label for="batch_type">Batch Type</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <select name="batch_type" id="batch_type" class="form-control">
+                                        <option disabled selected>---Select Batch Type---</option>
+                                        <option value="online">Online</option>
+                                        <option value="offline">Offline</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="text" name="admission_date" value="{{ date('Y-m-d') }}" readonly min="{{ date('Y-m-d') }}" placeholder="Admission Date" class="form-control">
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="cash">Payment Type</label><br>
                                     <select name="payment_type" id="payment_type" class="form-control" onchange="chargeField(this.value)">
-                                          <option disabled selected>---Select Payment Type---</option>
-                                          <option value="cash">Cash</option>
-                                          <option value="bkash">Bkash</option>
-                                          <option value="nagad">Nagad</option>
-                                          <option value="rocket">Rocket</option>
-                                          <option value="bank">Bank</option>
+                                        <option disabled selected>---Select Payment Type---</option>
+                                        <option value="cash">Cash</option>
+                                        <option value="bkash">Bkash</option>
+                                        <option value="nagad">Nagad</option>
+                                        <option value="rocket">Rocket</option>
+                                        <option value="bank">Bank</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="advance">Bkash / Rocket / Nogod Charge</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                <div class="col-md-3">
+                                    <label for="advance">Transaction Cost</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="number" name="online_charge" value="{{old('online_charge')}}" id="online_charge" placeholder="Online Charge" class="form-control">
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="advance">Transaction ID</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="text" name="transaction_id" value="{{old('transaction_id')}}" id="transaction_id" placeholder="Transaction Id" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="transaction_number">Transaction Number</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                    <input type="text" name="transaction_number" value="{{old('transaction_number')}}" id="transaction_number" placeholder="Transaction Number" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="total_fee">Total Fee</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -220,7 +224,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                <label for="avatar" class="mt-2">Avatar</label>
+                                    <label for="avatar" class="mt-2">Avatar</label>
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
                                             <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" onchange="imagePreview(event)" />

@@ -631,61 +631,103 @@ class AdminController extends Controller
 
     public function todayAdmissionDue()
     {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereDate('admission_date', Carbon::today()->format('Y-m-d'));
 
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.today-admission-due-list', compact('admissionStudentsDateFiltering'));
     }
 
     public function todayTotalExpanseInfo()
     {
-
+        $todayTotalExpanseLists = Expance::with('user')->orderBy('created_at', 'desc')->whereDate('created_at', Carbon::today())->get();
+        return view('backend.admin.pdf.today-total-expanse', compact('todayTotalExpanseLists'));
     }
 
     public function monthlyAdmissionDueInfo()
     {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereMonth('admission_date', Carbon::today()->format('m'));
 
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.monthly-admission-due-list', compact('admissionStudentsDateFiltering'));
     }
 
     public function monthlyTotalExpanseInfo()
     {
-
+        $monthTotalExpanseLists = Expance::with('user')->orderBy('created_at', 'desc')->whereMonth('created_at', Carbon::today()->format('m'))->get();
+        return view('backend.admin.pdf.monthly-total-expanse-list', compact('monthTotalExpanseLists'));
     }
 
     public function totalDueInfo()
     {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc');
 
+        $admissionStudentsTotalDue = $sqlFiltering->get();
+        return view('backend.admin.pdf.total-due', compact('admissionStudentsTotalDue'));
     }
 
     public function totalCollectDueInfo()
     {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('updated_at', 'desc');
 
+        $totalDueCollectLists = $sqlFiltering->get();
+        return view('backend.admin.pdf.total-due-collect-list', compact('totalDueCollectLists'));
     }
 
     public function totalAdmissionAdvanceInfo()
     {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc');
 
+        $totalAdmissionAdvance = $sqlFiltering->get();
+        return view('backend.admin.pdf.total-admission-advance', compact('totalAdmissionAdvance'));
     }
 
     public function totalExpanseInfo()
     {
-
+        $todayExpanseLists = Expance::with('user')->orderBy('created_at', 'desc')->get();
+        return view('backend.admin.pdf.total-expanse', compact('todayExpanseLists'));
     }
 
-    public function totalAdmAdmission()
+    public function totalMonthlyAdmAdmission()
     {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereMonth('admission_date', Carbon::today()->format('m'))->whereHas('admissionForm', function ($q){
+                $q->where('course', 'digital');
+            });
 
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.monthly-adm-admission', compact('admissionStudentsDateFiltering'));
     }
 
-    public function totalWebAdmission()
+    public function totalMonthlyWebAdmission()
     {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereMonth('admission_date', Carbon::today()->format('m'))->whereHas('admissionForm', function ($q){
+                $q->where('course', 'web');
+            });
 
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.monthly-web-admission', compact('admissionStudentsDateFiltering'));
     }
 
-    public function totalEngAdmission()
+    public function totalMonthlyEngAdmission()
     {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereMonth('admission_date', Carbon::today()->format('m'))->whereHas('admissionForm', function ($q){
+                $q->where('course', 'english');
+            });
 
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.monthly-eng-admission', compact('admissionStudentsDateFiltering'));
     }
 
     public function totalMonthlyAdmissionList()
     {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereMonth('admission_date', Carbon::today()->format('m'));
 
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.total-monthly-admission', compact('admissionStudentsDateFiltering'));
     }
 }

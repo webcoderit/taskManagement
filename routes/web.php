@@ -97,9 +97,9 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/total/collect/due/info', [App\Http\Controllers\Admin\AdminController::class, 'totalCollectDueInfo']);
             Route::get('/total/admission/advance/info', [App\Http\Controllers\Admin\AdminController::class, 'totalAdmissionAdvanceInfo']);
             Route::get('/total/expanse/info', [App\Http\Controllers\Admin\AdminController::class, 'totalExpanseInfo']);
-            Route::get('/total/adm/admission/info', [App\Http\Controllers\Admin\AdminController::class, 'totalAdmAdmission']);
-            Route::get('/total/web/admission/info', [App\Http\Controllers\Admin\AdminController::class, 'totalWebAdmission']);
-            Route::get('/total/eng/admission/info', [App\Http\Controllers\Admin\AdminController::class, 'totalEngAdmission']);
+            Route::get('/total/adm/admission/info', [App\Http\Controllers\Admin\AdminController::class, 'totalMonthlyAdmAdmission']);
+            Route::get('/total/web/admission/info', [App\Http\Controllers\Admin\AdminController::class, 'totalMonthlyWebAdmission']);
+            Route::get('/total/eng/admission/info', [App\Http\Controllers\Admin\AdminController::class, 'totalMonthlyEngAdmission']);
             Route::get('/total/monthly/admission/info', [App\Http\Controllers\Admin\AdminController::class, 'totalMonthlyAdmissionList']);
         });
     });
