@@ -155,6 +155,7 @@
 	                            </tbody>
 	                        </table>
 	                    </div>
+                        {{ $admissionStudents->links() }}
 	            </div>
 	        </div>
 	    </div>

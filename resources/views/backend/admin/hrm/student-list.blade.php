@@ -1,29 +1,29 @@
 @extends('backend.admin.hr-master')
 
 @section('content')
-	<div class="wrapper">
-	    <div class="page-wrapper" style="margin-left: 20px!important;">
-	        <div class="page-content">
+    <div class="wrapper">
+        <div class="page-wrapper" style="margin-left: 20px!important;">
+            <div class="page-content">
                 @if(Session::has('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success!</strong> {{ Session::get('success') }}.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                @endif
-	            <!--breadcrumb-->
-	            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-	                <div class="breadcrumb-title pe-3">Student List</div>
-	                <div class="ps-3">
-	                    <nav aria-label="breadcrumb">
-	                        <ol class="breadcrumb mb-0 p-0">
-	                            <li class="breadcrumb-item"><a href="{{ url('/admin/hr/dashboard') }}"><i class="bx bx-home-alt"></i></a>
-	                            </li>
-	                            <li class="breadcrumb-item active" aria-current="page">Student List</li>
-	                        </ol>
-	                    </nav>
-	                </div>
-	            </div>
-	            <!--end breadcrumb-->
+            @endif
+            <!--breadcrumb-->
+                <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                    <div class="breadcrumb-title pe-3">Student List</div>
+                    <div class="ps-3">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/hr/dashboard') }}"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Student List</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!--end breadcrumb-->
                 <div class="col-md-12">
                     <form action="{{ url('/admin/student/list') }}" method="get">
                         @csrf
@@ -43,7 +43,7 @@
                                     <select class="form-control" name="batch_number">
                                         <option selected disabled>----Select A Batch No----</option>
                                         @foreach($data['admissionStudentsBatch'] as $admissionStudentBatch)
-                                            <option value="{{ $admissionStudentBatch[0]->batch_no }}">{{ ucfirst($admissionStudentBatch[0]->course) }} - {{ ucfirst($admissionStudentBatch[0]->batch_no) }}</option>
+                                            <option value="{{ $admissionStudentBatch->batch_no }}">{{ ucfirst($admissionStudentBatch->course_name) }} - {{ ucfirst($admissionStudentBatch->batch_no) }}</option>
                                         @endforeach
                                     </select>
                                     <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
@@ -89,31 +89,31 @@
                         </div>
                     </form>
                 </div>
-	            <hr/>
-	            <div class="card">
-	                <div class="card-body">
-	                    <div class="table-responsive">
-	                        <table id="" class="table table-striped table-bordered">
-	                            <thead>
-	                            <tr>
-	                                <th>SL</th>
-	                                <th>Marketing Officer Name</th>
-	                                <th>Name</th>
-	                                <th>Email</th>
-	                                <th>Phone</th>
+                <hr/>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="" class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Marketing Officer Name</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
                                     <th>Student FB ID</th>
-	                                <th>Course Name</th>
-	                                <th>Batch No</th>
-	                                <th>Course Fee</th>
-	                                <th>First Payment</th>
-	                                <th>Second Payment</th>
-	                                <th>Due</th>
-	                                <th>Due Opinion</th>
-	                                <th>Admission Opinion</th>
-	                                <th>Action</th>
-	                            </tr>
-	                            </thead>
-	                            <tbody>
+                                    <th>Course Name</th>
+                                    <th>Batch No</th>
+                                    <th>Course Fee</th>
+                                    <th>First Payment</th>
+                                    <th>Second Payment</th>
+                                    <th>Due</th>
+                                    <th>Due Opinion</th>
+                                    <th>Admission Opinion</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 @foreach($admissionStudents as $admissionStudent)
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
@@ -155,21 +155,21 @@
                                                     <i class="bx bx-user-circle"></i>
                                                 </a>
                                             @endif
-                                                <a href="{{ url('/admin/admission/student/info/edit/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">
-                                                    <i class="bx bx-edit-alt"></i>
-                                                </a>
-                                                {{-- <a href="{{ url('/admin/admission/student/info/delete/'.$admissionStudent->id) }}" onclick="return confirm('Are you sure delete this student info ?')" class="btn btn-sm btn-danger">
-                                                    <i class="bx bx-trash-alt"></i>
-                                                </a> --}}
+                                            <a href="{{ url('/admin/admission/student/info/edit/'.$admissionStudent->id) }}" class="btn btn-sm btn-info">
+                                                <i class="bx bx-edit-alt"></i>
+                                            </a>
+                                            {{-- <a href="{{ url('/admin/admission/student/info/delete/'.$admissionStudent->id) }}" onclick="return confirm('Are you sure delete this student info ?')" class="btn btn-sm btn-danger">
+                                                <i class="bx bx-trash-alt"></i>
+                                            </a> --}}
                                         </td>
                                     </tr>
                                 @endforeach
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

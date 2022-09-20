@@ -14,7 +14,7 @@
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Admission Advance</p>
                         <h3 class="mb-3 text-white">
-                            {{ number_format($data['todayAmounts']->sum('advance'),2 ?? 0) }}
+                            {{ number_format($data['todayAmountsAdvance']->sum('advance'),2 ?? 0) }}
                         </h3>
                         <span style="background-color: purple;
                             color: white;
@@ -32,7 +32,7 @@
                 <div class="card radius-10" style="background-color: darkred">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Today Admission Due</p>
-                        <h3 class="mb-3 text-white">{{ number_format($data['todayAmounts']->sum('due'),2 ?? 0) }}</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($data['todayAmountsDue']->sum('due'),2 ?? 0) }}</h3>
                         <div id="chart4"></div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="card radius-10" style="background-color: deepskyblue">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Admission Advance</p>
-                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmounts']->sum('advance'),2 ?? 0) }}</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmountsAdvance']->sum('advance'),2 ?? 0) }}</h3>
                         <div id="chart2"></div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="card radius-10" style="background-color: rebeccapurple">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Monthly Admission Due</p>
-                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmounts']->sum('due'),2 ?? 0) }}</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmountsDue']->sum('due'),2 ?? 0) }}</h3>
                         <div id="chart3"></div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                                 <select name="batch_no" id="batchNo" class="form-control">
                                     <option selected disabled>--- Select Batch No ---</option>
                                     @foreach($data['admissionStudentsBatch'] as $batchNo)
-                                        <option value="{{ $batchNo[0]->batch_no }}">{{ ucfirst($batchNo[0]->course) }} - {{ ucfirst($batchNo[0]->batch_no) }}</option>
+                                        <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ ucfirst($batchNo->batch_no) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -221,9 +221,9 @@
                             @foreach($admissionStudents as $admissionStudent)
                                 <tr>
                                     @if($admissionStudent->admin_check == null)
-                                    <td>
-                                        <input type="checkbox" name="admin_check[]" value="{{ $admissionStudent->id }}" />
-                                    </td>
+                                        <td>
+                                            <input type="checkbox" name="admin_check[]" value="{{ $admissionStudent->id }}" />
+                                        </td>
                                     @else
                                         <td>
                                             <span class="badge rounded-pill bg-success">Checked</span>
@@ -244,6 +244,7 @@
                                     <td>{{ $admissionStudent->s_name?? '' }}</td>
                                     <td>{{ $admissionStudent->s_phone ?? '' }}</td>
                                     <td>{{ $admissionStudent->s_email ?? '' }}</td>
+                                    <td>{{ $admissionStudent->moneyReceipt->transaction_id ?? '' }}</td>
                                     <td>{{ $admissionStudent->moneyReceipt->total_fee ?? '' }}Tk.</td>
                                     <td>{{ $admissionStudent->moneyReceipt->advance ?? '' }}Tk.</td>
                                     <td>{{ $admissionStudent->moneyReceipt->due ?? '' }}Tk.</td>

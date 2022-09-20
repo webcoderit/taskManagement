@@ -66,16 +66,29 @@ class AdminController extends Controller
 
     public function deshboard()
     {
+        $admissionData = [
+            'monthlyWebAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
+                $q->where('course', 'web');
+            })->whereMonth('admission_date', date('m'))->paginate(200),
+
+            'monthlyAdmAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
+                $q->where('course', 'digital');
+            })->whereMonth('admission_date', date('m'))->paginate(700),
+
+            'monthlyEngAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
+                $q->where('course', 'english');
+            })->whereMonth('admission_date', date('m'))->paginate(200),
+        ];
         $start = request()->admission_filtering;
         $today = date('Y-m-d', strtotime(Carbon::today()));
         //dd('Start date '.$start. '-' . 'Today date '. $today);
         $startExpanse = request()->expanse_filtering;
         $todayExpanse = date('Y-m-d', strtotime(Carbon::today()));
         $filterAdmission = [
-            'admissionDayCount' => MoneyReceipt::whereBetween('admission_date', [$start, $today] )->get(),
+            'admissionDayCount' => MoneyReceipt::whereBetween('admission_date', [$start, $today] )->paginate(200),
         ];
         $filterExpanse = [
-            'expanse' => Expance::whereBetween('created_at', [$startExpanse, $todayExpanse] )->get(),
+            'expanse' => Expance::whereBetween('created_at', [$startExpanse, $todayExpanse] )->paginate(200),
         ];
         $users = User::orderBy('updated_at', 'desc')->get();
         $todayCredit = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('advance');
@@ -94,7 +107,7 @@ class AdminController extends Controller
             'todayDue', 'monthlyCredit',
             'monthlyDebit', 'totalDue',
             'labels', 'data',
-            'filterAdmission', 'filterExpanse'));
+            'filterAdmission', 'filterExpanse', 'admissionData'));
     }
 
     public function hr_dashboard()
@@ -102,23 +115,25 @@ class AdminController extends Controller
         $data = [
             'users' => User::orderBy('updated_at', 'desc')->get(),
 
-            'todayAmounts' => MoneyReceipt::with('admissionForm')->whereDate('admission_date', Carbon::today())->get(),
+            'todayAmountsAdvance' => MoneyReceipt::with('admissionForm')->select(['advance'])->whereDate('admission_date', Carbon::today())->get(),
+            'todayAmountsDue' => MoneyReceipt::with('admissionForm')->select(['due'])->whereDate('admission_date', Carbon::today())->get(),
 
-            'monthlyAmounts' => MoneyReceipt::with('admissionForm')->whereMonth('admission_date', date('m'))->get(),
+            'monthlyAmountsAdvance' => MoneyReceipt::with('admissionForm')->select(['advance'])->whereMonth('admission_date', date('m'))->get(),
+            'monthlyAmountsDue' => MoneyReceipt::with('admissionForm')->select(['due'])->whereMonth('admission_date', date('m'))->get(),
 
             'monthlyWebAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
                 $q->where('course', 'web');
-            })->whereMonth('admission_date', date('m'))->get(),
+            })->whereMonth('admission_date', date('m'))->paginate(200),
 
             'monthlyAdmAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
                 $q->where('course', 'digital');
-            })->whereMonth('admission_date', date('m'))->get(),
+            })->whereMonth('admission_date', date('m'))->paginate(700),
 
             'monthlyEngAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
                 $q->where('course', 'english');
-            })->whereMonth('admission_date', date('m'))->get(),
+            })->whereMonth('admission_date', date('m'))->paginate(200),
 
-            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
+            'admissionStudentsBatch' => Batch::select(['batch_no', 'course_name'])->orderByDesc('created_at')->paginate(30),
         ];
         $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
 
@@ -126,11 +141,12 @@ class AdminController extends Controller
             $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
                 $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
             })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
-            $admissionStudents = $sql->get();
-            return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents'));
+            $admissionStudents = $sql->paginate(200);
+            $totalDue = MoneyReceipt::get()->sum('due');
+            return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
         }
         $admissionStudents = '';
-        $totalDue = MoneyReceipt::where('is_reject', 0)->get()->sum('due');
+        $totalDue = MoneyReceipt::get()->sum('due');
         return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
     }
 
@@ -148,9 +164,9 @@ class AdminController extends Controller
             $sql->where('batch_no', request()->batch_student);
         }
 
-        $admissionStudents = $sql->get();
+        $admissionStudents = $sql->paginate(500);
         $data = [
-            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no')
+            'admissionStudentsBatch' => AdmissionForm::select(['batch_no', 'course'])->with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no')
         ];
         return view('backend.admin.student.student-list', compact('admissionStudents', 'data'));
     }
@@ -187,17 +203,23 @@ class AdminController extends Controller
 
     public function dueClear(Request $request, $id)
     {
+        //dd($request->is_pay);
         $this->validate($request, [
             'total_fee' => 'required',
             'due' => 'required',
+            'is_pay' => 'required',
         ]);
 
         try {
             $dueClear = MoneyReceipt::where('id', $id)->first();
             $dueClear->due = $request->due;
             $dueClear->today_pay = $request->due_payment;
-            $dueClear->is_pay = $request->is_pay;
-            $dueClear->is_paid = $request->is_paid;
+            if ($request->is_paid){
+                $dueClear->is_pay = $request->is_pay;
+            }else{
+                $dueClear->is_pay = $request->is_pay;
+            }
+//            $dueClear->is_paid = $request->is_paid;
             $dueClear->save();
             //Student opinion
             $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
@@ -406,10 +428,10 @@ class AdminController extends Controller
         //dd(request()->from_date);
         $data = [
             'users' => User::orderBy('updated_at', 'desc')->get(),
-            'todayAmounts' => MoneyReceipt::whereDate('created_at', Carbon::today())->get(),
-            'monthlyAmounts' => MoneyReceipt::whereMonth('created_at', date('m'))->get(),
-            'admissionStudentsBatch' => AdmissionForm::with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
-            'batch' => Batch::orderByDesc('created_at')->get(),
+            'todayAmounts' => MoneyReceipt::whereDate('created_at', Carbon::today())->paginate(200),
+            'monthlyAmounts' => MoneyReceipt::whereMonth('created_at', date('m'))->paginate(200),
+            'admissionStudentsBatch' => AdmissionForm::select(['batch_no', 'course'])->with('moneyReceipt')->orderByDesc('created_at')->get()->groupBy('batch_no'),
+            'batch' => Batch::orderByDesc('created_at')->paginate(200),
         ];
         if (isset(request()->batch_no)){
             $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
@@ -432,9 +454,9 @@ class AdminController extends Controller
     public function admissionFilteringReportDownload($from, $to)
     {
         $sql = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc');
-                $sql->whereDate('admission_date', '>=', $from)->whereDate('admission_date', '<=', $to);
+        $sql->whereDate('admission_date', '>=', $from)->whereDate('admission_date', '<=', $to);
 
-        $admissionStudentsDateFilteringDownload = $sql->get();
+        $admissionStudentsDateFilteringDownload = $sql->paginate(200);
         $callReportPdf = \PDF::loadView('backend.admin.pdf.admission', compact('admissionStudentsDateFilteringDownload'))->setPaper([0, 0, 685, 800], 'landscape');
         return $callReportPdf->download('AdmissionReport' . '.' . 'pdf');
     }
@@ -483,11 +505,11 @@ class AdminController extends Controller
         $updateAdmissionForm = AdmissionForm::find($id);
 
         if($request->hasFile('avatar')){
-            if($updateAdmissionForm->avatar && file_exists(public_path('avatar/'.$updateAdmissionForm->avatar))){
-                unlink(public_path('avatar/'.$updateAdmissionForm->avatar));
+            if($updateAdmissionForm->avatar && file_exists(public_path('student/'.$updateAdmissionForm->avatar))){
+                unlink(public_path('student/'.$updateAdmissionForm->avatar));
             }
             $name = time() . '.' . $request->avatar->getClientOriginalExtension();
-            $request->avatar->move('avatar/', $name);
+            $request->avatar->move('student/', $name);
             $updateAdmissionForm->avatar = $name;
         }
 
@@ -551,23 +573,119 @@ class AdminController extends Controller
             $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('updated_at');
             $sql->where('batch_no', request()->batch_no);
 
-            $admissionStudents = $sql->get();
-            $batchs = Batch::orderByDesc('created_at')->get();
+            $admissionStudents = $sql->paginate(200);
+            $batchs = Batch::orderByDesc('created_at')->paginate(200);
             return view('backend.admin.home.due-collect', compact('admissionStudents', 'batchs'));
         }
 
         if (isset(request()->from_date) && isset(request()->to_date)){
             $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('updated_at');
             $sql->whereHas('moneyReceipt', function ($q){
-                $q->whereDate('updated_at', '>=', request()->from_date)->whereDate('updated_at', '>=', request()->to_date)->where('today_pay', '!=', null);
+                $q->whereDate('updated_at', '>=', request()->from_date)->whereDate('updated_at', '<=', request()->to_date)->where('is_pay', 1);
             });
 
             $admissionStudents = $sql->get();
             return view('backend.admin.home.due-collect-report', compact('admissionStudents'));
         }
 
-        $admissionStudents = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('updated_at')->get();
-        $batchs = Batch::orderByDesc('created_at')->get();
+        $admissionStudents = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('updated_at')->paginate(200);
+        $batchs = Batch::orderByDesc('created_at')->paginate(200);
         return view('backend.admin.home.due-collect', compact('admissionStudents', 'batchs'));
+    }
+
+    //Admin dashboard action
+    public function todayAdmissionAdvanceInfo()
+    {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereDate('admission_date', Carbon::today()->format('Y-m-d'));
+
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.today-admission-advance-list', compact('admissionStudentsDateFiltering'));
+    }
+
+    public function monthlyAdmissionAdvanceInfo()
+    {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereMonth('admission_date', Carbon::today()->format('m'));
+
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.today-admission-advance-list', compact('admissionStudentsDateFiltering'));
+    }
+    public function todayDueCollectInfo()
+    {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('updated_at', 'desc')
+            ->whereDate('updated_at', Carbon::today())->where('is_pay', 1);
+
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.today-due-collect-list', compact('admissionStudentsDateFiltering'));
+    }
+
+    public function monthlyDueCollectInfo()
+    {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('updated_at', 'desc')
+            ->whereMonth('updated_at', date('m'))->where('is_pay', 1);
+
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.pdf.monthly-due-collect-list', compact('admissionStudentsDateFiltering'));
+    }
+
+    public function todayAdmissionDue()
+    {
+
+    }
+
+    public function todayTotalExpanseInfo()
+    {
+
+    }
+
+    public function monthlyAdmissionDueInfo()
+    {
+
+    }
+
+    public function monthlyTotalExpanseInfo()
+    {
+
+    }
+
+    public function totalDueInfo()
+    {
+
+    }
+
+    public function totalCollectDueInfo()
+    {
+
+    }
+
+    public function totalAdmissionAdvanceInfo()
+    {
+
+    }
+
+    public function totalExpanseInfo()
+    {
+
+    }
+
+    public function totalAdmAdmission()
+    {
+
+    }
+
+    public function totalWebAdmission()
+    {
+
+    }
+
+    public function totalEngAdmission()
+    {
+
+    }
+
+    public function totalMonthlyAdmissionList()
+    {
+
     }
 }

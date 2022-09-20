@@ -25,12 +25,31 @@
             <hr/>
             <div class="card">
                 <div class="card-body">
+                    <form class="form-group" action="{{ url('/money/receipt') }}" method="get">
+                        @csrf
+                        <div class="col-md-12" style="padding-left: 10%;">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-6">
+                                    <input type="number" name="search" class="form-control" placeholder="Enter Batch Number">
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                        <a href="{{ url('/money/receipt') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" style="text-align-last: end;"></div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th>Admission Date</th>
                                 <th>Due Clear Date</th>
+                                <th>Batch No</th>
                                 <th>Name</th>
                                 <th>Total Fee</th>
                                 <th>First Payment</th>
@@ -44,6 +63,7 @@
                                 <tr>
                                     <td>{{ $receipt->moneyReceipt->admission_date->format('Y-m-d') ?? '' }}</td>
                                     <td>{{ $receipt->moneyReceipt->updated_at->format('Y-m-d') ?? '' }}</td>
+                                    <td>{{ $receipt->batch_no?? '' }}</td>
                                     <td>{{ $receipt->s_name?? '' }}</td>
                                     <td>{{ number_format($receipt->moneyReceipt->total_fee,2) ?? '' }} tk</td>
                                     <td>{{ number_format($receipt->moneyReceipt->advance,2) ?? '' }} tk</td>
@@ -66,6 +86,7 @@
                             </tbody>
                         </table>
                     </div>
+                    {{ $moneyReceipt->links() }}
                 </div>
             </div>
         </div>

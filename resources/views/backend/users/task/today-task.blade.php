@@ -25,8 +25,26 @@
             <hr/>
             <div class="card">
                 <div class="card-body">
+                    <form class="form-group" action="{{ url('/today/task') }}" method="get">
+                        @csrf
+                        <div class="col-md-12" style="padding-left: 10%;">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-6">
+                                    <input type="search" name="search" class="form-control" placeholder="Enter Phone Number & Full Name">
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                        <a href="{{ url('/today/task') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" style="text-align-last: end;"></div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th>SL</th>
@@ -34,6 +52,7 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Profession</th>
+                                <th>Laptop/PC</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -45,6 +64,7 @@
                                     <td>{{ $task->email ?? '' }}</td>
                                     <td>{{ $task->phone ?? '' }}</td>
                                     <td>{{ $task->profession ?? '' }}</td>
+                                    <td>{{ $task->device ?? '' }}</td>
                                     <td width="15%">
                                         @if($task->status == 0)
                                         <a href="{{ url('/view/details/'.$task->id) }}" class="btn btn-sm btn-primary">
@@ -63,6 +83,7 @@
                             </tbody>
                         </table>
                     </div>
+                    {{ $todayTask->links() }}
                 </div>
             </div>
         </div>

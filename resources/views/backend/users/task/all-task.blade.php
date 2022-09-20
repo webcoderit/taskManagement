@@ -30,7 +30,7 @@
                             <div class="col-md-12" style="padding-left: 10%;">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="search" name="search" class="form-control" placeholder="Enter only phone number">
+                                        <input type="search" name="search" class="form-control" placeholder="Enter Phone Number & Full Name">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-group">
