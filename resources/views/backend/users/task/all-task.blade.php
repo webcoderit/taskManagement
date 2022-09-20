@@ -27,19 +27,15 @@
                     <div class="card-body">
                         <form class="form-group" action="{{ url('/all/task') }}" method="get">
                             @csrf
-                            <div class="col-md-12" style="padding-left: 10%;">
-                                <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-4">
-                                        <input type="search" name="search" class="form-control" placeholder="Enter Phone Number & Full Name">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 mb-3">
+                                    <input type="search" name="search" class="form-control" placeholder="Enter Phone Number & Full Name">
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
+                                        <a href="{{ url('/all/task') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="input-group">
-                                            <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
-                                            <a href="{{ url('/all/task') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3" style="text-align-last: end;"></div>
                                 </div>
                             </div>
                         </form>
