@@ -29,17 +29,15 @@
                             @csrf
                             <div class="col-md-12" style="padding-left: 10%;">
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <input type="search" name="search" class="form-control" placeholder="Enter only phone number">
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>
                                             <a href="{{ url('/all/task') }}" class="input-group-text btn btn-danger" id="basic-addon2">Clear</a>
                                         </div>
                                     </div>
-                                    <div class="col-md-3" style="text-align-last: end;"></div>
                                 </div>
                             </div>
                         </form>
