@@ -244,13 +244,13 @@
                                 </div>
                             </div>
                         </form> -->
-                        <form id="msform">
+                        <form id="msform" method="post" enctype="multipart/form-data">
                             @csrf
                             <!-- progressbar -->
                             <ul id="progressbar">
-                                <li class="active" id="personal"><strong>Personal</strong></li>                                
-                                <li id="professional"><strong>Professional</strong></li>                                
-                                <li id="address"><strong>Address</strong></li>                                
+                                <li class="active" id="personal"><strong>Personal</strong></li>
+                                <li id="professional"><strong>Professional</strong></li>
+                                <li id="address"><strong>Address</strong></li>
                                 <li id="payment"><strong>Payment</strong></li>
                                 <li id="image"><strong>Image</strong></li>
                             </ul>
@@ -271,28 +271,28 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                              <label for="student_name">Student Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="text" name="s_name" value="{{ old('s_name') }}" placeholder="Student Name" class="form-control">
+                                             <input type="text" name="s_name" id="s_name" value="{{ old('s_name') }}" placeholder="Student Name" class="form-control">
                                             <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
                                         </div>
                                         <div class="col-md-6">
                                              <label for="email">Email</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="email" name="s_email" value="{{ old('s_email') }}" placeholder="Student Email" class="form-control">
+                                             <input type="email" name="s_email" id="s_email" value="{{ old('s_email') }}" placeholder="Student Email" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                              <label for="father_name">Father Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="text" name="f_name" value="{{ old('f_name') }}" placeholder="Father Name" class="form-control">
+                                             <input type="text" name="f_name" id="f_name" value="{{ old('f_name') }}" placeholder="Father Name" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                              <label for="mother_name">Mother Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="text" name="m_name" value="{{ old('m_name') }}" placeholder="Mother Name" class="form-control">
+                                             <input type="text" name="m_name" id="m_name" value="{{ old('m_name') }}" placeholder="Mother Name" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                              <label for="student_phone">Student Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="tel" name="s_phone" value="{{ old('s_phone') }}" placeholder="Student Phone No." class="form-control">
+                                             <input type="tel" name="s_phone" id="s_phone" value="{{ old('s_phone') }}" placeholder="Student Phone No." class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                              <label for="father_phone">Father Phone No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="tel" name="f_phone" value="{{ old('f_phone') }}" placeholder="Father Phone No." class="form-control">
+                                             <input type="tel" name="f_phone" id="f_phone" value="{{ old('f_phone') }}" placeholder="Father Phone No." class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -312,42 +312,48 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                              <label for="birth_date">Date Of Birth</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="date" name="dob" value="{{ old('dob') }}" placeholder="Date Of Birth" class="form-control">
+                                             <input type="date" name="dob" id="dob" value="{{ old('dob') }}" placeholder="Date Of Birth" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                              <label for="profession">Profession</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="text" name="profession" value="{{ old('profession') }}" placeholder="Student Profession" class="form-control">
+                                             <input type="text" name="profession" id="profession" value="{{ old('profession') }}" placeholder="Student Profession" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="gender">Gender</label><span style="color: red; font-size: 16px;"> *</span>
                                             <div class="d-flex align-items-center gender">
-                                                <input type="radio" id="male" name="gender" value="Male">
-                                                <label for="male">Male</label><br>
-                                                <input type="radio" id="female" name="gender" value="Female">
-                                                <label for="female">Female</label><br>
-                                                <input type="radio" id="others" name="gender" value="Others">
-                                                <label for="others">Others</label>
+                                                <select class="form-control" name="gender" id="gender">
+                                                    <option selected disabled>Select a Gender</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Others">Others</option>
+                                                </select>
+{{--                                                <input type="radio" id="male" name="gender" value="Male">--}}
+{{--                                                <label for="male">Male</label><br>--}}
+{{--                                                <input type="radio" id="female" name="gender" value="Female">--}}
+{{--                                                <label for="female">Female</label><br>--}}
+{{--                                                <input type="radio" id="others" name="gender" value="Others">--}}
+{{--                                                <label for="others">Others</label>--}}
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                              <label for="blood_group">Blood Group</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="text" name="blood_group" value="{{ old('blood_group') }}" placeholder="Blood Group " class="form-control">
+                                             <input type="text" name="blood_group" id="blood_group" value="{{ old('blood_group') }}" placeholder="Blood Group " class="form-control">
                                         </div>
                                         <div class="col-md-6">
-                                             <label for="qualificaton">Educational Qualification</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="text" name="qualification" value="{{ old('qualification') }}" placeholder="Educational Qualifications" class="form-control">
+                                             <label for="qualification">Educational Qualification</label><span style="color: red; font-size: 16px;"> *</span><br>
+                                             <input type="text" name="qualification" id="qualification" value="{{ old('qualification') }}" placeholder="Educational Qualifications" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                              <label for="nid_birth_no">NID/Birth Certificate No.</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="number" name="nid" value="{{ old('nid') }}" placeholder="NID/Birth Certificate No." class="form-control">
+                                             <input type="number" name="nid" id="nid" value="{{ old('nid') }}" placeholder="NID/Birth Certificate No." class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                              <label for="student_fb_name">Student FB Name/ FB Link</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="text" name="fb_id" value="{{ old('fb_id') }}" placeholder="Student FB Name or ID" class="form-control">
+                                             <input type="text" name="fb_id" id="fb_id" value="{{ old('fb_id') }}" placeholder="Student FB Name or ID" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                              <label for="student_ref_name">Student Reference Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="text" name="reference" value="{{ old('reference') }}" placeholder="Student Reference Name" class="form-control">
+                                             <input type="text" name="reference" id="reference" value="{{ old('reference') }}" placeholder="Student Reference Name" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -368,7 +374,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                              <label for="present_address">Address</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <textarea name="present_address" rows="2" cols="50" class="form-control">{{ old('present_address') }}</textarea>
+                                             <textarea name="present_address" id="present_address" rows="2" cols="50" class="form-control">{{ old('present_address') }}</textarea>
                                         </div>
                                         <div class="col-md-12 mb-2">
                                             <label>Other Admission</label><br>
@@ -425,7 +431,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label for="admission_date">Admission Date</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                            <input type="text" name="admission_date" value="{{ date('Y-m-d') }}" readonly min="{{ date('Y-m-d') }}" placeholder="Admission Date" class="form-control">
+                                            <input type="text" name="admission_date" id="admission_date" value="{{ date('Y-m-d') }}" readonly min="{{ date('Y-m-d') }}" placeholder="Admission Date" class="form-control">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="cash">Payment Type</label><br>
@@ -460,19 +466,24 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="time">Class Time</label><span style="color: red; font-size: 16px;"> *</span>
-                                            <input type="text" name="class_time" value="{{old('class_time')}}" placeholder="Class Time" class="form-control">
+                                            <input type="text" name="class_time" id="class_time" value="{{old('class_time')}}" placeholder="Class Time" class="form-control">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>
                                             <div class="d-flex align-items-center Shedule">
-                                                <input type="radio" id="first_day" name="class_shedule" value="Sat-Mon-Wed">
-                                                <label for="first_day" style="font-weight: 400;">Sat Mon Wed</label><br>
-                                                <input type="radio" id="last_day" name="class_shedule" value="Sun-Tue-Thu">
-                                                <label for="last_day" style="font-weight: 400;">Sun Tue Thu</label>
+                                                <select name="class_schedule" id="class_schedule" class="form-control">
+                                                    <option disabled selected>---Select Class Schedule---</option>
+                                                    <option value="Sat-Mon-Wed">Sat-Mon-Wed</option>
+                                                    <option value="Sun-Tue-Thu">Sun-Tue-Thu</option>
+                                                </select>
+{{--                                                <input type="radio" id="first_day" name="class_shedule" value="Sat-Mon-Wed">--}}
+{{--                                                <label for="first_day" style="font-weight: 400;">Sat Mon Wed</label><br>--}}
+{{--                                                <input type="radio" id="last_day" name="class_shedule" value="Sun-Tue-Thu">--}}
+{{--                                                <label for="last_day" style="font-weight: 400;">Sun Tue Thu</label>--}}
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                                 <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                             </fieldset>
                              <fieldset>
@@ -504,8 +515,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
-                                <input type="submit" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                </div>
+                                <input type="button" id="saveAdmission" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                             </fieldset>
                         </form>
                     </div>
@@ -516,6 +527,232 @@
 @endsection
 @push('scripts')
     <script>
+        //Admission form start
+        let error = 0;
+        function validate() {
+            if (document.getElementById('s_name').value == "") {
+                document.getElementById("s_name_error").innerHTML = 'Please Input Student name';
+                error++
+            }
+            if (document.getElementById('s_email').value == "") {
+                document.getElementById("s_email_error").innerHTML = 'Please Input Student email';
+                error++
+            }
+
+            if (document.getElementById('s_phone').value == "") {
+                document.getElementById("s_phone_error").innerHTML = 'Please Input Student Phone number';
+                error++
+            }
+
+            if (document.getElementById('f_name').value == "") {
+                document.getElementById("f_name_error").innerHTML = 'Please Input Student Father name';
+                error++
+            }
+
+            if (document.getElementById('m_name').value == "") {
+                document.getElementById("m_name_error").innerHTML = 'Please Input Student Mother name';
+                error++
+            }
+
+            if (document.getElementById('f_phone').value == "") {
+                document.getElementById("f_phone_error").innerHTML = 'Please Input Student Father phone';
+                error++
+            }
+
+            if (document.getElementById('dob').value == "") {
+                document.getElementById("dob_error").innerHTML = 'Please Input Student Date of Birth';
+                error++
+            }
+
+            if (document.getElementById('profession').value == "") {
+                document.getElementById("profession_error").innerHTML = 'Please Input Student Date of Birth';
+                error++
+            }
+
+            if (document.getElementById('gender').value == "") {
+                document.getElementById("gender_error").innerHTML = 'Please Input Student Date of Birth';
+                error++
+            }
+
+            if (document.getElementById('blood_group').value == "") {
+                document.getElementById("blood_group_error").innerHTML = 'Please Input Student Blood Group';
+                error++
+            }
+
+            if (document.getElementById('qualification').value == "") {
+                document.getElementById("qualification_error").innerHTML = 'Please Input Student Qualification';
+                error++
+            }
+
+            if (document.getElementById('nid').value == "") {
+                document.getElementById("nid_error").innerHTML = 'Please Input Student NID';
+                error++
+            }
+
+            if (document.getElementById('fb_id').value == "") {
+                document.getElementById("fb_id_error").innerHTML = 'Please Input Student FB ID';
+                error++
+            }
+
+            if (document.getElementById('reference').value == "") {
+                document.getElementById("reference_error").innerHTML = 'Please Input Student Reference';
+                error++
+            }
+
+            if (document.getElementById('present_address').value == "") {
+                document.getElementById("present_address_error").innerHTML = 'Please Input Student present address';
+                error++
+            }
+
+            if (document.getElementById('course').value == "") {
+                document.getElementById("course_error").innerHTML = 'Please Input Course';
+                error++
+            }
+
+            if (document.getElementById('batch_no').value == "") {
+                document.getElementById("batch_no_error").innerHTML = 'Please Input batch no';
+                error++
+            }
+
+            if (document.getElementById('batch_type').value == "") {
+                document.getElementById("batch_type_error").innerHTML = 'Please Input batch type';
+                error++
+            }
+
+            if (document.getElementById('admission_date').value == "") {
+                document.getElementById("admission_date_error").innerHTML = 'Please Input admission date';
+                error++
+            }
+
+            if (document.getElementById('payment_type').value == "") {
+                document.getElementById("payment_type_error").innerHTML = 'Please Input payment type';
+                error++
+            }
+
+            if (document.getElementById('online_charge').value == "") {
+                document.getElementById("online_charge_error").innerHTML = 'Please Input online charge';
+                error++
+            }
+
+            if (document.getElementById('transaction_id').value == "") {
+                document.getElementById("transaction_id_error").innerHTML = 'Please Input transaction ID';
+                error++
+            }
+
+            if (document.getElementById('total_fee').value == "") {
+                document.getElementById("total_fee_error").innerHTML = 'Please Input Total Fee';
+                error++
+            }
+
+            if (document.getElementById('advance').value == "") {
+                document.getElementById("advance_error").innerHTML = 'Please Input advance';
+                error++
+            }
+
+            if (document.getElementById('due').value == "") {
+                document.getElementById("due_error").innerHTML = 'Please Input Due';
+                error++
+            }
+
+            if (document.getElementById('class_time').value == "") {
+                document.getElementById("class_time_error").innerHTML = 'Please Input class time';
+                error++
+            }
+
+            if (document.getElementById('class_schedule').value == "") {
+                document.getElementById("class_schedule_error").innerHTML = 'Please Input class schedule';
+                error++
+            }
+
+            if (document.getElementById('imageUpload').value == "") {
+                document.getElementById("imageUpload_error").innerHTML = 'Please Input Student image';
+                error++
+            }
+        }
+        function reset_error() {
+            error = 0
+            document.getElementById("s_name_error").innerHTML = "";
+            document.getElementById("s_email_error").innerHTML = "";
+            document.getElementById("s_phone_error").innerHTML = "";
+            document.getElementById("f_name_error").innerHTML = "";
+            document.getElementById("m_name_error").innerHTML = "";
+            document.getElementById("phone_error").innerHTML = "";
+            document.getElementById("f_phone_error").innerHTML = "";
+            document.getElementById("dob_error").innerHTML = "";
+            document.getElementById("profession_error").innerHTML = "";
+            document.getElementById("gender_error").innerHTML = "";
+            document.getElementById("blood_group_error").innerHTML = "";
+            document.getElementById("qualification_error").innerHTML = "";
+            document.getElementById("nid_error").innerHTML = "";
+            document.getElementById("fb_id_error").innerHTML = "";
+            document.getElementById("reference_error").innerHTML = "";
+            document.getElementById("present_address_error").innerHTML = "";
+            document.getElementById("course_error").innerHTML = "";
+            document.getElementById("batch_no_error").innerHTML = "";
+            document.getElementById("batch_type_error").innerHTML = "";
+            document.getElementById("admission_date_error").innerHTML = "";
+            document.getElementById("payment_type_error").innerHTML = "";
+            document.getElementById("online_charge_error").innerHTML = "";
+            document.getElementById("transaction_id_error").innerHTML = "";
+            document.getElementById("total_fee_error").innerHTML = "";
+            document.getElementById("advance_error").innerHTML = "";
+            document.getElementById("due_error").innerHTML = "";
+            document.getElementById("class_time_error").innerHTML = "";
+            document.getElementById("class_schedule_error").innerHTML = "";
+            document.getElementById("imageUpload_error").innerHTML = "";
+        }
+
+        /*Save currency*/
+        document.getElementById('saveAdmission').addEventListener('click', function(){
+            let data = new FormData()
+            if (document.getElementById('imageUpload').files.length > 0 ) {
+                let avatar = document.getElementById('imageUpload').files[0];
+                data.append('avatar', avatar, avatar.name);
+            }
+            data.append('s_name', document.getElementById('s_name').value)
+            data.append('icon', document.getElementById('icon').value)
+            let settings = { headers: { 'content-type': 'multipart/form-data' } }
+            //console.log(data)
+            // initialize loading effect
+            var height = parseInt(document.getElementById('currencyForm').offsetHeight)
+            var padding = (height - 40) / 2
+            var loadingStyle = `height: ${height}px; text-align: center; padding: ${padding}px 80px;background: rgba(35, 35, 35, 0.26) none repeat scroll 0% 0%; position: absolute; z-index: 2;width: 100%;top: 0;left:0`
+            document.getElementById('currency-loading').setAttribute('style', loadingStyle)
+            axios.post('/admin/currency', data, settings)
+                .then(response => {
+                    //console.log(response)
+                    //alert('Currecy Successfully add');
+                    $('.addCurrencyModal').modal('hide');
+                    window.location.reload()
+                    document.getElementById('currency-loading').setAttribute('style', 'display: none')
+                    let div = document.createElement("div")
+                    div.setAttribute("class", "alert alert-success")
+                    div.setAttribute("role", "alert")
+                    let txt = document.createTextNode('Currency has been successfully inserted')
+                    div.appendChild(txt)
+                    document.getElementById('success_message').innerHTML = ''
+                    document.getElementById('error_message').innerHTML = ''
+                    document.getElementById("success_message").appendChild(div)
+                })
+                .catch((error) => {
+                    //console.log(error);
+                    document.getElementById('currency-loading').setAttribute('style', 'display: none')
+                    if(error.response.status === 422){
+                        let div = document.createElement("div")
+                        div.setAttribute("class", "alert alert-danger")
+                        div.setAttribute("role", "alert")
+                        let txt = document.createTextNode('Something is wrong, please try again')
+                        div.appendChild(txt)
+                        document.getElementById('success_message').innerHTML = ''
+                        document.getElementById('error_message').innerHTML = ''
+                        document.getElementById("error_message").appendChild(div)
+                        if(error.response.data.name && error.response.data.name[0])
+                            document.getElementById("currencyValidation").innerHTML = "Please give your currency name...";
+                    }
+                });
+        })
+
+        //Admission form end
         function calculate(){
             let totalFee = document.getElementById('total_fee').value;
             let advance = document.getElementById('advance').value;
@@ -588,7 +825,7 @@
         //hide the current fieldset with style
         current_fs.animate({opacity: 0}, {
         step: function(now) {
-        // for making fielset appear animation
+        // for making fileset appear animation
         opacity = 1 - now;
 
         current_fs.css({
