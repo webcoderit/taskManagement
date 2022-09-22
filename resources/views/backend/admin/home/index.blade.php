@@ -230,7 +230,7 @@
                 <div class="card radius-10" style="background-color: #641111">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Total Monthly Admission</p>
-                        <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereMonth('admission_date', date('m'))->count() }}</h3>
+                        <h3 class="mb-3 text-white">{{ \App\Models\AdmissionForm::whereMonth('created_at', date('m'))->count() }}</h3>
                         <div id="chart5"></div>
                     </div>
                 </div>
@@ -369,8 +369,8 @@
 
     <script type="text/javascript">
 
-        var labels =  {{ Js::from($labels) }};
-        var users =  {{ Js::from($data) }};
+        var labels =  {{ \Illuminate\Support\Js::from($labels) }};
+        var users =  {{ \Illuminate\Support\Js::from($data) }};
 
         const data = {
             labels: labels,

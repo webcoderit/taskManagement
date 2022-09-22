@@ -103,6 +103,7 @@ class AdminController extends Controller
 
         $labels = $admissionChats->keys();
         $data = $admissionChats->values();
+
         return view('backend.admin.home.index', compact('users', 'todayCredit',
             'todayDue', 'monthlyCredit',
             'monthlyDebit', 'totalDue',
