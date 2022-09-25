@@ -26,7 +26,10 @@
             @endif
             <div class="row">
                 <div class="col-md-10 m-auto">
-                    <div class="addmission-form-wrapper">
+                    <div class="addmission-form-wrapper" style="position: relative;" id="admissionForm">
+                        <div id="admission-loading" style="display: none" >
+                            <i class="fa fa-spinner fa-pulse fa-5x fa-fw" aria-hidden="true"></i>
+                        </div>
                         <div class="addmission-form-heading">
                             <div class="addmission-list-btn-outer">
                                 <a href="{{ url('/addmission/list') }}" class="addmission-list-btn-inner">Admission List</a>
@@ -271,7 +274,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                              <label for="student_name">Student Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <input type="text" name="s_name" id="s_name" value="{{ old('s_name') }}" placeholder="Student Name" class="form-control">
+                                             <input type="text" name="s_name" id="s_name" value="{{ old('s_name') }}" placeholder="Student Name" class="form-control" required>
                                             <span style="color: red"> {{ $errors->has('s_name') ? $errors->first('s_name') : ' ' }}</span>
                                         </div>
                                         <div class="col-md-6">
@@ -395,7 +398,7 @@
                                 <div class="form-card">
                                     <div class="row">
                                         <div class="col-7">
-                                            <h2 class="fs-title">Image Upload:</h2>
+                                            <h2 class="fs-title">Payment Information:</h2>
                                         </div>
                                         <div class="col-5">
                                             <h2 class="steps">Step 4 - 5</h2>
@@ -526,6 +529,8 @@
     </section>
 @endsection
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         //Admission form start
         let error = 0;
@@ -676,7 +681,6 @@
             document.getElementById("s_phone_error").innerHTML = "";
             document.getElementById("f_name_error").innerHTML = "";
             document.getElementById("m_name_error").innerHTML = "";
-            document.getElementById("phone_error").innerHTML = "";
             document.getElementById("f_phone_error").innerHTML = "";
             document.getElementById("dob_error").innerHTML = "";
             document.getElementById("profession_error").innerHTML = "";
@@ -710,44 +714,67 @@
                 data.append('avatar', avatar, avatar.name);
             }
             data.append('s_name', document.getElementById('s_name').value)
-            data.append('icon', document.getElementById('icon').value)
+            data.append('s_email', document.getElementById('s_email').value)
+            data.append('s_phone', document.getElementById('s_phone').value)
+            data.append('f_name', document.getElementById('f_name').value)
+            data.append('m_name', document.getElementById('m_name').value)
+            data.append('f_phone', document.getElementById('f_phone').value)
+            data.append('dob', document.getElementById('dob').value)
+            data.append('profession', document.getElementById('profession').value)
+            data.append('gender', document.getElementById('gender').value)
+            data.append('blood_group', document.getElementById('blood_group').value)
+            data.append('qualification', document.getElementById('qualification').value)
+            data.append('nid', document.getElementById('nid').value)
+            data.append('fb_id', document.getElementById('fb_id').value)
+            data.append('present_address', document.getElementById('present_address').value)
+            data.append('reference', document.getElementById('reference').value)
+            data.append('course', document.getElementById('course').value)
+            data.append('batch_no', document.getElementById('batch_no').value)
+            data.append('batch_type', document.getElementById('batch_type').value)
+            data.append('admission_date', document.getElementById('admission_date').value)
+            data.append('payment_type', document.getElementById('payment_type').value)
+            data.append('online_charge', document.getElementById('online_charge').value)
+            data.append('transaction_id', document.getElementById('transaction_id').value)
+            data.append('total_fee', document.getElementById('total_fee').value)
+            data.append('advance', document.getElementById('advance').value)
+            data.append('due', document.getElementById('due').value)
+            data.append('class_time', document.getElementById('class_time').value)
+            data.append('class_schedule', document.getElementById('class_schedule').value)
             let settings = { headers: { 'content-type': 'multipart/form-data' } }
             //console.log(data)
             // initialize loading effect
-            var height = parseInt(document.getElementById('currencyForm').offsetHeight)
+            var height = parseInt(document.getElementById('admissionForm').offsetHeight)
             var padding = (height - 40) / 2
             var loadingStyle = `height: ${height}px; text-align: center; padding: ${padding}px 80px;background: rgba(35, 35, 35, 0.26) none repeat scroll 0% 0%; position: absolute; z-index: 2;width: 100%;top: 0;left:0`
-            document.getElementById('currency-loading').setAttribute('style', loadingStyle)
-            axios.post('/admin/currency', data, settings)
+            document.getElementById('admission-loading').setAttribute('style', loadingStyle)
+            axios.post('/admission/store', data, settings)
                 .then(response => {
-                    //console.log(response)
-                    //alert('Currecy Successfully add');
-                    $('.addCurrencyModal').modal('hide');
-                    window.location.reload()
-                    document.getElementById('currency-loading').setAttribute('style', 'display: none')
-                    let div = document.createElement("div")
-                    div.setAttribute("class", "alert alert-success")
-                    div.setAttribute("role", "alert")
-                    let txt = document.createTextNode('Currency has been successfully inserted')
-                    div.appendChild(txt)
-                    document.getElementById('success_message').innerHTML = ''
-                    document.getElementById('error_message').innerHTML = ''
-                    document.getElementById("success_message").appendChild(div)
+                    if(response.status == 200){
+                        document.getElementById('admission-loading').setAttribute('style', 'display: none')
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Admission has been successfully added.',
+                            showConfirmButton: false,
+                            footer: '<a href="{{ url('/addmission/list') }}" style="color: white; text-decoration: none; background-color: red; padding: 10px; width: 100px; border-radius: 5px; text-align: center">Cancel</a>',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                        })
+                    }
                 })
                 .catch((error) => {
                     //console.log(error);
-                    document.getElementById('currency-loading').setAttribute('style', 'display: none')
+                    document.getElementById('admission-loading').setAttribute('style', 'display: none')
                     if(error.response.status === 422){
-                        let div = document.createElement("div")
-                        div.setAttribute("class", "alert alert-danger")
-                        div.setAttribute("role", "alert")
-                        let txt = document.createTextNode('Something is wrong, please try again')
-                        div.appendChild(txt)
-                        document.getElementById('success_message').innerHTML = ''
-                        document.getElementById('error_message').innerHTML = ''
-                        document.getElementById("error_message").appendChild(div)
-                        if(error.response.data.name && error.response.data.name[0])
-                            document.getElementById("currencyValidation").innerHTML = "Please give your currency name...";
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops ! Try again',
+                            text: 'Something went wrong! Please try again.',
+                            showConfirmButton: false,
+                            footer: '<a href="{{ url('/addmission/form') }}" style="color: white; text-decoration: none; background-color: red; padding: 10px; width: 100px; border-radius: 5px; text-align: center">Cancel</a>',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                        })
                     }
                 });
         })

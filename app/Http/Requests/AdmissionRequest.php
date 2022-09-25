@@ -39,7 +39,7 @@ class AdmissionRequest extends FormRequest
             'course' => 'required',
             'batch_no' => 'required',
             'batch_type' => 'required',
-            'class_shedule' => 'required',
+            'class_schedule' => 'required',
             'class_time' => 'required',
             'total_fee' => 'required',
             'advance' => 'required',
