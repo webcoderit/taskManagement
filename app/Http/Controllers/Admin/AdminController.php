@@ -95,7 +95,7 @@ class AdminController extends Controller
         $todayDue = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('due');
         $monthlyCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('advance');
         $monthlyDebit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('due');
-        $totalDue = MoneyReceipt::get()->sum('due');
+        $totalDue = MoneyReceipt::with('admissionForm')->select('due')->get()->sum('due');
         $admissionChats = AdmissionForm::select(\DB::raw("COUNT(*) as count"), \DB::raw("MONTHNAME(created_at) as month_name"))
             ->whereYear('created_at', date('Y'))
             ->groupBy(\DB::raw("Month(created_at)"))
@@ -440,6 +440,13 @@ class AdminController extends Controller
 
             $admissionStudents = $sql->get();
             return view('backend.admin.home.admission-filtering', compact('admissionStudents', 'data'));
+        }
+        if (isset(request()->batch_number) && isset(request()->month)){
+            $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+            $sql->where('batch_no', request()->batch_number)->whereMonth('created_at', date('m', strtotime(request()->month)));
+
+            $admissionMonthlyBatchWiseStudentsCount = $sql->get();
+            return view('backend.admin.home.admission-filtering', compact('admissionMonthlyBatchWiseStudentsCount', 'data'));
         }
         if (isset(request()->from_date) && isset(request()->to_date)) {
             $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
