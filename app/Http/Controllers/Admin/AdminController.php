@@ -95,7 +95,7 @@ class AdminController extends Controller
         $todayDue = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('due');
         $monthlyCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('advance');
         $monthlyDebit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('due');
-        $totalDue = MoneyReceipt::with('admissionForm')->select('due')->get()->sum('due');
+        $totalDue = MoneyReceipt::with('admissionForm')->orWhere('is_pay', 0)->where('is_reject', 0)->select('is_pay', 'is_reject','due')->get()->sum('due');
         $admissionChats = AdmissionForm::select(\DB::raw("COUNT(*) as count"), \DB::raw("MONTHNAME(created_at) as month_name"))
             ->whereYear('created_at', date('Y'))
             ->groupBy(\DB::raw("Month(created_at)"))
@@ -143,11 +143,11 @@ class AdminController extends Controller
                 $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
             })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
             $admissionStudents = $sql->paginate(200);
-            $totalDue = MoneyReceipt::get()->sum('due');
+            $totalDue = MoneyReceipt::orWhere('is_pay', 0)->where('is_reject', 0)->get()->sum('due');
             return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
         }
         $admissionStudents = '';
-        $totalDue = MoneyReceipt::get()->sum('due');
+        $totalDue = MoneyReceipt::orWhere('is_pay', 0)->where('is_reject', 0)->get()->sum('due');
         return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
     }
 
