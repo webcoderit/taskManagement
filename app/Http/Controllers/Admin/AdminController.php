@@ -180,6 +180,12 @@ class AdminController extends Controller
         $studentBatchReportPdf = \PDF::loadView('backend.admin.pdf.batch-student-pdf', compact('admissionStudents'))->setPaper([0, 0, 685, 800], 'landscape');
         return $studentBatchReportPdf->download('Batch No '.$batchStudent . '.' . 'pdf');
     }
+    public function studentListDownloadFromBatchNumber($batchStudent)
+    {
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->where('batch_no', $batchStudent);
+        $admissionStudents = $sql->paginate(300);
+        return view('backend.admin.pdf.batch-student-pdf', compact('admissionStudents'));
+    }
     //====== For HR =========//
 
     public function showAdmissionDueModal($id)
@@ -685,7 +691,10 @@ class AdminController extends Controller
 
     public function totalAdmissionAdvanceInfo()
     {
-        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc');
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->select(['admission_id', 'admission_date', 'total_fee', 'advance', 'due'])
+            ->orderBy('created_at', 'desc')->whereHas('admissionForm', function ($q){
+                $q->select(['id', 'course', 'batch_no', 's_name', 's_phone']);
+            });
 
         $totalAdmissionAdvance = $sqlFiltering->get();
         return view('backend.admin.pdf.total-admission-advance', compact('totalAdmissionAdvance'));
