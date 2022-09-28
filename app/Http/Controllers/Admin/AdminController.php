@@ -248,19 +248,30 @@ class AdminController extends Controller
         $this->validate($request, [
             'total_fee' => 'required',
             'due' => 'required',
+            'is_pay' => 'required',
         ]);
 
         try {
             $dueClear = MoneyReceipt::where('id', $id)->first();
             $dueClear->due = $request->due;
             $dueClear->today_pay = $request->due_payment;
+            if ($request->is_paid){
+                $dueClear->is_pay = $request->is_pay;
+            }else{
+                $dueClear->is_pay = $request->is_pay;
+            }
+//            $dueClear->is_paid = $request->is_paid;
             $dueClear->save();
             //Student opinion
             $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
-            $updateStudentNote->note = $request->note;
+            if ($request->note){
+                $updateStudentNote->note = $request->note;
+            }else{
+                $updateStudentNote->note = $request->is_paid_note;
+            }
             $updateStudentNote->save();
         }catch (\Exception $exception){
-            return redirect('/admin/students/list')->with('error', $exception->getMessage());
+            return redirect()->back()->with('error', $exception->getMessage());
         }
         return redirect('/admin/students/list')->with('success', 'Updated.');
     }
