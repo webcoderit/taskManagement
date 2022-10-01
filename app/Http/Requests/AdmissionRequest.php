@@ -25,6 +25,7 @@ class AdmissionRequest extends FormRequest
     {
         return [
             's_name' => 'required',
+            's_email' => 'required|email|unique:admission_forms',
             'f_name' => 'required',
             'm_name' => 'required',
             's_phone' => 'required',
@@ -39,7 +40,7 @@ class AdmissionRequest extends FormRequest
             'course' => 'required',
             'batch_no' => 'required',
             'batch_type' => 'required',
-            'class_shedule' => 'required',
+            'class_schedule' => 'required',
             'class_time' => 'required',
             'total_fee' => 'required',
             'advance' => 'required',

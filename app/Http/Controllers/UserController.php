@@ -330,7 +330,7 @@ class UserController extends Controller
                 $newStudent->course = $request->course;
                 $newStudent->batch_no = $request->batch_no;
                 $newStudent->batch_type = $request->batch_type;
-                $newStudent->class_shedule = $request->class_shedule;
+                $newStudent->class_shedule = $request->class_schedule;
                 $newStudent->class_time = $request->class_time;
                 $newStudent->other_admission = $request->other_admission;
                 $newStudent->other_admission_note = $request->other_admission_note;
@@ -351,11 +351,19 @@ class UserController extends Controller
                     $moneyReceipt->due = $request->due;
                     $moneyReceipt->save();
                 }
-            }catch (\Exception $exception){
-                return redirect()->back()->with('error', $exception->getMessage());
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Admission has been successfully added.'
+                ]);
+            }
+            catch (\Exception $exception){
+                return response()->json([
+                  'status' => 500,
+                  'error' => $exception->getMessage(),
+                ]);
             }
         });
-        return redirect()->back()->with('success', 'Admission successfully done.');
     }
 
     //=================== PDF Download ======================//

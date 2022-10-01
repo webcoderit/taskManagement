@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admission report PDF</title>
+    <title>Monthly Admission Due Report</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         @media print {
@@ -25,16 +25,15 @@
 </div>
 
 <div class="addmission-form-wrapper">
-    <h2 style="text-align: center;">Monthly Admission Report</h2>
+    <h2 style="text-align: center;">Monthly Admission Due Report</h2>
     <hr>
     <table style="border: 1px solid #000000; margin: auto; height: auto; width: 100%" class="table table-bordered">
         <thead>
         <tr style="background-color: #0bb2d3; border: 1px solid #000">
             <th width="5%">SL</th>
-            <th width="10%">Date</th>
-            <th>Admission By</th>
+            <th width="20%">Date</th>
             <th>Course Name</th>
-            <th width="5%">Batch</th>
+            <th>Batch</th>
             <th>Student Name</th>
             <th>Student Phone</th>
             <th>Total Fee</th>
@@ -48,11 +47,10 @@
             $web = 0;
             $adm = 0
         @endphp
-        @foreach($admissionStudentsDateFiltering as $key => $admissionStudentFilter)
+        @foreach($admissionStudentsDateFiltering as $admissionStudentFilter)
             <tr>
-                <td style="border: 1px solid #000">{{ $admissionStudentFilter->id }}</td>
+                <td style="border: 1px solid #000">{{ $loop->index+1 }}</td>
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->admission_date->format('Y-m-d') }}</td>
-                <td style="border: 1px solid #000">{{ $admissionStudentFilter->admissionForm->user->full_name ?? '#' }}</td>
                 <td style="border: 1px solid #000">
                     @if($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'web' : '')
                         WEB
@@ -76,13 +74,13 @@
                 if($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'digital' : ''){
                     $adm += count(array($admissionStudentFilter->admissionForm->course));
                 }
-                $sum += $admissionStudentFilter->advance;
+                $sum += $admissionStudentFilter->due;
             @endphp
         @endforeach
             <tr>
                 <td colspan="4"></td>
                 <td>
-                    <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
+                    <span style="font-weight: bold">Total Due Amount : {{ number_format($sum,2) }}</span>
                 </td>
 {{--                <td>--}}
 {{--                    <span style="font-weight: bold">Total Web Admission : {{ $web }}</span>--}}
