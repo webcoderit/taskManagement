@@ -31,9 +31,10 @@
         <thead>
         <tr style="background-color: #0bb2d3; border: 1px solid #000">
             <th width="5%">SL</th>
-            <th width="20%">Date</th>
+            <th width="10%">Date</th>
+            <th>Admission By</th>
             <th>Course Name</th>
-            <th>Batch</th>
+            <th width="5%">Batch</th>
             <th>Student Name</th>
             <th>Student Phone</th>
             <th>Total Fee</th>
@@ -47,10 +48,11 @@
             $web = 0;
             $adm = 0
         @endphp
-        @foreach($admissionStudentsDateFiltering as $admissionStudentFilter)
+        @foreach($admissionStudentsDateFiltering as $key => $admissionStudentFilter)
             <tr>
-                <td style="border: 1px solid #000">{{ $loop->index+1 }}</td>
+                <td style="border: 1px solid #000">{{ $admissionStudentFilter->id }}</td>
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->admission_date->format('Y-m-d') }}</td>
+                <td style="border: 1px solid #000">{{ $admissionStudentFilter->admissionForm->user->full_name ?? '#' }}</td>
                 <td style="border: 1px solid #000">
                     @if($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'web' : '')
                         WEB
