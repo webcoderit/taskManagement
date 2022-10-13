@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\AttendanceMultiSheetReport;
+use App\Exports\BatchWiseStudentMultipleSheet;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdmissionRequest;
 use App\Http\Requests\UserRegistrationRequest;
@@ -22,12 +23,6 @@ use Maatwebsite\Excel\Excel;
 use Session;
 class AdminController extends Controller
 {
-    protected $excel;
-    public function __construct(Excel $excel)
-    {
-        $this->excel = $excel;
-    }
-
     public function loginForm()
     {
         return view('backend.admin.auth.login');
@@ -757,5 +752,16 @@ class AdminController extends Controller
 
         $admissionStudentsDateFiltering = $sqlFiltering->get();
         return view('backend.admin.pdf.total-monthly-admission', compact('admissionStudentsDateFiltering'));
+    }
+
+    protected $excel;
+    public function __construct(Excel $excel)
+    {
+        $this->excel = $excel;
+    }
+
+    public function adminStudentListImport($batchNo)
+    {
+        return $this->excel->download(new BatchWiseStudentMultipleSheet($batchNo), 'BatchStudentList.xlsx');
     }
 }

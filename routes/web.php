@@ -35,6 +35,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/due/clear/{id}', [App\Http\Controllers\Admin\AdminController::class, 'dueClear']);
         Route::get('/student/list', [App\Http\Controllers\HRController::class, 'studentList']);
         Route::get('/students/list', [App\Http\Controllers\Admin\AdminController::class, 'adminStudentList']);
+        Route::get('/file-export/{batchNo}', [App\Http\Controllers\Admin\AdminController::class, 'adminStudentListImport']);
         Route::get('/batch/create', [App\Http\Controllers\Admin\AdminController::class, 'batchCreateForm']);
         Route::post('/batch/store', [App\Http\Controllers\Admin\AdminController::class, 'batchStore']);
         Route::get('/batch/delete/{id}', [App\Http\Controllers\Admin\AdminController::class, 'batchDelete']);
@@ -168,6 +169,7 @@ Route::get('/admin/student/restore/{id}', [App\Http\Controllers\HRController::cl
 Route::get('/admin/reject/student/list', [App\Http\Controllers\HRController::class, 'rejectStudentList']);
 Route::get('/admin/student/paid/list', [App\Http\Controllers\HRController::class, 'paidStudentList']);
 Route::get('/admin/student/due/list', [App\Http\Controllers\HRController::class, 'dueStudentList']);
+Route::get('/admin/user/today/admission/list', [App\Http\Controllers\HRController::class, 'todayAdmissionList']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

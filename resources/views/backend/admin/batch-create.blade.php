@@ -63,6 +63,8 @@
                                 <select name="course_name" id="course_name" class="form-control">
                                     <option disabled selected>---Select Course Name---</option>
                                     <option value="web">Full Stack Web Development</option>
+                                    <option value="attachment_web">Industrial attachment ( Web )</option>
+                                    <option value="attachment_adm">Industrial attachment ( ADM )</option>
                                     <option value="digital">Digital Marketing</option>
                                     <option value="english">Communication English</option>
                                 </select>

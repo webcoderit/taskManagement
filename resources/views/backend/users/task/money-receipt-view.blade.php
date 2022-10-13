@@ -79,7 +79,7 @@
                                                 Advanced Digital Marketing
                                             @else
                                                 Communication English
-                                            @endif
+                                        @endif
                                     </span>
                                 </div>
                                 <div>
@@ -114,7 +114,6 @@
                                     <span class="money-receipt-view-label">Second Payment :</span>
                                     <span>{{ $moneyReceiptView->today_pay ?? "Not Yet" }} TK. <small style="color: red">( With Cost )</small> </span>
                                     @else
-
                                     @endif
                                 </div>
                             </div>

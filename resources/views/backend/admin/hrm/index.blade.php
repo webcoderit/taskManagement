@@ -9,14 +9,15 @@
     <div class="">
         <!--Admission debit and credit calculation-->
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-5 row-cols-xxl-5">
-            <div class="col">
-                <div class="card radius-10" style="background-color: #0bb2d3">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Today Admission Advance</p>
-                        <h3 class="mb-3 text-white">
-                            {{ number_format($data['todayAmountsAdvance']->sum('advance'),2 ?? 0) }}
-                        </h3>
-                        <span style="background-color: purple;
+            <a href="{{ url('/admin/user/today/admission/list') }}">
+                <div class="col">
+                    <div class="card radius-10" style="background-color: #0bb2d3">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Today Admission Advance</p>
+                            <h3 class="mb-3 text-white">
+                                {{ number_format($data['todayAmountsAdvance']->sum('advance'),2 ?? 0) }}
+                            </h3>
+                            <span style="background-color: purple;
                             color: white;
                             padding: 10px 40px;
                             font-size: 16px;
@@ -24,10 +25,11 @@
                             border-radius: 5px;">
                             {{ count(\App\Models\MoneyReceipt::whereDate('admission_date', \Carbon\Carbon::today())->get()) }}
                         </span>
-                        <div id="chart1"></div>
+                            <div id="chart1"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             <div class="col">
                 <div class="card radius-10" style="background-color: darkred">
                     <div class="card-body text-center">

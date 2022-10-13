@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdmissionRequest;
+use App\Mail\AdmissionConfirmationEmail;
 use App\Models\AdmissionForm;
 use App\Models\Batch;
 use App\Models\Intereste;
 use App\Models\MoneyReceipt;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -339,7 +341,7 @@ class UserController extends Controller
                 }
                 $newStudent->save();
 
-                if ($newStudent){
+                if ($newStudent->save()){
                     $moneyReceipt = new MoneyReceipt();
                     $moneyReceipt->admission_id = $newStudent->id;
                     $moneyReceipt->payment_type = $request->payment_type;
@@ -350,6 +352,10 @@ class UserController extends Controller
                     $moneyReceipt->advance = $request->advance + $request->online_charge;
                     $moneyReceipt->due = $request->due;
                     $moneyReceipt->save();
+                }
+
+                if ($newStudent->save() && $moneyReceipt->save()){
+                    Mail::to($newStudent->s_email)->send(new AdmissionConfirmationEmail($moneyReceipt));
                 }
 
                 return response()->json([

@@ -6,7 +6,12 @@
     <title>Money Receipt Pdf</title>
 </head>
 <body>
-<table style="width: 700px;margin: auto;box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;border-collapse: collapse;border: 1px solid #ddd;">
+<table style="width: 700px;margin: auto;box-shadow: rgb(0 0 0 / 50%) 0px 3px 8px;
+    border-collapse: collapse;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    border-left: orangered;
+    border-right: orangered; background-color: #d1d2d4">
     <thead>
     <tr>
         <td colspan="2" style="text-align: center;">
@@ -29,7 +34,7 @@
                 Student ID :
             </span>
             <span style="color: #000;">
-                235232688
+                {{ ucfirst($moneyReceiptView->admissionForm->course) ?? '' }} - {{ $moneyReceiptView->admissionForm->student_id ?? '' }}
                 {{-- {{ ucfirst($data['moneyReceipt']->admissionForm->course) }} - {{ $data['moneyReceipt']->admissionForm->student_id }} --}}
             </span>
         </td>
@@ -39,7 +44,7 @@
                 Admission Date :
             </span>
             <span style="color: #000;">
-                12/202/2020
+                {{ $moneyReceiptView->admission_date->format('Y-m-d') ?? ' ' }}
                  {{-- {{ $data['moneyReceipt']->admission_date->format('Y-m-d') }} --}}
             </span>
         </td>
@@ -50,7 +55,7 @@
                 Student Name :
             </span>
             <span style="color: #000;">
-                Saidul Islam JIhad
+                {{ $moneyReceiptView->admissionForm->s_name ?? ' ' }}
                 {{-- {{ $data['moneyReceipt']->admissionForm->s_name }} --}}
             </span>
         </td>
@@ -59,7 +64,7 @@
                 Student Phone :
             </span>
             <span style="color: #000;">
-                016173925421558
+                {{ $moneyReceiptView->admissionForm->s_phone ?? ' ' }}
                 {{-- {{ $data['moneyReceipt']->admissionForm->s_phone }} --}}
             </span>
         </td>
@@ -71,14 +76,13 @@
                     </span>
 
             <span style="color: #000;">
-                Full stack web development
-                {{-- @if($data['moneyReceipt']->admissionForm->course == 'web')
+                @if($moneyReceiptView->admissionForm->course == 'web')
                     Full stack web development
-                @elseif($data['moneyReceipt']->admissionForm->course == 'digital')
-                    Advance Digital Marketing
+                @elseif($moneyReceiptView->admissionForm->course == 'digital')
+                    Advanced Digital Marketing
                 @else
                     Communication English
-                @endif --}}
+                @endif
             </span>
         </td>
         <td style="text-align: end;padding: 10px 20px 10px 0;">
@@ -86,57 +90,69 @@
                 Batch No :
             </span>
             <span style="color: #000;">
-                105
+                {{ $moneyReceiptView->admissionForm->batch_no }}
                  {{-- {{ $data['moneyReceipt']->admissionForm->batch_no }} --}}
             </span>
         </td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
         <td style="padding: 10px 0 10px 20px;">
-                    <span style="font-size: 15px;color: #000;font-weight: 600;">
-                        Total Fee :
-                    </span>
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Total Fee :
+            </span>
             <span style="color: #000;">
-                12000 tk
-                         {{-- {{ $data['moneyReceipt']->total_fee }} TK --}}
-                    </span>
+                {{ $moneyReceiptView->total_fee }} Tk
+                 {{-- {{ $data['moneyReceipt']->total_fee }} TK --}}
+            </span>
+        </td>
+        <td style="padding: 10px 0 10px 20px;">
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Due :
+            </span>
+            <span style="color: #000;">
+                @if($moneyReceiptView->due == 0)
+                    Paid
+                @else
+                    {{ $moneyReceiptView->due }} TK
+                @endif
+                 {{-- {{ $data['moneyReceipt']->total_fee }} TK --}}
+            </span>
         </td>
         <td style="text-align: center;width: 200px;">
-                    <span style="font-size: 15px;color: #000;font-weight: 600;">
-                        Advance :
-                    </span>
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Advance :
+            </span>
             <span style="color: #000;">
-                5000 tk
+               {{ $moneyReceiptView->advance }}
                 {{-- {{ $data['moneyReceipt']->advance }} TK. <small style="color: red">( Advance & {{ ucfirst($data['moneyReceipt']->admissionForm->payment_type) }} Cost )</small> --}}
             </span>
         </td>
         <td style="text-align: end;padding: 10px 20px 10px 0;">
-                    <span style="font-size: 15px;color: #000;font-weight: 600;">
-                        Due :
-                    </span>
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Second Payment :
+            </span>
             <span style="color: #000;">
-                4523 tk
-                {{-- @if($data['moneyReceipt']->due  == 0)
-                    Paid
+                @if($moneyReceiptView->today_pay != null)
+                    <span style="font-size: 15px;color: #000;font-weight: 600;">Second Payment :</span>
+                    <span>{{ $moneyReceiptView->today_pay ?? "Not Yet" }} TK. <small style="color: red">( With Cost )</small> </span>
                 @else
-                    {{ $data['moneyReceipt']->due }}
-                @endif --}}
+                @endif
             </span>
         </td>
     </tr>
     <tr style="border-bottom: 1px solid #ddd;">
         <td style="padding: 10px 0px 10px 20px;" colspan="2">
-                    <span style="font-size: 15px;color: #000;font-weight: 600;">
-                        Received By :
-                    </span>
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Received By :
+            </span>
             <span style="color: #000;">
-                        {{ auth()->check() ? auth()->user()->full_name : 'Admin' }}
-                    </span>
+               {{ auth()->check() ? auth()->user()->full_name : 'Admin' }}
+            </span>
         </td>
         <td style="text-align: center;padding: 10px 20px 10px 0;">
-                    <span style="font-size: 15px;color: #000;font-weight: 600;">
-                        Authorised By :
-                    </span>
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Authorised By :
+            </span>
             <span>WebCoder-it</span>
         </td>
     </tr>

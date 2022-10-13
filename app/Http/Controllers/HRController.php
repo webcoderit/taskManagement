@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\AdmissionForm;
 use App\Models\Batch;
 use App\Models\MoneyReceipt;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash;
 class HRController extends Controller
@@ -260,5 +261,14 @@ class HRController extends Controller
         $studentDelete->delete();
         //MoneyReceipt::where('admission_id', $studentDelete->id)->first()->delete();
         return redirect()->back()->with('success', 'Student has been deleted');
+    }
+
+    public function todayAdmissionList()
+    {
+        $admissionStudents = AdmissionForm::with('user', 'moneyReceipt')->whereDate('created_at', Carbon::today())->get();
+        $data = [
+            'admissionStudentsBatch' => Batch::orderBy('created_at', 'desc')->get()
+        ];
+        return view('backend.admin.hrm.today-admission-list', compact('admissionStudents', 'data'));
     }
 }

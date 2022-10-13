@@ -74,6 +74,7 @@
                                     <a href="#" class="input-group-text btn btn-info" style="margin-left: 30px;" id="basic-addon2">{{ 'Total Student: ' . count($admissionStudents) }}</a>
                                     @if(request()->batch_student)
                                     <a href="{{ url('/admin/user/student/batch/wise/list/'.request()->batch_student) }}" class="input-group-text btn btn-primary" style="margin-left: 30px;" id="basic-addon2">Download</a>
+                                    <a class="btn btn-success float-right" href="{{ url('/admin/file-export/'.request()->batch_student) }}">Excel report</a>
                                     @endif
                                 </div>
                             </div>

@@ -69,16 +69,16 @@
                                     <textarea class="form-control" name="note" rows="5" placeholder="Student opinion here..."></textarea>
                                 </div>
                             @endif
-                            {{--                            <div class="form-check mt-3">--}}
-                            {{--                                <input class="form-check-input" type="checkbox" name="is_paid" onclick="isDiscountPaid(this)" value="1" id="isPaid">--}}
-                            {{--                                <label class="form-check-label" for="isPaid" style="font-weight: 600;">--}}
-                            {{--                                    Is Paid--}}
-                            {{--                                </label>--}}
-                            {{--                            </div>--}}
-                            {{--                            <div id="disCountNote" style="display: none">--}}
-                            {{--                                <label style="font-weight: 600;">Is paid note</label><br>--}}
-                            {{--                                <textarea class="form-control" name="is_paid_note" rows="5" placeholder="Is paid note..."></textarea>--}}
-                            {{--                            </div>--}}
+                            <div class="form-check mt-3" id="discountPaid">
+                                <input class="form-check-input" type="checkbox" name="is_paid" onclick="isDiscountPaid(this)" value="1" id="isPaid">
+                                <label class="form-check-label" for="isPaid" style="font-weight: 600;">
+                                    Is Paid
+                                </label>
+                            </div>
+                            <div id="disCountNote" style="display: none">
+                                <label style="font-weight: 600;">Is paid note</label><br>
+                                <textarea class="form-control" name="is_paid_note" rows="5" placeholder="Is paid note..."></textarea>
+                            </div>
                             @if($courseDueCollection->due == 0)
                                 <div style="text-align: center;margin-top: 20px;">
                                     <button type="submit" class="btn btn-success" disabled>Submit</button>
@@ -103,10 +103,11 @@
             let dueFee = document.getElementById('due').value;
             let payment = document.getElementById('due_payment').value;
             let note = document.getElementById('note');
+            let discountPaid = document.getElementById('discountPaid');
             let paymentType = document.getElementById('payType');
             document.getElementById('due').value = parseInt(dueFee) - parseInt(payment);
 
-            if(dueFee < payment){
+            if(parseInt(dueFee) < parseInt(payment)){
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops ! Try again',
@@ -127,26 +128,27 @@
                 document.getElementById('yes').selected = true;
                 //dueFee = 0;
                 note.style.display = "none";
+                discountPaid.style.display = "none";
                 paymentType.style.display = "block";
             }
         }
 
+        function isPayStudent(e){
+        	if(e == 0){
+        		note.style.display = "block";
+        	}else{
+        		note.style.display = "none";
+        	}
+        }
 
 
-        // function isPayStudent(e){
-        // 	if(e == 0){
-        // 		note.style.display = "block";
-        // 	}else{
-        // 		note.style.display = "none";
-        // 	}
-        // }
-        //
-        //
-        // function isDiscountPaid(discount){
-        //     let discountNoteIsPaid = document.getElementById('disCountNote');
-        //     let dueFeeClear = document.getElementById('due');
-        //     discountNoteIsPaid.style.display = discount.checked ? "block" : "none";
-        //     dueFeeClear.value = '0.00'
-        // }
+        function isDiscountPaid(discount){
+            let note = document.getElementById('note');
+            let discountNoteIsPaid = document.getElementById('disCountNote');
+            let dueFeeClear = document.getElementById('due');
+            discountNoteIsPaid.style.display = discount.checked ? "block" : "none";
+            dueFeeClear.value = '0.00'
+            note.style.display = "none";
+        }
     </script>
 @endpush
