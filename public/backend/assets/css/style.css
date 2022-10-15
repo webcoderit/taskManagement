@@ -825,157 +825,13 @@ span.total-student-count {
 }
 
 
-
-
-
-
-
-
-
-#heading {
-    text-transform: uppercase;
-    color: #673AB7;
-    font-weight: normal
-}
-
-#msform {
-    text-align: center;
-    position: relative;
-    margin-top: 20px
-}
-
-#msform fieldset {
-    border: 0 none;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
-    padding-bottom: 20px;
-    position: relative
-}
-
-.form-card {
-    text-align: left
-}
-
-#msform fieldset:not(:first-of-type) {
-    display: none
-}
-
-.form-card label {
-    font-size: 15px;
-    font-weight: 500;
-    color: #000;
-}
-
-#msform input,
-#msform textarea {
-    padding: 8px 15px 8px 15px;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    margin-bottom: 25px;
-    margin-top: 2px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: montserrat;
-    color: #2C3E50;
-    font-size: 16px;
-    letter-spacing: 1px;
-    border-radius: 5px;
-}
-
-#msform input:focus,
-#msform textarea:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #f16522;
-    outline-width: 0
-}
-
-#msform .action-button {
-    width: 100px;
-    background: #f16522;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 0px 10px 5px;
-    float: right;
-    border-radius: 5px;
-}
-
-#msform .d-flex.align-items-center.gender input,
-#msform .d-flex.align-items-center.Shedule input {
-    margin-bottom: 0;
-    margin-right: 5px;
-    height: 30px;
-    width: 17px;
-}
-
-
-
-#msform .action-button:hover,
-#msform .action-button:focus {
-    background-color: #f16522
-}
-
-#msform .action-button-previous {
-    width: 100px;
-    background: #616161;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 0px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px 10px 0px;
-    float: right
-}
-
-#msform .action-button-previous:hover,
-#msform .action-button-previous:focus {
-    background-color: #000000
-}
-
-.card {
-    z-index: 0;
-    border: none;
-    position: relative
-}
-
-.fs-title {
-    font-size: 20px;
-    color: #f16522;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: left
-}
-
-.purple-text {
-    color: #673AB7;
-    font-weight: normal
-}
-
-.steps {
-    font-size: 25px;
-    color: gray;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: right
-}
-
-.fieldlabels {
-    color: gray;
-    text-align: left
-}
-
+/*Admission Form Css Start*/
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;
     color: lightgrey;
-    padding-left: 0;}
+    padding-left: 0;
+}
 
 #progressbar .active {
     color: #f16522
@@ -987,7 +843,8 @@ span.total-student-count {
     width: 20%;
     float: left;
     position: relative;
-    font-weight: 400
+    font-weight: 400;
+    text-align: center;
 }
 
 #progressbar #professional:before {
@@ -1044,9 +901,30 @@ span.total-student-count {
     z-index: -1
 }
 
+#progressbar li.finish:before,
+#progressbar li.finish:after {
+    background: #f16522
+}
+
 #progressbar li.active:before,
 #progressbar li.active:after {
     background: #f16522
+}
+
+.fs-title {
+    font-size: 20px;
+    color: #f16522;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: left;
+}
+
+.steps {
+    font-size: 25px;
+    color: gray;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: right;
 }
 
 .progress {
@@ -1057,7 +935,69 @@ span.total-student-count {
     background-color: #f16522
 }
 
-.fit-image {
-    width: 100%;
-    object-fit: cover
+#admissionForm label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
 }
+
+#admissionForm input.form-control {
+    padding: 8px 15px 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+}
+
+#admissionForm input:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #f16522;
+}
+
+#admissionForm input.invalid {
+  background-color: #ffdddd;
+}
+
+#admissionForm .tab {
+  display: none;
+}
+
+#admissionForm button {
+    background-color: #f16522;
+    color: #ffffff;
+    border: none;
+    padding: 8px 20px;
+    font-size: 18px;
+    font-family: Raleway;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#admissionForm button:focus {
+    outline: none;
+}
+
+button#prevBtn {
+    opacity: 0.7;
+}
+
+#admissionForm button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+.step.finish {
+  color: #f16522;
+}
+/*Admission Form Css End*/
