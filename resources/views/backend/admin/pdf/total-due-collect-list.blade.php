@@ -58,6 +58,10 @@
                         WEB
                     @elseif($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'digital' : '')
                         ADM
+                    @elseif($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'attachment_web' : '')
+                        Industrial Attachment ( Web )
+                    @elseif($admissionStudentFilter->admissionForm ? $admissionStudentFilter->admissionForm->course == 'attachment_adm' : '')
+                        Industrial Attachment ( Adm )
                     @else
                         ENG
                     @endif

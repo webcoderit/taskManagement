@@ -33,6 +33,10 @@
                         Full stack web development
                     @elseif($report->course == 'digital')
                         Advanced digital marketing
+                    @elseif($report->course == 'attachment_web' : '')
+                        Industrial Attachment ( Web )
+                    @elseif($report->course == 'attachment_adm' : '')
+                        Industrial Attachment ( Adm )
                     @else
                         Communication English
                     @endif

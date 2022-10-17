@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'deshboard'])->name('admin.deshboard');
         Route::get('/register', [App\Http\Controllers\Admin\AdminController::class, 'register'])->name('admin.user.list');
         Route::get('/add/user', [App\Http\Controllers\Admin\AdminController::class, 'createForm'])->name('admin.user.register.form.create');
+        Route::get('/task/summery', [App\Http\Controllers\Admin\AdminController::class, 'userTaskSummery'])->name('admin.task.summery');
         Route::get('/hr/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'hr_dashboard'])->name('admin.hr.dashboard');
         Route::get('/admission/student/info/{id}', [App\Http\Controllers\Admin\AdminController::class, 'showAdmissionDueModal']);
         Route::post('/due/clear/{id}', [App\Http\Controllers\Admin\AdminController::class, 'dueClear']);
@@ -81,6 +82,7 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/admission/filtering', [App\Http\Controllers\Admin\AdminController::class, 'admissionFiltering']);
             Route::get('/admission/filtering/report/download/{from}/{to}', [App\Http\Controllers\Admin\AdminController::class, 'admissionFilteringReportDownload']);
             Route::get('/due/report', [App\Http\Controllers\Admin\AdminController::class, 'dueCollectReport']);
+            Route::get('/call/summery', [App\Http\Controllers\Admin\AdminController::class, 'call_summery'])->name('admin.user.call.summery');
 
             //================= Batch student list download ================//
             Route::get('/student/batch/wise/download/{batchStudent}', [App\Http\Controllers\Admin\AdminController::class, 'studentDownloadFromBatchNumber']);

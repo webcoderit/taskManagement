@@ -22,9 +22,10 @@
       </a>
       <ul>
         <li> <a href="{{ route('admin.user.register.form.create') }}"><i class="bx bx-right-arrow-alt"></i>Add user</a></li>
-          <li> <a href="{{ route('admin.user.list') }}"><i class="bx bx-right-arrow-alt"></i>Registration User</a></li>
-        <li> <a href="{{ route('admin.user.online') }}"><i class="bx bx-right-arrow-alt"></i>Employee Tracking</a></li>
-        <li> <a href="{{ route('admin.user.attendance.log') }}"><i class="bx bx-right-arrow-alt"></i>Attendance report</a></li>
+        <li> <a href="{{ route('admin.user.list') }}"><i class="bx bx-right-arrow-alt"></i>Registration User</a></li>
+{{--        <li> <a href="{{ route('admin.user.online') }}"><i class="bx bx-right-arrow-alt"></i>Employee Tracking</a></li>--}}
+{{--        <li> <a href="{{ route('admin.user.attendance.log') }}"><i class="bx bx-right-arrow-alt"></i>Attendance report</a></li>--}}
+        <li> <a href="{{ route('admin.user.call.summery') }}"><i class="bx bx-right-arrow-alt"></i>Employee Summery</a></li>
         <li> <a href="{{ url('/admin/batch/create') }}"><i class="bx bx-right-arrow-alt"></i>Add batch</a></li>
       </ul>
     </li>
@@ -41,6 +42,7 @@
         </li>
         <li> <a href="{{ route('admin.all.task') }}"><i class="bx bx-right-arrow-alt"></i>All task</a>
         </li>
+        <li> <a href="{{ route('admin.task.summery') }}"><i class="bx bx-right-arrow-alt"></i>Task Summary</a></li>
         <li> <a href="{{ route('admin.pending.task') }}"><i class="bx bx-right-arrow-alt"></i>Pending task</a>
         </li>
         <li> <a href="{{ route('admin.complete.admission') }}"><i class="bx bx-right-arrow-alt"></i>Complete admission</a>

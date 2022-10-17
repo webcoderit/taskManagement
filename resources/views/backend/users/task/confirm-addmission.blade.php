@@ -64,11 +64,15 @@
                                         <td>{{ $data->profession ?? '' }}</td>
                                         <td>
                                             @if($data->course == 'web')
-                                                Full stack web development
+                                                <span>Full Stack Web Development</span>
                                             @elseif($data->course == 'digital')
-                                                Advanced digital marketing
+                                                <span>Digital Marketing</span>
+                                            @elseif($data->course == 'attachment_web')
+                                                Industrial Attachment ( Web )
+                                            @elseif($data->course == 'attachment_adm')
+                                                Industrial Attachment ( Adm )
                                             @else
-                                                Communication English
+                                                <span>Communication English</span>
                                             @endif
                                         </td>
                                         <td>{{ $data->batch_no ?? '' }}</td>

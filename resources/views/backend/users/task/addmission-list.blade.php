@@ -62,6 +62,10 @@
                                             <span>Full Stack Web Development</span>
                                         @elseif($admissionForm->course == 'digital')
                                             <span>Digital Marketing</span>
+                                        @elseif($admissionForm->course == 'attachment_web')
+                                            Industrial Attachment ( Web )
+                                        @elseif($admissionForm->course == 'attachment_adm')
+                                            Industrial Attachment ( Adm )
                                         @else
                                             <span>Communication English</span>
                                         @endif

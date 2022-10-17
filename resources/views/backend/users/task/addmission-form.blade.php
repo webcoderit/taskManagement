@@ -408,11 +408,13 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                              <label for="course">Course Name</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                             <select name="course" id="course" class="form-control">
-                                                  <option disabled selected>---Select Course Name---</option>
-                                                  <option value="web">Full Stack Web Development</option>
-                                                  <option value="digital">Digital Marketing</option>
-                                                  <option value="english">Communication English</option>
+                                            <select name="course" id="course" class="form-control">
+                                                <option disabled selected>---Select Course Name---</option>
+                                                <option value="web">Full Stack Web Development</option>
+                                                <option value="attachment_web">Industrial Attachment ( Web )</option>
+                                                <option value="attachment_adm">Industrial Attachment ( ADM )</option>
+                                                <option value="digital">Digital Marketing</option>
+                                                <option value="english">Communication English</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">

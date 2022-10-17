@@ -16,6 +16,7 @@ use App\Models\Expance;
 use App\Models\Intereste;
 use App\Models\MoneyReceipt;
 use App\Models\Salary;
+use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -681,7 +682,7 @@ class AdminController extends Controller
 
     public function totalDueInfo()
     {
-        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc');
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orWhere('is_pay', 0)->where('is_reject', 0)->orderBy('created_at', 'desc');
 
         $admissionStudentsTotalDue = $sqlFiltering->get();
         return view('backend.admin.pdf.total-due', compact('admissionStudentsTotalDue'));
@@ -763,5 +764,19 @@ class AdminController extends Controller
     public function adminStudentListImport($batchNo)
     {
         return $this->excel->download(new BatchWiseStudentMultipleSheet($batchNo), 'BatchStudentList.xlsx');
+    }
+
+    // User task summery
+    public function userTaskSummery()
+    {
+        $sql = Task::with('user', 'interestes');
+        $fromDate = date('Y-m-d', strtotime(request()->from_date));
+        $toDate = date('Y-m-d', strtotime(request()->to_date));
+
+        if (isset(request()->from_date) && isset(request()->to_date)){
+            $sql->whereDate('created_at', '>=', $fromDate)->whereDate('created_at','<=', $toDate);
+        }
+        $tasks = $sql->get()->groupBy('user_id');
+        return view('backend.admin.task.task-summery', compact('tasks'));
     }
 }

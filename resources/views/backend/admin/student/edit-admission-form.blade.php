@@ -155,6 +155,8 @@
                                     <select name="course" id="course" class="form-control">
                                         <option disabled selected>---Select Course Name---</option>
                                         <option value="web" {{ $editAdmissionForm->course == 'web' ? 'selected' : '' }}>Full Stack Web Development</option>
+                                        <option value="attachment_web" {{ $editAdmissionForm->course == 'attachment_web' ? 'selected' : '' }}>Industrial Attachment ( Web )</option>
+                                        <option value="attachment_adm" {{ $editAdmissionForm->course == 'attachment_adm' ? 'selected' : '' }}>Industrial Attachment ( ADM )</option>
                                         <option value="digital" {{ $editAdmissionForm->course == 'digital' ? 'selected' : '' }}>Digital Marketing</option>
                                         <option value="english" {{ $editAdmissionForm->course == 'english' ? 'selected' : '' }}>Communication English</option>
                                     </select>

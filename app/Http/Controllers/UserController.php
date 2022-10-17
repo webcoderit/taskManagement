@@ -341,7 +341,7 @@ class UserController extends Controller
                 }
                 $newStudent->save();
 
-                if ($newStudent->save()){
+                if ($newStudent){
                     $moneyReceipt = new MoneyReceipt();
                     $moneyReceipt->admission_id = $newStudent->id;
                     $moneyReceipt->payment_type = $request->payment_type;
@@ -351,12 +351,38 @@ class UserController extends Controller
                     $moneyReceipt->total_fee = $request->total_fee;
                     $moneyReceipt->advance = $request->advance + $request->online_charge;
                     $moneyReceipt->due = $request->due;
+
                     $moneyReceipt->save();
+
+
+                    $pdf = PDF::loadView('backend.users.task.money-receipt-pdf', compact('moneyReceipt'));
+                    $email = $request->s_email;
+                    Mail::send('backend.users.task.money-receipt-pdf',  [
+                        's_name'              => $request->s_name,
+                        's_email'             => $request->s_email,
+                        'f_name'            => $request->f_name,
+                        's_phone'             => $request->s_phone,
+                        'batch_no'   => $request->batch_no,
+                        'course' => $request->course,
+                        'batch_type'               => $request->batch_type,
+                        'class_shedule'    => $request->class_shedule,
+                        'class_time'   => $request->class_time,
+                        'admission_date'            => $request->admission_date,
+                        'total_fee'      => $request->total_fee,
+                        'advance'              => $request->advance,
+                        'due'         => $request->due,
+                    ],
+                        function ($msg) use ($email, $pdf){
+                            $msg->from('info@webcoder-it.com', 'Webcoder-IT');
+                            $msg->subject('Subject: Admission confirmation email');
+                            $msg->attachData($pdf->output(), "Receipt.pdf");
+                            $msg->to($email);
+                        });
                 }
 
-                if ($newStudent->save() && $moneyReceipt->save()){
-                    Mail::to($newStudent->s_email)->send(new AdmissionConfirmationEmail($moneyReceipt));
-                }
+//                if ($newStudent->save() && $moneyReceipt->save()){
+//                    Mail::to($newStudent->s_email)->send(new AdmissionConfirmationEmail($moneyReceipt));
+//                }
 
                 return response()->json([
                     'status' => 200,
