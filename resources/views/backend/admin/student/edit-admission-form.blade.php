@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="advance">Transaction ID</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="text" name="transaction_id" value="{{ $editAdmissionForm->transaction_id }}" id="transaction_id" placeholder="Transaction Id" class="form-control">
+                                    <input type="text" name="transaction_id" value="{{ $editAdmissionForm->moneyReceipt->transaction_id }}" id="transaction_id" placeholder="Transaction Id" class="form-control">
                                     <span style="color: red"> {{ $errors->has('transaction_id') ? $errors->first('transaction_id') : ' ' }}</span>
                                 </div>
 

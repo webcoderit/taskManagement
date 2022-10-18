@@ -77,6 +77,8 @@
                                         Full stack web development
                                     @elseif($data['moneyReceipt']->admissionForm->course == 'digital')
                                         Advance Digital Marketing
+                                    @elseif($data['moneyReceipt']->admissionForm->course == 'attachment_web')
+                                        Industrial Attachment Web
                                     @else
                                         Communication English
                                     @endif

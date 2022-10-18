@@ -17,10 +17,10 @@ class Task extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function number()
-    {
-        return $this->hasOne(AssignNumber::class, 'task_id', 'id');
-    }
+//    public function number()
+//    {
+//        return $this->hasOne(AssignNumber::class, 'task_id', 'id');
+//    }
 
     public function interestes(){
         return $this->hasOne(Intereste::class);

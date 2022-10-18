@@ -779,4 +779,16 @@ class AdminController extends Controller
         $tasks = $sql->get()->groupBy('user_id');
         return view('backend.admin.task.task-summery', compact('tasks'));
     }
+
+    public function call_summery(){
+        $admissionStudents = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at')->get()->groupBy('user_id');
+//        if (isset(request()->user_id) && isset(request()->date) && isset(request()->batch_no)){
+//            //dd(request()->date);
+//            $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
+//                $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
+//            })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
+//        }
+//        $admissionStudents = $sql->paginate(200);
+        return view('backend.admin.task.call-summery', compact('admissionStudents'));
+    }
 }
