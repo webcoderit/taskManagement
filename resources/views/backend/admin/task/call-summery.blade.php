@@ -76,11 +76,15 @@
                                         {{ $admissionStudent[0]->user->full_name }}
                                     </td>
                                     <td>{{ count($admissionStudent[0]->user->tasks) }}</td>
+                                    <td>
+                                        {{ count($admissionStudent[0]->user->tasks->whereHas('interestes', function ($q){
+                                            $q->where('interest_level', 'highly');
+                                        })) }}
+                                    </td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td>{{ count($admissionStudent[0]) }}</td>
+                                    <td>{{ $admissionStudent[0]->where('user_id', $admissionStudent[0]->user->id)->count() }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

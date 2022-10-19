@@ -52,7 +52,11 @@ class User extends Authenticatable
     }
 
     public function tasks(){
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class)->with('interestes');
+    }
+
+    public function admissions(){
+        return $this->hasMany(AdmissionForm::class);
     }
 
     public function attendances(){

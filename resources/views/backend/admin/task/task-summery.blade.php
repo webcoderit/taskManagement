@@ -65,45 +65,59 @@
                                 <th>50% Interested</th>
                                 <th>Not Interested</th>
                                 <th>Others</th>
+                                <th>Admission</th>
                             </tr>
                             </thead>
+                            @if(!empty($tasks))
                             <tbody>
-                            @foreach($tasks as $key => $task)
+                                @foreach($tasks as $key => $task)
+                                    <tr>
+                                        <td>{{ $loop->index+1}}</td>
+                                        <td>{{ $task[0]->user->full_name ?? 'No employee name' }}</td>
+                                        <td>{{ count($task) }}</td>
+                                        <td>
+                                            @if(isset($task[$key]))
+                                                {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
+                                                $q->where('interest_level', 'highly')->whereDate('created_at', '>=', request()->from_date)->whereDate('created_at', '<=', request()->to_date);
+                                                })->count() }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(isset($task[$key]))
+                                                {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
+                                                $q->where('interest_level', '50%')->whereDate('created_at', '>=', request()->from_date)->whereDate('created_at', '<=', request()->to_date);
+                                                })->count() }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(isset($task[$key]))
+                                                {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
+                                                $q->where('interest_level', 'not')->whereDate('created_at', '>=', request()->from_date)->whereDate('created_at', '<=', request()->to_date);
+                                                })->count() }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(isset($task[$key]))
+                                                {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
+                                                $q->where('interest_level', 'others')->whereDate('created_at', '>=', request()->from_date)->whereDate('created_at', '<=', request()->to_date);
+                                                })->count() }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(isset($task[$key]))
+                                                {{ $task[0]->user->admissions()->whereDate('created_at', '>=', request()->from_date)->whereDate('created_at', '<=', request()->to_date)->count() }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            @else
                                 <tr>
-                                    <td>{{ $loop->index+1}}</td>
-                                    <td>{{ $task[0]->user->full_name ?? 'No employee name' }}</td>
-                                    <td>{{ count($task) }}</td>
-                                    <td>
-                                        @if(isset($task[$key]))
-                                            {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
-                                            $q->where('interest_level', 'highly');
-                                            })->count() }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if(isset($task[$key]))
-                                            {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
-                                            $q->where('interest_level', '50%');
-                                            })->count() }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if(isset($task[$key]))
-                                            {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
-                                            $q->where('interest_level', 'not');
-                                            })->count() }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if(isset($task[$key]))
-                                            {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
-                                            $q->where('interest_level', 'others');
-                                            })->count() }}
-                                        @endif
+                                    <td colspan="11">
+                                        <p class="text-center mt-3">Please Select From Date and To Date Then Hit Enter/Search</p>
                                     </td>
                                 </tr>
-                            @endforeach
-                            </tbody>
+                            @endif
                         </table>
                     </div>
                 </div>
