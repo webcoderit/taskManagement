@@ -11,6 +11,7 @@ class MoneyReceipt extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'admission_id';
     protected $guarded = [];
 
 //    protected $dates = ['admission_date'];

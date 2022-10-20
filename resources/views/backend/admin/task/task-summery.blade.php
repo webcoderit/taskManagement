@@ -66,6 +66,7 @@
                                 <th>Not Interested</th>
                                 <th>Others</th>
                                 <th>Admission</th>
+                                <th>Performance KPI</th>
                             </tr>
                             </thead>
                             @if(!empty($tasks))
@@ -74,7 +75,7 @@
                                     <tr>
                                         <td>{{ $loop->index+1}}</td>
                                         <td>{{ $task[0]->user->full_name ?? 'No employee name' }}</td>
-                                        <td>{{ count($task) }}</td>
+                                        <td>{{ $totalAssignTask = count($task) }}</td>
                                         <td>
                                             @if(isset($task[$key]))
                                                 {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
@@ -91,7 +92,7 @@
                                         </td>
                                         <td>
                                             @if(isset($task[$key]))
-                                                {{ $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
+                                                {{ $notInterested = $task[$key]->where('user_id', $task[$key]->user->id)->whereHas('interestes', function ($q){
                                                 $q->where('interest_level', 'not')->whereDate('created_at', '>=', request()->from_date)->whereDate('created_at', '<=', request()->to_date);
                                                 })->count() }}
                                             @endif
@@ -105,7 +106,17 @@
                                         </td>
                                         <td>
                                             @if(isset($task[$key]))
-                                                {{ $task[0]->user->admissions()->whereDate('created_at', '>=', request()->from_date)->whereDate('created_at', '<=', request()->to_date)->count() }}
+                                                {{ $totalAdmission = $task[0]->user->admissions()->whereHas('moneyReceipt', function ($m){
+                                                $m->whereDate('admission_date', '>=', request()->from_date)->whereDate('admission_date', '<=', request()->to_date);
+                                            })->count() }}
+                                            @endif
+                                        </td>
+                                        @php
+                                           $subTotal = $totalAssignTask - isset($notInterested);;
+                                        @endphp
+                                        <td>
+                                            @if(isset($task[$key]))
+                                                {{ $totalAdmission*100/$subTotal ? number_format($totalAdmission*100/$subTotal,2) : 0 }}%
                                             @endif
                                         </td>
                                     </tr>

@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
 
     public function admissions(){
-        return $this->hasMany(AdmissionForm::class);
+        return $this->hasMany(AdmissionForm::class)->with('moneyReceipt');
     }
 
     public function attendances(){
