@@ -93,6 +93,10 @@
                                                 Web
                                             @elseif($admissionStudent->course == 'digital')
                                                 ADM
+                                            @elseif($admissionStudent->course == 'attachment_web')
+                                                Industrial Attachment ( Web )
+                                            @elseif($admissionStudent->course == 'attachment_adm')
+                                                Industrial Attachment ( Adm )
                                             @else
                                                 Eng
                                             @endif

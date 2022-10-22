@@ -42,7 +42,9 @@
                 ->whereHas('moneyReceipt', function ($q) {
                     $q->whereMonth('admission_date', date('m'));
             })->get();
+
             @endphp
+
             <a href="{{ url('/confirm/addmission') }}">
                 <div class="col">
                     <div class="card radius-10" id="grad1">
@@ -68,7 +70,7 @@
                     <div class="card radius-10" id="grad3">
                         <div class="card-body text-center">
                           <p class="mb-1 text-white" style="font-size: 24px;">Total Task</p>
-                          <h3 class="mb-3">{{ count(\App\Models\Task::whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
+                          <h3 class="mb-3">{{ $totalTask = count(\App\Models\Task::whereMonth('created_at', date('m'))->where('user_id', auth()->user()->id)->get()) }}</h3>
                         </div>
                     </div>
                 </div>
@@ -78,7 +80,7 @@
                    <div class="card radius-10" id="grad4">
                        <div class="card-body text-center">
                            <p class="mb-1 text-white" style="font-size: 24px;">Not Interested</p>
-                           <h3 class="mb-3">{{ count(\App\Models\Intereste::where('interest_level', 'not')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
+                           <h3 class="mb-3">{{ $notInterested = count(\App\Models\Intereste::where('interest_level', 'not')->whereMonth('created_at', date('m'))->whereHas('task', function ($q){
                                         $q->where('user_id', auth()->user()->id);
                                         })->get()) }}</h3>
                        </div>
@@ -130,6 +132,21 @@
                    </div>
                </div>
            </a>
+            @php
+                $subTotal = $totalTask - isset($notInterested);;
+            @endphp
+            <a href="#">
+                <div class="col col-md-12">
+                    <div class="card radius-10" id="grad5" style="background: #C70039">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white" style="font-size: 24px;">Monthly KPI</p>
+                            <h3 class="mb-3">
+                                {{ count($monthlyAdmissionCount)*100/$subTotal ? number_format(count($monthlyAdmissionCount)*100/$subTotal,2) : 0 }}%
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div><!--end row-->
     </div>
    </div>

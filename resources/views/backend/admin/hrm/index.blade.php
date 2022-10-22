@@ -238,6 +238,10 @@
                                             Full stack web development
                                         @elseif($admissionStudent->course == 'digital')
                                             Advanced digital marketing
+                                        @elseif($admissionStudent->course == 'attachment_web')
+                                            Industrial Attachment ( Web )
+                                        @elseif($admissionStudent->course == 'attachment_adm')
+                                            Industrial Attachment ( Adm )
                                         @else
                                             Communication english
                                         @endif
