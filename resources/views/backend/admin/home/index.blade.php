@@ -131,7 +131,7 @@
                     <div class="card radius-10" style="background-color: rebeccapurple">
                         <div class="card-body text-center">
                             <p class="mb-1 text-white">Monthly Due Collection</p>
-                            <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereMonth('updated_at', date('m'))->where('is_pay', 1)->get()->sum('today_pay') }} Tk.</h3>
+                            <h3 class="mb-3 text-white">{{ $monthlyDueCollect = \App\Models\MoneyReceipt::whereMonth('updated_at', date('m'))->where('is_pay', 1)->get()->sum('today_pay') }} Tk.</h3>
                             <div id="chart3"></div>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                 <div class="card radius-10" style="background-color: orangered">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Total Admission Advance</p>
-                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\MoneyReceipt::get()->sum('advance'),2) ?? 0 }} Tk.</h3>
+                        <h3 class="mb-3 text-white">{{ number_format($totalAdmissionAdvance = \App\Models\MoneyReceipt::get()->sum('advance'),2) ?? 0 }} Tk.</h3>
                         <div id="chart5"></div>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
                 <div class="card radius-10" style="background-color: orangered">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Total Expanse</p>
-                        <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::get()->sum('price'),2) ?? 0 }} Tk.</h3>
+                        <h3 class="mb-3 text-white">{{ number_format( $totalExpanse = \App\Models\Expance::get()->sum('price'),2) ?? 0 }} Tk.</h3>
                         <div id="chart5"></div>
                     </div>
                 </div>
@@ -230,11 +230,33 @@
                 <div class="card radius-10" style="background-color: #641111">
                     <div class="card-body text-center">
                         <p class="mb-1 text-white">Total Monthly Admission</p>
-                        <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereMonth('created_at', date('m'))->count() }}</h3>
+                        <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::whereMonth('admission_date', date('m'))->count() }}</h3>
                         <div id="chart5"></div>
                     </div>
                 </div>
             </div>
+            </a>
+            <a href="#">
+                <div class="col col-md-12">
+                    <div class="card radius-10" style="background-color: #641111">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Total Monthly Earning</p>
+                            <h3 class="mb-3 text-white">{{ number_format($totalEarning = $monthlyCredit + $monthlyDueCollect,2) }}</h3>
+                            <div id="chart5"></div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="#">
+                <div class="col col-md-12">
+                    <div class="card radius-10" style="background-color: #641111">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Grand Total Earning</p>
+                            <h3 class="mb-3 text-white">{{ number_format($totalEarning - $totalExpanse,2) }}</h3>
+                            <div id="chart5"></div>
+                        </div>
+                    </div>
+                </div>
             </a>
         </div>
         <div class="card radius-10 p-4">

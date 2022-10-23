@@ -112,7 +112,9 @@
                                             @endif
                                         </td>
                                         @php
-                                           $subTotal = $totalAssignTask - isset($notInterested);;
+                                        if (isset($notInterested)){
+                                            $subTotal = $totalAssignTask - $notInterested;
+                                        }
                                         @endphp
                                         <td>
                                             @if(isset($task[$key]))
