@@ -62,6 +62,11 @@
                         <h4 class="addmission-form-title">
                             Student Information
                         </h4>
+                        <p class="text-center text-danger" id="s_phone_error"></p>
+                        <p class="text-center text-danger" id="s_email_error"></p>
+                        <p class="text-center text-danger" id="advance_error"></p>
+                        <p class="text-center text-danger" id="due_error"></p>
+                        <p class="text-center text-danger" id="total_fee_error"></p>
                         <!-- <form class="form-group addmission-form" action="{{ url('/admission/store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
@@ -767,17 +772,34 @@
                 .catch((error) => {
                     //console.log(error);
                     document.getElementById('admission-loading').setAttribute('style', 'display: none')
-                    if(error.response.status === 422){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops ! Try again',
-                            text: 'Something went wrong! Please try again.',
-                            showConfirmButton: false,
-                            footer: '<a href="{{ url('/addmission/form') }}" style="color: white; text-decoration: none; background-color: red; padding: 10px; width: 100px; border-radius: 5px; text-align: center">Cancel</a>',
-                            allowOutsideClick: false,
-                            allowEscapeKey: false,
-                        })
+
+                    if(error.response.data.errors.s_phone && error.response.data.errors.s_phone[0]){
+                        document.getElementById('s_phone_error').innerHTML = error.response.data.errors.s_phone[0]
                     }
+                    if(error.response.data.errors.s_email && error.response.data.errors.s_email[0]){
+                        document.getElementById('s_email_error').innerHTML = error.response.data.errors.s_email[0]
+                    }
+                    if(error.response.data.errors.advance && error.response.data.errors.advance[0]){
+                        document.getElementById('advance_error').innerHTML = error.response.data.errors.advance[0]
+                    }
+                    if(error.response.data.errors.due && error.response.data.errors.due[0]){
+                        document.getElementById('due_error').innerHTML = error.response.data.errors.due[0]
+                    }
+                    if(error.response.data.errors.total_fee && error.response.data.errors.total_fee[0]){
+                        document.getElementById('total_fee_error').innerHTML = error.response.data.errors.total_fee[0]
+                    }
+
+                    {{--if(error.response.status === 422){--}}
+                    {{--    Swal.fire({--}}
+                    {{--        icon: 'error',--}}
+                    {{--        title: 'Oops ! Try again',--}}
+                    {{--        text: 'Something went wrong! Please try again.',--}}
+                    {{--        showConfirmButton: false,--}}
+                    {{--        footer: '<a href="{{ url('/addmission/form') }}" style="color: white; text-decoration: none; background-color: red; padding: 10px; width: 100px; border-radius: 5px; text-align: center">Cancel</a>',--}}
+                    {{--        allowOutsideClick: false,--}}
+                    {{--        allowEscapeKey: false,--}}
+                    {{--    })--}}
+                    {{--}--}}
                 });
         })
 

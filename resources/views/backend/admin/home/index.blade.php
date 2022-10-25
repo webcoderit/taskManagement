@@ -142,7 +142,7 @@
                     <div class="card radius-10" style="background-color: orangered">
                         <div class="card-body text-center">
                             <p class="mb-1 text-white">Monthly Total Expanse</p>
-                            <h3 class="mb-3 text-white">{{ number_format(\App\Models\Expance::whereMonth('created_at', date('m'))->get()->sum('price'),2) }} Tk.</h3>
+                            <h3 class="mb-3 text-white">{{ number_format( $monthlyExpanse = \App\Models\Expance::whereMonth('created_at', date('m'))->get()->sum('price'),2) }} Tk.</h3>
                             <div id="chart5"></div>
                         </div>
                     </div>
@@ -251,8 +251,8 @@
                 <div class="col col-md-12">
                     <div class="card radius-10" style="background-color: #641111">
                         <div class="card-body text-center">
-                            <p class="mb-1 text-white">Grand Total Earning</p>
-                            <h3 class="mb-3 text-white">{{ number_format($totalEarning - $totalExpanse,2) }}</h3>
+                            <p class="mb-1 text-white">Monthly Grand Total Earning</p>
+                            <h3 class="mb-3 text-white">{{ number_format($totalEarning - $monthlyExpanse,2) }}</h3>
                             <div id="chart5"></div>
                         </div>
                     </div>
