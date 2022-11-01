@@ -415,7 +415,7 @@ class AdminController extends Controller
 
     public function expanse()
     {
-        $sql = Expance::orderBy('created_at', 'desc');
+        $sql = Expance::orderBy('created_at', 'desc')->whereMonth('created_at', date('m'));
         $dateFrom = date('Y-m-d', strtotime(request()->expanse_date));
         $dateTo = date('Y-m-d', strtotime(request()->to_date));
 

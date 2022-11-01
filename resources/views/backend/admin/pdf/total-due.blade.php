@@ -38,6 +38,7 @@
             <th>Student Phone</th>
             <th>Total Fee</th>
             <th>First Payment</th>
+            <th>Second Payment</th>
             <th>Due</th>
         </tr>
         </thead>
@@ -69,6 +70,7 @@
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->admissionForm->s_phone ?? '' }}</td>
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->total_fee ?? '' }}Tk.</td>
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->advance ?? '' }}Tk.</td>
+                <td style="border: 1px solid #000">{{ $admissionStudentFilter->today_pay ?? '' }}Tk.</td>
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->due ?? '' }}Tk.</td>
             </tr>
             @php
