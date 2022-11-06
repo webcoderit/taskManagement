@@ -446,21 +446,21 @@
                                         <div class="col-md-4">
                                             <label for="cash">Payment Type</label><br>
                                             <select name="payment_type" id="payment_type" class="form-control" onchange="chargeField(this.value)">
-                                                  <option disabled selected>---Select Payment Type---</option>
-                                                  <option value="cash">Cash</option>
-                                                  <option value="bkash">Bkash</option>
-                                                  <option value="nagad">Nagad</option>
-                                                  <option value="rocket">Rocket</option>
-                                                  <option value="bank">Bank</option>
+                                                <option disabled selected>---Select Payment Type---</option>
+                                                <option value="cash">Cash</option>
+                                                <option value="bkash">Bkash</option>
+                                                <option value="nagad">Nagad</option>
+                                                <option value="rocket">Rocket</option>
+                                                <option value="bank">Bank</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="advance">Bkash / Rocket / Nogod Charge</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                            <input type="number" name="online_charge" value="{{old('online_charge')}}" id="online_charge" placeholder="Online Charge" class="form-control">
+                                            <input type="number" name="online_charge" value="{{old('online_charge')}}" id="online_charge" placeholder="Online Charge" class="form-control online_charge_system">
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="advance">Transaction ID</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                            <input type="text" name="transaction_id" value="{{old('transaction_id')}}" id="transaction_id" placeholder="Transaction Id" class="form-control">
+                                            <label for="advance">Transaction ID</label><br>
+                                            <input type="text" name="transaction_id" value="{{old('transaction_id')}}" id="transaction_id" placeholder="Transaction Id" class="form-control online_charge_system">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="total_fee">Total Fee</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -821,9 +821,9 @@
 
         function chargeField(e){
             if(e == 'cash'){
-                $('#online_charge').hide();
+                $('.online_charge').hide();
             }else {
-                $('#online_charge').show();
+                $('.online_charge').show();
             }
         }
 

@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="advance">Bkash / Rocket / Nogod Charge</label><span style="color: red; font-size: 16px;"> *</span><br>
-                                    <input type="number" name="online_charge" value="{{old('online_charge')}}" id="online_charge" placeholder="Online Charge" class="form-control">
+                                    <input type="number" name="online_charge" value="{{ $editAdmissionForm->moneyReceipt ? $editAdmissionForm->moneyReceipt->online_charge : old('online_charge') }}" id="online_charge" placeholder="Online Charge" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="advance">Transaction ID</label><span style="color: red; font-size: 16px;"> *</span><br>
@@ -236,7 +236,7 @@
                                 <div class="col-md-6">
                                     <label for="shedule">Class Shedule</label><span style="color: red; font-size: 16px;"> *</span>
                                     <div class="d-flex align-items-center Shedule">
-                                        <input type="radio" id="first_day" name="class_shedule" value="Sat-Mon-Wed" {{ $editAdmissionForm->class_shedule ===  'Sat-Mon-Wed' ? 'checked' : '' }}>
+                                        <input type="radio" id="first_day" name="class_schedule" value="Sat-Mon-Wed" {{ $editAdmissionForm->class_shedule ===  'Sat-Mon-Wed' ? 'checked' : '' }}>
                                         <label for="first_day" style="font-weight: 400;">Sat Mon Wed</label><br>
                                         <input type="radio" id="last_day" name="class_shedule" value="Sun-Tue-Thu" {{ $editAdmissionForm->class_shedule ===  'Sun-Tue-Thu' ? 'checked' : '' }}>
                                         <label for="last_day" style="font-weight: 400;">Sun Tue Thu</label>

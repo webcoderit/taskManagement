@@ -6,6 +6,7 @@ use App\Exports\AttendanceMultiSheetReport;
 use App\Exports\BatchWiseStudentMultipleSheet;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdmissionRequest;
+use App\Http\Requests\AdmissionUpdateRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Admin;
@@ -415,15 +416,17 @@ class AdminController extends Controller
 
     public function expanse()
     {
-        $sql = Expance::orderBy('created_at', 'desc')->whereMonth('created_at', date('m'));
+        $sql = Expance::orderBy('created_at', 'desc');
         $dateFrom = date('Y-m-d', strtotime(request()->expanse_date));
         $dateTo = date('Y-m-d', strtotime(request()->to_date));
 
         $fromDate = date('Y-m-d', strtotime(request()->from_date));
         $toDate = date('Y-m-d', strtotime(request()->to_date));
 
+        //dd($fromDate . '|' . $toDate);
+
         if (isset(request()->from_date) && isset(request()->to_date)){
-            $sql->whereDate('created_at', '>=', $fromDate)->whereDate('created_at','<=', $toDate);
+            $sql->whereDate('created_at', $fromDate)->whereDate('created_at', $toDate);
         }
 
         if (isset(request()->expanse_date) && isset(request()->to_date) && isset(request()->bill_type)){
@@ -521,7 +524,7 @@ class AdminController extends Controller
         return view('backend.admin.student.edit-admission-form', compact('batchNumber', 'editAdmissionForm'));
     }
 
-    public function adminAdmissionFormUpdate(AdmissionRequest $request, $id)
+    public function adminAdmissionFormUpdate(AdmissionUpdateRequest $request, $id)
     {
         $updateAdmissionForm = AdmissionForm::find($id);
 
@@ -552,7 +555,7 @@ class AdminController extends Controller
         $updateAdmissionForm->course = $request->course;
         $updateAdmissionForm->batch_no = $request->batch_no;
         $updateAdmissionForm->batch_type = $request->batch_type;
-        $updateAdmissionForm->class_shedule = $request->class_shedule;
+        $updateAdmissionForm->class_shedule = $request->class_schedule;
         $updateAdmissionForm->class_time = $request->class_time;
         $updateAdmissionForm->other_admission = $request->other_admission;
         $updateAdmissionForm->other_admission_note = $request->other_admission_note;

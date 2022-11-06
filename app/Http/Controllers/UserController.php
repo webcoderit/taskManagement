@@ -349,7 +349,8 @@ class UserController extends Controller
                     $moneyReceipt->admission_date = $request->admission_date;
                     $moneyReceipt->in_word = $request->in_word;
                     $moneyReceipt->total_fee = $request->total_fee;
-                    $moneyReceipt->advance = $request->advance + $request->online_charge;
+                    $moneyReceipt->advance = $request->advance;
+                    $moneyReceipt->online_charge = $request->online_charge;
                     $moneyReceipt->due = $request->due;
 
                     $moneyReceipt->save();
