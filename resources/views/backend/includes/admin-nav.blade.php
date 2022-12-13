@@ -72,6 +72,7 @@
           </a>
           <ul>
               <li> <a href="{{ url('/admin/students/list') }}"><i class="bx bx-right-arrow-alt"></i>Student list</a></li>
+              <li> <a href="{{ url('/admin/reject/students/list') }}"><i class="bx bx-right-arrow-alt"></i>Reject Student list</a></li>
               <li> <a href="{{ url('admin/user/admission/filtering') }}"><i class="bx bx-right-arrow-alt"></i>Student Count</a></li>
               <li>
                   <a href="{{ route('admin.filtering') }}">

@@ -47,6 +47,8 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/admission/student/info/delete/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'studentDelete']);
         Route::get('/admission/student/due/{id}', [App\Http\Controllers\Admin\AdminController::class, 'adminShowAdmissionDueModal']);
         Route::post('/student/due/clear/{id}', [App\Http\Controllers\Admin\AdminController::class, 'adminDueClear']);
+        Route::get('/reject/students/list', [App\Http\Controllers\Admin\AdminController::class, 'rejectStudentList']);
+        Route::get('/reject/student/list/download', [App\Http\Controllers\Admin\AdminController::class, 'rejectStudentListDownload']);
 
         Route::group(['prefix' => 'user'], function (){
             Route::post('/store', [App\Http\Controllers\Admin\AdminController::class, 'store'])->name('admin.user.register');

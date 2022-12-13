@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\AttendanceMultiSheetReport;
 use App\Exports\BatchWiseStudentMultipleSheet;
+use App\Exports\RejectStudentList;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdmissionRequest;
 use App\Http\Requests\AdmissionUpdateRequest;
@@ -89,8 +90,12 @@ class AdminController extends Controller
         ];
         $users = User::orderBy('updated_at', 'desc')->get();
         $todayCredit = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('advance');
+        $todayOnlineChargeCredit = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('online_charge');
+        $todayTotal = $todayCredit + $todayOnlineChargeCredit;
         $todayDue = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('due');
         $monthlyCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('advance');
+        $monthlyOnlineChargeCredit = MoneyReceipt::whereMonth('admission_date', Carbon::today())->get()->sum('online_charge');
+        $monthlyTotal = $monthlyCredit + $monthlyOnlineChargeCredit;
         $monthlyDebit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('due');
         $totalDue = MoneyReceipt::with('admissionForm')->orWhere('is_pay', 0)->where('is_reject', 0)->select('is_pay', 'is_reject','due')->get()->sum('due');
         $admissionChats = MoneyReceipt::select(\DB::raw("COUNT(*) as count"), \DB::raw("MONTHNAME(created_at) as month_name"))
@@ -102,10 +107,10 @@ class AdminController extends Controller
         $data = $admissionChats->values();
 
         return view('backend.admin.home.index', compact('users', 'todayCredit',
-            'todayDue', 'monthlyCredit',
+            'todayDue', 'monthlyTotal',
             'monthlyDebit', 'totalDue',
             'labels', 'data',
-            'filterAdmission', 'filterExpanse', 'admissionData'));
+            'filterAdmission', 'filterExpanse', 'admissionData', 'todayTotal'));
     }
 
     public function hr_dashboard()
@@ -423,10 +428,8 @@ class AdminController extends Controller
         $fromDate = date('Y-m-d', strtotime(request()->from_date));
         $toDate = date('Y-m-d', strtotime(request()->to_date));
 
-        //dd($fromDate . '|' . $toDate);
-
         if (isset(request()->from_date) && isset(request()->to_date)){
-            $sql->whereDate('created_at', $fromDate)->whereDate('created_at', $toDate);
+            $sql->whereDate('created_at', '>=', $fromDate)->whereDate('created_at','<=', $toDate);
         }
 
         if (isset(request()->expanse_date) && isset(request()->to_date) && isset(request()->bill_type)){
@@ -555,7 +558,7 @@ class AdminController extends Controller
         $updateAdmissionForm->course = $request->course;
         $updateAdmissionForm->batch_no = $request->batch_no;
         $updateAdmissionForm->batch_type = $request->batch_type;
-        $updateAdmissionForm->class_shedule = $request->class_schedule;
+        $updateAdmissionForm->class_shedule = $request->class_shedule;
         $updateAdmissionForm->class_time = $request->class_time;
         $updateAdmissionForm->other_admission = $request->other_admission;
         $updateAdmissionForm->other_admission_note = $request->other_admission_note;
@@ -685,7 +688,7 @@ class AdminController extends Controller
 
     public function totalDueInfo()
     {
-        $sqlFiltering = MoneyReceipt::with('admissionForm')->orWhere('is_pay', 0)->where('is_reject', 0)->orderBy('created_at', 'desc');
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orWhere('is_pay', 0)->where('is_reject', 0)->where('due','>', 0)->orderBy('created_at', 'desc');
 
         $admissionStudentsTotalDue = $sqlFiltering->get();
         return view('backend.admin.pdf.total-due', compact('admissionStudentsTotalDue'));
@@ -693,7 +696,7 @@ class AdminController extends Controller
 
     public function totalCollectDueInfo()
     {
-        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('updated_at', 'desc');
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->where('is_reject', 0)->orderBy('updated_at', 'desc');
 
         $totalDueCollectLists = $sqlFiltering->get();
         return view('backend.admin.pdf.total-due-collect-list', compact('totalDueCollectLists'));
@@ -769,6 +772,11 @@ class AdminController extends Controller
         return $this->excel->download(new BatchWiseStudentMultipleSheet($batchNo), 'BatchStudentList.xlsx');
     }
 
+    public function rejectStudentListDownload()
+    {
+        return $this->excel->download(new RejectStudentList(), 'RejectStudentList.xlsx');
+    }
+
     // User task summery
     public function userTaskSummery()
     {
@@ -785,15 +793,10 @@ class AdminController extends Controller
         return view('backend.admin.task.task-summery', compact('tasks'));
     }
 
-    public function call_summery(){
-        $data = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
-//        if (isset(request()->user_id) && isset(request()->date) && isset(request()->batch_no)){
-//            //dd(request()->date);
-//            $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
-//                $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
-//            })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
-//        }
-        $admissionStudents = $data->get()->groupBy('user_id');
-        return view('backend.admin.task.call-summery', compact('admissionStudents'));
+    //Reject student list
+    public function rejectStudentList()
+    {
+        $rejectStudentLists = AdmissionForm::with('moneyReceipt')->where('is_reject', 1)->paginate(50);
+        return view('backend.admin.student.reject-student-list', compact('rejectStudentLists'));
     }
 }

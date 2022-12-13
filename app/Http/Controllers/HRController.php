@@ -165,6 +165,7 @@ class HRController extends Controller
         if ($rejectStudent->save()){
             $rejectStudentMoneyReceipt = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
             $rejectStudentMoneyReceipt->is_reject = 1;
+            $rejectStudentMoneyReceipt->is_pay = 0;
             $rejectStudentMoneyReceipt->save();
         }
         return redirect()->back()->with('success', 'Student move to rejected list');
@@ -176,6 +177,7 @@ class HRController extends Controller
         if ($restoreStudent->save()){
             $restoreStudentMoneyReceipt = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
             $restoreStudentMoneyReceipt->is_reject = 0;
+            $restoreStudentMoneyReceipt->is_pay = 0;
             $restoreStudentMoneyReceipt->save();
         }
         return redirect()->back()->with('success', 'Student restore successfully');
