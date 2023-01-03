@@ -360,6 +360,10 @@
                                              <input type="text" name="fb_id" id="fb_id" value="{{ old('fb_id') }}" placeholder="Student FB Name or ID" class="form-control">
                                         </div>
                                         <div class="col-md-6">
+                                            <label for="student_fb_name">Student FB Name/ FB Link (2nd)</label><span style="color: red; font-size: 16px;"> Optional</span><br>
+                                            <input type="text" name="fb_id_two" id="fb_id_two" value="{{ old('fb_id_two') }}" placeholder="Student 2nd FB Name or ID" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
                                              <label for="student_ref_name">Student Reference Name</label><span style="color: red; font-size: 16px;"> *</span><br>
                                              <input type="text" name="reference" id="reference" value="{{ old('reference') }}" placeholder="Student Reference Name" class="form-control">
                                         </div>

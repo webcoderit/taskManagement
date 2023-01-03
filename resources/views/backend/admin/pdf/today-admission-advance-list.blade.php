@@ -38,12 +38,14 @@
             <th>Student Phone</th>
             <th>Total Fee</th>
             <th>First Payment</th>
+            <th>Online Charge</th>
             <th>Due</th>
         </tr>
         </thead>
         <tbody>
         @php
             $sum = 0;
+            $onlinesum = 0;
             $web = 0;
             $adm = 0
         @endphp
@@ -69,6 +71,7 @@
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->admissionForm->s_phone ?? '' }}</td>
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->total_fee ?? '' }}Tk.</td>
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->advance ?? '' }}Tk.</td>
+                <td style="border: 1px solid #000">{{ $admissionStudentFilter->online_charge ?? '' }}Tk.</td>
                 <td style="border: 1px solid #000">{{ $admissionStudentFilter->due ?? '' }}Tk.</td>
             </tr>
             @php
@@ -79,6 +82,7 @@
                     $adm += count(array($admissionStudentFilter->admissionForm->course));
                 }
                 $sum += $admissionStudentFilter->advance;
+                $onlinesum += $admissionStudentFilter->online_charge;
             @endphp
         @endforeach
             <tr>
@@ -86,12 +90,12 @@
                 <td>
                     <span style="font-weight: bold">Total Amount : {{ number_format($sum,2) }}</span>
                 </td>
-{{--                <td>--}}
-{{--                    <span style="font-weight: bold">Total Web Admission : {{ $web }}</span>--}}
-{{--                </td>--}}
-{{--                <td>--}}
-{{--                    <span style="font-weight: bold">Total ADM Admission : {{ $adm }}</span>--}}
-{{--                </td>--}}
+                <td>
+                    <span style="font-weight: bold">Total Online Charge : {{ number_format($onlinesum,2) }}</span>
+                </td>
+                <td>
+                    <span style="font-weight: bold">Grand Total : {{ $sum + $onlinesum }}</span>
+                </td>
             </tr>
         </tbody>
     </table>

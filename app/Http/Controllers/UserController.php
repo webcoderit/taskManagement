@@ -47,9 +47,10 @@ class UserController extends Controller
     {
         $sql = Task::with('interestes')->where('user_id', auth()->check() ? auth()->user()->id : '')->orderBy('updated_at', 'ASC');
         if (isset(request()->search)){
-            $sql->where('phone', request()->search)->orWhere('name',request()->search);
+            $sql->where('phone', request()->search)->orWhere('name', request()->search);
         }
         $allTask = $sql->paginate(50);
+        //dd($allTask);
         return view('backend.users.task.all-task', compact('allTask'));
     }
 
@@ -327,6 +328,9 @@ class UserController extends Controller
                 $newStudent->qualification = $request->qualification;
                 $newStudent->nid = $request->nid;
                 $newStudent->fb_id = $request->fb_id;
+                if ($request->fb_id_two){
+                    $newStudent->fb_id_two = $request->fb_id_two;
+                }
                 $newStudent->reference = $request->reference;
                 $newStudent->present_address = $request->present_address;
                 $newStudent->course = $request->course;

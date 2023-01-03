@@ -74,6 +74,16 @@ class TaskController extends Controller
         $tasks = Task::with('user')->get()->groupBy('user_id');
         return view('backend.admin.task.all-task', compact('tasks'));
     }
+
+    public function allTaskList(Request $request)
+    {
+        $sql = Task::with('user')->orderBy('created_at', 'desc');
+        if (isset($request->search)){
+            $sql->where('phone', $request->search);
+        }
+       $taskList = $sql->paginate(100);
+        return view('backend.admin.task.all-task-list', compact('taskList'));
+    }
     public function pendingTask(Request $request)
     {
 //        $sql = Task::with('user')->where('status', 0);

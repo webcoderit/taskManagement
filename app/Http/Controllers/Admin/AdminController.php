@@ -94,7 +94,7 @@ class AdminController extends Controller
         $todayTotal = $todayCredit + $todayOnlineChargeCredit;
         $todayDue = MoneyReceipt::whereDate('admission_date', Carbon::today())->get()->sum('due');
         $monthlyCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('advance');
-        $monthlyOnlineChargeCredit = MoneyReceipt::whereMonth('admission_date', Carbon::today())->get()->sum('online_charge');
+        $monthlyOnlineChargeCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('online_charge');
         $monthlyTotal = $monthlyCredit + $monthlyOnlineChargeCredit;
         $monthlyDebit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('due');
         $totalDue = MoneyReceipt::with('admissionForm')->orWhere('is_pay', 0)->where('is_reject', 0)->select('is_pay', 'is_reject','due')->get()->sum('due');
@@ -146,11 +146,17 @@ class AdminController extends Controller
             })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
             $admissionStudents = $sql->paginate(200);
             $totalDue = MoneyReceipt::orWhere('is_pay', 0)->where('is_reject', 0)->get()->sum('due');
-            return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
+            $monthlyCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('advance');
+            $monthlyOnlineChargeCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('online_charge');
+            $monthlyTotal = $monthlyCredit + $monthlyOnlineChargeCredit;
+            return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue', 'monthlyTotal'));
         }
         $admissionStudents = '';
         $totalDue = MoneyReceipt::orWhere('is_pay', 0)->where('is_reject', 0)->get()->sum('due');
-        return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue'));
+        $monthlyCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('advance');
+        $monthlyOnlineChargeCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('online_charge');
+        $monthlyTotal = $monthlyCredit + $monthlyOnlineChargeCredit;
+        return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue', 'monthlyTotal'));
     }
 
     //======== For admin ==========//
@@ -633,7 +639,7 @@ class AdminController extends Controller
     public function monthlyAdmissionAdvanceInfo()
     {
         $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
-            ->whereMonth('admission_date', Carbon::today()->format('m'));
+            ->whereMonth('admission_date', date('m'));
 
         $admissionStudentsDateFiltering = $sqlFiltering->get();
         return view('backend.admin.pdf.today-admission-advance-list', compact('admissionStudentsDateFiltering'));

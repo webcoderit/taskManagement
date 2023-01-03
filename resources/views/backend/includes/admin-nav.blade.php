@@ -40,8 +40,8 @@
         </li>
         <li> <a href="{{ route('admin.list.task') }}"><i class="bx bx-right-arrow-alt"></i>Today Task</a>
         </li>
-        <li> <a href="{{ route('admin.all.task') }}"><i class="bx bx-right-arrow-alt"></i>All task</a>
-        </li>
+        <li> <a href="{{ route('admin.all.task') }}"><i class="bx bx-right-arrow-alt"></i>Assign task</a></li>
+        <li style="background-color: #0bb2d3"> <a href="{{ route('admin.all.task.list') }}"><i class="bx bx-right-arrow-alt"></i>All task</a></li>
         <li> <a href="{{ route('admin.task.summery') }}"><i class="bx bx-right-arrow-alt"></i>Task Summary</a></li>
         <li> <a href="{{ route('admin.pending.task') }}"><i class="bx bx-right-arrow-alt"></i>Pending task</a>
         </li>

@@ -50,6 +50,7 @@
                                     <th>Profession</th>
                                     <th>interested Level</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -69,6 +70,11 @@
                                             @else
                                                 <span class="btn btn-sm btn-danger">Pending</span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('/update/information/'.$task->interestes->id) }}" class="btn btn-sm btn-primary" title="Update information">
+                                                <i class="bx bx-edit-alt"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
