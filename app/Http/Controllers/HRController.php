@@ -99,6 +99,7 @@ class HRController extends Controller
                 $updateAdmissionForm->qualification = $request->qualification;
                 $updateAdmissionForm->nid = $request->nid;
                 $updateAdmissionForm->fb_id = $request->fb_id;
+                $updateAdmissionForm->fb_id_two = $request->fb_id_two;
                 $updateAdmissionForm->reference = $request->reference;
                 $updateAdmissionForm->present_address = $request->present_address;
                 $updateAdmissionForm->course = $request->course;
@@ -185,7 +186,7 @@ class HRController extends Controller
 
     public function rejectStudentList()
     {
-        $admissionRejectStudents = AdmissionForm::with('moneyReceipt')->where('is_reject', 1)->get();
+        $admissionRejectStudents = AdmissionForm::with('moneyReceipt')->where('is_reject', 1)->paginate(50);
         return view('backend.admin.hrm.student-reject-list', compact('admissionRejectStudents'));
     }
 
@@ -195,7 +196,7 @@ class HRController extends Controller
             ->whereHas('moneyReceipt', function ($q){
                 $q->where('due', 0)->orderBy('updated_at', 'desc');
             })
-            ->get();
+            ->paginate(70);
         return view('backend.admin.hrm.student-paid-list', compact('admissionPaidStudents'));
     }
 
@@ -207,7 +208,7 @@ class HRController extends Controller
             });
             $sql->where('batch_no', request()->batch_no);
 
-            $admissionDueStudents = $sql->get();
+            $admissionDueStudents = $sql->paginate(50);
             $batchs = Batch::orderByDesc('created_at')->get();
             return view('backend.admin.hrm.student-due-list', compact('admissionDueStudents', 'batchs'));
         }
@@ -215,7 +216,7 @@ class HRController extends Controller
             ->whereHas('moneyReceipt', function ($q){
                 $q->where('is_pay', 0)->where('due', '!=', 0)->where('is_reject', 0)->orderBy('updated_at', 'desc');
             })
-            ->get();
+            ->paginate(50);
         $batchs = Batch::orderByDesc('created_at')->get();
         return view('backend.admin.hrm.student-due-list', compact('admissionDueStudents', 'batchs'));
     }
@@ -272,5 +273,14 @@ class HRController extends Controller
             'admissionStudentsBatch' => Batch::orderBy('created_at', 'desc')->get()
         ];
         return view('backend.admin.hrm.today-admission-list', compact('admissionStudents', 'data'));
+    }
+
+    public function adminHrMonthlyAdmissionAdvanceInfo()
+    {
+        $sqlFiltering = MoneyReceipt::with('admissionForm')->orderBy('created_at', 'desc')
+            ->whereMonth('admission_date', date('m'));
+
+        $admissionStudentsDateFiltering = $sqlFiltering->get();
+        return view('backend.admin.hrm.monthly-admission-advance-list', compact('admissionStudentsDateFiltering'));
     }
 }

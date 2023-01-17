@@ -559,6 +559,7 @@ class AdminController extends Controller
         $updateAdmissionForm->qualification = $request->qualification;
         $updateAdmissionForm->nid = $request->nid;
         $updateAdmissionForm->fb_id = $request->fb_id;
+        $updateAdmissionForm->fb_id_two = $request->fb_id_two;
         $updateAdmissionForm->reference = $request->reference;
         $updateAdmissionForm->present_address = $request->present_address;
         $updateAdmissionForm->course = $request->course;

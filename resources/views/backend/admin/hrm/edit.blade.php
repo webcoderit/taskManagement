@@ -60,7 +60,7 @@
                                     <select class="form-control mt-2" name="is_pay" id="isPay" onclick="isPayStudent(this.value)" required readonly>
                                         <option selected disabled>Select A Option</option>
                                         <option id="yes" value="1">Paid</option>
-                                        <option id="partial" value="1">Paid Partial</option>
+                                        <option id="partial" value="1">Partial Paid</option>
                                         <option id="no" value="0">No</option>
                                     </select>
                                 </div>

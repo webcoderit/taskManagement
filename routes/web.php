@@ -175,6 +175,7 @@ Route::get('/admin/reject/student/list', [App\Http\Controllers\HRController::cla
 Route::get('/admin/student/paid/list', [App\Http\Controllers\HRController::class, 'paidStudentList']);
 Route::get('/admin/student/due/list', [App\Http\Controllers\HRController::class, 'dueStudentList']);
 Route::get('/admin/user/today/admission/list', [App\Http\Controllers\HRController::class, 'todayAdmissionList']);
+Route::get('/admin/hr/monthly/admission/advance/info', [App\Http\Controllers\HRController::class, 'adminHrMonthlyAdmissionAdvanceInfo']);
 
 Route::get('/employee/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

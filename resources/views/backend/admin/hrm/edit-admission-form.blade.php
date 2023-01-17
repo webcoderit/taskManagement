@@ -128,6 +128,10 @@
                                     <input type="text" name="fb_id" value="{{ $editAdmissionForm->fb_id ? $editAdmissionForm->fb_id : old('fb_id') }}" placeholder="Student FB Name or ID" class="form-control">
                                 </div>
                                 <div class="col-md-6">
+                                    <label for="student_fb_name">Student 2nd FB Link</label><br>
+                                    <input type="text" name="fb_id_two" value="{{ $editAdmissionForm->fb_id_two ? $editAdmissionForm->fb_id_two : old('fb_id_two') }}" placeholder="Student 2nd FB ID" class="form-control">
+                                </div>
+                                <div class="col-md-6">
                                     <label for="student_ref_name">Student Reference Name</label><span style="color: red; font-size: 16px;"> *</span><br>
                                     <input type="text" name="reference" value="{{ $editAdmissionForm->reference ? $editAdmissionForm->reference : old('reference') }}" placeholder="Student Reference Name" class="form-control">
                                 </div>

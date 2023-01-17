@@ -25,10 +25,10 @@ class AdmissionRequest extends FormRequest
     {
         return [
             's_name' => 'required',
-            's_email' => 'required|unique:admission_forms,s_email',
+            's_email' => 'required|unique:admission_forms,s_email,'.$this->id,
             'f_name' => 'required',
             'm_name' => 'required',
-            's_phone' => 'required|unique:admission_forms,s_phone',
+            's_phone' => 'required|unique:admission_forms,s_phone,'.$this->id,
             'f_phone' => 'required',
             'dob' => 'required',
             'profession' => 'required',
@@ -40,15 +40,14 @@ class AdmissionRequest extends FormRequest
             'course' => 'required',
             'batch_no' => 'required',
             'batch_type' => 'required',
-            'class_schedule' => 'required',
+            'class_shedule' => 'required',
             'class_time' => 'required',
             'total_fee' => 'required',
             'advance' => 'required',
             'due' => 'required',
             'admission_date' => 'required',
             'fb_id' => 'required',
-            'reference' => 'required',
-            'transaction_id' => 'nullable|unique:money_receipts,transaction_id'
+            'reference' => 'required'
         ];
     }
 }

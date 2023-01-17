@@ -138,6 +138,7 @@
 	                            </tbody>
 	                        </table>
 	                    </div>
+                        {{ $admissionDueStudents->links() }}
 	                </div>
 	            </div>
 	        </div>

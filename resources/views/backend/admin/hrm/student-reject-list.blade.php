@@ -120,6 +120,7 @@
 	                            </tbody>
 	                        </table>
 	                    </div>
+                        {{ $admissionRejectStudents->links() }}
 	                </div>
 	            </div>
 	        </div>

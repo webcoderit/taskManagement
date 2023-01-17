@@ -39,15 +39,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card radius-10" style="background-color: deepskyblue">
-                    <div class="card-body text-center">
-                        <p class="mb-1 text-white">Monthly Admission Advance</p>
-                        <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmountsAdvance']->sum('advance'),2 ?? 0) }}</h3>
-                        <div id="chart2"></div>
+            <a href="{{ url('/admin/hr/monthly/admission/advance/info') }}" target="_blank">
+                <div class="col">
+                    <div class="card radius-10" style="background-color: deepskyblue">
+                        <div class="card-body text-center">
+                            <p class="mb-1 text-white">Monthly Admission Advance</p>
+                            <h3 class="mb-3 text-white">{{ number_format($data['monthlyAmountsAdvance']->sum('advance'),2 ?? 0) }}</h3>
+                            <div id="chart2"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             <div class="col">
                 <div class="card radius-10" style="background-color: rebeccapurple">
                     <div class="card-body text-center">
