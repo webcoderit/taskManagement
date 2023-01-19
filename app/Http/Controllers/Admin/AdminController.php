@@ -221,21 +221,41 @@ class AdminController extends Controller
         //dd($request->is_pay);
         $this->validate($request, [
             'total_fee' => 'required',
-            'due' => 'required',
-            'is_pay' => 'required',
         ]);
 
         try {
             $dueClear = MoneyReceipt::where('id', $id)->first();
-            $dueClear->due = $request->due;
-            $dueClear->today_pay = $request->due_payment;
+            if ($request->second_due_payment){
+                $dueClear->today_pay = $request->second_due_payment;
+                $dueClear->second_due_payment = $request->second_due_payment;
+                $dueClear->due = $request->due - $request->second_due_payment;
+            }
+            if ($request->third_due_payment){
+                $dueClear->today_pay = $dueClear->today_pay + $request->third_due_payment;
+                $dueClear->third_due_payment = $request->third_due_payment;
+                $dueClear->due = $request->due - $request->third_due_payment;
+            }
+
+            if ($request->four_due_payment){
+                $dueClear->today_pay = $dueClear->today_pay + $request->four_due_payment;
+                $dueClear->four_due_payment = $request->four_due_payment;
+                $dueClear->due = $request->due - $request->four_due_payment;
+            }
+
+            if ($request->five_due_payment){
+                $dueClear->today_pay = $dueClear->today_pay + $request->five_due_payment;
+                $dueClear->five_due_payment = $request->five_due_payment;
+                $dueClear->due = $request->due - $request->five_due_payment;
+            }
+
             if ($request->is_paid){
                 $dueClear->is_pay = $request->is_pay;
             }else{
-                $dueClear->is_pay = $request->is_pay;
+                $dueClear->is_pay = 1;
             }
 //            $dueClear->is_paid = $request->is_paid;
             $dueClear->save();
+
             //Student opinion
             $updateStudentNote = AdmissionForm::find($dueClear->admission_id);
             if ($request->note){
