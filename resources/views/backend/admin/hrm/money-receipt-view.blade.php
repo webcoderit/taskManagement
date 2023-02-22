@@ -75,6 +75,14 @@
                                 </div>
                             </div>
                             <div class="money-receipt-info-item">
+                                @foreach($moneyReceiptView->dueCollect as $dueCollect)
+                                    <div>
+                                        <span class="money-receipt-view-label">On : {{ $dueCollect->created_at->format('M-d-Y') }}</span><br/>
+                                        <span>{{ $dueCollect->price }} TK</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="money-receipt-info-item">
                                 <div>
                                     <span class="money-receipt-view-label">Received By :</span>
                                     <span>
@@ -96,10 +104,10 @@
                                 <i class="fa fa-phone"></i> 01810139951-8
                             </a>
                         </div>
-                        <a href="{{ url('/money/receipt/download/'.$moneyReceiptView->id) }}" class="money-receipt-download-btn pull-right mt-3">
-                            <i class="fa fa-cloud-download"></i>
-                            Download
-                        </a>
+{{--                        <a href="{{ url('/money/receipt/download/'.$moneyReceiptView->id) }}" class="money-receipt-download-btn pull-right mt-3">--}}
+{{--                            <i class="fa fa-cloud-download"></i>--}}
+{{--                            Download--}}
+{{--                        </a>--}}
                     </div>
                 </div>
             </div>

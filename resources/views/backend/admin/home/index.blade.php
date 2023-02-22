@@ -87,7 +87,7 @@
                         <div class="card radius-10" style="background-color: orangered">
                             <div class="card-body text-center">
                                 <p class="mb-1 text-white">Today Due Collection</p>
-                                <h3 class="mb-3 text-white">{{ \App\Models\MoneyReceipt::with('admissionForm')->whereDate('updated_at', \Carbon\Carbon::today())->where('is_pay', 1)->get()->sum('today_pay') }} Tk.</h3>
+                                <h3 class="mb-3 text-white">{{ \App\Models\DueCollect::whereDate('created_at', \Carbon\Carbon::today())->get()->sum('price') }} Tk.</h3>
                                 <div id="chart5"></div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                         <div class="card radius-10" style="background-color: rebeccapurple">
                             <div class="card-body text-center">
                                 <p class="mb-1 text-white">Monthly Due Collection</p>
-                                <h3 class="mb-3 text-white">{{ $monthlyDueCollect = \App\Models\MoneyReceipt::whereMonth('updated_at', date('m'))->where('is_pay', 1)->get()->sum('today_pay') }} Tk.</h3>
+                                <h3 class="mb-3 text-white">{{ $monthlyDueCollect = \App\Models\DueCollect::whereMonth('created_at', date('m'))->get()->sum('price') }} Tk.</h3>
                                 <div id="chart3"></div>
                             </div>
                         </div>

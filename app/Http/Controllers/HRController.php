@@ -7,11 +7,59 @@ use App\Models\Admin;
 use App\Models\AdmissionForm;
 use App\Models\Batch;
 use App\Models\MoneyReceipt;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Hash;
 class HRController extends Controller
 {
+
+    public function hr_dashboard()
+    {
+        $data = [
+            'users' => User::orderBy('updated_at', 'desc')->get(),
+
+            'todayAmountsAdvance' => MoneyReceipt::with('admissionForm')->select(['advance'])->whereDate('admission_date', Carbon::today())->get(),
+            'todayAmountsDue' => MoneyReceipt::with('admissionForm')->select(['due'])->whereDate('admission_date', Carbon::today())->get(),
+
+            'monthlyAmountsAdvance' => MoneyReceipt::with('admissionForm')->select(['advance'])->whereMonth('admission_date', date('m'))->get(),
+            'monthlyAmountsDue' => MoneyReceipt::with('admissionForm')->select(['due'])->whereMonth('admission_date', date('m'))->get(),
+
+            'monthlyWebAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
+                $q->where('course', 'web');
+            })->whereMonth('admission_date', date('m'))->paginate(200),
+
+            'monthlyAdmAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
+                $q->where('course', 'digital');
+            })->whereMonth('admission_date', date('m'))->paginate(700),
+
+            'monthlyEngAdmission' => MoneyReceipt::with('admissionForm')->whereHas('admissionForm', function ($q){
+                $q->where('course', 'english');
+            })->whereMonth('admission_date', date('m'))->paginate(200),
+
+            'admissionStudentsBatch' => Batch::select(['batch_no', 'course_name'])->orderByDesc('created_at')->paginate(30),
+        ];
+        $sql = AdmissionForm::with('moneyReceipt', 'user')->orderByDesc('created_at');
+
+        if (isset(request()->user_id) && isset(request()->date)&& isset(request()->batch_no)){
+            $sql->where('user_id', 'LIKE','%'.request()->user_id.'%')->whereHas('moneyReceipt', function ($date){
+                $date->where('admission_date', 'LIKE', '%'.request()->date.'%');
+            })->where('batch_no', 'LIKE', '%'.request()->batch_no.'%');
+            $admissionStudents = $sql->paginate(200);
+            $totalDue = MoneyReceipt::orWhere('is_pay', 0)->where('is_reject', 0)->get()->sum('due');
+            $monthlyCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('advance');
+            $monthlyOnlineChargeCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('online_charge');
+            $monthlyTotal = $monthlyCredit + $monthlyOnlineChargeCredit;
+            return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue', 'monthlyTotal'));
+        }
+        $admissionStudents = '';
+        $totalDue = MoneyReceipt::orWhere('is_pay', 0)->where('is_reject', 0)->get()->sum('due');
+        $monthlyCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('advance');
+        $monthlyOnlineChargeCredit = MoneyReceipt::whereMonth('admission_date', date('m'))->get()->sum('online_charge');
+        $monthlyTotal = $monthlyCredit + $monthlyOnlineChargeCredit;
+        return view('backend.admin.hrm.index', compact( 'data', 'admissionStudents', 'totalDue', 'monthlyTotal'));
+    }
+
     public function editAdmissionForm($id)
     {
         $batchNumber = Batch::orderBy('created_at', 'desc')->get();
@@ -234,7 +282,7 @@ class HRController extends Controller
     }
 
     public function viewMoneyReceipt($id){
-        $moneyReceiptView = MoneyReceipt::with('admissionForm')->where('admission_id', $id)->first();
+        $moneyReceiptView = MoneyReceipt::with('admissionForm', 'dueCollect')->where('admission_id', $id)->first();
         if (!$moneyReceiptView){
             return redirect()->back()->with('error', 'No money receipt found');
         }

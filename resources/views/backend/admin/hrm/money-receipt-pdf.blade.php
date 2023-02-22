@@ -95,13 +95,23 @@
                     </span>
         </td>
         <td style="text-align: center;width: 200px;">
-                    <span style="font-size: 15px;color: #000;font-weight: 600;">
-                        Advance :
-                    </span>
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                Advance :
+            </span>
             <span style="color: #000;">
-                        {{ $data['moneyReceipt']->advance }} TK
-                    </span>
+                {{ $data['moneyReceipt']->advance }} TK
+            </span>
         </td>
+        @foreach($data['moneyReceipt']->dueCollect as $dueCollect)
+        <td style="text-align: center;width: 200px;">
+            <span style="font-size: 15px;color: #000;font-weight: 600;">
+                On : {{ $dueCollect->created_at->format('M-d-Y') }}
+            </span>
+            <span style="color: #000;">
+                {{ $dueCollect->price }} TK
+            </span>
+        </td>
+        @endforeach
         <td style="text-align: end;padding: 10px 20px 10px 0;">
                     <span style="font-size: 15px;color: #000;font-weight: 600;">
                         Due :

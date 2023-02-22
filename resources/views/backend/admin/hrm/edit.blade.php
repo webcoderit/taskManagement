@@ -50,40 +50,41 @@
 							<input type="number" readonly name="advance" readonly id="advance" value="{{ $courseDueCollection->advance }}" placeholder="Advance" class="form-control">
 							<label style="font-weight: 600;">Total Due</label><br>
 							<input type="number" name="due" readonly id="due" value="{{ $courseDueCollection->due }}" placeholder="Due" class="form-control">
-                            @if($courseDueCollection->second_due_payment != null)
-                                <label style="font-weight: 600;">2nd Payment</label><br>
-                                <input type="number" name="second_payment" readonly id="second_payment" value="{{ $courseDueCollection->second_due_payment }}" placeholder="second_due_payment" class="form-control">
-                            @endif
-                            @if($courseDueCollection->third_due_payment != null)
-                                <label style="font-weight: 600;">3rd Payment</label><br>
-                                <input type="number" name="third_payment" readonly id="third_payment" value="{{ $courseDueCollection->third_due_payment }}" placeholder="third_due_payment" class="form-control">
-                            @endif
-                            @if($courseDueCollection->four_due_payment != null)
-                                <label style="font-weight: 600;">2nd Payment</label><br>
-                                <input type="number" name="four_payment" readonly id="four_payment" value="{{ $courseDueCollection->four_due_payment }}" placeholder="four_due_payment" class="form-control">
-                            @endif
-                            @if($courseDueCollection->five_due_payment != null)
-                                <label style="font-weight: 600;">3rd Payment</label><br>
-                                <input type="number" name="five_payment" readonly id="five_payment" value="{{ $courseDueCollection->five_due_payment }}" placeholder="five_due_payment" class="form-control">
-                            @endif
-                            <div id="paymentTime">
-                                <label style="font-weight: 600;">Select Payment Type Option</label>
-                                <select class="form-control mt-2" name="payment_type_option" id="payment_type_option" onclick="paymentTypeOption(this.value)" required>
-                                    <option selected disabled>Select Payment Type Option</option>
-                                    <option id="second" value="2" {{ $courseDueCollection->second_due_payment != null ? 'disabled' : '' }}>2nd Payment</option>
-                                    <option id="third" value="3" {{ $courseDueCollection->third_due_payment != null ? 'disabled' : '' }}>3rd Payment</option>
-                                    <option id="four" value="4" {{ $courseDueCollection->four_due_payment != null ? 'disabled' : '' }}>4th Payment</option>
-                                    <option id="five" value="5" {{ $courseDueCollection->five_due_payment != null ? 'disabled' : '' }}>5th Payment</option>
-                                </select>
-                            </div>
+{{--                            @if($courseDueCollection->second_due_payment != null)--}}
+{{--                                <label style="font-weight: 600;">2nd Payment</label><br>--}}
+{{--                                <input type="number" name="second_payment" readonly id="second_payment" value="{{ $courseDueCollection->second_due_payment }}" placeholder="second_due_payment" class="form-control">--}}
+{{--                            @endif--}}
+{{--                            @if($courseDueCollection->third_due_payment != null)--}}
+{{--                                <label style="font-weight: 600;">3rd Payment</label><br>--}}
+{{--                                <input type="number" name="third_payment" readonly id="third_payment" value="{{ $courseDueCollection->third_due_payment }}" placeholder="third_due_payment" class="form-control">--}}
+{{--                            @endif--}}
+{{--                            @if($courseDueCollection->four_due_payment != null)--}}
+{{--                                <label style="font-weight: 600;">2nd Payment</label><br>--}}
+{{--                                <input type="number" name="four_payment" readonly id="four_payment" value="{{ $courseDueCollection->four_due_payment }}" placeholder="four_due_payment" class="form-control">--}}
+{{--                            @endif--}}
+{{--                            @if($courseDueCollection->five_due_payment != null)--}}
+{{--                                <label style="font-weight: 600;">3rd Payment</label><br>--}}
+{{--                                <input type="number" name="five_payment" readonly id="five_payment" value="{{ $courseDueCollection->five_due_payment }}" placeholder="five_due_payment" class="form-control">--}}
+{{--                            @endif--}}
+{{--                            <div id="paymentTime">--}}
+{{--                                <label style="font-weight: 600;">Select Payment Type Option</label>--}}
+{{--                                <select class="form-control mt-2" name="payment_type_option" id="payment_type_option" onclick="paymentTypeOption(this.value)" required>--}}
+{{--                                    <option selected disabled>Select Payment Type Option</option>--}}
+{{--                                    <option id="second" value="2" {{ $courseDueCollection->second_due_payment != null ? 'disabled' : '' }}>2nd Payment</option>--}}
+{{--                                    <option id="third" value="3" {{ $courseDueCollection->third_due_payment != null ? 'disabled' : '' }}>3rd Payment</option>--}}
+{{--                                    <option id="four" value="4" {{ $courseDueCollection->four_due_payment != null ? 'disabled' : '' }}>4th Payment</option>--}}
+{{--                                    <option id="five" value="5" {{ $courseDueCollection->five_due_payment != null ? 'disabled' : '' }}>5th Payment</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
 							<label style="font-weight: 600;">Payment</label><br>
-                            @if($courseDueCollection->due == 0)
-                                <input type="number" name="due_payment" id="due_payment" placeholder="Payment" disabled class="form-control">
-                            @else
-                                <input type="number" name="second_due_payment" id="second_due_payment" placeholder="second_due_payment" class="form-control" style="display: none;">
-                                <input type="number" name="third_due_payment" id="third_due_payment" placeholder="third_due_payment" class="form-control" style="display: none;">
-                                <input type="number" name="four_due_payment" id="four_due_payment" placeholder="four_due_payment" class="form-control" style="display: none;">
-                                <input type="number" name="five_due_payment" id="five_due_payment" placeholder="five_due_payment" class="form-control" style="display: none;">
+                            <input type="number" name="due_payment" id="due_payment" placeholder="Payment" class="form-control">
+{{--                            @if($courseDueCollection->due == 0)--}}
+{{--                                <input type="number" name="due_payment" id="due_payment" placeholder="Payment" disabled class="form-control">--}}
+{{--                            @else--}}
+{{--                                <input type="number" name="second_due_payment" id="second_due_payment" placeholder="second_due_payment" class="form-control" style="display: none;">--}}
+{{--                                <input type="number" name="third_due_payment" id="third_due_payment" placeholder="third_due_payment" class="form-control" style="display: none;">--}}
+{{--                                <input type="number" name="four_due_payment" id="four_due_payment" placeholder="four_due_payment" class="form-control" style="display: none;">--}}
+{{--                                <input type="number" name="five_due_payment" id="five_due_payment" placeholder="five_due_payment" class="form-control" style="display: none;">--}}
 
 {{--								<div id="payType" style="display: none;">--}}
 {{--                                    <label style="font-weight: 600;">Is Pay</label>--}}
@@ -98,7 +99,7 @@
 									<label style="font-weight: 600;">Student Note</label><br>
                                 	<textarea class="form-control" name="note" rows="5" placeholder="Student opinion here..."></textarea>
 								</div>
-                            @endif
+{{--                            @endif--}}
 {{--                            <div class="form-check mt-3">--}}
 {{--                                <input class="form-check-input" type="checkbox" name="is_paid" onclick="isDiscountPaid(this)" value="1" id="isPaid">--}}
 {{--                                <label class="form-check-label" for="isPaid" style="font-weight: 600;">--}}

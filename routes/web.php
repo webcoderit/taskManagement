@@ -31,7 +31,9 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/register', [App\Http\Controllers\Admin\AdminController::class, 'register'])->name('admin.user.list');
         Route::get('/add/user', [App\Http\Controllers\Admin\AdminController::class, 'createForm'])->name('admin.user.register.form.create');
         Route::get('/task/summery', [App\Http\Controllers\Admin\AdminController::class, 'userTaskSummery'])->name('admin.task.summery');
-        Route::get('/hr/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'hr_dashboard'])->name('admin.hr.dashboard');
+
+        Route::get('/hr/dashboard', [App\Http\Controllers\HRController::class, 'hr_dashboard'])->name('admin.hr.dashboard');
+
         Route::get('/admission/student/info/{id}', [App\Http\Controllers\Admin\AdminController::class, 'showAdmissionDueModal']);
         Route::post('/due/clear/{id}', [App\Http\Controllers\Admin\AdminController::class, 'dueClear']);
         Route::get('/student/list', [App\Http\Controllers\HRController::class, 'studentList']);

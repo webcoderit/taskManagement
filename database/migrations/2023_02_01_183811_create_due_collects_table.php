@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDeletedAtToAdmissionFormsTable extends Migration
+class CreateDueCollectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddDeletedAtToAdmissionFormsTable extends Migration
      */
     public function up()
     {
-        Schema::table('admission_forms', function (Blueprint $table) {
-            $table->softDeletes()->after('created_at')->nullable();
+        Schema::create('due_collects', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedSmallInteger('student_id');
+            $table->unsignedSmallInteger('due_id');
+            $table->string('price');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddDeletedAtToAdmissionFormsTable extends Migration
      */
     public function down()
     {
-        Schema::table('admission_forms', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('due_collects');
     }
 }

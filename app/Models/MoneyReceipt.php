@@ -25,4 +25,9 @@ class MoneyReceipt extends Model
     {
         return $this->belongsTo(AdmissionForm::class, 'admission_id', 'id')->with('user', 'admin');
     }
+
+    public function dueCollect()
+    {
+        return $this->hasMany(DueCollect::class, 'due_id', 'id');
+    }
 }

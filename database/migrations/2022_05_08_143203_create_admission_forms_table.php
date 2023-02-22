@@ -34,8 +34,11 @@ class CreateAdmissionFormsTable extends Migration
             $table->string('f_name');
             $table->string('f_phone');
             $table->string('m_name');
+            $table->string('fb_id');
+            $table->string('reference')->nullable();
             $table->string('fb_id_two')->nullable();
             $table->string('avatar')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
