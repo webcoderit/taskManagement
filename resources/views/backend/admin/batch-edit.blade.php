@@ -20,7 +20,7 @@
                                     <a href="{{ url('/admin/batch/create') }}">Manage Batch</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Add Batch
+                                    Edit Batch
                                 </li>
                             </ol>
                         </nav>
@@ -32,7 +32,7 @@
                         <div class="card-title d-flex align-items-center">
                             <div><i class="bx bxs-user me-1 font-22 text-danger"></i>
                             </div>
-                            <h5 class="mb-0 text-danger">Add Batch</h5>
+                            <h5 class="mb-0 text-danger">Update Batch</h5>
                         </div>
                         <hr>
                         @if(Session::has('success'))
@@ -55,25 +55,23 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-                        <h2>Create Batch</h2>
-                        <form class="row g-3" action="{{ url('/admin/batch/store') }}" method="POST">
+                        <h2>Update Batch</h2>
+                        <form class="row g-3" action="{{ url('/admin/batch/update/'.$batchListEdit->id) }}" method="POST">
                             @csrf
                             <div class="col-md-6">
                                 <label for="user_id" class="form-label">Select A Course<small class="text-danger">*</small></label><br>
                                 <select name="course_name" id="course_name" class="form-control">
                                     <option disabled selected>---Select Course Name---</option>
-                                    <option value="web">Full Stack Web Development</option>
-{{--                                    <option value="attachment_web">Industrial attachment ( Web )</option>--}}
-{{--                                    <option value="attachment_adm">Industrial attachment ( ADM )</option>--}}
-                                    <option value="digital">Digital Marketing</option>
-                                    <option value="english">Communication English</option>
+                                    <option value="web" {{ $batchListEdit->course_name == 'web' ? 'selected' : '' }}>Full Stack Web Development</option>
+                                    <option value="digital" {{ $batchListEdit->course_name == 'digital' ? 'selected' : '' }}>Digital Marketing</option>
+                                    <option value="english" {{ $batchListEdit->course_name == 'english' ? 'selected' : '' }}>Communication English</option>
                                 </select>
                                 <span style="color: red"> {{ $errors->has('course_name') ? $errors->first('course_name') : ' ' }}</span>
                             </div>
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Batch No<small class="text-danger">*</small></label>
                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class='bx bxs-user'></i></span>
-                                    <input type="text" class="form-control border-start-0" name="batch_no" id="batch_no" placeholder="Enter batch name...." />
+                                    <input type="text" class="form-control border-start-0" name="batch_no" value="{{ $batchListEdit->batch_no }}" id="batch_no" placeholder="Enter batch name...." />
                                 </div>
                                 <span style="color: red"> {{ $errors->has('batch_no') ? $errors->first('batch_no') : ' ' }}</span>
                             </div>
@@ -81,49 +79,6 @@
                                 <button type="submit" class="btn btn-success px-5">Submit</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="" class="table table-striped table-bordered" style="width:100%">
-                                <thead>
-                                <tr>
-                                    <th width="5%">SL</th>
-                                    <th>Name</th>
-                                    <th>Number</th>
-                                    <th width="20%">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($batchList as $list)
-                                        <tr>
-                                            <td>{{ $loop->index+1 }}</td>
-                                            <td>
-                                                @if($list->course_name == 'web')
-                                                    Full Stack Web Development
-                                                @elseif($list->course_name == 'digital')
-                                                    Advance Digital Marketing
-                                                @else
-                                                    Communication English
-                                                @endif
-                                            </td>
-                                            <td>{{ $list->batch_no }}</td>
-                                            <td>
-                                                <a href="{{ url('/admin/batch/delete/'.$list->id) }}" class="btn btn-sm btn-danger">Delete</a>
-                                                <a href="{{ url('/admin/batch/edit/'.$list->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                                @if($list->status == 1)
-                                                <a href="{{ url('/admin/batch/active/'.$list->id) }}" class="btn btn-sm btn-success">Active</a>
-                                                @else
-                                                <a href="{{ url('/admin/batch/inactive/'.$list->id) }}" class="btn btn-sm btn-warning">Inactive</a>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        {{ $batchList->links() }}
                     </div>
                 </div>
             </div>

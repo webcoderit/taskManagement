@@ -167,7 +167,7 @@
                                     <select name="batch_no" id="batch_no" class="form-control">
                                         <option disabled selected>---Select Batch Number---</option>
                                         @foreach($batchNumber as $batch)
-                                            <option value="{{ $batch->batch_no }}" {{ $batch->batch_no == $editAdmissionForm->batch_no ? 'selected' : '' }}>{{ $batch->batch_no }}</option>
+                                            <option value="{{ $batch->batch_no }}" {{ $batch->batch_no == $editAdmissionForm->batch_no ? 'selected' : '' }}>{{ ucfirst($batch->batch_no) }}</option>
                                         @endforeach
                                     </select>
                                     <span style="color: red"> {{ $errors->has('batch_no') ? $errors->first('batch_no') : ' ' }}</span>

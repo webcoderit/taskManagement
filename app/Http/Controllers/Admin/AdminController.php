@@ -380,8 +380,13 @@ class AdminController extends Controller
 
     public function batchCreateForm()
     {
-        $batchList = Batch::get();
+        $batchList = Batch::orderBy('created_at', 'desc')->paginate(20);
         return view('backend.admin.batch-create', compact('batchList'));
+    }
+    public function batchEdit($id)
+    {
+        $batchListEdit = Batch::find($id);
+        return view('backend.admin.batch-edit', compact('batchListEdit'));
     }
 
     public function batchStore(Request $request)
@@ -394,12 +399,45 @@ class AdminController extends Controller
         try {
             $addNewBatch = new Batch();
             $addNewBatch->course_name = $request->course_name;
-            $addNewBatch->batch_no = trim($request->batch_no);
+            $addNewBatch->batch_no = trim($request->course_name . '-' .$request->batch_no);
             $addNewBatch->save();
         }catch (\Exception $exception){
             return redirect()->back()->with('error', $exception->getMessage());
         }
         return redirect()->back()->with('success', 'Add new batch');
+    }
+    public function batchUpdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'course_name' => 'required',
+            'batch_no' => 'required',
+        ]);
+
+        try {
+            $updateNewBatch = Batch::find($id);
+            $updateNewBatch->course_name = $request->course_name;
+            $updateNewBatch->batch_no = trim($request->course_name . '-' .$request->batch_no);
+            $updateNewBatch->save();
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+        return redirect('/admin/batch/create')->with('success', 'Batch has been updated');
+    }
+
+    public function batchActive($id)
+    {
+        $batchInactive = Batch::find($id);
+        $batchInactive->status = 0;
+        $batchInactive->save();
+        return redirect('/admin/batch/create')->with('success', 'Batch has been inactivated');
+    }
+
+    public function batchInactive($id)
+    {
+        $batchInactive = Batch::find($id);
+        $batchInactive->status = 1;
+        $batchInactive->save();
+        return redirect('/admin/batch/create')->with('success', 'Batch has been activated');
     }
 
     public function batchDelete($id)

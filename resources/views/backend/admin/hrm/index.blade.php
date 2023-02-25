@@ -164,7 +164,7 @@
                                 <select name="batch_no" id="batchNo" class="form-control">
                                     <option selected disabled>--- Select Batch No ---</option>
                                     @foreach($data['admissionStudentsBatch'] as $batchNo)
-                                        <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->course_name) }} - {{ ucfirst($batchNo->batch_no) }}</option>
+                                        <option value="{{ $batchNo->batch_no }}">{{ ucfirst($batchNo->batch_no) }}</option>
                                     @endforeach
                                 </select>
                             </div>

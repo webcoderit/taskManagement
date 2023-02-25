@@ -39,9 +39,17 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/student/list', [App\Http\Controllers\HRController::class, 'studentList']);
         Route::get('/students/list', [App\Http\Controllers\Admin\AdminController::class, 'adminStudentList']);
         Route::get('/file-export/{batchNo}', [App\Http\Controllers\Admin\AdminController::class, 'adminStudentListImport']);
+
+        //Batch uri start
         Route::get('/batch/create', [App\Http\Controllers\Admin\AdminController::class, 'batchCreateForm']);
         Route::post('/batch/store', [App\Http\Controllers\Admin\AdminController::class, 'batchStore']);
         Route::get('/batch/delete/{id}', [App\Http\Controllers\Admin\AdminController::class, 'batchDelete']);
+        Route::get('/batch/edit/{id}', [App\Http\Controllers\Admin\AdminController::class, 'batchEdit']);
+        Route::post('/batch/update/{id}', [App\Http\Controllers\Admin\AdminController::class, 'batchUpdate']);
+        Route::get('/batch/active/{id}', [App\Http\Controllers\Admin\AdminController::class, 'batchActive']);
+        Route::get('/batch/inactive/{id}', [App\Http\Controllers\Admin\AdminController::class, 'batchInactive']);
+        //Batch uri end
+
         Route::get('/salary/list', [\App\Http\Controllers\Admin\AdminController::class, 'salary']);
         Route::post('/salary/submit', [\App\Http\Controllers\Admin\AdminController::class, 'salaryPay']);
         Route::post('/admission/update/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'adminAdmissionFormUpdate']);

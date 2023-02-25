@@ -66,7 +66,7 @@
                                     <select class="form-control" name="batch_student">
                                         <option selected disabled>----Select A Batch No----</option>
                                         @foreach($data['admissionStudentsBatch'] as $admissionStudentBatch)
-                                            <option value="{{ $admissionStudentBatch[0]->batch_no }}">{{ ucfirst($admissionStudentBatch[0]->course) }} - {{ ucfirst($admissionStudentBatch[0]->batch_no) }}</option>
+                                            <option value="{{ $admissionStudentBatch[0]->batch_no }}">{{ ucfirst($admissionStudentBatch[0]->batch_no) }}</option>
                                         @endforeach
                                     </select>
                                     <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">Search</button>

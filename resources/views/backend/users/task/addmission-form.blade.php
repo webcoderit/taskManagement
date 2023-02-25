@@ -420,8 +420,8 @@
                                             <select name="course" id="course" class="form-control">
                                                 <option disabled selected>---Select Course Name---</option>
                                                 <option value="web">Full Stack Web Development</option>
-                                                <option value="attachment_web">Industrial Attachment ( Web )</option>
-                                                <option value="attachment_adm">Industrial Attachment ( ADM )</option>
+{{--                                                <option value="attachment_web">Industrial Attachment ( Web )</option>--}}
+{{--                                                <option value="attachment_adm">Industrial Attachment ( ADM )</option>--}}
                                                 <option value="digital">Digital Marketing</option>
                                                 <option value="english">Communication English</option>
                                             </select>
@@ -431,7 +431,7 @@
                                             <select name="batch_no" id="batch_no" class="form-control">
                                                 <option disabled selected>---Select Batch Number---</option>
                                                 @foreach($batchNumber as $batch)
-                                                    <option value="{{ $batch->batch_no }}">{{ $batch->batch_no }}</option>
+                                                    <option value="{{ $batch->batch_no }}">{{ ucfirst($batch->batch_no) }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
